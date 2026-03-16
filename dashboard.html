@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CZR Studio — Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#000;--s1:#0a0a0a;--s2:#111;--s3:#1a1a1a;
+      --b:rgba(255,255,255,.07);--bl:rgba(255,255,255,.13);
+      --t:#fff;--td:rgba(255,255,255,.42);--tm:rgba(255,255,255,.7);
+      --red:#C8242A;--yel:#F0C029;--blu:#1A4BA8;
+      --grn:#22c55e;--gd:rgba(34,197,94,.12);--rd:rgba(200,36,42,.12);
+      --yd:rgba(240,192,41,.1);--bd:rgba(26,75,168,.15)
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--t);font-family:'Manrope',sans-serif;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+    /* SIDEBAR */
+    .sb{position:fixed;top:0;left:0;bottom:0;width:220px;background:var(--s1);border-right:1px solid var(--b);display:flex;flex-direction:column;z-index:100}
+    .sb-logo{padding:1.4rem 1.5rem 1rem;border-bottom:1px solid var(--b)}
+    .logo{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
+    .logo span{color:var(--red)}
+    .logo-sub{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--td);margin-top:.2rem}
+    .sb-nav{padding:1rem .75rem;flex:1}
+    .nl{font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--td);padding:.5rem .75rem .3rem;margin-top:.4rem}
+    .ni{display:flex;align-items:center;gap:.6rem;padding:.5rem .75rem;border-radius:6px;cursor:pointer;font-size:.8rem;font-weight:500;color:var(--tm);text-decoration:none;margin-bottom:2px;transition:background .15s}
+    .ni:hover{background:var(--s2);color:var(--t)}
+    .ni.active{background:var(--s3);color:var(--t)}
+    .sb-foot{padding:1rem 1.5rem;border-top:1px solid var(--b)}
+    .sw{background:var(--s2);border:1px solid var(--b);border-radius:8px;padding:.8rem}
+    .sw-lbl{font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;color:var(--td)}
+    .sw-n{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;line-height:1;margin:.2rem 0;color:var(--yel)}
+    .sw-s{font-size:.68rem;color:var(--td)}
+    .sw-bar{height:3px;background:var(--s3);border-radius:2px;margin-top:.6rem;overflow:hidden}
+    .sw-fill{height:100%;background:var(--yel);border-radius:2px;transition:width .4s}
+
+    /* MAIN */
+    .main{margin-left:220px;min-height:100vh}
+    .topbar{padding:1.2rem 2rem;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between;background:var(--bg);position:sticky;top:0;z-index:90}
+    .topbar h1{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700}
+    .topbar .dt{font-size:.7rem;color:var(--td);margin-top:.1rem}
+    .pill{display:flex;align-items:center;gap:.4rem;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.32rem .75rem;border-radius:100px;border:1px solid rgba(34,197,94,.3);color:var(--grn);background:rgba(34,197,94,.1)}
+    .pulse{width:6px;height:6px;background:var(--grn);border-radius:50%;animation:pu 1.5s infinite}
+    @keyframes pu{0%,100%{opacity:1}50%{opacity:.3}}
+    .content{padding:2rem}
+
+    /* STATS */
+    .sr{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
+    .sc{background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:1.2rem;transition:border-color .2s}
+    .sc:hover{border-color:var(--bl)}
+    .sc .lbl{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--td)}
+    .sc .val{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;line-height:1;margin:.35rem 0 .15rem}
+    .sc .sub{font-size:.68rem;color:var(--td)}
+    .sc .tr{font-size:.67rem;font-weight:600;margin-top:.45rem;display:flex;align-items:center;gap:.25rem}
+    .tr.up{color:var(--grn)}.tr.w{color:var(--yel)}.tr.n{color:var(--td)}
+    .sc.ra{border-color:rgba(200,36,42,.2)}.sc.ya{border-color:rgba(240,192,41,.2)}
+    .sc.ga{border-color:rgba(34,197,94,.15)}.sc.ba{border-color:rgba(26,75,168,.25)}
+
+    /* GRID */
+    .g31{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+
+    /* CARD */
+    .card{background:var(--s1);border:1px solid var(--b);border-radius:10px;overflow:hidden}
+    .ch{padding:.95rem 1.25rem;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+    .ct{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700}
+    .bdg{font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .55rem;border-radius:100px;font-weight:600}
+    .br{color:var(--red);background:var(--rd);border:1px solid rgba(200,36,42,.2)}
+    .by{color:var(--yel);background:var(--yd);border:1px solid rgba(240,192,41,.2)}
+    .bg{color:var(--grn);background:var(--gd);border:1px solid rgba(34,197,94,.2)}
+    .bb{color:#6b9fff;background:var(--bd);border:1px solid rgba(26,75,168,.3)}
+    .cb{padding:1.2rem}
+
+    /* SCHEDULE */
+    .sl{display:flex;flex-direction:column}
+    .si{display:flex;align-items:flex-start;gap:.9rem;padding:.8rem 0;border-bottom:1px solid var(--b);cursor:pointer}
+    .si:last-child{border-bottom:none}
+    .si:hover{background:rgba(255,255,255,.02);margin:0 -1.2rem;padding-left:1.2rem;padding-right:1.2rem}
+    .st{font-size:.66rem;font-weight:700;color:var(--td);min-width:40px;padding-top:2px;font-variant-numeric:tabular-nums}
+    .ck{width:17px;height:17px;border:1.5px solid var(--bl);border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+    .ck.done{background:var(--grn);border-color:var(--grn);color:#000;font-size:.65rem}
+    .sin{flex:1}
+    .stit{font-size:.8rem;font-weight:600}
+    .ssub{font-size:.68rem;color:var(--td);margin-top:.12rem}
+    .sp{font-size:.56rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .48rem;border-radius:4px;flex-shrink:0}
+    .ig{color:#e1306c;background:rgba(225,48,108,.1)}
+    .li{color:#6b9fff;background:rgba(107,159,255,.1)}
+    .st2{color:var(--yel);background:var(--yd)}
+    .sec{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--td);margin-bottom:.75rem;margin-top:1.1rem;display:flex;align-items:center;gap:.6rem}
+    .sec::after{content:'';flex:1;height:1px;background:var(--b)}
+
+    /* PROGRESS */
+    .pr-c{margin-top:1rem}
+    .pr-l{display:flex;justify-content:space-between;font-size:.68rem;color:var(--td);margin-bottom:.35rem}
+    .pr-b{height:4px;background:var(--s3);border-radius:2px;overflow:hidden}
+    .pr-f{height:100%;border-radius:2px;background:var(--grn);transition:width .5s cubic-bezier(.34,1.56,.64,1)}
+
+    /* SPOTS */
+    .spot-r{display:flex;align-items:center;gap:.7rem;padding:.55rem .7rem;border:1px solid var(--b);border-radius:6px;margin-bottom:.4rem}
+    .spot-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+    .spot-lbl{font-size:.78rem;flex:1}
+    .spot-s{font-size:.65rem;font-weight:600}
+
+    /* LEADS */
+    .ll{display:flex;flex-direction:column}
+    .li2{display:flex;align-items:center;gap:.9rem;padding:.8rem 0;border-bottom:1px solid var(--b)}
+    .li2:last-child{border-bottom:none}
+    .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0}
+    .ln{font-size:.8rem;font-weight:600}
+    .lsrc{font-size:.67rem;color:var(--td)}
+    .ls{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.18rem .5rem;border-radius:4px;cursor:pointer;transition:opacity .15s;flex-shrink:0}
+    .ls:hover{opacity:.75}
+    .s-hot{color:var(--red);background:var(--rd)}
+    .s-warm{color:var(--yel);background:var(--yd)}
+    .s-new{color:#6b9fff;background:var(--bd)}
+    .s-closed{color:var(--grn);background:var(--gd)}
+    .add-btn{display:flex;align-items:center;gap:.5rem;font-size:.74rem;font-weight:600;color:var(--td);background:none;border:1px dashed var(--bl);border-radius:6px;padding:.55rem 1rem;cursor:pointer;transition:all .15s;width:100%;margin-top:1rem}
+    .add-btn:hover{color:var(--t);border-color:var(--td)}
+
+    /* QUICK LINKS */
+    .ql{display:flex;flex-direction:column;gap:.45rem}
+    .ql-a{display:flex;align-items:center;gap:.7rem;padding:.7rem;background:var(--s2);border:1px solid var(--b);border-radius:7px;text-decoration:none;color:var(--t);font-size:.78rem;font-weight:500;transition:all .15s}
+    .ql-a:hover{border-color:var(--bl);background:var(--s3)}
+    .ql-a .arr{margin-left:auto;color:var(--td);font-size:.75rem}
+
+    /* POSTS GRID */
+    .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+    .pt{background:var(--s2);border:1px solid var(--b);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .15s}
+    .pt:hover{border-color:var(--bl)}
+    .pt-th{aspect-ratio:1;background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+    .pt-inf{padding:.6rem}
+    .pt-nm{font-size:.7rem;font-weight:600;margin-bottom:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pt-mt{font-size:.6rem;color:var(--td)}
+
+    /* NOTES */
+    .na{width:100%;background:var(--s2);border:1px solid var(--b);border-radius:8px;padding:.8rem;color:var(--t);font-family:'Manrope',sans-serif;font-size:.8rem;line-height:1.7;resize:none;outline:none;min-height:120px;transition:border-color .15s}
+    .na:focus{border-color:var(--bl)}
+
+    /* OFFER BANNER */
+    .ob{background:linear-gradient(135deg,rgba(200,36,42,.14),rgba(240,192,41,.07));border:1px solid rgba(240,192,41,.2);border-radius:10px;padding:1.1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.1rem}
+    .ob-icon{font-size:1.6rem}
+    .ob-title{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700}
+    .ob-sub{font-size:.72rem;color:var(--tm);margin-top:.15rem}
+    .ob-cta{margin-left:auto;background:var(--yel);color:#000;font-size:.7rem;font-weight:700;letter-spacing:.05em;padding:.55rem 1rem;border-radius:6px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:opacity .15s}
+    .ob-cta:hover{opacity:.85}
+
+    /* MODAL */
+    .mo{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+    .mo.open{opacity:1;pointer-events:all}
+    .md{background:var(--s1);border:1px solid var(--bl);border-radius:12px;width:400px;max-width:90vw;transform:translateY(14px);transition:transform .2s}
+    .mo.open .md{transform:translateY(0)}
+    .mh{padding:1.1rem 1.2rem;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
+    .mt{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700}
+    .mx{background:none;border:none;color:var(--td);font-size:1.2rem;cursor:pointer;line-height:1}
+    .mb{padding:1.2rem}
+    .fg{margin-bottom:.9rem}
+    .fg label{display:block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--td);margin-bottom:.35rem}
+    .fg input,.fg select,.fg textarea{width:100%;background:var(--s2);border:1px solid var(--bl);border-radius:6px;padding:.55rem .7rem;color:var(--t);font-family:'Manrope',sans-serif;font-size:.8rem;outline:none;transition:border-color .15s}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(255,255,255,.25)}
+    .fg select option{background:var(--s1)}
+    .mf{padding:.9rem 1.2rem;border-top:1px solid var(--b);display:flex;gap:.6rem;justify-content:flex-end}
+    .btn{font-family:'Manrope',sans-serif;font-size:.72rem;font-weight:700;padding:.5rem 1.1rem;border-radius:6px;cursor:pointer;border:none;transition:opacity .15s}
+    .btn-g{background:none;border:1px solid var(--bl);color:var(--td)}
+    .btn-g:hover{color:var(--t);border-color:var(--td)}
+    .btn-p{background:var(--t);color:var(--bg)}
+    .btn-p:hover{opacity:.84}
+
+    /* spot ctrl btns */
+    .sct{display:flex;gap:.5rem;margin-bottom:.85rem}
+    .sct-btn{flex:1;font-family:'Manrope',sans-serif;font-size:.7rem;font-weight:700;padding:.48rem;border-radius:6px;cursor:pointer;border:1px solid var(--bl);background:none;color:var(--td);transition:all .15s}
+    .sct-btn:hover{color:var(--t);border-color:var(--td)}
+
+    @media(max-width:1100px){.sr{grid-template-columns:repeat(2,1fr)}.g31{grid-template-columns:1fr}}
+    @media(max-width:768px){.sb{display:none}.main{margin-left:0}.sr{grid-template-columns:repeat(2,1fr)}.pg{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+
+<aside class="sb">
+  <div class="sb-logo">
+    <div class="logo">CZR<span>.</span></div>
+    <div class="logo-sub">Command Center</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="nl">Campaign</div>
+    <a class="ni active" href="#schedule">📅 Schedule</a>
+    <a class="ni" href="#leads">⚡ Leads</a>
+    <a class="ni" href="#assets">🎨 Assets</a>
+    <div class="nl">Studio</div>
+    <a class="ni" href="#notes">✏️ Notes</a>
+    <a class="ni" href="index.html" target="_blank">🌐 Live Site</a>
+    <a class="ni" href="https://wa.me/971551343144" target="_blank">💬 WhatsApp</a>
+    <a class="ni" href="https://instagram.com/czr.studio" target="_blank">📸 Instagram</a>
+    <a class="ni" href="https://www.linkedin.com" target="_blank">💼 LinkedIn</a>
+  </nav>
+  <div class="sb-foot">
+    <div class="sw">
+      <div class="sw-lbl">Founding Spots</div>
+      <div class="sw-n" id="sw-n">3</div>
+      <div class="sw-s">of 3 remaining</div>
+      <div class="sw-bar"><div class="sw-fill" id="sw-f" style="width:100%"></div></div>
+    </div>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div>
+      <h1>48h Blitz Campaign</h1>
+      <div class="dt" id="dt">—</div>
+    </div>
+    <div class="pill"><div class="pulse"></div> Active</div>
+  </div>
+
+  <div class="content">
+
+    <!-- BANNER -->
+    <div class="ob">
+      <div class="ob-icon">🔥</div>
+      <div>
+        <div class="ob-title">Founding Offer — €1,200 · 5 pages · 48h delivery</div>
+        <div class="ob-sub">Limited to 3 clients. Goal: sign the first one today.</div>
+      </div>
+      <a class="ob-cta" href="https://wa.me/971551343144" target="_blank">Open WhatsApp →</a>
+    </div>
+
+    <!-- STATS -->
+    <div class="sr">
+      <div class="sc ya">
+        <div class="lbl">Founding Spots Left</div>
+        <div class="val" id="s-spots">3</div>
+        <div class="sub">of 3 founding offers</div>
+        <div class="tr w">⏳ Fill these fast</div>
+      </div>
+      <div class="sc ga">
+        <div class="lbl">Posts Published</div>
+        <div class="val" id="s-posts">0</div>
+        <div class="sub">of 9 scheduled</div>
+        <div class="tr n" id="posts-tr">→ Day 1 starts now</div>
+      </div>
+      <div class="sc ba">
+        <div class="lbl">Leads in Pipeline</div>
+        <div class="val" id="s-leads">0</div>
+        <div class="sub">DMs + WA replies</div>
+        <div class="tr up">Track every inquiry</div>
+      </div>
+      <div class="sc ra">
+        <div class="lbl">Revenue Potential</div>
+        <div class="val">€3.6k</div>
+        <div class="sub">3 spots × €1,200</div>
+        <div class="tr up">If all 3 filled ✓</div>
+      </div>
+    </div>
+
+    <!-- SCHEDULE + RIGHT -->
+    <div class="g31" id="schedule">
+      <div class="card">
+        <div class="ch">
+          <div class="ct">📅 Posting Schedule</div>
+          <span class="bdg br">48h Blitz</span>
+        </div>
+        <div class="cb">
+          <div class="sec">Day 1 — Monday 17 March</div>
+          <div class="sl">
+            <div class="si" onclick="tog(this)">
+              <div class="st">09:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">Launch Post — "We built this in 48h"</div><div class="ssub">Single image · Launch announcement</div></div>
+              <span class="sp ig">IG</span>
+            </div>
+            <div class="si" onclick="tog(this)">
+              <div class="st">10:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">Story — "3 spots open · €1,200"</div><div class="ssub">Keep live all day · Repost 16:00 & 21:00</div></div>
+              <span class="sp st2">Story</span>
+            </div>
+            <div class="si" onclick="tog(this)">
+              <div class="st">11:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">Founder Story Post</div><div class="ssub">Text-only · "I've been building premium websites for 48h at a time."</div></div>
+              <span class="sp li">LI</span>
+            </div>
+            <div class="si" onclick="tog(this)">
+              <div class="st">14:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">ELARA Fashion House Showcase</div><div class="ssub">Carousel · 2 slides · ELARA lookbook + caption</div></div>
+              <span class="sp ig">IG</span>
+            </div>
+            <div class="si" onclick="tog(this)">
+              <div class="st">19:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">Table N°1 Monaco Showcase</div><div class="ssub">Carousel · 2 slides · fine dining caption</div></div>
+              <span class="sp ig">IG</span>
+            </div>
+          </div>
+
+          <div class="sec">Day 2 — Tuesday 18 March</div>
+          <div class="sl">
+            <div class="si" onclick="tog(this)">
+              <div class="st">09:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">⭐ Process Reel — 3-slide carousel</div><div class="ssub">Hour 00 → Hour 48 → Live · Most important post</div></div>
+              <span class="sp ig">IG</span>
+            </div>
+            <div class="si" onclick="tog(this)">
+              <div class="st">10:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">Proof of Work — 6 clients listed</div><div class="ssub">Text-only LinkedIn · fashion, dining, architecture...</div></div>
+              <span class="sp li">LI</span>
+            </div>
+            <div class="si" onclick="tog(this)">
+              <div class="st">14:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">Architecture Studio Showcase</div><div class="ssub">"Silence is also a design choice." · single image</div></div>
+              <span class="sp ig">IG</span>
+            </div>
+            <div class="si" onclick="tog(this)">
+              <div class="st">21:00</div><div class="ck"></div>
+              <div class="sin"><div class="stit">⚠️ Last Call Closing Story</div><div class="ssub">1 spot remaining · urgency close · night push</div></div>
+              <span class="sp st2">Story</span>
+            </div>
+          </div>
+
+          <div class="pr-c">
+            <div class="pr-l"><span>Overall progress</span><span id="pr-txt">0 / 9 posts</span></div>
+            <div class="pr-b"><div class="pr-f" id="pr-f" style="width:0%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem">
+        <div class="card">
+          <div class="ch"><div class="ct">🎯 Spots Tracker</div><span class="bdg by">Founding</span></div>
+          <div class="cb">
+            <div class="sct">
+              <button class="sct-btn" onclick="adjSpot(-1)">− Fill a spot</button>
+              <button class="sct-btn" onclick="adjSpot(1)">+ Restore</button>
+            </div>
+            <div id="spot-list"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ch"><div class="ct">⚡ Quick Links</div></div>
+          <div class="cb">
+            <div class="ql">
+              <a class="ql-a" href="https://wa.me/971551343144" target="_blank">💬 WhatsApp Lead Channel<span class="arr">↗</span></a>
+              <a class="ql-a" href="https://instagram.com/czr.studio" target="_blank">📸 @czr.studio Instagram<span class="arr">↗</span></a>
+              <a class="ql-a" href="index.html" target="_blank">🌐 CZR Studio Live Site<span class="arr">↗</span></a>
+              <a class="ql-a" href="cases/fashion-house.html" target="_blank">👗 ELARA Case Study<span class="arr">↗</span></a>
+              <a class="ql-a" href="cases/restaurant.html" target="_blank">🍽️ Table N°1 Case Study<span class="arr">↗</span></a>
+              <a class="ql-a" href="cases/architecture-studio.html" target="_blank">🏛️ Architecture Case Study<span class="arr">↗</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADS -->
+    <div class="card" id="leads" style="margin-bottom:1.5rem">
+      <div class="ch">
+        <div class="ct">⚡ Lead Pipeline</div>
+        <span class="bdg bb" id="lb">0 leads</span>
+      </div>
+      <div class="cb">
+        <div class="ll" id="ll">
+          <div style="text-align:center;padding:2rem;color:var(--td);font-size:.8rem" id="no-l">No leads yet — post now and they'll come. 🚀</div>
+        </div>
+        <button class="add-btn" onclick="openM()">+ Add Lead</button>
+      </div>
+    </div>
+
+    <!-- ASSETS -->
+    <div class="card" id="assets" style="margin-bottom:1.5rem">
+      <div class="ch"><div class="ct">🎨 Campaign Assets</div><span class="bdg bg">9 ready</span></div>
+      <div class="cb">
+        <div class="pg">
+          <div class="pt"><div class="pt-th">🚀</div><div class="pt-inf"><div class="pt-nm">Launch Announcement</div><div class="pt-mt">Day 1 · 09:00 · Instagram</div></div></div>
+          <div class="pt"><div class="pt-th">👗</div><div class="pt-inf"><div class="pt-nm">ELARA Fashion Showcase</div><div class="pt-mt">Day 1 · 14:00 · Carousel</div></div></div>
+          <div class="pt"><div class="pt-th">🍽️</div><div class="pt-inf"><div class="pt-nm">Table N°1 Monaco</div><div class="pt-mt">Day 1 · 19:00 · Carousel</div></div></div>
+          <div class="pt"><div class="pt-th">⏱️</div><div class="pt-inf"><div class="pt-nm">Process Reel (3 slides)</div><div class="pt-mt">Day 2 · 09:00 · IG ⭐</div></div></div>
+          <div class="pt"><div class="pt-th">🏛️</div><div class="pt-inf"><div class="pt-nm">Architecture Studio</div><div class="pt-mt">Day 2 · 14:00 · Instagram</div></div></div>
+          <div class="pt"><div class="pt-th">💼</div><div class="pt-inf"><div class="pt-nm">Founder Story</div><div class="pt-mt">Day 1 · 11:00 · LinkedIn</div></div></div>
+          <div class="pt"><div class="pt-th">📊</div><div class="pt-inf"><div class="pt-nm">Proof of Work</div><div class="pt-mt">Day 2 · 10:00 · LinkedIn</div></div></div>
+          <div class="pt"><div class="pt-th">⚡</div><div class="pt-inf"><div class="pt-nm">Story: 3 Spots Open</div><div class="pt-mt">Day 1 · 10:00 · Story</div></div></div>
+          <div class="pt"><div class="pt-th">⚠️</div><div class="pt-inf"><div class="pt-nm">Story: Last Call</div><div class="pt-mt">Day 2 · 21:00 · Story</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="card" id="notes">
+      <div class="ch"><div class="ct">✏️ CZR Notes</div><span class="bdg by">Auto-saved</span></div>
+      <div class="cb">
+        <textarea class="na" id="na" rows="6" placeholder="Quick thoughts, client names, follow-ups, ideas... everything is saved locally."></textarea>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="mo" id="mo">
+  <div class="md">
+    <div class="mh"><div class="mt">Add Lead</div><button class="mx" onclick="closeM()">×</button></div>
+    <div class="mb">
+      <div class="fg"><label>Name / Handle</label><input id="m-name" type="text" placeholder="e.g. @maison.paris or Sophie L."></div>
+      <div class="fg"><label>Source</label>
+        <select id="m-src"><option>Instagram DM</option><option>WhatsApp</option><option>LinkedIn</option><option>Instagram Comment</option><option>Referral</option><option>Other</option></select>
+      </div>
+      <div class="fg"><label>Status</label>
+        <select id="m-st"><option value="new">New</option><option value="warm">Warm</option><option value="hot">Hot 🔥</option><option value="closed">Closed ✓</option></select>
+      </div>
+      <div class="fg"><label>Note</label><textarea id="m-note" rows="2" placeholder="What did they say? What do they need?"></textarea></div>
+    </div>
+    <div class="mf">
+      <button class="btn btn-g" onclick="closeM()">Cancel</button>
+      <button class="btn btn-p" onclick="saveL()">Add Lead</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// DATE
+function upDate(){
+  const n=new Date(),D=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('dt').textContent=`${D[n.getDay()]} ${n.getDate()} ${M[n.getMonth()]} ${n.getFullYear()} — ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+}
+upDate();setInterval(upDate,30000);
+
+// STORAGE
+const S=(k,v)=>localStorage.setItem('czr_'+k,JSON.stringify(v));
+const L=(k,d)=>{const v=localStorage.getItem('czr_'+k);return v?JSON.parse(v):d};
+
+// SPOTS
+let spots=L('spots',3);
+const SPOT_NAMES=['Spot 1','Spot 2','Spot 3'];
+function renderSpots(){
+  document.getElementById('sw-n').textContent=spots;
+  document.getElementById('s-spots').textContent=spots;
+  document.getElementById('sw-f').style.width=(spots/3*100)+'%';
+  const el=document.getElementById('spot-list');
+  el.innerHTML='';
+  SPOT_NAMES.forEach((_,i)=>{
+    const open=i<spots;
+    const d=document.createElement('div');
+    d.className='spot-r';
+    d.innerHTML=`<div class="spot-dot" style="background:${open?'var(--grn)':'var(--red)'}"></div><span class="spot-lbl">${SPOT_NAMES[i]}</span><span class="spot-s" style="color:${open?'var(--grn)':'var(--red)'}">${open?'Open':'Filled ✓'}</span>`;
+    el.appendChild(d);
+  });
+  S('spots',spots);
+}
+function adjSpot(d){spots=Math.max(0,Math.min(3,spots+d));renderSpots();}
+renderSpots();
+
+// SCHEDULE
+let chk=L('chk',{});
+const TOTAL=9;
+function updPr(){
+  const done=Object.values(chk).filter(Boolean).length;
+  document.getElementById('s-posts').textContent=done;
+  document.getElementById('pr-txt').textContent=`${done} / ${TOTAL} posts`;
+  document.getElementById('pr-f').style.width=(done/TOTAL*100)+'%';
+  S('chk',chk);
+}
+function tog(row){
+  const ck=row.querySelector('.ck'),key=row.querySelector('.stit').textContent,done=ck.classList.contains('done');
+  if(done){ck.classList.remove('done');ck.textContent='';chk[key]=false;}
+  else{ck.classList.add('done');ck.textContent='✓';chk[key]=true;}
+  updPr();
+}
+document.querySelectorAll('.si').forEach(r=>{
+  const k=r.querySelector('.stit').textContent,ck=r.querySelector('.ck');
+  if(chk[k]){ck.classList.add('done');ck.textContent='✓';}
+});
+updPr();
+
+// LEADS
+let leads=L('leads',[]);
+const SM={hot:{l:'🔥 Hot',c:'s-hot'},warm:{l:'🌡 Warm',c:'s-warm'},new:{l:'New',c:'s-new'},closed:{l:'✓ Closed',c:'s-closed'}};
+function renderLeads(){
+  const ll=document.getElementById('ll'),nl=document.getElementById('no-l');
+  document.getElementById('s-leads').textContent=leads.length;
+  document.getElementById('lb').textContent=leads.length+' lead'+(leads.length!==1?'s':'');
+  ll.querySelectorAll('.li2').forEach(e=>e.remove());
+  nl.style.display=leads.length?'none':'block';
+  const cols=['#C8242A','#1A4BA8','#F0C029','#22c55e'];
+  leads.forEach((l,i)=>{
+    const s=SM[l.status]||SM.new,ini=l.name.replace('@','').slice(0,2).toUpperCase(),c=cols[i%4];
+    const d=document.createElement('div');d.className='li2';
+    d.innerHTML=`<div class="av" style="background:${c}22;color:${c}">${ini}</div><div style="flex:1"><div class="ln">${l.name}</div><div class="lsrc">${l.src}${l.note?' · '+l.note:''}</div></div><span class="ls ${s.c}" onclick="cycL(${i})">${s.l}</span>`;
+    ll.appendChild(d);
+  });
+  S('leads',leads);
+}
+function cycL(i){const o=['new','warm','hot','closed'];leads[i].status=o[(o.indexOf(leads[i].status)+1)%4];renderLeads();}
+function openM(){document.getElementById('mo').classList.add('open');document.getElementById('m-name').focus();}
+function closeM(){document.getElementById('mo').classList.remove('open');}
+function saveL(){
+  const n=document.getElementById('m-name').value.trim();if(!n)return;
+  leads.push({name:n,src:document.getElementById('m-src').value,status:document.getElementById('m-st').value,note:document.getElementById('m-note').value.trim()});
+  renderLeads();closeM();
+  document.getElementById('m-name').value='';document.getElementById('m-note').value='';
+}
+document.getElementById('mo').addEventListener('click',e=>{if(e.target===document.getElementById('mo'))closeM();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+renderLeads();
+
+// NOTES
+const na=document.getElementById('na');
+na.value=L('notes','');
+na.addEventListener('input',()=>S('notes',na.value));
+</script>
+</body>
+</html>
