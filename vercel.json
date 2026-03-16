@@ -2,12 +2,31 @@
   "name": "czr-studio",
   "version": 2,
   "builds": [
-    { "src": "index.html", "use": "@vercel/static" }
+    { "src": "**/*", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/cases/fashion-house/?", "dest": "/cases/fashion-house/index.html" },
+    { "src": "/cases/architecture-studio/?", "dest": "/cases/architecture-studio/index.html" },
+    { "src": "/cases/restaurant/?", "dest": "/cases/restaurant/index.html" },
+    { "src": "/cases/fragrance/?", "dest": "/cases/fragrance/index.html" },
+    { "src": "/cases/creative-director/?", "dest": "/cases/creative-director/index.html" },
+    { "src": "/cases/photographer/?", "dest": "/cases/photographer/index.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ],
   "headers": [
+    {
+      "source": "/style.css",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" },
+        { "key": "Content-Type", "value": "text/css; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=2592000" }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
