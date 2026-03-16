@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATIÈRE — Architecture Practice. Dubai. Luxembourg. Paris.</title>
+  <meta name="description" content="MATIÈRE. A boutique architecture practice. We build structures that outlast their patrons. Twelve commissions per year.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:  #f5f4f2;
+      --black:  #0c0c0b;
+      --mid:    rgba(12,12,11,0.5);
+      --dim:    rgba(12,12,11,0.3);
+      --border: rgba(12,12,11,0.12);
+      --sans:   'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--black); font-family: var(--sans); font-weight: 400; font-size: 14px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      height: 52px; display: flex; align-items: stretch;
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+    }
+    .nav-mark {
+      width: 52px; border-right: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 0.75rem; letter-spacing: -0.02em;
+    }
+    .nav-name {
+      padding: 0 1.5rem; display: flex; align-items: center;
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+      border-right: 1px solid var(--border);
+    }
+    .nav-links {
+      display: flex; flex: 1;
+    }
+    .nav-links a {
+      padding: 0 1.5rem; display: flex; align-items: center;
+      font-size: 0.62rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mid); border-right: 1px solid var(--border);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--black); background: rgba(12,12,11,0.04); }
+    .nav-cta {
+      margin-left: auto; padding: 0 1.5rem; display: flex; align-items: center;
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      background: var(--black); color: var(--white); border: none;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .nav-cta:hover { background: #222; }
+
+    /* HERO — typography only */
+    .hero {
+      margin-top: 52px;
+      padding: 4rem 3rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 0;
+    }
+    .hero-type { padding-right: 4rem; padding-bottom: 4rem; }
+    .hero-overline {
+      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--mid); margin-bottom: 2rem;
+      display: flex; gap: 2rem;
+    }
+    .hero-h1 {
+      font-size: clamp(4.5rem, 9vw, 10rem);
+      font-weight: 900; line-height: 0.88;
+      letter-spacing: -0.04em; text-transform: uppercase;
+    }
+    .hero-h1 span { display: block; }
+    .hero-h1 span.light { font-weight: 300; font-style: italic; }
+    .hero-rule { height: 1px; background: var(--black); margin: 2.5rem 0; }
+    .hero-sub { font-size: 0.85rem; line-height: 1.75; color: var(--mid); max-width: 480px; margin-bottom: 2.5rem; }
+    .hero-ctas { display: flex; gap: 0; }
+    .hbtn { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.85rem 1.8rem; border: 1px solid var(--black); transition: all 0.15s; display: inline-block; }
+    .hbtn-fill { background: var(--black); color: var(--white); }
+    .hbtn-fill:hover { background: #222; border-color: #222; }
+    .hbtn-ghost { background: transparent; color: var(--black); margin-left: -1px; }
+    .hbtn-ghost:hover { background: rgba(12,12,11,0.05); }
+    .hero-right {
+      border-left: 1px solid var(--border);
+      display: flex; flex-direction: column;
+    }
+    .hero-stat-row {
+      flex: 1; display: flex; flex-direction: column;
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem; justify-content: center;
+    }
+    .hero-stat-row:last-child { border-bottom: none; }
+    .hs-n { font-size: 3rem; font-weight: 900; line-height: 1; letter-spacing: -0.03em; }
+    .hs-l { font-size: 0.6rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); margin-top: 0.3rem; }
+
+    /* TICKER */
+    .ticker { border-bottom: 1px solid var(--border); display: flex; overflow: hidden; height: 38px; background: var(--black); color: var(--white); }
+    .ticker-label { padding: 0 1.5rem; display: flex; align-items: center; font-size: 0.58rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; border-right: 1px solid rgba(245,244,242,0.15); white-space: nowrap; }
+    .ticker-inner { flex: 1; overflow: hidden; display: flex; align-items: center; }
+    .ticker-track { display: inline-flex; white-space: nowrap; animation: ticker 30s linear infinite; }
+    .ticker-track span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding-right: 3rem; opacity: 0.55; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* WORK */
+    .work { }
+    .work-header {
+      display: grid; grid-template-columns: 52px 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .work-num-col { border-right: 1px solid var(--border); padding: 2rem; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.58rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); display: flex; align-items: center; justify-content: center; }
+    .work-ttl { padding: 2rem 3rem; }
+    .work-ttl h2 { font-size: clamp(2rem, 5vw, 4.5rem); font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase; }
+    .work-ttl p { font-size: 0.82rem; color: var(--mid); margin-top: 0.8rem; max-width: 520px; }
+
+    .project-row { display: grid; grid-template-columns: 52px 1fr 480px; border-bottom: 1px solid var(--border); }
+    .proj-index { border-right: 1px solid var(--border); padding: 2rem; display: flex; align-items: flex-start; justify-content: center; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; color: var(--mid); }
+    .proj-content { padding: 2.5rem 3rem; border-right: 1px solid var(--border); }
+    .proj-tag { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 1rem; display: block; }
+    .proj-name { font-size: clamp(1.8rem, 3vw, 3rem); font-weight: 900; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .proj-desc { font-size: 0.82rem; line-height: 1.75; color: var(--mid); max-width: 440px; margin-bottom: 2rem; }
+    .proj-specs { display: flex; gap: 2.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+    .ps-item { }
+    .ps-v { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
+    .ps-l { font-size: 0.58rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); }
+    .proj-img { overflow: hidden; background: #e8e6e2; }
+    .proj-img img { height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.05); transition: filter 0.5s; }
+    .project-row:hover .proj-img img { filter: grayscale(0%) contrast(1); }
+
+    /* STATEMENT — full bleed */
+    .statement {
+      background: var(--black); color: var(--white);
+      padding: 5rem 3rem;
+      display: grid; grid-template-columns: 52px 1fr;
+    }
+    .stmt-mark { border-right: 1px solid rgba(245,244,242,0.1); display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5rem; font-size: 0.58rem; font-weight: 700; writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,244,242,0.3); }
+    .stmt-body { padding-left: 3rem; }
+    .stmt-body blockquote { font-size: clamp(2rem, 4.5vw, 5.5rem); font-weight: 300; font-style: italic; line-height: 1.1; letter-spacing: -0.02em; }
+    .stmt-body cite { display: block; margin-top: 2.5rem; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(245,244,242,0.35); font-style: normal; }
+
+    /* PROCESS */
+    .process { border-bottom: 1px solid var(--border); }
+    .process-header { display: grid; grid-template-columns: 52px 1fr; border-bottom: 1px solid var(--border); }
+    .ph-mark { border-right: 1px solid var(--border); }
+    .ph-text { padding: 2rem 3rem; }
+    .ph-text h2 { font-size: clamp(1.8rem, 4vw, 3.5rem); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); }
+    .ps-step { padding: 2.5rem; border-right: 1px solid var(--border); }
+    .ps-step:last-child { border-right: none; }
+    .pss-num { font-size: 3rem; font-weight: 900; letter-spacing: -0.04em; color: rgba(12,12,11,0.08); display: block; margin-bottom: 1rem; }
+    .pss-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .pss-body { font-size: 0.78rem; line-height: 1.7; color: var(--mid); }
+
+    /* CONTACT */
+    .contact { display: grid; grid-template-columns: 52px 1fr 1fr; border-top: 1px solid var(--border); }
+    .contact-mark { border-right: 1px solid var(--border); padding: 2rem; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.58rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); display: flex; align-items: center; justify-content: center; }
+    .contact-left { padding: 3rem; border-right: 1px solid var(--border); }
+    .contact-left h2 { font-size: clamp(2rem, 4vw, 4rem); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 2rem; }
+    .contact-left p { font-size: 0.82rem; color: var(--mid); line-height: 1.75; max-width: 360px; margin-bottom: 2.5rem; }
+    .contact-data { display: flex; flex-direction: column; }
+    .cd-row { display: flex; gap: 1.5rem; padding: 1rem 0; border-top: 1px solid var(--border); }
+    .cd-row:last-child { border-bottom: 1px solid var(--border); }
+    .cd-l { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); min-width: 80px; padding-top: 2px; }
+    .cd-v { font-size: 0.85rem; font-weight: 400; }
+    .contact-right { padding: 3rem; }
+    form { display: flex; flex-direction: column; }
+    .f-group { display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
+    .f-group:first-child { border-top: 1px solid var(--border); }
+    label { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); padding: 0.9rem 0 0.3rem; }
+    input, select, textarea { background: transparent; border: none; outline: none; font-family: var(--sans); font-size: 0.88rem; font-weight: 400; color: var(--black); padding: 0 0 0.9rem; width: 100%; -webkit-appearance: none; appearance: none; }
+    input::placeholder, textarea::placeholder { color: rgba(12,12,11,0.25); }
+    select { cursor: pointer; } select option { background: var(--white); }
+    textarea { resize: none; min-height: 80px; line-height: 1.6; }
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; }
+    .f-row .f-group:first-child { border-right: 1px solid var(--border); padding-right: 1.5rem; }
+    .f-row .f-group:last-child { padding-left: 1.5rem; }
+    .f-actions { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .f-note { font-size: 0.6rem; color: var(--mid); max-width: 160px; line-height: 1.5; }
+    button[type="submit"] { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.85rem 2rem; background: var(--black); color: var(--white); border: 1px solid var(--black); cursor: pointer; transition: background 0.15s; }
+    button[type="submit"]:hover { background: #222; }
+
+    /* FOOTER */
+    footer { background: var(--black); color: var(--white); }
+    .footer-grid { display: grid; grid-template-columns: 52px 1.5fr 1fr 1fr; border-bottom: 1px solid rgba(245,244,242,0.1); }
+    .fg-mark { border-right: 1px solid rgba(245,244,242,0.08); }
+    .fg-col { padding: 2.5rem 2.5rem; border-right: 1px solid rgba(245,244,242,0.08); }
+    .fg-col:last-child { border-right: none; }
+    .fg-brand { font-size: 0.6rem; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1rem; }
+    .fg-about { font-size: 0.78rem; color: rgba(245,244,242,0.4); line-height: 1.7; }
+    .fg-head { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,244,242,0.3); margin-bottom: 1.2rem; }
+    .fg-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .fg-links a { font-size: 0.78rem; color: rgba(245,244,242,0.55); transition: color 0.15s; }
+    .fg-links a:hover { color: rgba(245,244,242,0.9); }
+    .footer-bar { padding: 1.2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .fb-copy { font-size: 0.58rem; color: rgba(245,244,242,0.25); letter-spacing: 0.1em; }
+    .czr-credit { font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,244,242,0.25); border: 1px solid rgba(245,244,242,0.1); padding: 0.28rem 0.7rem; transition: color 0.2s, border-color 0.2s; }
+    .czr-credit:hover { color: rgba(245,244,242,0.8); border-color: rgba(245,244,242,0.3); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .project-row { grid-template-columns: 52px 1fr; }
+      .proj-img { display: none; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .contact { grid-template-columns: 1fr; }
+      .contact-mark { display: none; }
+      .contact-left, .contact-right { padding: 2rem; }
+      .contact-left { border-right: none; border-bottom: 1px solid var(--border); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .fg-mark { display: none; }
+    }
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
+      .process-steps { grid-template-columns: 1fr; }
+      .proj-specs { flex-wrap: wrap; gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">M.</div>
+  <div class="nav-name">Matière</div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Begin a Project</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-type">
+    <div class="hero-overline">
+      <span>Architecture Practice</span>
+      <span>Est. 2016</span>
+      <span>Dubai · Luxembourg · Paris</span>
+    </div>
+    <div class="hero-h1">
+      <span>The</span>
+      <span class="light">Structure</span>
+      <span>Outlasts</span>
+      <span class="light">Everything.</span>
+    </div>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">We build for the absolute top of the market. Twelve commissions per year — no more. If it cannot be justified structurally, it is removed. No decoration. No compromise.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="hbtn hbtn-fill">View Work</a>
+      <a href="#contact" class="hbtn hbtn-ghost">Begin a Project</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-row"><div class="hs-n">12</div><div class="hs-l">Commissions / Year</div></div>
+    <div class="hero-stat-row"><div class="hs-n">9</div><div class="hs-l">Years of Practice</div></div>
+    <div class="hero-stat-row"><div class="hs-n">38</div><div class="hs-l">Projects Delivered</div></div>
+    <div class="hero-stat-row"><div class="hs-n">4</div><div class="hs-l">International Awards</div></div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-label">Status</div>
+  <div class="ticker-inner">
+    <div class="ticker-track">
+      <span>Currently Accepting Q3 2025 Commissions</span><span>―</span>
+      <span>Dubai · Luxembourg · Paris</span><span>―</span>
+      <span>Private Residential</span><span>―</span>
+      <span>Cultural & Institutional</span><span>―</span>
+      <span>Interior Architecture</span><span>―</span>
+      <span>No Decoration. No Compromise.</span><span>―</span>
+      <span>Currently Accepting Q3 2025 Commissions</span><span>―</span>
+      <span>Dubai · Luxembourg · Paris</span><span>―</span>
+      <span>Private Residential</span><span>―</span>
+      <span>Cultural & Institutional</span><span>―</span>
+      <span>Interior Architecture</span><span>―</span>
+      <span>No Decoration. No Compromise.</span><span>―</span>
+    </div>
+  </div>
+</div>
+
+<!-- WORK -->
+<div class="work" id="work">
+  <div class="work-header">
+    <div class="work-num-col">Work</div>
+    <div class="work-ttl">
+      <h2>Selected Projects</h2>
+      <p>Two projects shown. All work is subject to client confidentiality agreements. Full portfolio available upon signed NDA.</p>
+    </div>
+  </div>
+
+  <div class="project-row reveal">
+    <div class="proj-index">01</div>
+    <div class="proj-content">
+      <span class="proj-tag">Private Pavilion · Dubai, UAE · 2024</span>
+      <div class="proj-name">Al Wasl<br>Pavilion</div>
+      <p class="proj-desc">A meditation chamber in raw board-formed concrete. The only aperture: a single slit window calibrated to cast a sharp shaft of light at solar noon on the summer solstice. No furniture. No decoration. The space is the event.</p>
+      <div class="proj-specs">
+        <div class="ps-item"><div class="ps-v">220m²</div><div class="ps-l">Total Area</div></div>
+        <div class="ps-item"><div class="ps-v">14mo</div><div class="ps-l">Delivery</div></div>
+        <div class="ps-item"><div class="ps-v">BFC</div><div class="ps-l">Board-formed Concrete</div></div>
+      </div>
+    </div>
+    <div class="proj-img">
+      <img src="../../images/matiere_hero.png" alt="Al Wasl Pavilion — Dubai 2024" loading="lazy">
+    </div>
+  </div>
+
+  <div class="project-row reveal">
+    <div class="proj-index">02</div>
+    <div class="proj-content">
+      <span class="proj-tag">Private Residence · Luxembourg · 2023</span>
+      <div class="proj-name">Villa<br>Heischtergronn</div>
+      <p class="proj-desc">Set into the escarpment. Three levels of concrete and European larch, each cantilevered over the valley. Every room frames precisely one view — no more. The building does not impose on the landscape. It becomes it.</p>
+      <div class="proj-specs">
+        <div class="ps-item"><div class="ps-v">480m²</div><div class="ps-l">Total Area</div></div>
+        <div class="ps-item"><div class="ps-v">22mo</div><div class="ps-l">Delivery</div></div>
+        <div class="ps-item"><div class="ps-v">3</div><div class="ps-l">Cantilevered Levels</div></div>
+      </div>
+    </div>
+    <div class="proj-img">
+      <img src="../../images/matiere_detail.png" alt="Villa Heischtergronn — Luxembourg 2023" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<!-- STATEMENT -->
+<div class="statement reveal">
+  <div class="stmt-mark">Statement</div>
+  <div class="stmt-body">
+    <blockquote>"Architecture is not a style. It is an argument — made in concrete, in glass, in the weight of things. Every element must justify its existence or be removed."</blockquote>
+    <cite>— Founder, MATIÈRE · Dubai 2016</cite>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="process" id="process">
+  <div class="process-header reveal">
+    <div class="ph-mark"></div>
+    <div class="ph-text">
+      <h2>How We Work</h2>
+    </div>
+  </div>
+  <div class="process-steps reveal">
+    <div class="ps-step">
+      <span class="pss-num">01</span>
+      <div class="pss-title">Brief Refusal</div>
+      <p class="pss-body">We do not take generic briefs. We take commissions — defined, intentional, specific. The first conversation determines whether we are the right practice for the work.</p>
+    </div>
+    <div class="ps-step">
+      <span class="pss-num">02</span>
+      <div class="pss-title">Structural Argument</div>
+      <p class="pss-body">Every project begins with a structural argument — the reason the building must exist in this specific way. Everything follows from this.</p>
+    </div>
+    <div class="ps-step">
+      <span class="pss-num">03</span>
+      <div class="pss-title">Ruthless Elimination</div>
+      <p class="pss-body">Elements are added — then eliminated. We work backward from what is essential. What remains is the building.</p>
+    </div>
+    <div class="ps-step">
+      <span class="pss-num">04</span>
+      <div class="pss-title">Delivery</div>
+      <p class="pss-body">We deliver on time. We site-supervise every project personally. 38 projects. Zero delayed handovers.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+  <div class="contact-mark">Contact</div>
+  <div class="contact-left reveal">
+    <h2>Twelve<br>Commissions<br>Per Year.</h2>
+    <p>We are selective. If your project has a clear structural argument — something it must say that no other building can say — we want to hear it.</p>
+    <div class="contact-data">
+      <div class="cd-row"><span class="cd-l">Dubai</span><span class="cd-v">matiere@matiere.studio</span></div>
+      <div class="cd-row"><span class="cd-l">Luxembourg</span><span class="cd-v">Available on request</span></div>
+      <div class="cd-row"><span class="cd-l">Response</span><span class="cd-v">Within 48 hours, personally</span></div>
+      <div class="cd-row"><span class="cd-l">NDA</span><span class="cd-v">Required for full portfolio access</span></div>
+    </div>
+  </div>
+  <div class="contact-right reveal">
+    <form onsubmit="handleForm(event)">
+      <div class="f-row">
+        <div class="f-group"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
+        <div class="f-group"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+      </div>
+      <div class="f-group">
+        <label>Project Type</label>
+        <select required>
+          <option value="" disabled selected>Select</option>
+          <option>Private Residence</option>
+          <option>Cultural / Institutional</option>
+          <option>Commercial</option>
+          <option>Interior Architecture</option>
+        </select>
+      </div>
+      <div class="f-group">
+        <label>Location</label>
+        <input type="text" placeholder="Country / City">
+      </div>
+      <div class="f-group">
+        <label>Your Vision</label>
+        <textarea rows="5" placeholder="Describe what you must build — and why no other building can say it." required></textarea>
+      </div>
+      <div class="f-actions">
+        <div class="f-note">All communications treated in strict confidence.</div>
+        <button type="submit" id="sub-btn">Submit →</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="fg-mark"></div>
+    <div class="fg-col">
+      <div class="fg-brand">Matière</div>
+      <p class="fg-about">A boutique architecture practice founded on one refusal: the refusal to decorate. Dubai · Luxembourg · Paris. Est. 2016.</p>
+    </div>
+    <div class="fg-col">
+      <div class="fg-head">Work</div>
+      <ul class="fg-links">
+        <li><a href="#work">Selected Projects</a></li>
+        <li><a href="#contact">Begin a Commission</a></li>
+      </ul>
+    </div>
+    <div class="fg-col">
+      <div class="fg-head">Contact</div>
+      <ul class="fg-links">
+        <li><a href="mailto:matiere@matiere.studio">matiere@matiere.studio</a></li>
+        <li><a href="#contact">Commission Enquiry</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bar">
+    <div class="fb-copy">© 2025 MATIÈRE. All rights reserved.</div>
+    <a href="../../index.html" class="czr-credit">Built by CZR Studio ↗</a>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('sub-btn');
+    btn.textContent = 'Received ✓';
+    btn.style.background = '#444'; btn.disabled = true;
+  }
+</script>
+</body>
+</html>

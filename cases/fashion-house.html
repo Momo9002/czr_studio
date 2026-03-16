@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELARA — Haute Couture, Paris. AW 2025.</title>
+  <meta name="description" content="ELARA. An independent Parisian fashion house. Fourteen looks. Architectural silence. AW 2025 collection now available by appointment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Inter:wght@300;400;500&family=Playfair+Display+SC:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink:    #0a0a0a;
+      --paper:  #f0ece4;
+      --cream:  #e8e0d4;
+      --silver: #b8b0a4;
+      --dim:    rgba(10,10,10,0.4);
+      --mid:    rgba(10,10,10,0.65);
+      --border: rgba(10,10,10,0.1);
+      --serif:  'Playfair Display', Georgia, serif;
+      --sc:     'Playfair Display SC', Georgia, serif;
+      --sans:   'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      background: var(--paper);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--sc); font-size: 1rem; letter-spacing: 0.3em; font-weight: 400; }
+    .nav-center { display: flex; gap: 2.5rem; }
+    .nav-center a { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); transition: color 0.2s; }
+    .nav-center a:hover { color: var(--ink); }
+    .nav-right { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-right a { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); transition: color 0.2s; }
+    .nav-right a:hover { color: var(--ink); }
+    .nav-appt {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      border: 1px solid var(--border); padding: 0.4rem 1.2rem;
+      color: var(--ink); transition: background 0.2s, color 0.2s;
+    }
+    .nav-appt:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 56px);
+    }
+    .hero-left {
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left img { filter: grayscale(20%) contrast(1.05); }
+    .hero-left-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(10,10,10,0.6) 100%);
+    }
+    .hero-left-caption {
+      position: absolute; bottom: 2rem; left: 2rem;
+      color: rgba(240,236,228,0.7);
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .hero-right {
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem 3rem 3rem;
+      border-left: 1px solid var(--border);
+    }
+    .hero-issue {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .issue-label { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dim); }
+    .issue-num { font-family: var(--serif); font-size: 1.8rem; font-weight: 400; opacity: 0.2; }
+    .hero-main {}
+    .hero-season { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dim); margin-bottom: 1.5rem; }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      font-weight: 700; line-height: 0.92;
+      letter-spacing: -0.02em;
+    }
+    .hero-title em { font-weight: 400; font-style: italic; display: block; }
+    .hero-divider { width: 32px; height: 1px; background: var(--silver); margin: 2rem 0; }
+    .hero-desc {
+      font-size: 0.82rem; line-height: 1.85; color: var(--mid);
+      max-width: 340px; margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-dark { display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.85rem 2rem; background: var(--ink); color: var(--paper); border: 1px solid var(--ink); transition: background 0.2s; }
+    .btn-dark:hover { background: #222; }
+    .btn-outline { display: inline-block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.85rem 2rem; background: transparent; color: var(--ink); border: 1px solid var(--border); transition: border-color 0.2s; }
+    .btn-outline:hover { border-color: var(--ink); }
+    .hero-stats { display: flex; gap: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .stat { }
+    .stat-n { font-family: var(--serif); font-size: 2rem; font-weight: 700; line-height: 1; }
+    .stat-l { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); margin-top: 0.3rem; }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--ink); color: var(--paper);
+      padding: 0.85rem 0; overflow: hidden;
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; white-space: nowrap;
+    }
+    .marquee-inner { display: inline-flex; animation: scroll-left 28s linear infinite; }
+    .marquee-inner span { padding-right: 3rem; opacity: 0.5; }
+    .marquee-inner span.sep { opacity: 1; padding-right: 3rem; color: var(--silver); }
+    @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── LOOKBOOK ── */
+    .lookbook-header { padding: 3.5rem 2.5rem; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); }
+    .lookbook-h-left {}
+    .eyebrow { display: block; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.8rem; }
+    h2 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+    h2 em { font-style: italic; font-weight: 400; }
+    .lookbook-nav-btns { display: flex; gap: 0.5rem; }
+    .look-btn { width: 44px; height: 44px; border: 1px solid var(--border); background: none; cursor: pointer; font-size: 1.1rem; color: var(--ink); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .look-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+    .lookbook-scroll-wrapper { overflow: hidden; }
+    .lookbook-scroll {
+      display: flex; gap: 0;
+      transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .look-panel {
+      min-width: 33.333vw; flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .look-img { aspect-ratio: 2/3; overflow: hidden; background: var(--cream); }
+    .look-img img { transition: transform 8s ease; filter: grayscale(15%); }
+    .look-panel:hover .look-img img { transform: scale(1.04); }
+    .look-info { padding: 1.5rem 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .look-n { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; }
+    .look-ref { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+
+    /* ── EDITORIAL STRIP ── */
+    .editorial-strip {
+      display: grid; grid-template-columns: 1fr 2fr 1fr;
+      border-top: 1px solid var(--border);
+    }
+    .ed-col { padding: 3.5rem 2.5rem; border-right: 1px solid var(--border); }
+    .ed-col:last-child { border-right: none; }
+    .ed-col.center { background: var(--ink); color: var(--paper); display: flex; flex-direction: column; justify-content: center; }
+    .ed-label { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--silver); margin-bottom: 1.5rem; display: block; }
+    .ed-body { font-size: 0.84rem; line-height: 1.85; color: rgba(240,236,228,0.65); }
+    .ed-quote { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 3rem); font-style: italic; font-weight: 400; line-height: 1.2; color: var(--paper); margin-bottom: 1.5rem; }
+    .ed-attr { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(240,236,228,0.4); }
+    .ed-data { display: flex; flex-direction: column; gap: 1.5rem; }
+    .ed-datum { }
+    .ed-dt { font-family: var(--serif); font-size: 2rem; font-weight: 700; }
+    .ed-dl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+
+    /* ── MATERIALS ── */
+    .materials { padding: 4rem 2.5rem; border-top: 1px solid var(--border); }
+    .mat-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+    .mat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); }
+    .mat-item { padding: 2rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .mat-item:nth-child(4n) { border-right: none; }
+    .mat-item:nth-child(n+5) { border-bottom: none; }
+    .mat-swatch { width: 36px; height: 36px; margin-bottom: 1rem; border: 1px solid var(--border); }
+    .mat-name { font-family: var(--serif); font-size: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .mat-origin { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); }
+
+    /* ── APPOINTMENT ── */
+    .appointment { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); }
+    .appt-left { padding: 4rem 3rem; border-right: 1px solid var(--border); }
+    .appt-left h2 { margin-bottom: 1.5rem; }
+    .appt-left > p { font-size: 0.84rem; line-height: 1.85; color: var(--mid); max-width: 380px; margin-bottom: 2.5rem; }
+    .appt-locations { display: flex; flex-direction: column; gap: 0; }
+    .appt-loc { padding: 1.2rem 0; border-top: 1px solid var(--border); display: flex; gap: 2rem; }
+    .appt-loc:last-child { border-bottom: 1px solid var(--border); }
+    .al-city { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); min-width: 80px; padding-top: 3px; }
+    .al-info { font-family: var(--serif); font-size: 0.95rem; font-weight: 400; }
+    .appt-right { padding: 4rem 3rem; background: var(--cream); }
+    .appt-right h3 { font-family: var(--serif); font-size: 1.8rem; font-style: italic; font-weight: 400; margin-bottom: 2rem; }
+    form { display: flex; flex-direction: column; }
+    .field { padding: 1rem 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; }
+    .field:first-child { border-top: 1px solid var(--border); }
+    label { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.3rem; }
+    input, select, textarea { background: transparent; border: none; outline: none; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--ink); width: 100%; -webkit-appearance: none; appearance: none; }
+    input::placeholder, textarea::placeholder { color: rgba(10,10,10,0.25); }
+    select { cursor: pointer; } select option { background: var(--cream); }
+    textarea { resize: none; min-height: 80px; line-height: 1.6; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; }
+    .form-row .field:first-child { border-right: 1px solid var(--border); padding-right: 1.5rem; }
+    .form-row .field:last-child { padding-left: 1.5rem; }
+    .form-footer { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .form-note { font-size: 0.62rem; color: var(--dim); max-width: 200px; line-height: 1.5; }
+    button[type="submit"] { font-family: var(--sans); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.9rem 2rem; background: var(--ink); color: var(--paper); border: 1px solid var(--ink); cursor: pointer; transition: background 0.2s; }
+    button[type="submit"]:hover { background: #222; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); color: var(--paper); }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 0; border-bottom: 1px solid rgba(240,236,228,0.1); }
+    .ft-col { padding: 3rem 2.5rem; border-right: 1px solid rgba(240,236,228,0.08); }
+    .ft-col:last-child { border-right: none; }
+    .ft-brand { font-family: var(--sc); font-size: 1.5rem; letter-spacing: 0.25em; margin-bottom: 1rem; }
+    .ft-tagline { font-size: 0.78rem; line-height: 1.7; color: rgba(240,236,228,0.5); max-width: 220px; }
+    .ft-head { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(240,236,228,0.4); margin-bottom: 1.5rem; }
+    .ft-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .ft-links a { font-size: 0.8rem; color: rgba(240,236,228,0.65); transition: color 0.2s; }
+    .ft-links a:hover { color: var(--paper); }
+    .footer-bottom { padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .fb-copy { font-size: 0.62rem; color: rgba(240,236,228,0.3); letter-spacing: 0.1em; }
+    .aura-credit { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,236,228,0.3); border: 1px solid rgba(240,236,228,0.12); padding: 0.3rem 0.8rem; transition: color 0.2s, border-color 0.2s; }
+    .aura-credit:hover { color: var(--paper); border-color: rgba(240,236,228,0.35); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    @media (max-width: 1024px) {
+      .editorial-strip { grid-template-columns: 1fr; }
+      .ed-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .mat-grid { grid-template-columns: repeat(2,1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { min-height: 55vh; }
+      .hero-right { padding: 2.5rem; }
+      nav { padding: 0 1.5rem; }
+      .nav-center { display: none; }
+      .look-panel { min-width: 80vw; }
+      .appointment { grid-template-columns: 1fr; }
+      .appt-left, .appt-right { padding: 3rem 2rem; }
+      .appt-left { border-right: none; border-bottom: 1px solid var(--border); }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Elara</div>
+  <div class="nav-center">
+    <a href="#lookbook">Collection</a>
+    <a href="#materials">Materials</a>
+    <a href="#appointment">Appointments</a>
+    <a href="#appointment">Press</a>
+  </div>
+  <div class="nav-right">
+    <a href="#appointment" class="nav-appt">Request Appointment</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <img src="../images/elara_hero_v2.png" alt="ELARA AW 2025 — Look 01">
+    <div class="hero-left-overlay"></div>
+    <div class="hero-left-caption">Look 01 — Manteau Structuré</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-issue">
+      <div>
+        <div class="issue-label">Collection</div>
+        <div class="issue-label" style="margin-top:0.3rem;">Autumn — Winter 2025</div>
+      </div>
+      <div class="issue-num">AW25</div>
+    </div>
+    <div class="hero-main">
+      <div class="hero-season">Maison ELARA · Fondée Paris, 2019</div>
+      <h1 class="hero-title">
+        The Body<br>as <em>Architecture.</em>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-desc">Fourteen silhouettes. Each a structural argument. Nothing added that does not resolve something. Available by private appointment from September 2025.</p>
+      <div class="hero-actions">
+        <a href="#lookbook" class="btn-dark">View the Collection</a>
+        <a href="#appointment" class="btn-outline">Request an Appointment</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n">14</div><div class="stat-l">Looks</div></div>
+      <div class="stat"><div class="stat-n">12</div><div class="stat-l">Editions</div></div>
+      <div class="stat"><div class="stat-n">6</div><div class="stat-l">Years Est.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>AW 2025</span><span class="sep">✦</span>
+    <span>Heavy Cashmere · Bonded Wool · Zero-Iron Linen</span><span class="sep">✦</span>
+    <span>Fourteen Looks</span><span class="sep">✦</span>
+    <span>Paris — Dubai — Luxembourg</span><span class="sep">✦</span>
+    <span>By Appointment Only</span><span class="sep">✦</span>
+    <span>Limited Edition of Twelve</span><span class="sep">✦</span>
+    <span>AW 2025</span><span class="sep">✦</span>
+    <span>Heavy Cashmere · Bonded Wool · Zero-Iron Linen</span><span class="sep">✦</span>
+    <span>Fourteen Looks</span><span class="sep">✦</span>
+    <span>Paris — Dubai — Luxembourg</span><span class="sep">✦</span>
+    <span>By Appointment Only</span><span class="sep">✦</span>
+    <span>Limited Edition of Twelve</span><span class="sep">✦</span>
+  </div>
+</div>
+
+<!-- LOOKBOOK -->
+<div id="lookbook">
+  <div class="lookbook-header reveal">
+    <div class="lookbook-h-left">
+      <span class="eyebrow">The Collection</span>
+      <h2>Autumn — <em>Winter 2025</em></h2>
+    </div>
+    <div class="lookbook-nav-btns">
+      <button class="look-btn" id="look-prev">←</button>
+      <button class="look-btn" id="look-next">→</button>
+    </div>
+  </div>
+  <div class="lookbook-scroll-wrapper">
+    <div class="lookbook-scroll" id="lookbook-scroll">
+      <div class="look-panel">
+        <div class="look-img"><img src="../images/elara_hero_v2.png" alt="Look 01" loading="lazy"></div>
+        <div class="look-info"><span class="look-n">Look 01 — Manteau Structuré</span><span class="look-ref">EL-25-M01</span></div>
+      </div>
+      <div class="look-panel">
+        <div class="look-img"><img src="../images/elara_look02.png" alt="Look 02" loading="lazy"></div>
+        <div class="look-info"><span class="look-n">Look 02 — Veste Architecturale</span><span class="look-ref">EL-25-V02</span></div>
+      </div>
+      <div class="look-panel">
+        <div class="look-img"><img src="../images/elara_hero_v2.png" alt="Look 03" style="object-position:20% center;" loading="lazy"></div>
+        <div class="look-info"><span class="look-n">Look 03 — Robe Colonne</span><span class="look-ref">EL-25-R03</span></div>
+      </div>
+      <div class="look-panel">
+        <div class="look-img"><img src="../images/na_workspace.png" alt="Look 04" loading="lazy"></div>
+        <div class="look-info"><span class="look-n">Look 04 — Pardessus Brut</span><span class="look-ref">EL-25-P04</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EDITORIAL STRIP -->
+<div class="editorial-strip reveal">
+  <div class="ed-col">
+    <span class="ed-label">Process</span>
+    <div class="ed-data">
+      <div class="ed-datum"><div class="ed-dt">6</div><div class="ed-dl">Months conception to pattern</div></div>
+      <div class="ed-datum"><div class="ed-dt">42h</div><div class="ed-dl">Average atelier hours per garment</div></div>
+      <div class="ed-datum"><div class="ed-dt">3</div><div class="ed-dl">Fittings per commission</div></div>
+    </div>
+  </div>
+  <div class="ed-col center">
+    <span class="ed-label">Directrice</span>
+    <blockquote class="ed-quote">"We don't dress bodies.<br>We propose a posture — a way of occupying space with intention."</blockquote>
+    <div class="ed-attr">Fondatrice, Maison ELARA · Paris 2019</div>
+  </div>
+  <div class="ed-col">
+    <span class="ed-label">Materials AW 2025</span>
+    <div class="ed-body" style="color:var(--mid);">Double-faced cashmere sourced from Inner Mongolia. Bonded technical wool from a single mill in Biella. Zero-iron linen cut only in Paris. Nothing synthetic. Nothing decorative.</div>
+  </div>
+</div>
+
+<!-- MATERIALS -->
+<div class="materials" id="materials">
+  <div class="mat-header reveal">
+    <div>
+      <span class="eyebrow">Material Palette</span>
+      <h2>What It Is <em>Made Of.</em></h2>
+    </div>
+  </div>
+  <div class="mat-grid reveal">
+    <div class="mat-item">
+      <div class="mat-swatch" style="background:#2a2825;"></div>
+      <div class="mat-name">Double Cashmere</div>
+      <div class="mat-origin">Inner Mongolia — Grade A</div>
+    </div>
+    <div class="mat-item">
+      <div class="mat-swatch" style="background:#4a4540;"></div>
+      <div class="mat-name">Bonded Wool</div>
+      <div class="mat-origin">Biella, Italy — Single Mill</div>
+    </div>
+    <div class="mat-item">
+      <div class="mat-swatch" style="background:#c8c0b0;"></div>
+      <div class="mat-name">Zero-Iron Linen</div>
+      <div class="mat-origin">Normandy, France</div>
+    </div>
+    <div class="mat-item">
+      <div class="mat-swatch" style="background:#1a1918;"></div>
+      <div class="mat-name">Technical Crêpe</div>
+      <div class="mat-origin">Lyon, France — Exclusive</div>
+    </div>
+  </div>
+</div>
+
+<!-- APPOINTMENT -->
+<div class="appointment" id="appointment">
+  <div class="appt-left reveal">
+    <span class="eyebrow">Private Appointments</span>
+    <h2>The Collection<br><em>is Not for Sale.</em></h2>
+    <p>Each piece from the AW 2025 collection is available through private appointment at our Paris atelier, or via our international partners. We do not operate retail.</p>
+    <div class="appt-locations">
+      <div class="appt-loc"><span class="al-city">Paris</span><span class="al-info">1er Arrondissement — by appointment only</span></div>
+      <div class="appt-loc"><span class="al-city">Dubai</span><span class="al-info">DIFC, Gate Avenue — select dates</span></div>
+      <div class="appt-loc"><span class="al-city">Contact</span><span class="al-info">atelier@maison-elara.com</span></div>
+    </div>
+  </div>
+  <div class="appt-right reveal">
+    <h3>Make a request.</h3>
+    <form onsubmit="handleForm(event)">
+      <div class="form-row">
+        <div class="field"><label>Full Name</label><input type="text" placeholder="Sophie Leclair" required></div>
+        <div class="field"><label>Email</label><input type="email" placeholder="sophie@maison.com" required></div>
+      </div>
+      <div class="field">
+        <label>Preferred Location</label>
+        <select required>
+          <option value="" disabled selected>Select atelier</option>
+          <option>Paris — 1er</option>
+          <option>Dubai — DIFC</option>
+          <option>Other / Remote</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Area of Interest</label>
+        <select>
+          <option value="" disabled selected>Select category</option>
+          <option>Ready-to-Wear AW 2025</option>
+          <option>Bespoke Commission</option>
+          <option>Press / Editorial</option>
+        </select>
+      </div>
+      <div class="field"><label>Message (optional)</label><textarea rows="3" placeholder="Tell us how we can be of service."></textarea></div>
+      <div class="form-footer">
+        <div class="form-note">All correspondence treated in strictest confidence.</div>
+        <button type="submit" id="sub-btn">Submit Request</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="ft-col">
+      <div class="ft-brand">Elara</div>
+      <p class="ft-tagline">An independent Parisian fashion house. Fine Art Interior Architecture applied to dress. Since 2019.</p>
+    </div>
+    <div class="ft-col">
+      <div class="ft-head">Collection</div>
+      <ul class="ft-links">
+        <li><a href="#lookbook">AW 2025</a></li>
+        <li><a href="#lookbook">SS 2025</a></li>
+        <li><a href="#materials">Materials</a></li>
+        <li><a href="#appointment">Bespoke</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <div class="ft-head">Access</div>
+      <ul class="ft-links">
+        <li><a href="#appointment">Paris Atelier</a></li>
+        <li><a href="#appointment">Dubai Partners</a></li>
+        <li><a href="#appointment">Press Inquiries</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <div class="ft-head">Contact</div>
+      <ul class="ft-links">
+        <li><a href="mailto:atelier@maison-elara.com">atelier@maison-elara.com</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="fb-copy">© 2025 Maison ELARA. All rights reserved.</div>
+    <a href="../index.html" class="czr-credit">Built by CZR Studio ↗</a>
+  </div>
+</footer>
+
+<script>
+  // Reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Lookbook scroll
+  let idx = 0;
+  const scroller = document.getElementById('lookbook-scroll');
+  const panels = scroller.querySelectorAll('.look-panel');
+  const panelW = () => panels[0].getBoundingClientRect().width;
+  document.getElementById('look-next').addEventListener('click', () => {
+    if (idx < panels.length - 3) { idx++; scroller.style.transform = `translateX(-${idx * panelW()}px)`; }
+  });
+  document.getElementById('look-prev').addEventListener('click', () => {
+    if (idx > 0) { idx--; scroller.style.transform = `translateX(-${idx * panelW()}px)`; }
+  });
+
+  // Form
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('sub-btn');
+    btn.textContent = 'Request Received ✓';
+    btn.style.background = '#555'; btn.disabled = true;
+  }
+</script>
+</body>
+</html>

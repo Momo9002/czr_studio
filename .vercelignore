@@ -1,0 +1,10 @@
+.agent/
+api/
+.env
+cloudflared.exe
+aura_api.log
+leads.db
+start_aura.bat
+start_aura.sh
+requirements.txt
+README.md

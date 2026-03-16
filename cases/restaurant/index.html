@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TABLE N°1 — An Evening in Monaco.</title>
+  <meta name="description" content="One table. Twelve guests. One chef. Monaco. An evening unlike any other.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#130e08;--cream:#e4d8c4;--mid:rgba(228,216,196,.55);--dim:rgba(228,216,196,.3);--amber:#c8922a;--border:rgba(228,216,196,.09);--serif:'Lora',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;font-size:14px;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    a{color:inherit;text-decoration:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem}
+    nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(19,14,8,.9) 0%,transparent 100%);pointer-events:none}
+    .nav-logo{font-family:var(--serif);font-size:1.05rem;font-style:italic;position:relative;z-index:1}
+    .nav-right{position:relative;z-index:1;display:flex;gap:2rem;align-items:center}
+    .nav-link{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);transition:color .2s}
+    .nav-link:hover{color:var(--cream)}
+    .nav-res{border:1px solid rgba(200,146,42,.5);padding:.45rem 1.3rem;color:var(--amber);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;transition:background .2s}
+    .nav-res:hover{background:rgba(200,146,42,.12)}
+    .progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--amber);z-index:1000;width:0%;transition:width .1s linear}
+    .ch-nav{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;gap:1rem}
+    .ch-dot{width:6px;height:6px;border-radius:50%;background:var(--dim);cursor:pointer;transition:background .3s,transform .3s;border:none;outline:none;padding:0}
+    .ch-dot.active{background:var(--amber);transform:scale(1.5)}
+    .chapter{position:relative;height:100vh;display:flex;overflow:hidden}
+    /* Cover */
+    .ch-cover{align-items:flex-end}
+    .ch-bg{position:absolute;inset:0}
+    .ch-veil-cover{position:absolute;inset:0;background:linear-gradient(160deg,rgba(19,14,8,.1) 0%,rgba(19,14,8,.65) 55%,rgba(19,14,8,.97) 100%)}
+    .cv-body{position:relative;z-index:2;padding:0 3rem 4rem;max-width:680px}
+    .cv-pre{font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--amber);margin-bottom:2.5rem;display:block}
+    .cv-h1{font-family:var(--serif);font-size:clamp(5rem,12vw,11rem);font-style:italic;font-weight:400;line-height:.88;margin-bottom:2rem}
+    .cv-tagline{font-size:1rem;color:var(--mid);font-style:italic;font-family:var(--serif);line-height:1.5;margin-bottom:3rem;max-width:420px}
+    .cv-scroll{display:flex;flex-direction:column;align-items:flex-start;gap:.7rem}
+    .cv-line{width:40px;height:1px;background:var(--amber)}
+    .cv-lbl{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
+    /* Table */
+    .ch-table{align-items:center;justify-content:center}
+    .ch-veil-mid{position:absolute;inset:0;background:rgba(19,14,8,.55)}
+    .ct-body{position:relative;z-index:2;text-align:center;max-width:640px;padding:2rem}
+    .ct-eyebrow{display:block;font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:var(--amber);margin-bottom:2.5rem}
+    .ct-h2{font-family:var(--serif);font-size:clamp(3.5rem,8vw,7rem);font-style:italic;font-weight:400;line-height:.92;margin-bottom:2rem}
+    .ct-p{font-size:.9rem;color:var(--mid);line-height:1.9;font-style:italic;font-family:var(--serif)}
+    /* Plate */
+    .ch-plate{align-items:flex-start}
+    .ch-veil-plate{position:absolute;inset:0;background:linear-gradient(90deg,rgba(19,14,8,.95) 35%,transparent 80%)}
+    .cp-body{position:relative;z-index:2;padding:0 3.5rem;display:flex;flex-direction:column;justify-content:center;height:100%;max-width:480px}
+    .cp-num{font-family:var(--serif);font-size:6rem;font-style:italic;font-weight:400;color:rgba(200,146,42,.22);line-height:1;margin-bottom:.5rem}
+    .cp-h2{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-style:italic;font-weight:400;line-height:1;margin-bottom:1.5rem}
+    .cp-desc{font-size:.88rem;color:var(--mid);line-height:1.85;max-width:360px;margin-bottom:2.5rem}
+    .cp-rule{width:36px;height:1px;background:var(--amber);margin-bottom:1.5rem}
+    .cp-detail{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+    .menu-seq{display:flex;flex-direction:column;gap:0;margin-top:2rem;border-top:1px solid var(--border)}
+    .ms-item{display:flex;gap:1.2rem;align-items:baseline;padding:.7rem 0;border-bottom:1px solid var(--border)}
+    .ms-num{font-family:var(--serif);font-size:.7rem;font-style:italic;color:var(--amber);min-width:18px}
+    .ms-name{font-size:.75rem;color:var(--mid)}
+    /* Chef */
+    .ch-chef{display:flex}
+    .chef-left{width:50%;height:100%;position:relative}
+    .chef-left img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:sepia(15%) contrast(1.05)}
+    .chef-left::after{content:'';position:absolute;right:0;top:0;bottom:0;width:40%;background:linear-gradient(to right,transparent,var(--bg))}
+    .chef-right{width:50%;display:flex;flex-direction:column;justify-content:center;padding:4rem 3.5rem 4rem 2.5rem}
+    .cr-eyebrow{display:block;font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem}
+    .cr-h2{font-family:var(--serif);font-size:clamp(2.5rem,4vw,4rem);font-style:italic;font-weight:400;line-height:1;margin-bottom:1.5rem}
+    .cr-p{font-size:.88rem;color:var(--mid);line-height:1.85;max-width:400px;margin-bottom:2.5rem}
+    .chef-stats{display:flex;gap:2.5rem;border-top:1px solid var(--border);padding-top:2rem}
+    .cs-n{font-family:var(--serif);font-size:2rem;font-style:italic;color:var(--amber);line-height:1}
+    .cs-l{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:.2rem}
+    /* Reservation */
+    .ch-res{align-items:center;justify-content:center;background:var(--bg)}
+    .re-body{position:relative;z-index:2;width:100%;max-width:900px;padding:2rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .rl-h2{font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-style:italic;font-weight:400;line-height:.92;margin-bottom:1.5rem}
+    .rl-p{font-size:.84rem;color:var(--mid);line-height:1.8;margin-bottom:2.5rem}
+    .res-data{display:flex;flex-direction:column}
+    .rd{display:flex;gap:1.5rem;padding:.85rem 0;border-top:1px solid var(--border);font-size:.8rem}
+    .rd:last-child{border-bottom:1px solid var(--border)}
+    .rd-l{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);min-width:72px;padding-top:2px}
+    .rd-v{font-family:var(--serif);font-style:italic}
+    .rr-h3{font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--mid);margin-bottom:2rem;font-weight:400}
+    form{display:flex;flex-direction:column}
+    .fg{display:flex;flex-direction:column;border-bottom:1px solid var(--border)}
+    .fg:first-child{border-top:1px solid var(--border)}
+    label{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);padding:.85rem 0 .25rem}
+    input,select,textarea{background:transparent;border:none;outline:none;font-family:var(--sans);font-size:.88rem;font-weight:300;color:var(--cream);padding:0 0 .85rem;width:100%;-webkit-appearance:none;appearance:none}
+    input::placeholder,textarea::placeholder{color:rgba(228,216,196,.2)}
+    select{cursor:pointer} select option{background:var(--bg)}
+    textarea{resize:none;min-height:72px;line-height:1.6}
+    .fg-row{display:grid;grid-template-columns:1fr 1fr}
+    .fg-row .fg:first-child{border-right:1px solid var(--border);padding-right:1.2rem}
+    .fg-row .fg:last-child{padding-left:1.2rem}
+    .form-actions{margin-top:1.5rem;display:flex;justify-content:flex-end}
+    button[type=submit]{font-family:var(--sans);font-size:.6rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;padding:.85rem 2rem;background:var(--amber);color:var(--bg);border:1px solid var(--amber);cursor:pointer;transition:background .2s}
+    button[type=submit]:hover{background:#d9a040;border-color:#d9a040}
+    footer{padding:2.5rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+    .ft-logo{font-family:var(--serif);font-size:1rem;font-style:italic}
+    .ft-links{display:flex;gap:2rem}
+    .ft-links a{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);transition:color .2s}
+    .ft-links a:hover{color:var(--cream)}
+    .czr-credit{font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);border:1px solid var(--border);padding:.28rem .8rem;transition:color .2s,border-color .2s}
+    .czr-credit:hover{color:var(--cream);border-color:rgba(228,216,196,.25)}
+    .fi{opacity:0;transform:translateY(22px);transition:opacity 1s ease .1s,transform 1s ease .1s}
+    .fi.d1{transition-delay:.25s}.fi.d2{transition-delay:.45s}.fi.d3{transition-delay:.65s}
+    .fi.vis{opacity:1;transform:none}
+    .pbg{will-change:transform}
+    @media(max-width:900px){
+      .ch-chef{flex-direction:column}
+      .chef-left{width:100%;height:50%}
+      .chef-right{width:100%;padding:2.5rem 2rem;height:50%}
+      .re-body{grid-template-columns:1fr;gap:3rem}
+      nav{padding:0 1.5rem}
+      .cv-body{padding:0 1.5rem 3.5rem}
+      .cp-body{padding:0 2rem;max-width:100%}
+      .ch-veil-plate{background:rgba(19,14,8,.88)}
+      footer{flex-direction:column;gap:1.5rem;align-items:flex-start}
+      .ch-nav{display:none}
+    }
+  </style>
+</head>
+<body>
+<div class="progress-bar" id="pbr"></div>
+<div class="ch-nav">
+  <button class="ch-dot active" onclick="go(0)"></button>
+  <button class="ch-dot" onclick="go(1)"></button>
+  <button class="ch-dot" onclick="go(2)"></button>
+  <button class="ch-dot" onclick="go(3)"></button>
+  <button class="ch-dot" onclick="go(4)"></button>
+</div>
+<nav>
+  <div class="nav-logo">Table n°1</div>
+  <div class="nav-right">
+    <a href="#" class="nav-link" onclick="go(2);return false">Menu</a>
+    <a href="#" class="nav-link" onclick="go(3);return false">Chef</a>
+    <a href="#" class="nav-res" onclick="go(4);return false">Reserve a Table</a>
+  </div>
+</nav>
+
+<section class="chapter ch-cover" id="ch0">
+  <div class="ch-bg pbg"><img src="../../images/table_interior.png" alt="Table N°1 Monaco"></div>
+  <div class="ch-veil-cover"></div>
+  <div class="cv-body">
+    <span class="cv-pre fi">Monaco — Private Dining — Est. 2021</span>
+    <div class="cv-h1 fi d1">Table N°1.</div>
+    <p class="cv-tagline fi d2">One table. Twelve guests.<br>One evening, every Friday.</p>
+    <div class="cv-scroll fi d3"><div class="cv-line"></div><span class="cv-lbl">Scroll to enter</span></div>
+  </div>
+</section>
+
+<section class="chapter ch-table" id="ch1">
+  <div class="ch-bg pbg"><img src="../../images/table_interior.png" alt="The Table" loading="lazy"></div>
+  <div class="ch-veil-mid"></div>
+  <div class="ct-body">
+    <span class="ct-eyebrow fi">The Premise</span>
+    <h2 class="ct-h2 fi d1">An evening<br>restored<br>to itself.</h2>
+    <p class="ct-p fi d2">"The restaurant as institution has become too large, too fast, too visible. We returned it to what it was: a private room, a single table, and a cook who knows every face in the room."</p>
+  </div>
+</section>
+
+<section class="chapter ch-plate" id="ch2">
+  <div class="ch-bg pbg"><img src="../../images/table_food.png" alt="Langoustine Crue" loading="lazy"></div>
+  <div class="ch-veil-plate"></div>
+  <div class="cp-body">
+    <div class="cp-num fi">II.</div>
+    <div class="cp-h2 fi d1">Langoustine<br>Royale Crue.</div>
+    <p class="cp-desc fi d2">Raw Scottish langoustine. Dressed only in its own coral, lemon oil, and sea salt from Guérande. The candle is the only light source.</p>
+    <div class="cp-rule fi d2"></div>
+    <div class="cp-detail fi d3">Spring — Été 2025 Sequence</div>
+    <div class="menu-seq fi d3">
+      <div class="ms-item"><span class="ms-num">I.</span><span class="ms-name">Asperge de Pertuis, Caviar Osciètre</span></div>
+      <div class="ms-item"><span class="ms-num">II.</span><span class="ms-name">Langoustine Royale Crue ← vous êtes ici</span></div>
+      <div class="ms-item"><span class="ms-num">III.</span><span class="ms-name">Sole de ligne, Beurre Noisette</span></div>
+      <div class="ms-item"><span class="ms-num">IV.</span><span class="ms-name">Agneau de Lozère, Jus Court</span></div>
+      <div class="ms-item"><span class="ms-num">V–VII.</span><span class="ms-name">Fromage — Pré-Dessert — Dessert</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter ch-chef" id="ch3">
+  <div class="chef-left"><img src="../../images/director_hero.png" alt="Chef Thomas Ravel" loading="lazy"></div>
+  <div class="chef-right">
+    <span class="cr-eyebrow fi">The Chef</span>
+    <div class="cr-h2 fi d1">Thomas Ravel.</div>
+    <p class="cr-p fi d2">Trained under Ducasse and Passard. Left institutional cooking in 2019. TABLE N°1 is not a restaurant — it is a private project. An ongoing conversation between a cook and twenty-four guests per month.<br><br>One Michelin star. Awarded first year of eligibility.</p>
+    <div class="chef-stats fi d3">
+      <div><div class="cs-n">6</div><div class="cs-l">Years at Alain Ducasse</div></div>
+      <div><div class="cs-n">★</div><div class="cs-l">Michelin 2024</div></div>
+      <div><div class="cs-n">24</div><div class="cs-l">Guests / Month</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter ch-res" id="ch4">
+  <div class="re-body">
+    <div class="res-left">
+      <div class="rl-h2 fi">By Request<br>Only.</div>
+      <p class="rl-p fi d1">We do not use booking platforms. Requests are reviewed personally. A reply arrives within 72 hours — either way.</p>
+      <div class="res-data fi d2">
+        <div class="rd"><span class="rd-l">Location</span><span class="rd-v">Monaco — address on confirmation</span></div>
+        <div class="rd"><span class="rd-l">Evenings</span><span class="rd-v">Friday & Saturday only</span></div>
+        <div class="rd"><span class="rd-l">Duration</span><span class="rd-v">Approx. four hours</span></div>
+        <div class="rd"><span class="rd-l">Per person</span><span class="rd-v">€420 — all inclusive</span></div>
+      </div>
+    </div>
+    <div class="res-right fi d1">
+      <div class="rr-h3">Make a request.</div>
+      <form onsubmit="hf(event)">
+        <div class="fg-row">
+          <div class="fg"><label>Name</label><input type="text" placeholder="Your name" required></div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label>Guests</label><select required><option value="" disabled selected>How many?</option><option>1–2</option><option>3–6</option><option>Full table (12)</option></select></div>
+          <div class="fg"><label>Preferred Date</label><input type="text" placeholder="Any Friday or Saturday"></div>
+        </div>
+        <div class="fg"><label>Note</label><textarea rows="2" placeholder="A special occasion or dietary requirement."></textarea></div>
+        <div class="form-actions"><button type="submit" id="sb">Send Request →</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-logo">Table n°1 — Monaco</div>
+  <div class="ft-links"><a href="#" onclick="go(2);return false">Menu</a><a href="#" onclick="go(3);return false">Chef</a><a href="mailto:table@tablenumero1.mc">Contact</a></div>
+  <a href="../../index.html" class="czr-credit">Built by CZR Studio ↗</a>
+</footer>
+
+<script>
+const chapters=document.querySelectorAll('.chapter');
+const dots=document.querySelectorAll('.ch-dot');
+function go(i){chapters[i].scrollIntoView({behavior:'smooth'})}
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const i=Array.from(chapters).indexOf(e.target);dots.forEach((d,j)=>d.classList.toggle('active',i===j))})},{threshold:.5}).observe.apply(null,chapters)||chapters.forEach(c=>new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const i=Array.from(chapters).indexOf(e.target);dots.forEach((d,j)=>d.classList.toggle('active',i===j))})},{threshold:.5}).observe(c));
+window.addEventListener('scroll',()=>{
+  const t=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('pbr').style.width=(window.scrollY/t*100)+'%';
+  document.querySelectorAll('.pbg').forEach(el=>{const r=el.closest('.chapter').getBoundingClientRect();el.style.transform='translateY('+(r.top*.25)+'px)'});
+});
+const fi=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1});
+document.querySelectorAll('.fi').forEach(el=>fi.observe(el));
+setTimeout(()=>document.querySelectorAll('#ch0 .fi').forEach(el=>el.classList.add('vis')),300);
+function hf(e){e.preventDefault();const b=document.getElementById('sb');b.textContent='Received ✓';b.style.background='#8a6820';b.disabled=true}
+</script>
+</body>
+</html>
