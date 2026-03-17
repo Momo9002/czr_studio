@@ -1,9 +1,35 @@
+# === Vercel ===
 .vercel
-api/.env
-api/__pycache__/
+
+# === Python / Backend ===
+api/
+.venv/
 __pycache__/
 *.pyc
+requirements.txt
+
+# === Agent / Automation ===
+.agent/
+agents/
+
+# === Brand & Campaign assets (not for website) ===
+brand/
+campaign_48h.json
+czr_campaign_48h/
+czr_campaign_48h.zip
+data/
+
+# === Database & logs ===
 leads.db
 aura_api.log
-cloudflared.exe
+*.log
+
+# === OS & IDE ===
 .DS_Store
+Thumbs.db
+.vscode/
+*.swp
+*.swo
+
+# === Misc ===
+cloudflared.exe

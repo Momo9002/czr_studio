@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CZR Studio — Private Concierge</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════ RESET & BASE ═══════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #000000;
+      --surface: #0A0A0A;
+      --surface-2: #111111;
+      --surface-3: #1A1A1A;
+      --border: #222222;
+      --border-light: #333333;
+      --text: #FFFFFF;
+      --text-muted: #888888;
+      --text-dim: #555555;
+      --accent: #FFFFFF;
+      --m-red: #C8242A;
+      --m-yellow: #F0C029;
+      --m-blue: #1A4BA8;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+
+    /* ═══════════ LAYOUT ═══════════ */
+    .concierge-app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    /* ═══════════ HEADER ═══════════ */
+    .c-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .c-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .c-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .c-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-light);
+    }
+
+    .c-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .c-client-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    /* ═══════════ STATUS BAR ═══════════ */
+    .c-status-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 12px 24px;
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .c-status-bar::-webkit-scrollbar { display: none; }
+
+    .c-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .c-status-pill .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .status-briefing { background: rgba(240, 192, 41, 0.12); color: #F0C029; }
+    .status-briefing .dot { background: #F0C029; }
+    .status-in_progress { background: rgba(26, 75, 168, 0.15); color: #5B8FE8; }
+    .status-in_progress .dot { background: #5B8FE8; animation: pulse 2s infinite; }
+    .status-review { background: rgba(168, 85, 247, 0.12); color: #A855F7; }
+    .status-review .dot { background: #A855F7; }
+    .status-revision { background: rgba(200, 36, 42, 0.12); color: #E05A5F; }
+    .status-revision .dot { background: #E05A5F; animation: pulse 2s infinite; }
+    .status-delivered { background: rgba(34, 197, 94, 0.12); color: #22C55E; }
+    .status-delivered .dot { background: #22C55E; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .c-info-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .c-info-chip strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ═══════════ CHAT AREA ═══════════ */
+    .c-chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scroll-behavior: smooth;
+    }
+
+    .c-chat::-webkit-scrollbar { width: 4px; }
+    .c-chat::-webkit-scrollbar-track { background: transparent; }
+    .c-chat::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
+
+    /* Message bubbles */
+    .c-msg {
+      max-width: 72%;
+      padding: 14px 18px;
+      border-radius: var(--radius-lg);
+      font-size: 14px;
+      line-height: 1.65;
+      animation: msgIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      word-wrap: break-word;
+    }
+
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .c-msg-concierge {
+      align-self: flex-start;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+      color: var(--text);
+    }
+
+    .c-msg-client {
+      align-self: flex-end;
+      background: var(--accent);
+      color: #000;
+      border-bottom-right-radius: 4px;
+      font-weight: 500;
+    }
+
+    .c-msg-time {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+
+    .c-msg-client .c-msg-time { color: rgba(0,0,0,0.4); }
+
+    /* Typing indicator */
+    .c-typing {
+      align-self: flex-start;
+      display: none;
+      align-items: center;
+      gap: 4px;
+      padding: 14px 18px;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      border-bottom-left-radius: 4px;
+    }
+
+    .c-typing.visible { display: flex; }
+
+    .c-typing-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      animation: typingBounce 1.2s ease-in-out infinite;
+    }
+
+    .c-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+    .c-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    /* Welcome card */
+    .c-welcome {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 440px;
+      margin: auto;
+    }
+
+    .c-welcome-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+      opacity: 0.6;
+    }
+
+    .c-welcome h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .c-welcome p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ═══════════ INPUT BAR ═══════════ */
+    .c-input-bar {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+
+    .c-input-wrap {
+      flex: 1;
+      position: relative;
+    }
+
+    .c-input {
+      width: 100%;
+      max-height: 120px;
+      padding: 14px 18px;
+      background: var(--surface-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.5;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .c-input::placeholder { color: var(--text-dim); }
+    .c-input:focus { border-color: var(--border-light); }
+
+    .c-send {
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: #000;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.15s, opacity 0.15s;
+      flex-shrink: 0;
+    }
+
+    .c-send:hover { transform: scale(1.05); }
+    .c-send:active { transform: scale(0.95); }
+    .c-send:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+    /* ═══════════ ERROR / GATE ═══════════ */
+    .c-gate {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .c-gate.visible { display: flex; }
+    .concierge-app.hidden { display: none; }
+
+    .c-gate-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+      opacity: 0.4;
+    }
+
+    .c-gate h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .c-gate p {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 360px;
+    }
+
+    /* ═══════════ LOADING ═══════════ */
+    .c-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .c-loading.hidden { display: none; }
+
+    .c-spinner {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .c-loading-text {
+      font-size: 13px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media (max-width: 640px) {
+      .c-header { padding: 12px 16px; }
+      .c-status-bar { padding: 10px 16px; gap: 12px; }
+      .c-chat { padding: 16px; }
+      .c-input-bar { padding: 12px 16px; }
+      .c-msg { max-width: 88%; }
+      .c-label { display: none; }
+      .c-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading state -->
+<div class="c-loading" id="loading">
+  <div class="c-spinner"></div>
+  <div class="c-loading-text">Connecting</div>
+</div>
+
+<!-- Access denied state -->
+<div class="c-gate" id="gate">
+  <div class="c-gate-icon">◈</div>
+  <h2>Access Required</h2>
+  <p>This is a private concierge link. If you've received a project link from CZR Studio, please use the full URL provided.</p>
+</div>
+
+<!-- Main concierge app -->
+<div class="concierge-app hidden" id="app">
+
+  <!-- Header -->
+  <div class="c-header">
+    <div class="c-header-left">
+      <a href="/" class="c-logo">CZR.</a>
+      <div class="c-divider"></div>
+      <span class="c-label">Private Concierge</span>
+    </div>
+    <span class="c-client-name" id="client-name"></span>
+  </div>
+
+  <!-- Status bar -->
+  <div class="c-status-bar" id="status-bar">
+    <div class="c-status-pill" id="status-pill">
+      <span class="dot"></span>
+      <span id="status-text">Loading…</span>
+    </div>
+    <div class="c-info-chip" id="chip-package" style="display:none">
+      <span>◆</span> <strong id="val-package"></strong>
+    </div>
+    <div class="c-info-chip" id="chip-delivery" style="display:none">
+      <span>◷</span> ETA: <strong id="val-delivery"></strong>
+    </div>
+    <div class="c-info-chip" id="chip-revisions" style="display:none">
+      <span>↻</span> <strong id="val-revisions"></strong> revision(s)
+    </div>
+  </div>
+
+  <!-- Chat area -->
+  <div class="c-chat" id="chat">
+    <div class="c-welcome" id="welcome">
+      <div class="c-welcome-icon">◈</div>
+      <h2>Your Private Concierge</h2>
+      <p>I'm here to keep you in the loop on your project. Ask me about timelines, submit revision requests, or share any creative input — I'm always available.</p>
+    </div>
+    <div class="c-typing" id="typing">
+      <div class="c-typing-dot"></div>
+      <div class="c-typing-dot"></div>
+      <div class="c-typing-dot"></div>
+    </div>
+  </div>
+
+  <!-- Input bar -->
+  <div class="c-input-bar">
+    <div class="c-input-wrap">
+      <textarea class="c-input" id="input" rows="1" placeholder="Ask about your project, request changes…" autocomplete="off"></textarea>
+    </div>
+    <button class="c-send" id="send-btn" disabled aria-label="Send message">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+    </button>
+  </div>
+
+</div>
+
+<script>
+// ── Config ──────────────────────────────────────────────────────────────
+const API_BASE = window.location.origin;
+const params = new URLSearchParams(window.location.search);
+const TOKEN = params.get('token');
+
+// ── DOM refs ────────────────────────────────────────────────────────────
+const $loading  = document.getElementById('loading');
+const $gate     = document.getElementById('gate');
+const $app      = document.getElementById('app');
+const $chat     = document.getElementById('chat');
+const $input    = document.getElementById('input');
+const $send     = document.getElementById('send-btn');
+const $typing   = document.getElementById('typing');
+const $welcome  = document.getElementById('welcome');
+
+const STATUS_LABELS = {
+  briefing:    'Briefing',
+  in_progress: 'In Production',
+  review:      'Ready for Review',
+  revision:    'Revisions',
+  delivered:   'Delivered',
+};
+
+// ── Init ────────────────────────────────────────────────────────────────
+(async function init() {
+  if (!TOKEN) {
+    showGate();
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/concierge/verify/${TOKEN}`);
+    if (!res.ok) {
+      showGate();
+      return;
+    }
+    const data = await res.json();
+    document.getElementById('client-name').textContent = data.client_name;
+
+    // Load full status
+    await loadStatus();
+
+    // Show app
+    $loading.classList.add('hidden');
+    $app.classList.remove('hidden');
+
+  } catch (e) {
+    console.error('Init error:', e);
+    showGate();
+  }
+})();
+
+function showGate() {
+  $loading.classList.add('hidden');
+  $gate.classList.add('visible');
+}
+
+async function loadStatus() {
+  try {
+    const res = await fetch(`${API_BASE}/concierge/status/${TOKEN}`);
+    if (!res.ok) return;
+    const d = await res.json();
+
+    // Status pill
+    const pill = document.getElementById('status-pill');
+    const statusKey = d.status || 'briefing';
+    pill.className = `c-status-pill status-${statusKey}`;
+    document.getElementById('status-text').textContent = STATUS_LABELS[statusKey] || statusKey;
+
+    // Info chips
+    if (d.package) {
+      document.getElementById('chip-package').style.display = '';
+      document.getElementById('val-package').textContent = d.package;
+    }
+    if (d.estimated_delivery) {
+      document.getElementById('chip-delivery').style.display = '';
+      document.getElementById('val-delivery').textContent = d.estimated_delivery;
+    }
+    if (d.revisions && d.revisions.length > 0) {
+      document.getElementById('chip-revisions').style.display = '';
+      document.getElementById('val-revisions').textContent = d.revisions.length;
+    }
+  } catch (e) {
+    console.error('Status load error:', e);
+  }
+}
+
+// ── Chat logic ──────────────────────────────────────────────────────────
+function addMessage(text, role) {
+  // Hide welcome on first message
+  if ($welcome) $welcome.remove();
+
+  const div = document.createElement('div');
+  div.className = `c-msg c-msg-${role}`;
+
+  const body = document.createElement('div');
+  body.textContent = text;
+
+  const time = document.createElement('div');
+  time.className = 'c-msg-time';
+  time.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  div.appendChild(body);
+  div.appendChild(time);
+
+  // Insert before typing indicator
+  $chat.insertBefore(div, $typing);
+  scrollToBottom();
+}
+
+function scrollToBottom() {
+  requestAnimationFrame(() => {
+    $chat.scrollTop = $chat.scrollHeight;
+  });
+}
+
+async function sendMessage() {
+  const text = $input.value.trim();
+  if (!text) return;
+
+  $input.value = '';
+  autoResize();
+  $send.disabled = true;
+
+  addMessage(text, 'client');
+  $typing.classList.add('visible');
+  scrollToBottom();
+
+  try {
+    const res = await fetch(`${API_BASE}/concierge/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: TOKEN, message: text }),
+    });
+
+    $typing.classList.remove('visible');
+
+    if (!res.ok) {
+      addMessage('Sorry, something went wrong. Please try again.', 'concierge');
+      return;
+    }
+
+    const data = await res.json();
+    addMessage(data.reply, 'concierge');
+
+    // Refresh status (may have changed after revision)
+    await loadStatus();
+
+  } catch (e) {
+    $typing.classList.remove('visible');
+    addMessage('Connection lost. Please check your internet and try again.', 'concierge');
+    console.error('Chat error:', e);
+  }
+}
+
+// ── Input handling ──────────────────────────────────────────────────────
+$input.addEventListener('input', () => {
+  autoResize();
+  $send.disabled = !$input.value.trim();
+});
+
+$input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    if ($input.value.trim()) sendMessage();
+  }
+});
+
+$send.addEventListener('click', sendMessage);
+
+function autoResize() {
+  $input.style.height = 'auto';
+  $input.style.height = Math.min($input.scrollHeight, 120) + 'px';
+}
+</script>
+
+</body>
+</html>
