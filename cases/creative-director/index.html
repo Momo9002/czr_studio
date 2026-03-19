@@ -90,6 +90,22 @@
     .stmt-credentials { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .sc-tag { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--border); padding: 0.3rem 0.8rem; color: var(--dim); }
 
+    /* FULL-BLEED IMAGE */
+    .full-bleed {
+      height: 80vh; position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .full-bleed img { width: 100%; height: 100%; object-fit: cover; }
+    .full-bleed-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(15,15,15,0.2) 0%, transparent 40%, rgba(15,15,15,0.6) 100%);
+    }
+    .full-bleed-caption {
+      position: absolute; bottom: 2rem; left: 2.5rem;
+      font-size: 0.55rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(221,216,208,0.45);
+    }
+
     /* CONTACT */
     #contact { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
     .ct-left { padding: 4rem 2.5rem; border-right: 1px solid var(--border); }
@@ -138,6 +154,7 @@
       .statement { grid-template-columns: 1fr; }
       .stmt-img { min-height: 280px; }
       .stmt-right { border-left: none; border-top: 1px solid var(--border); padding: 3rem 2rem; }
+      .full-bleed { height: 55vh; }
       #contact { grid-template-columns: 1fr; }
       .ct-left { border-right: none; border-bottom: 1px solid var(--border); }
       footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
@@ -149,6 +166,19 @@
       .fr .fg:last-child { padding-left: 0; }
     }
   </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,"script","https://connect.facebook.net/en_US/fbevents.js");
+fbq("init", "2928293767375852");
+fbq("track", "PageView");
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <nav>
@@ -230,6 +260,13 @@
     <div class="wi-arrow">↗</div>
   </div>
 </section>
+
+<!-- FULL-BLEED EXHIBITION IMAGE -->
+<div class="full-bleed">
+  <img src="../../images/na_exhibition.png" alt="Galerie Vide — Group exhibition, 8 emerging sculptors" loading="lazy">
+  <div class="full-bleed-overlay"></div>
+  <div class="full-bleed-caption">Galerie Vide — Paris, 6ème — 2023</div>
+</div>
 
 <!-- STATEMENT -->
 <div class="statement reveal">

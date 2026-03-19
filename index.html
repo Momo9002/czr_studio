@@ -24,9 +24,9 @@
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "CZR Studio",
-    "description": "Haute couture web design delivered in 48 hours. Premium websites for luxury SMBs in Dubai, Monaco, Paris and Luxembourg.",
+    "description": "Haute couture web design delivered in 48 hours. Premium websites for luxury SMBs in Dubai, NYC and worldwide.",
     "url": "https://czr.studio",
-    "areaServed": ["Dubai", "Monaco", "Paris", "Luxembourg", "Europe"],
+    "areaServed": ["Dubai", "New York", "Worldwide"],
     "priceRange": "€€€",
     "serviceType": "Web Design & Development",
     "hasOfferCatalog": {
@@ -44,6 +44,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2928293767375852');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -110,14 +124,14 @@
     <div class="marquee-item"><div class="dot-accent"></div>100%&nbsp;<strong>Satisfaction</strong></div>
     <div class="marquee-item"><div class="dot-accent"></div><strong>Premium</strong>&nbsp;Craft</div>
     <div class="marquee-item"><div class="dot-accent"></div>Agent&nbsp;<strong>Onboarding</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div>Dubai&nbsp;·&nbsp;Paris&nbsp;·&nbsp;<strong>Luxembourg</strong></div>
+    <div class="marquee-item"><div class="dot-accent"></div>Dubai&nbsp;·&nbsp;NYC&nbsp;·&nbsp;<strong>Worldwide</strong></div>
     <div class="marquee-item"><div class="dot-accent"></div>Full&nbsp;<strong>IP Transfer</strong></div>
     <div class="marquee-item"><div class="dot-accent"></div>Money-Back&nbsp;<strong>Guarantee</strong></div>
     <div class="marquee-item"><div class="dot-accent"></div><strong>48h</strong>&nbsp;Delivery</div>
     <div class="marquee-item"><div class="dot-accent"></div>100%&nbsp;<strong>Satisfaction</strong></div>
     <div class="marquee-item"><div class="dot-accent"></div><strong>Premium</strong>&nbsp;Craft</div>
     <div class="marquee-item"><div class="dot-accent"></div>Agent&nbsp;<strong>Onboarding</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div>Dubai&nbsp;·&nbsp;Paris&nbsp;·&nbsp;<strong>Luxembourg</strong></div>
+    <div class="marquee-item"><div class="dot-accent"></div>Dubai&nbsp;·&nbsp;NYC&nbsp;·&nbsp;<strong>Worldwide</strong></div>
     <div class="marquee-item"><div class="dot-accent"></div>Full&nbsp;<strong>IP Transfer</strong></div>
     <div class="marquee-item"><div class="dot-accent"></div>Money-Back&nbsp;<strong>Guarantee</strong></div>
   </div>
@@ -315,7 +329,7 @@
           <div class="author-init">C.L</div>
           <div>
             <strong>Creative Director</strong>
-            <span>Independent Studio — Paris</span>
+            <span>Independent Studio — Dubai & NYC</span>
           </div>
         </div>
       </div>
@@ -535,7 +549,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> CZR Studio</span>
-      <span>Dubai · Paris · Luxembourg</span>
+      <span>Dubai · NYC · Worldwide</span>
     </div>
   </div>
 </footer>
@@ -569,6 +583,14 @@ const WA = '971551343144';
 const WA_URL = `https://wa.me/${WA}`;
 document.getElementById('wa-fab').href = WA_URL;
 document.getElementById('footer-wa').href = WA_URL;
+
+// Track WhatsApp clicks as Lead events for Meta Pixel
+document.getElementById('wa-fab').addEventListener('click', function() {
+  if (typeof fbq === 'function') { fbq('track', 'Lead', {content_name: 'WhatsApp FAB'}); }
+});
+document.getElementById('footer-wa').addEventListener('click', function() {
+  if (typeof fbq === 'function') { fbq('track', 'Lead', {content_name: 'WhatsApp Footer'}); }
+});
 
 // ── Copyright year ───────────────────────────────────
 document.getElementById('year').textContent = new Date().getFullYear();
