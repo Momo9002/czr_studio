@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Portal — CZR Studio</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #000000; --surface: #080808; --surface-2: #0F0F0F; --surface-3: #181818;
+      --border: rgba(255,255,255,0.07); --border-hard: rgba(255,255,255,0.10); --border-bright: rgba(255,255,255,0.18);
+      --text: #FFFFFF; --text-muted: #999999; --text-dim: #555555;
+      --m-red: #C8242A; --m-yellow: #F0C029; --m-blue: #1A4BA8; --m-green: #22C55E;
+      --font-display: 'Syne', sans-serif; --font-body: 'Manrope', sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+    /* ── States ────────────────────────────── */
+    .state-loading, .state-error, .state-gate { display: flex; align-items: center; justify-content: center; height: 100vh; flex-direction: column; gap: 20px; text-align: center; }
+    .state-loading span { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); }
+    .state-error h2, .state-gate h2 { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.04em; }
+    .state-error p, .state-gate p { color: var(--text-muted); max-width: 380px; font-size: 14px; }
+    .spinner { width: 28px; height: 28px; border: 2px solid var(--border-hard); border-top-color: var(--text); border-radius: 0; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Gate (token entry) */
+    .gate-form { display: flex; gap: 0; margin-top: 8px; }
+    .gate-input { padding: 12px 16px; background: var(--surface-3); border: 1px solid var(--border-hard); border-right: none; color: var(--text); font-family: var(--font-body); font-size: 14px; outline: none; width: 260px; }
+    .gate-input::placeholder { color: var(--text-dim); }
+    .gate-input:focus { border-color: var(--border-bright); }
+    .gate-btn { padding: 12px 20px; background: var(--text); color: var(--bg); font-family: var(--font-body); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--text); cursor: pointer; transition: opacity 0.15s; }
+    .gate-btn:hover { opacity: 0.85; }
+
+    .hidden { display: none !important; }
+
+    /* ── Header ────────────────────────────── */
+    .c-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; border-bottom: 1px solid var(--border-hard); background: var(--bg); position: sticky; top: 0; z-index: 10; }
+    .c-header-left { display: flex; align-items: center; gap: 16px; }
+    .wordmark { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--text); text-decoration: none; letter-spacing: -0.05em; position: relative; }
+    .wordmark::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--m-red); transition: width 0.3s var(--ease); }
+    .wordmark:hover::after { width: 100%; }
+    .c-divider { width: 1px; height: 20px; background: var(--border-bright); }
+    .c-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+    .c-client { font-family: var(--font-display); font-weight: 600; font-size: 14px; }
+
+    /* ── Tab Nav ───────────────────────────── */
+    .tab-nav { display: flex; border-bottom: 1px solid var(--border-hard); background: var(--surface); overflow-x: auto; scrollbar-width: none; }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn { padding: 14px 24px; font-family: var(--font-body); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+    .tab-btn:hover { color: var(--text-muted); }
+    .tab-btn.active { color: var(--text); border-bottom-color: var(--m-red); }
+
+    /* ── Main content ─────────────────────── */
+    .main-area { max-width: 1000px; margin: 0 auto; padding: 40px 24px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Cards ─────────────────────────────── */
+    .card { background: var(--surface); border: 1px solid var(--border-hard); margin-bottom: 24px; }
+    .card-head { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .card-title { font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+    .card-body { padding: 24px; }
+
+    /* ── Phase stepper ─────────────────────── */
+    .phase-bar { display: flex; align-items: center; padding: 28px 24px; gap: 0; }
+    .stp { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+    .stp-dot { width: 12px; height: 12px; background: var(--surface-3); border: 2px solid var(--border-hard); z-index: 1; }
+    .stp.done .stp-dot { background: var(--text); border-color: var(--text); }
+    .stp.active .stp-dot { background: transparent; border-color: var(--text); box-shadow: 0 0 0 3px rgba(255,255,255,0.1); }
+    .stp-lbl { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); font-weight: 700; text-align: center; }
+    .stp.done .stp-lbl, .stp.active .stp-lbl { color: var(--text); }
+    .stp-line { height: 1px; flex: 1; background: var(--border-hard); }
+    .stp-line.done { background: var(--text); }
+
+    /* ── Badge ─────────────────────────────── */
+    .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: var(--surface-3); border: 1px solid; }
+    .badge-dot { width: 7px; height: 7px; }
+
+    /* ── Summary grid ─────────────────────── */
+    .sum-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .sum-item { display: flex; flex-direction: column; gap: 4px; }
+    .sum-lbl { font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); font-weight: 700; margin-bottom: 4px; }
+    .sum-val { font-size: 15px; font-weight: 600; }
+
+    /* ── Messages ──────────────────────────── */
+    .msg-list { display: flex; flex-direction: column; gap: 12px; max-height: 480px; overflow-y: auto; }
+    .msg { display: flex; gap: 10px; }
+    .msg.out { flex-direction: row-reverse; }
+    .msg-bub { max-width: 72%; padding: 12px 16px; font-size: 14px; line-height: 1.6; }
+    .msg.out .msg-bub { background: var(--text); color: var(--bg); font-weight: 500; }
+    .msg.in .msg-bub { background: var(--surface-3); border: 1px solid var(--border-hard); }
+    .msg-ts { font-size: 0.6rem; color: var(--text-dim); margin-top: 4px; }
+    .msg.out .msg-ts { text-align: right; }
+
+    /* ── Payments ──────────────────────────── */
+    .pay-row { display: flex; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); gap: 16px; }
+    .pay-row:last-child { border-bottom: none; }
+    .pay-icon { width: 36px; height: 36px; background: var(--surface-3); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .pay-info { flex: 1; }
+    .pay-pkg { font-size: 14px; font-weight: 600; }
+    .pay-date { font-size: 0.65rem; color: var(--text-dim); margin-top: 2px; }
+    .pay-amt { font-family: var(--font-display); font-size: 18px; font-weight: 800; }
+    .pay-status { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; background: var(--surface-3); }
+    .pay-status.paid { color: var(--m-green); border: 1px solid rgba(34,197,94,0.2); }
+    .pay-status.pending { color: var(--m-yellow); border: 1px solid rgba(240,192,41,0.2); }
+
+    /* ── Revisions ─────────────────────────── */
+    .rev-item { padding: 16px 18px; background: var(--surface-2); border: 1px solid var(--border-hard); margin-bottom: 12px; }
+    .rev-status { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .rev-status.ok { color: var(--m-green); }
+    .rev-status.pen { color: var(--m-yellow); }
+    .rev-txt { font-size: 14px; color: var(--text-muted); }
+    .rev-date { font-size: 0.6rem; color: var(--text-dim); margin-top: 6px; }
+
+    /* ── Revision form ─────────────────────── */
+    .rev-form { margin-top: 20px; display: flex; gap: 0; }
+    .rev-input { flex: 1; padding: 14px 18px; background: var(--surface-3); border: 1px solid var(--border-hard); border-right: none; color: var(--text); font-family: var(--font-body); font-size: 14px; outline: none; resize: none; min-height: 48px; }
+    .rev-input::placeholder { color: var(--text-dim); }
+    .rev-input:focus { border-color: var(--border-bright); }
+    .rev-submit { padding: 14px 24px; background: var(--text); color: var(--bg); font-family: var(--font-body); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--text); cursor: pointer; transition: opacity 0.15s; flex-shrink: 0; }
+    .rev-submit:hover { opacity: 0.85; }
+
+    /* ── Events timeline ───────────────────── */
+    .evt { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .evt:last-child { border-bottom: none; }
+    .evt-dot { width: 10px; height: 10px; background: var(--text); flex-shrink: 0; margin-top: 6px; }
+    .evt-body { flex: 1; }
+    .evt-type { font-size: 0.62rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+    .evt-desc { font-size: 14px; color: var(--text-muted); margin-top: 2px; }
+    .evt-time { font-size: 0.6rem; color: var(--text-dim); margin-top: 4px; }
+
+    /* ── Empty ─────────────────────────────── */
+    .empty { color: var(--text-dim); font-size: 14px; padding: 16px 0; }
+
+    /* ── CTA link ──────────────────────────── */
+    .cta-link { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--m-red); transition: border-color 0.2s; }
+    .cta-link:hover { border-bottom-color: var(--text); }
+
+    /* ── Scrollbar ─────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-hard); }
+
+    @media (max-width: 640px) {
+      .c-header { padding: 14px 16px; }
+      .c-label, .c-divider { display: none; }
+      .main-area { padding: 24px 16px; }
+      .sum-grid { grid-template-columns: 1fr 1fr; }
+      .tab-btn { padding: 12px 16px; font-size: 0.6rem; }
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,"script","https://connect.facebook.net/en_US/fbevents.js");
+  fbq("init", "2928293767375852");
+  fbq("track", "PageView");
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- Loading -->
+<div class="state-loading" id="loading">
+  <div class="spinner"></div>
+  <span>Loading your portal</span>
+</div>
+
+<!-- Gate (no token) -->
+<div class="state-gate hidden" id="gate">
+  <h2>Client Portal</h2>
+  <p>Enter your project token or use the link provided by CZR Studio.</p>
+  <div class="gate-form">
+    <input class="gate-input" id="gate-token" type="text" placeholder="Your project token" />
+    <button class="gate-btn" id="gate-go">Enter →</button>
+  </div>
+</div>
+
+<!-- Error -->
+<div class="state-error hidden" id="error">
+  <h2>Project Not Found</h2>
+  <p>This token is invalid or expired. Please check the link you received from CZR Studio.</p>
+</div>
+
+<!-- App -->
+<div id="app" class="hidden">
+  <header class="c-header">
+    <div class="c-header-left">
+      <a href="/" class="wordmark">CZR.</a>
+      <div class="c-divider"></div>
+      <span class="c-label">Client Portal</span>
+    </div>
+    <span class="c-client" id="client-name"></span>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="overview">Overview</button>
+    <button class="tab-btn" data-tab="messages">Messages</button>
+    <button class="tab-btn" data-tab="revisions">Revisions</button>
+    <button class="tab-btn" data-tab="payments">Payments</button>
+    <button class="tab-btn" data-tab="timeline">Timeline</button>
+  </nav>
+
+  <div class="main-area">
+
+    <!-- Overview -->
+    <div class="tab-panel active" id="panel-overview">
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Project Status</span>
+          <span class="badge" id="phase-badge"><span class="badge-dot" id="phase-dot"></span><span id="phase-label"></span></span>
+        </div>
+        <div class="phase-bar" id="phase-bar"></div>
+        <div class="card-body">
+          <div class="sum-grid">
+            <div class="sum-item"><div class="sum-lbl">Package</div><div class="sum-val" id="pkg">—</div></div>
+            <div class="sum-item"><div class="sum-lbl">Estimated Delivery</div><div class="sum-val" id="eta">—</div></div>
+            <div class="sum-item" id="site-row" style="display:none"><div class="sum-lbl">Live Site</div><div class="sum-val"><a id="site-url" class="cta-link" href="" target="_blank">View your site →</a></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick concierge CTA -->
+      <div class="card">
+        <div class="card-body" style="display:flex;align-items:center;gap:20px;">
+          <div style="font-size:28px;opacity:0.5;">◈</div>
+          <div style="flex:1">
+            <div style="font-family:var(--font-display);font-weight:700;font-size:15px;margin-bottom:4px;">Need something?</div>
+            <div style="font-size:13px;color:var(--text-muted);">Your private concierge is available 24/7. Ask about timelines, request changes, or share creative input.</div>
+          </div>
+          <a id="concierge-link" class="gate-btn" style="text-decoration:none;display:inline-block;" href="#">Open Concierge →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="tab-panel" id="panel-messages">
+      <div class="card">
+        <div class="card-head"><span class="card-title">Conversation</span></div>
+        <div class="card-body"><div class="msg-list" id="msg-list"></div></div>
+      </div>
+    </div>
+
+    <!-- Revisions -->
+    <div class="tab-panel" id="panel-revisions">
+      <div class="card">
+        <div class="card-head"><span class="card-title">Revision Requests</span></div>
+        <div class="card-body">
+          <div id="rev-list"></div>
+          <div class="rev-form">
+            <textarea class="rev-input" id="rev-msg" rows="1" placeholder="Describe the change you'd like…"></textarea>
+            <button class="rev-submit" id="rev-send">Submit →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payments -->
+    <div class="tab-panel" id="panel-payments">
+      <div class="card">
+        <div class="card-head"><span class="card-title">Payment History</span></div>
+        <div class="card-body"><div id="pay-list"></div></div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="tab-panel" id="panel-timeline">
+      <div class="card">
+        <div class="card-head"><span class="card-title">Activity</span></div>
+        <div class="card-body"><div id="evt-list"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── Constants ──────────────────────────────────────────────────────────
+const PHASE_LABELS = {
+  onboarding: 'Introduction', briefing: 'Brief Confirmed', in_progress: 'In Production',
+  review: 'Under Review', revision: 'Revisions', delivered: 'Delivered',
+};
+const PHASE_COLORS = {
+  onboarding: '#6e6e6e', briefing: '#F0C029', in_progress: '#1A4BA8',
+  review: '#A855F7', revision: '#C8242A', delivered: '#22C55E',
+};
+const EVT_LABELS = {
+  project_created: '🟢 Project started', phase_changed: '🔄 Status update',
+  payment_confirmed: '💳 Payment confirmed', payment_created: '💳 Checkout created',
+  revision_submitted: '📝 Revision requested', asset_added: '📎 Asset received',
+  testimonial_received: '⭐ Testimonial received',
+};
+
+// ── Helpers ─────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const hide = id => $(id).classList.add('hidden');
+const show = id => $(id).classList.remove('hidden');
+const fmtDate = iso => {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString('en-GB', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
+};
+
+let TOKEN = new URLSearchParams(window.location.search).get('token') || '';
+let PROJECT_DATA = null;
+
+// ── Gate / Auth ─────────────────────────────────────────────────────────
+$('gate-go').addEventListener('click', () => {
+  const t = $('gate-token').value.trim();
+  if (t) { TOKEN = t; load(); }
+});
+$('gate-token').addEventListener('keydown', e => {
+  if (e.key === 'Enter') $('gate-go').click();
+});
+
+// ── Tabs ────────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    $('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Render functions ────────────────────────────────────────────────────
+function renderPhase(phase) {
+  const color = PHASE_COLORS[phase] || '#6e6e6e';
+  $('phase-dot').style.background = color;
+  $('phase-badge').style.borderColor = color + '44';
+  $('phase-label').textContent = PHASE_LABELS[phase] || phase;
+
+  const bar = $('phase-bar');
+  const steps = ['onboarding', 'briefing', 'in_progress', 'review', 'delivered'];
+  const idx = steps.indexOf(phase === 'revision' ? 'in_progress' : phase);
+  bar.innerHTML = '';
+  steps.forEach((s, i) => {
+    if (i > 0) {
+      const line = document.createElement('div');
+      line.className = 'stp-line' + (i <= idx ? ' done' : '');
+      bar.appendChild(line);
+    }
+    const stp = document.createElement('div');
+    stp.className = 'stp' + (i < idx ? ' done' : i === idx ? ' active' : '');
+    stp.innerHTML = `<div class="stp-dot"></div><div class="stp-lbl">${PHASE_LABELS[s]}</div>`;
+    bar.appendChild(stp);
+  });
+}
+
+function renderMessages(messages) {
+  const el = $('msg-list');
+  if (!messages || !messages.length) { el.innerHTML = '<div class="empty">No messages yet.</div>'; return; }
+  el.innerHTML = messages.map(m => {
+    const out = m.role === 'user' || m.role === 'client';
+    return `<div class="msg ${out ? 'out' : 'in'}"><div><div class="msg-bub">${m.content.replace(/\n/g,'<br>')}</div><div class="msg-ts">${fmtDate(m.created_at)}</div></div></div>`;
+  }).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+function renderRevisions(revisions) {
+  const el = $('rev-list');
+  if (!revisions || !revisions.length) { el.innerHTML = '<div class="empty">No revision requests yet.</div>'; return; }
+  el.innerHTML = revisions.map(r => `
+    <div class="rev-item">
+      <div class="rev-status ${r.resolved ? 'ok' : 'pen'}">${r.resolved ? '✓ Resolved' : '· Pending'}</div>
+      <div class="rev-txt">${r.message}</div>
+      <div class="rev-date">${fmtDate(r.submitted_at)}</div>
+    </div>
+  `).join('');
+}
+
+function renderPayments(payments) {
+  const el = $('pay-list');
+  if (!payments || !payments.length) { el.innerHTML = '<div class="empty">No payments recorded yet.</div>'; return; }
+  el.innerHTML = payments.map(p => `
+    <div class="pay-row">
+      <div class="pay-icon">💳</div>
+      <div class="pay-info">
+        <div class="pay-pkg">${p.package || 'Payment'}</div>
+        <div class="pay-date">${fmtDate(p.paid_at || p.created_at)}</div>
+      </div>
+      <div class="pay-amt">€${(p.amount_eur / 100).toLocaleString()}</div>
+      <span class="pay-status ${p.status === 'paid' ? 'paid' : 'pending'}">${p.status}</span>
+    </div>
+  `).join('');
+}
+
+function renderEvents(events) {
+  const el = $('evt-list');
+  if (!events || !events.length) { el.innerHTML = '<div class="empty">No events yet.</div>'; return; }
+  el.innerHTML = events.slice().reverse().map(e => `
+    <div class="evt">
+      <div class="evt-dot"></div>
+      <div class="evt-body">
+        <div class="evt-type">${EVT_LABELS[e.event_type] || e.event_type}</div>
+        ${e.description ? `<div class="evt-desc">${e.description}</div>` : ''}
+        <div class="evt-time">${fmtDate(e.created_at)}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Revision submit ─────────────────────────────────────────────────────
+$('rev-send').addEventListener('click', async () => {
+  const msg = $('rev-msg').value.trim();
+  if (!msg || !TOKEN) return;
+  $('rev-send').textContent = 'Sending…';
+  try {
+    // Use concierge chat endpoint to submit revision via agent
+    const res = await fetch(`${getApiBase()}/concierge/chat`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: TOKEN, message: `I'd like to request a revision: ${msg}` }),
+    });
+    if (res.ok) {
+      $('rev-msg').value = '';
+      // Reload data to reflect the new revision
+      await load();
+    }
+  } catch (e) { console.error('Revision submit error:', e); }
+  $('rev-send').textContent = 'Submit →';
+});
+
+// ── API ─────────────────────────────────────────────────────────────────
+function getApiBase() {
+  // When served from the API server, use same origin
+  if (window.location.port === '8901') return window.location.origin;
+  return '';
+}
+
+async function load() {
+  if (!TOKEN) { hide('loading'); show('gate'); return; }
+
+  try {
+    const res = await fetch(`${getApiBase()}/api/portal/${TOKEN}`);
+    if (!res.ok) throw new Error('Not found');
+    PROJECT_DATA = await res.json();
+
+    const { project, messages, revisions, events, payments } = PROJECT_DATA;
+
+    hide('loading'); hide('gate'); hide('error'); show('app');
+    document.title = `${project.client_name || 'Your Project'} — CZR Studio`;
+    $('client-name').textContent = project.client_name || '';
+    $('pkg').textContent = project.package || '—';
+    $('eta').textContent = project.estimated_delivery || 'To be confirmed';
+
+    if (project.site_url) {
+      $('site-row').style.display = '';
+      $('site-url').href = project.site_url;
+    }
+
+    // Concierge link
+    $('concierge-link').href = `/concierge?token=${TOKEN}`;
+
+    renderPhase(project.phase);
+    renderMessages(messages);
+    renderRevisions(revisions);
+    renderPayments(payments || []);
+    renderEvents(events);
+
+  } catch (e) {
+    hide('loading'); hide('gate'); show('error');
+  }
+}
+
+load();
+</script>
+</body>
+</html>

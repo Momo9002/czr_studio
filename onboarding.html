@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Your Project — CZR Studio</title>
+  <meta name="description" content="Get briefed in 10 minutes. Launch your premium website in 48 hours. Start your CZR Studio project now." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #000000; --surface: #080808; --surface-2: #0F0F0F; --surface-3: #181818;
+      --border: rgba(255,255,255,0.07); --border-hard: rgba(255,255,255,0.10); --border-bright: rgba(255,255,255,0.18);
+      --text: #FFFFFF; --text-muted: #999999; --text-dim: #555555;
+      --m-red: #C8242A; --m-yellow: #F0C029; --m-blue: #1A4BA8; --m-green: #22C55E;
+      --font-display: 'Syne', sans-serif; --font-body: 'Manrope', sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+
+    /* ── Header ────────────────────────────── */
+    .ob-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; border-bottom: 1px solid var(--border-hard); }
+    .wordmark { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--text); text-decoration: none; letter-spacing: -0.05em; position: relative; }
+    .wordmark::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--m-red); transition: width 0.3s var(--ease); }
+    .wordmark:hover::after { width: 100%; }
+    .ob-step-counter { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); }
+
+    /* ── Progress bar ─────────────────────── */
+    .progress-bar { height: 2px; background: var(--surface-3); }
+    .progress-fill { height: 100%; background: var(--m-red); transition: width 0.5s var(--ease); }
+
+    /* ── Container ─────────────────────────── */
+    .ob-container { max-width: 680px; margin: 0 auto; padding: 60px 24px; }
+
+    /* ── Step ──────────────────────────────── */
+    .step { display: none; animation: fadeIn 0.4s var(--ease); }
+    .step.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .step-eyebrow { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
+    .step-title { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 12px; }
+    .step-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 40px; max-width: 480px; }
+
+    /* ── Form fields ──────────────────────── */
+    .field { margin-bottom: 24px; }
+    .field label { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 14px 18px; background: var(--surface-3);
+      border: 1px solid var(--border-hard); color: var(--text);
+      font-family: var(--font-body); font-size: 14px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: var(--text-dim); }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--border-bright); }
+    .field select option { background: var(--surface); }
+    .field textarea { resize: vertical; min-height: 100px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field-hint { font-size: 0.7rem; color: var(--text-dim); margin-top: 6px; }
+    .field-error { font-size: 0.7rem; color: var(--m-red); margin-top: 4px; display: none; }
+
+    /* ── Package cards ─────────────────────── */
+    .pkg-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .pkg-card {
+      background: var(--surface); border: 1px solid var(--border-hard);
+      padding: 28px 24px; cursor: pointer; transition: all 0.2s var(--ease);
+      position: relative;
+    }
+    .pkg-card:hover { border-color: var(--border-bright); }
+    .pkg-card.selected { border-color: var(--text); }
+    .pkg-card.selected::before {
+      content: '✓'; position: absolute; top: 12px; right: 14px;
+      font-size: 14px; font-weight: 700;
+    }
+    .pkg-popular {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 4px 0; background: var(--m-red); text-align: center;
+      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .pkg-popular + .pkg-inner { margin-top: 24px; }
+    .pkg-name { font-family: var(--font-display); font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    .pkg-price { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .pkg-price span { font-size: 14px; font-weight: 400; color: var(--text-muted); }
+    .pkg-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .pkg-features { list-style: none; }
+    .pkg-features li { font-size: 13px; color: var(--text-muted); padding: 4px 0; padding-left: 16px; position: relative; }
+    .pkg-features li::before { content: '—'; position: absolute; left: 0; color: var(--text-dim); }
+
+    /* ── Nav buttons ──────────────────────── */
+    .step-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 48px; }
+    .btn { padding: 14px 28px; font-family: var(--font-body); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; border: none; }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-ghost { background: none; color: var(--text-dim); border: 1px solid var(--border-hard); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--border-bright); }
+    .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* ── Summary card ─────────────────────── */
+    .summary-card { background: var(--surface); border: 1px solid var(--border-hard); padding: 32px; margin-bottom: 32px; }
+    .summary-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-row .lbl { color: var(--text-dim); font-weight: 700; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .summary-row .val { font-weight: 500; }
+
+    /* ── Guarantee ─────────────────────────── */
+    .guarantee { display: flex; align-items: flex-start; gap: 14px; padding: 20px; background: var(--surface-2); border: 1px solid var(--border-hard); margin-top: 24px; }
+    .guarantee-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .guarantee-text { font-size: 13px; color: var(--text-muted); }
+    .guarantee-text strong { color: var(--text); }
+
+    /* ── Success ───────────────────────────── */
+    .success { text-align: center; padding: 60px 20px; }
+    .success-icon { font-size: 48px; margin-bottom: 24px; }
+    .success h2 { font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.04em; margin-bottom: 12px; }
+    .success p { color: var(--text-muted); max-width: 400px; margin: 0 auto; }
+
+    @media (max-width: 640px) {
+      .ob-header { padding: 16px 20px; }
+      .ob-container { padding: 40px 16px; }
+      .pkg-grid { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,"script","https://connect.facebook.net/en_US/fbevents.js");
+  fbq("init", "2928293767375852");
+  fbq("track", "PageView");
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<header class="ob-header">
+  <a href="/" class="wordmark">CZR.</a>
+  <span class="ob-step-counter" id="step-counter">Step 1 of 4</span>
+</header>
+<div class="progress-bar"><div class="progress-fill" id="progress" style="width: 25%"></div></div>
+
+<div class="ob-container">
+
+  <!-- STEP 1: About Your Brand -->
+  <div class="step active" id="step-1">
+    <div class="step-eyebrow">Step 01</div>
+    <h1 class="step-title">Tell Us About<br>Your Brand.</h1>
+    <p class="step-sub">We need to understand who you are and what you do. This takes 2 minutes.</p>
+
+    <div class="field">
+      <label for="brand-name">Brand / Business Name *</label>
+      <input type="text" id="brand-name" placeholder="e.g. Maison Verte" required />
+    </div>
+    <div class="field">
+      <label for="brand-type">Industry / Type *</label>
+      <select id="brand-type" required>
+        <option value="" disabled selected>Select your industry</option>
+        <option value="Fashion">Fashion & Luxury</option>
+        <option value="Architecture">Architecture & Interiors</option>
+        <option value="Food & Hospitality">Food & Hospitality</option>
+        <option value="Photography">Photography & Creative</option>
+        <option value="E-commerce">E-commerce & Product</option>
+        <option value="Professional Services">Professional Services</option>
+        <option value="Health & Wellness">Health & Wellness</option>
+        <option value="Real Estate">Real Estate</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="brand-website">Current Website (if any)</label>
+      <input type="url" id="brand-website" placeholder="https://yourbrand.com" />
+      <div class="field-hint">Leave blank if you don't have one yet.</div>
+    </div>
+    <div class="field">
+      <label for="brand-desc">What does your brand do? *</label>
+      <textarea id="brand-desc" rows="3" placeholder="Briefly describe your business, your audience, and what makes you different…" required></textarea>
+    </div>
+
+    <div class="step-nav">
+      <a href="/" class="btn btn-ghost">← Back to Site</a>
+      <button class="btn btn-primary" onclick="goStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Project Goals -->
+  <div class="step" id="step-2">
+    <div class="step-eyebrow">Step 02</div>
+    <h1 class="step-title">What Do You<br>Need Built?</h1>
+    <p class="step-sub">Help us understand the project so we can deliver exactly what you need.</p>
+
+    <div class="field">
+      <label for="proj-goal">Project Goal *</label>
+      <select id="proj-goal" required>
+        <option value="" disabled selected>What do you need?</option>
+        <option value="New website">New website from scratch</option>
+        <option value="Redesign">Redesign existing website</option>
+        <option value="Landing page">Landing page / product launch</option>
+        <option value="Portfolio">Portfolio / personal brand</option>
+        <option value="E-commerce">E-commerce / online store</option>
+        <option value="Other">Something else</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="proj-audience">Who is your target audience? *</label>
+      <input type="text" id="proj-audience" placeholder="e.g. Luxury buyers 25-45, Dubai & London" required />
+    </div>
+    <div class="field">
+      <label for="proj-refs">Design references or inspiration</label>
+      <textarea id="proj-refs" rows="3" placeholder="Share links to websites, brands, or aesthetics you admire. What vibe are you going for?"></textarea>
+      <div class="field-hint">Optional but very helpful. Share URLs or describe the feel.</div>
+    </div>
+    <div class="field">
+      <label for="proj-pages">How many pages do you need?</label>
+      <select id="proj-pages">
+        <option value="1-3">1–3 pages</option>
+        <option value="4-6">4–6 pages</option>
+        <option value="7+">7+ pages</option>
+        <option value="Not sure">Not sure yet</option>
+      </select>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn btn-ghost" onclick="goStep(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Package Selection -->
+  <div class="step" id="step-3">
+    <div class="step-eyebrow">Step 03</div>
+    <h1 class="step-title">Choose Your<br>Package.</h1>
+    <p class="step-sub">All packages include agent onboarding, hosting setup, and our 48h guarantee.</p>
+
+    <div class="pkg-grid">
+      <div class="pkg-card" data-pkg="Sprint" data-price="999" onclick="selectPkg(this)">
+        <div class="pkg-inner">
+          <div class="pkg-name">The Sprint</div>
+          <div class="pkg-price">€999</div>
+          <div class="pkg-desc">Custom landing page or 3-page site. Perfect for launches and personal brands.</div>
+          <ul class="pkg-features">
+            <li>Up to 3 pages</li>
+            <li>Mobile-first design</li>
+            <li>Basic SEO + analytics</li>
+            <li>1-week support</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pkg-card" data-pkg="Flagship" data-price="2499" onclick="selectPkg(this)">
+        <div class="pkg-popular">Most Popular</div>
+        <div class="pkg-inner" style="margin-top:24px;">
+          <div class="pkg-name">The Flagship</div>
+          <div class="pkg-price">€2,499</div>
+          <div class="pkg-desc">Complete brand website with CMS, animations, and conversion optimization.</div>
+          <ul class="pkg-features">
+            <li>Up to 8 pages + CMS</li>
+            <li>Advanced animations</li>
+            <li>Full SEO + analytics</li>
+            <li>1-month support</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pkg-card" data-pkg="Retainer" data-price="99" onclick="selectPkg(this)">
+        <div class="pkg-inner">
+          <div class="pkg-name">The Retainer</div>
+          <div class="pkg-price">€99<span>/mo</span></div>
+          <div class="pkg-desc">Ongoing design & dev support. New pages, tweaks, quarterly refreshes.</div>
+          <ul class="pkg-features">
+            <li>2 design requests/mo</li>
+            <li>Priority turnaround</li>
+            <li>Hosting & maintenance</li>
+            <li>Cancel anytime</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn btn-ghost" onclick="goStep(2)">← Back</button>
+      <button class="btn btn-primary" id="pkg-continue" disabled onclick="goStep(4)">Select a Package →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Contact + Summary + Pay -->
+  <div class="step" id="step-4">
+    <div class="step-eyebrow">Step 04</div>
+    <h1 class="step-title">Confirm &<br>Launch.</h1>
+    <p class="step-sub">Review your brief and lock in your spot. Payment is Stripe-protected.</p>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="c-name">Full Name *</label>
+        <input type="text" id="c-name" placeholder="Sophie Leclair" required />
+      </div>
+      <div class="field">
+        <label for="c-email">Email *</label>
+        <input type="email" id="c-email" placeholder="hello@yourbrand.com" required />
+      </div>
+    </div>
+    <div class="field">
+      <label for="c-phone">WhatsApp / Phone *</label>
+      <input type="tel" id="c-phone" placeholder="+33 6 12 34 56 78" required />
+    </div>
+
+    <div class="summary-card" id="summary-card">
+      <h3 style="font-family:var(--font-display);font-weight:700;font-size:14px;margin-bottom:16px;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-dim);">Brief Summary</h3>
+      <div class="summary-row"><span class="lbl">Brand</span><span class="val" id="sum-brand">—</span></div>
+      <div class="summary-row"><span class="lbl">Industry</span><span class="val" id="sum-type">—</span></div>
+      <div class="summary-row"><span class="lbl">Project</span><span class="val" id="sum-goal">—</span></div>
+      <div class="summary-row"><span class="lbl">Audience</span><span class="val" id="sum-audience">—</span></div>
+      <div class="summary-row"><span class="lbl">Pages</span><span class="val" id="sum-pages">—</span></div>
+      <div class="summary-row"><span class="lbl">Package</span><span class="val" id="sum-pkg">—</span></div>
+      <div class="summary-row" style="border-bottom:none;padding-top:16px;">
+        <span class="lbl" style="font-size:0.7rem;">Total</span>
+        <span class="val" style="font-family:var(--font-display);font-size:22px;font-weight:800;" id="sum-total">—</span>
+      </div>
+    </div>
+
+    <div class="guarantee">
+      <div class="guarantee-icon">◈</div>
+      <div class="guarantee-text">
+        <strong>The CZR Guarantee.</strong> If your site isn't delivered in 48 hours — or if you're not fully satisfied — you pay nothing. No questions. No conditions.
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn btn-ghost" onclick="goStep(3)">← Back</button>
+      <button class="btn btn-primary" id="submit-btn" onclick="submitProject()">Lock In My Spot →</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="step" id="step-success">
+    <div class="success">
+      <div class="success-icon">◈</div>
+      <h2>You're In.</h2>
+      <p>Your project has been created. Our agent will reach out on WhatsApp within 2 hours to start your onboarding conversation.</p>
+      <div style="margin-top:32px;">
+        <a href="/" class="btn btn-primary" style="text-decoration:none;display:inline-block;">Back to CZR Studio</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let currentStep = 1;
+let selectedPkg = null;
+let selectedPrice = 0;
+
+function goStep(n) {
+  // Validate current step before advancing
+  if (n > currentStep && !validateStep(currentStep)) return;
+
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  currentStep = n;
+  document.getElementById('step-counter').textContent = `Step ${n} of 4`;
+  document.getElementById('progress').style.width = (n / 4 * 100) + '%';
+
+  // Populate summary on step 4
+  if (n === 4) populateSummary();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function validateStep(n) {
+  if (n === 1) {
+    const name = document.getElementById('brand-name').value.trim();
+    const type = document.getElementById('brand-type').value;
+    const desc = document.getElementById('brand-desc').value.trim();
+    if (!name || !type || !desc) { shakeStep(n); return false; }
+  }
+  if (n === 2) {
+    const goal = document.getElementById('proj-goal').value;
+    const audience = document.getElementById('proj-audience').value.trim();
+    if (!goal || !audience) { shakeStep(n); return false; }
+  }
+  if (n === 3 && !selectedPkg) { return false; }
+  return true;
+}
+
+function shakeStep(n) {
+  const el = document.getElementById('step-' + n);
+  el.style.animation = 'none';
+  el.offsetHeight; // reflow
+  el.style.animation = 'shake 0.4s ease';
+}
+
+function selectPkg(card) {
+  document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedPkg = card.dataset.pkg;
+  selectedPrice = parseInt(card.dataset.price);
+  document.getElementById('pkg-continue').disabled = false;
+  document.getElementById('pkg-continue').textContent = `Continue with ${selectedPkg} →`;
+}
+
+function populateSummary() {
+  document.getElementById('sum-brand').textContent = document.getElementById('brand-name').value.trim();
+  document.getElementById('sum-type').textContent = document.getElementById('brand-type').value;
+  document.getElementById('sum-goal').textContent = document.getElementById('proj-goal').value;
+  document.getElementById('sum-audience').textContent = document.getElementById('proj-audience').value.trim();
+  document.getElementById('sum-pages').textContent = document.getElementById('proj-pages').value;
+  document.getElementById('sum-pkg').textContent = selectedPkg;
+  document.getElementById('sum-total').textContent = selectedPkg === 'Retainer' ? `€${selectedPrice}/mo` : `€${selectedPrice.toLocaleString()}`;
+}
+
+async function submitProject() {
+  const name = document.getElementById('c-name').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const phone = document.getElementById('c-phone').value.trim();
+
+  if (!name || !email || !phone) { shakeStep(4); return; }
+
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Processing…';
+  btn.disabled = true;
+
+  // Build brief
+  const brief = [
+    `Brand: ${document.getElementById('brand-name').value.trim()}`,
+    `Industry: ${document.getElementById('brand-type').value}`,
+    `Description: ${document.getElementById('brand-desc').value.trim()}`,
+    `Current site: ${document.getElementById('brand-website').value.trim() || 'None'}`,
+    `Goal: ${document.getElementById('proj-goal').value}`,
+    `Audience: ${document.getElementById('proj-audience').value.trim()}`,
+    `References: ${document.getElementById('proj-refs').value.trim() || 'None provided'}`,
+    `Pages: ${document.getElementById('proj-pages').value}`,
+    `Package: ${selectedPkg} (€${selectedPrice})`,
+  ].join('\n');
+
+  try {
+    // Create project via API
+    const res = await fetch('/admin/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        client_name: name,
+        client_email: email,
+        phone: phone,
+        package: selectedPkg,
+        notes: brief,
+      }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const token = data.project?.client_token;
+
+      // Try to create Stripe checkout
+      try {
+        const checkoutRes = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ client_token: token, package: selectedPkg }),
+        });
+        if (checkoutRes.ok) {
+          const checkout = await checkoutRes.json();
+          if (checkout.checkout_url) {
+            // Track conversion
+            if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { value: selectedPrice, currency: 'EUR' });
+            window.location.href = checkout.checkout_url;
+            return;
+          }
+        }
+      } catch (e) { console.log('Stripe checkout not available, showing success'); }
+
+      // Track conversion
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: `Onboarding: ${selectedPkg}` });
+
+      // Show success
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step-success').classList.add('active');
+      document.getElementById('step-counter').textContent = 'Complete';
+      document.getElementById('progress').style.width = '100%';
+    } else {
+      btn.textContent = 'Lock In My Spot →';
+      btn.disabled = false;
+    }
+  } catch (e) {
+    console.error('Submit error:', e);
+    btn.textContent = 'Lock In My Spot →';
+    btn.disabled = false;
+  }
+}
+
+// Shake animation
+const style = document.createElement('style');
+style.textContent = '@keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }';
+document.head.appendChild(style);
+</script>
+</body>
+</html>
