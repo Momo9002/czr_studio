@@ -1,0 +1,58 @@
+{
+  "brand": {
+    "name": "CZR Studio",
+    "tagline": "Haute Couture Digital.",
+    "sub_tagline": "Briefed today. Live in 48h.",
+    "locations": ["Dubai", "NYC", "Worldwide"],
+    "url": "https://czr.studio",
+    "whatsapp": "+971551343144",
+    "instagram": "@czr.studio"
+  },
+  "avatar": {
+    "name": "The Knight",
+    "symbol": "♞",
+    "description": "Matte black chess Knight with single red accent line. Strategy. Precision. Moves differently.",
+    "asset_path": "brand/assets/social/knight_profile_pic.png"
+  },
+  "colors": {
+    "black": "#000000",
+    "cream": "#F7F4EF",
+    "white": "#FFFFFF",
+    "red": "#C8242A",
+    "surface": "#080808",
+    "surface2": "#0f0f0f",
+    "gold": "#C9A84C"
+  },
+  "typography": {
+    "display": "Syne",
+    "display_weight": 800,
+    "body": "Manrope",
+    "body_weight": 400
+  },
+  "voice": {
+    "tone": "Hermès copywriter. Never sell — state.",
+    "never": ["!", "we can", "amazing", "excited", "leverage", "synergy"],
+    "always": ["period endings", "short sentences", "implied not explained"],
+    "cta": "→ czr.studio"
+  },
+  "duality": {
+    "dark_mode": "Craft, studio, Knight — #000000 background",
+    "light_mode": "Delivered work, results, joy — #F7F4EF background",
+    "rule": "Never more than 2 of the same mode in a row"
+  },
+  "hashtags": [
+    "#CZRStudio",
+    "#HauteCoutureDigital",
+    "#WebDesign",
+    "#48hDelivery",
+    "#PremiumWebDesign",
+    "#DesignStudio",
+    "#LuxuryBranding",
+    "#Dubai",
+    "#NYC",
+    "#TheKnight"
+  ],
+  "models": ["Hermès", "Apple", "SpaceX"],
+  "guarantee": "48 hours or free. No questions.",
+  "delivery_time_hours": 48
+}

@@ -13,11 +13,9 @@ requirements.txt
 agents/
 
 # === Brand & Campaign assets (not for website) ===
-brand/
 campaign_48h.json
 czr_campaign_48h/
 czr_campaign_48h.zip
-data/
 
 # === Database & logs ===
 leads.db
@@ -33,3 +31,6 @@ Thumbs.db
 
 # === Misc ===
 cloudflared.exe
+
+# DNA folder is tracked
+!dna/
