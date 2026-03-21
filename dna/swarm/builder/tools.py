@@ -269,6 +269,7 @@ def audit_css_tokens() -> str:
     """Check that style.css uses the correct CSS custom properties from identity.json.
 
     Verifies color tokens like --black, --cream, --hermes are defined.
+    Accepts both hyphen and underscore variants (CSS standard = hyphens).
     Returns a report of which tokens are present vs missing.
     """
     try:
@@ -279,16 +280,19 @@ def audit_css_tokens() -> str:
         present = []
         missing = []
         for token_name in colors:
-            css_var = f"--{token_name}"
-            if css_var in css:
-                present.append(css_var)
+            # CSS standard uses hyphens; DNA keys use underscores — accept both
+            css_var_hyphen     = f"--{token_name.replace('_', '-')}"  # --dark-text
+            css_var_underscore = f"--{token_name}"                     # --dark_text
+            if css_var_hyphen in css or css_var_underscore in css:
+                present.append(css_var_hyphen)
             else:
-                missing.append(css_var)
+                missing.append(css_var_hyphen)
 
         return json.dumps({
             "present": present,
             "missing": missing,
             "coverage": f"{len(present)}/{len(present)+len(missing)}",
+            "note": "Both --token-name and --token_name accepted as valid CSS conventions",
         }, indent=2)
     except Exception as e:
         return f"Error: {e}"
@@ -297,13 +301,13 @@ def audit_css_tokens() -> str:
 # ── Generic multipage tools ───────────────────────────────────────────────────
 
 def read_page_collections() -> str:
-    """Discover all page collections declared in the DNA.
+    """Discover page collections from the DNA — returns SLUGS ONLY, not full data.
 
-    Reads identity.json pages_config → returns what page types need generating.
-    Each collection has: type, folder, data_path, label, item_count.
+    Returns a list of collections with their folder, type, label, and list of slugs.
+    Use this to know WHAT to build. Then call read_page_item(folder, slug) for each.
 
-    Use this in PagesAgent BEFORE generating any pages — know what you're building.
-    Returns JSON list of collections with their items ready to build.
+    IMPORTANT: This returns slugs only. You MUST call read_page_item for each slug
+    to get the full content needed to write the page.
     """
     try:
         dna = json.loads(_IDENTITY.read_text())
@@ -324,18 +328,60 @@ def read_page_collections() -> str:
             if not isinstance(items, list):
                 items = []
 
+            slugs = [item.get("slug", str(i)) for i, item in enumerate(items)]
+
             result.append({
                 "type": col.get("type", "page"),
                 "folder": col.get("folder", "pages"),
                 "label": col.get("label", "Pages"),
                 "item_count": len(items),
-                "items": items,
+                "slugs": slugs,
+                "instruction": f"Call read_page_item('{col.get('folder','pages')}', slug) for each slug, then write_page('{col.get('folder','pages')}', slug, html)",
             })
 
         return json.dumps(result, indent=2, ensure_ascii=False)
 
     except Exception as e:
         return json.dumps({"error": str(e)})
+
+
+def read_page_item(folder: str, slug: str) -> str:
+    """Fetch the full DNA data for a single page item.
+
+    Call this for each slug from read_page_collections() before writing its page.
+    Returns the complete item object with all fields (challenge, result, palette, etc.)
+
+    Args:
+        folder: Collection folder (e.g. 'cases', 'products', 'team')
+        slug:   Slug of the specific item to retrieve
+    """
+    try:
+        dna = json.loads(_IDENTITY.read_text())
+        pages_config = dna.get("pages_config", {})
+        collections = pages_config.get("collections", [])
+
+        for col in collections:
+            if col.get("folder") != folder:
+                continue
+            data_path = col.get("data_path", "")
+            items = dna
+            for part in data_path.split("."):
+                items = items.get(part, {}) if isinstance(items, dict) else []
+            if not isinstance(items, list):
+                continue
+            for item in items:
+                if item.get("slug") == slug:
+                    return json.dumps({
+                        "folder": folder,
+                        "slug": slug,
+                        "type": col.get("type", "page"),
+                        "data": item,
+                    }, indent=2, ensure_ascii=False)
+
+        return json.dumps({"error": f"No item found: {folder}/{slug}"})
+
+    except Exception as e:
+        return f"Error: {e}"
 
 
 def write_page(folder: str, slug: str, html_content: str) -> str:

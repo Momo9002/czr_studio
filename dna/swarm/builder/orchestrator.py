@@ -23,7 +23,7 @@ from dna.swarm.builder.tools import (
     read_dna_section, read_full_dna, read_dna_files, read_case_list,
     write_index_html, write_style_css, write_case_html, append_css,
     read_output_file, audit_html_structure, audit_css_tokens,
-    read_page_collections, write_page, list_generated_pages,
+    read_page_collections, read_page_item, write_page, list_generated_pages,
 )
 from dna.swarm.builder.callbacks import dna_inject_callback, make_quality_scorer
 
@@ -304,7 +304,7 @@ STEP 4 — After writing all pages:
   Respond with the complete list of pages generated, organized by collection.
   Include quality assessment for each collection.
 """,
-        tools=[read_page_collections, read_dna_section, read_dna_files,
+        tools=[read_page_collections, read_page_item, read_dna_section, read_dna_files,
                write_page, list_generated_pages],
         output_key="pages_result",
         before_agent_callback=dna_inject_callback,

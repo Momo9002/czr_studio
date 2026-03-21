@@ -1,286 +1,99 @@
-<!-- Built by CZR Studio — czr.studio -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Baron D. — Direction without apology. | CZR Studio</title>
-  <meta name="description" content="Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.">
-  <!-- Meta Pixel -->
-  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','your-pixel-id');fbq('track','PageView');</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0D0D0D;
-      --text: #F0EDE8;
-      --accent: #C0392B;
-      --mid: color-mix(in srgb, var(--text) 55%, var(--bg));
-      --dim: color-mix(in srgb, var(--text) 28%, var(--bg));
-      --display: 'Syne', Georgia, serif;
-      --body: 'Manrope', system-ui, sans-serif;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg); color: var(--text);
-      font-family: var(--body); font-weight: 300;
-      font-size: 15px; line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; width: 100%; object-fit: cover; }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 60px; display: flex; align-items: center;
-      justify-content: space-between; padding: 0 clamp(1.5rem, 5vw, 4rem);
-      background: color-mix(in srgb, var(--bg) 85%, transparent);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
-    }
-    .nav-back {
-      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--dim); transition: color 0.2s;
-    }
-    .nav-back:hover { color: var(--text); }
-    .nav-brand {
-      font-family: var(--display); font-weight: 700;
-      font-size: 1rem; letter-spacing: 0.05em;
-    }
-    .nav-cta {
-      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-      background: var(--accent); color: var(--bg);
-      padding: 0.55rem 1.4rem; font-weight: 600;
-      transition: opacity 0.2s;
-    }
-    .nav-cta:hover { opacity: 0.8; }
-
-    /* HERO */
-    .hero {
-      height: 100svh; position: relative;
-      display: flex; align-items: flex-end;
-      padding: 0 clamp(1.5rem, 5vw, 4rem) clamp(3rem, 8vw, 6rem);
-      overflow: hidden;
-    }
-    .hero-img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      filter: brightness(0.55);
-    }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, color-mix(in srgb, var(--bg) 80%, transparent) 0%, transparent 60%);
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 800px; }
-    .hero-cat {
-      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.5rem; display: block;
-    }
-    .hero-title {
-      font-family: var(--display);
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 700; line-height: 0.9;
-      letter-spacing: -0.03em; margin-bottom: 1.5rem;
-    }
-    .hero-tagline {
-      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-      color: var(--mid); font-style: italic;
-      max-width: 50ch;
-    }
-
-    /* SECTIONS */
-    .wrap {
-      max-width: 1100px; margin: 0 auto;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-    }
-    .section {
-      padding: clamp(5rem, 10vw, 10rem) 0;
-      border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
-    }
-    .section-label {
-      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--dim); margin-bottom: 2rem; display: block;
-    }
-    .section-headline {
-      font-family: var(--display);
-      font-size: clamp(1.8rem, 4vw, 3.5rem);
-      font-weight: 700; line-height: 1.05;
-      letter-spacing: -0.025em; margin-bottom: 2.5rem;
-    }
-    .section-body {
-      font-size: clamp(0.9rem, 1.3vw, 1.05rem);
-      color: var(--mid); max-width: 60ch; line-height: 1.9;
-    }
-
-    /* PROJECT BRIEF GRID */
-    .brief-grid {
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-      gap: 2px; margin-top: clamp(4rem, 8vw, 7rem);
-      background: color-mix(in srgb, var(--text) 8%, transparent);
-    }
-    .brief-cell {
-      background: var(--bg); padding: clamp(2rem, 4vw, 3rem);
-    }
-    .brief-label {
-      font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--dim); margin-bottom: 0.8rem; display: block;
-    }
-    .brief-value {
-      font-family: var(--display); font-size: clamp(1rem, 2vw, 1.3rem);
-      font-weight: 600; line-height: 1.3;
-    }
-
-    /* DELIVERABLES */
-    .deliverables {
-      list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem;
-      margin-top: 2rem;
-    }
-    .deliverables li {
-      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
-      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
-      padding: 0.5rem 1rem; color: var(--mid);
-    }
-
-    /* GALLERY */
-    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-    .gallery-img { aspect-ratio: 4/3; overflow: hidden; background: color-mix(in srgb, var(--text) 5%, var(--bg)); }
-    .gallery-img img { height: 100%; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-    .gallery-img:hover img { transform: scale(1.04); }
-
-    /* CTA */
-    .cta-section {
-      padding: clamp(6rem, 12vw, 12rem) 0;
-      text-align: center;
-    }
-    .cta-label {
-      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--dim); margin-bottom: 2rem; display: block;
-    }
-    .cta-headline {
-      font-family: var(--display);
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 700; line-height: 0.95;
-      letter-spacing: -0.04em; margin-bottom: 3rem;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      background: var(--text); color: var(--bg);
-      font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 1.2rem 3rem; transition: opacity 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.85; }
-
-    /* FOOTER */
-    footer {
-      padding: 2rem clamp(1.5rem, 5vw, 4rem);
-      border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.65rem; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--dim);
-    }
-
-    @media (max-width: 768px) {
-      .brief-grid { grid-template-columns: 1fr; }
-      .gallery { grid-template-columns: 1fr; }
-      nav .nav-cta { display: none; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CZR Studio - Creative Director Portfolio</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        :root {
+            --client-bg-dark: #0D0D0D;
+            --client-text-light: #F0EDE8;
+            --client-accent-red: #C0392B;
+        }
+        .hero.dark { background-color: var(--client-bg-dark); color: var(--client-text-light); }
+        .section.dark-client { background-color: var(--client-bg-dark); color: var(--client-text-light); }
+        .section.light-czr { background-color: var(--cream); color: var(--dark-text); }
+        .cta-button { background-color: var(--client-accent-red); color: var(--white); }
+        .hero-title, .section-title { font-family: 'Bebas Neue', sans-serif; }
+        .body-text, .eyebrow, .tagline, .details-grid p, .deliverables li { font-family: 'DM Sans', sans-serif; }
+    </style>
 </head>
 <body>
-
-  <nav>
-    <a href="../../index.html" class="nav-back">← CZR</a>
-    <span class="nav-brand">Baron D.</span>
-    <a href="https://wa.me/18107764057?text=I%20want%20to%20start%20a%20project%20like%20Baron%20D." class="nav-cta" target="_blank" rel="noopener">Start a Project</a>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <img src="../../images/creative-director.jpg" alt="Director Portfolio" class="hero-img">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <span class="hero-cat">Creative · NYC</span>
-      <h1 class="hero-title">Baron D.</h1>
-      <p class="hero-tagline">Direction without apology.</p>
-    </div>
-  </section>
-
-  <!-- BRIEF -->
-  <section class="section">
-    <div class="wrap">
-      <div class="brief-grid">
-        <div class="brief-cell">
-          <span class="brief-label">Category</span>
-          <span class="brief-value">Creative</span>
+    <header class="main-header">
+        <div class="header-content">
+            <div class="brand-name">CZR Studio</div>
+            <nav class="main-nav">
+                <a href="../../#portfolio" class="back-link">← Back to Case Studies</a>
+            </nav>
         </div>
-        <div class="brief-cell">
-          <span class="brief-label">Location</span>
-          <span class="brief-value">NYC</span>
-        </div>
-        <div class="brief-cell">
-          <span class="brief-label">Deliverables</span>
-          <ul class="deliverables">
-            <li>Portfolio site</li>
-            <li>Video showcase</li>
-            <li>Contact system</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- CHALLENGE -->
-  <section class="section">
-    <div class="wrap">
-      <span class="section-label">The Brief</span>
-      <h2 class="section-headline">The challenge.</h2>
-      <p class="section-body">Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.</p>
-    </div>
-  </section>
+    <main>
+        <section class="hero dark">
+            <div class="hero-content">
+                <p class="eyebrow">Creative</p>
+                <h1 class="hero-title">Director Portfolio</h1>
+                <p class="tagline">Direction without apology.</p>
+            </div>
+        </section>
 
-  <!-- GALLERY -->
-  <div class="wrap">
-    <div class="gallery">
-      <div class="gallery-img"><img src="../../images/creative-director.jpg" alt="Director Portfolio"></div>
-    </div>
-  </div>
+        <section class="cover-image-container">
+            <img src="../../images/creative-director.jpg" alt="Baron D. Creative Director" class="cover-image">
+        </section>
 
-  <!-- BUILD -->
-  <section class="section">
-    <div class="wrap">
-      <span class="section-label">The Work</span>
-      <h2 class="section-headline">How we built it.</h2>
-      <p class="section-body">Grid-based archive. Full-screen case studies. Video-first sections.</p>
-    </div>
-  </section>
+        <section class="section light-czr">
+            <div class="section-content">
+                <h2 class="section-title">The Challenge</h2>
+                <p class="body-text">Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery. The platform needed to be as diverse and impactful as their portfolio, presenting a cohesive vision across disparate creative fields without diluting individual project identities.</p>
+                <div class="details-grid">
+                    <div>
+                        <h3>Client</h3>
+                        <p>Baron D.</p>
+                    </div>
+                    <div>
+                        <h3>Location</h3>
+                        <p>NYC</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <!-- RESULT -->
-  <section class="section">
-    <div class="wrap">
-      <span class="section-label">The Outcome</span>
-      <h2 class="section-headline">The result.</h2>
-      <p class="section-body">Three new brand partnerships closed within the month. Agency inquiries doubled.</p>
-    </div>
-  </section>
+        <section class="section dark-client">
+            <div class="section-content">
+                <h2 class="section-title">The Approach</h2>
+                <p class="body-text">Grid-based archive. Full-screen case studies. Video-first sections. The design prioritized visual impact and intuitive navigation, allowing the director's extensive body of work to speak for itself. Each project was given a cinematic stage, emphasizing the storytelling inherent in their direction.</p>
+                <div class="deliverables">
+                    <h3>Deliverables</h3>
+                    <ul>
+                        <li>Portfolio site</li>
+                        <li>Video showcase</li>
+                        <li>Contact system</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="wrap">
-      <span class="cta-label">Start today</span>
-      <h2 class="cta-headline">Brief us.</h2>
-      <a href="https://wa.me/18107764057?text=I%20want%20to%20start%20a%20project%20like%20Baron%20D." class="btn-primary" target="_blank" rel="noopener">Talk to the Agent →</a>
-    </div>
-  </section>
+        <section class="section light-czr">
+            <div class="section-content">
+                <h2 class="section-title">The Result</h2>
+                <p class="body-text">Three new brand partnerships closed within the month. Agency inquiries doubled. The redesigned portfolio became a powerful tool for engagement, clearly communicating Baron D.'s unique creative vision and attracting high-calibre collaborations across industries. A true digital extension of their artistic brand.</p>
+            </div>
+        </section>
 
-  <footer>
-    <span>CZR Studio</span>
-    <span>Haute Couture Digital.</span>
-    <a href="../../index.html">← All Work</a>
-  </footer>
+        <section class="section cta-section dark">
+            <div class="section-content text-center">
+                <h2 class="cta-title">Start a Project.</h2>
+                <p class="body-text">Ready to define your brand's digital presence? We deliver uncompromising craft at an impossible pace.</p>
+                <a href="https://czr.studio" class="cta-button">Brief us.</a>
+            </div>
+        </section>
 
+        <footer class="main-footer">
+            <div class="footer-content">
+                <a href="../../#portfolio" class="back-link">← Back to Case Studies</a>
+            </div>
+        </footer>
+    </main>
 </body>
 </html>

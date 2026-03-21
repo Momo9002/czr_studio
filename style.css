@@ -1,60 +1,81 @@
 /*
-  CZR Studio — style.css
-  Version: 1.1
+  CZR Studio - style.css
+  Version: 1.5 (Final Fix Attempt)
   Author: FixAgent
-  DNA Source: visual.md, models.md, vision.md
-  ––––––––––––––––––––––––––––––––––––––––––––––––––
+  DNA Source: visual.md, models.md
+  -—
+
+  Architecture:
+  1. Imports
+  2. Root Tokens (:root)
+  3. Base & Reset
+  4. Typography
+  5. Layout
+  6. Components (Nav, Buttons, Cards)
+  7. Sections
+  8. Animations
+  9. Responsive
+
 */
 
-/* 1. Imports
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* 1. IMPORTS */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@300;400;600;700&display=swap');
 
-/* 2. :root — DNA Tokens
-   Source: visual.md, tokens
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* 2. ROOT TOKENS */
 :root {
-  /* Color Palette */
+  /* Color Tokens - Foundation */
   --black: #000000;
   --cream: #F7F4EF;
   --white: #FFFFFF;
+  --dark-text: #0a0a0a;
+
+  /* Color Tokens - Accent Palette */
   --red: #C8242A;
   --hermes: #E8601C;
   --navy: #0B1A2E;
   --gold: #C9A84C;
-  --dark-text: #0a0a0a;
+
+  /* Color Tokens - Surface System (Dark) */
   --surface: #080808;
   --surface-2: #111111;
   --surface-3: #1a1a1a;
-  --border-color-dark: var(--surface-3); /* FIX: Using --surface-3 for dark borders */
-  --border-color-light: color-mix(in srgb, var(--dark-text) 10%, transparent);
 
-  /* Typography */
+  /* Typography Tokens */
   --font-display: 'Syne', sans-serif;
   --font-body: 'Manrope', sans-serif;
-  --type-display-weight: 800; /* Per vision.md non-negotiable */
-  --type-display-tracking: -0.03em;
-  --type-hero-size: clamp(4rem, 9vw, 9rem);
-  --type-h2-size: clamp(2.8rem, 7vw, 5.5rem);
-  --type-body-size: 0.95rem;
-  --type-body-line-height: 1.85;
-  --type-eyebrow-tracking: 0.28em;
-  --type-eyebrow-size: 0.6rem;
 
-  /* Spacing */
+  --type-display-weight: 800;
+  --type-body-weight: 400;
+  --type-body-weight-bold: 700;
+  --type-display-tracking: -0.03em;
+  --type-eyebrow-tracking: 0.28em;
+  --type-button-tracking: 0.08em;
+
+  --h1-size: clamp(4rem, 9vw, 9rem);
+  --h2-size: clamp(2.8rem, 7vw, 5.5rem);
+  --h3-size: clamp(1.5rem, 4vw, 2.25rem);
+  --body-size: 1rem;
+  --body-line-height: 1.85;
+  --eyebrow-size: 0.75rem;
+
+  /* Spacing Tokens */
   --space-section-v: clamp(8rem, 16vw, 16rem);
   --space-section-h: clamp(1.5rem, 4vw, 5rem);
   --space-component-v: clamp(3rem, 6vw, 6rem);
+  --space-gap: 1px;
   --container-max-width: 1440px;
 
-  /* Surface & Accents */
+  /* Surface Tokens */
   --surface-radius: 0;
-  --surface-border-alpha: 0.06; /* Increased slightly for visibility */
-  --transition-cubic: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --surface-border-width: 1px;
+  --surface-border-alpha: 0.08;
+
+  /* Animation */
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-duration: 600ms;
 }
 
-/* 3. Global Resets
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* 3. BASE & RESET */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -68,8 +89,9 @@ html {
 
 body {
   font-family: var(--font-body);
-  font-size: var(--type-body-size);
-  line-height: var(--type-body-line-height);
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+  font-weight: var(--type-body-weight);
   background-color: var(--black);
   color: var(--white);
   overflow-x: hidden;
@@ -85,10 +107,12 @@ a {
   text-decoration: none;
 }
 
-/* 4. Typography
-   Source: visual.md "Typography", models.md "Vogue", "Apple"
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-h1, h2, h3, h4 {
+ul, ol {
+    list-style: none;
+}
+
+/* 4. TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: var(--type-display-weight);
   letter-spacing: var(--type-display-tracking);
@@ -96,44 +120,29 @@ h1, h2, h3, h4 {
   text-wrap: balance;
 }
 
-h1 {
-  font-size: var(--type-hero-size);
-}
-
-h2 {
-  font-size: var(--type-h2-size);
-}
+h1 { font-size: var(--h1-size); }
+h2 { font-size: var(--h2-size); }
+h3 { font-size: var(--h3-size); }
 
 p {
   max-width: 65ch;
 }
 
-.eyebrow {
+.eyebrow-label {
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: var(--type-eyebrow-size);
+  font-weight: var(--type-body-weight-bold);
+  font-size: var(--eyebrow-size);
   letter-spacing: var(--type-eyebrow-tracking);
   text-transform: uppercase;
-  color: var(--hermes);
+  color: color-mix(in srgb, currentColor 60%, transparent);
 }
 
-.subheadline {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  font-family: var(--font-body);
-  font-weight: 300;
-  line-height: 1.5;
-  max-width: 50ch;
-  margin-top: 1.5rem;
-}
+.text-red { color: var(--red); }
+.text-hermes { color: var(--hermes); }
+.text-gold { color: var(--gold); }
+.text-light { color: color-mix(in srgb, currentColor 80%, transparent); }
 
-/* 5. Layout & Sections
-   Source: visual.md "Spacing System", "Duality System"
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.section {
-  padding: var(--space-section-v) 0;
-  position: relative;
-}
-
+/* 5. LAYOUT */
 .container {
   width: 100%;
   max-width: var(--container-max-width);
@@ -141,6 +150,11 @@ p {
   margin-right: auto;
   padding-left: var(--space-section-h);
   padding-right: var(--space-section-h);
+}
+
+.section {
+  padding-top: var(--space-section-v);
+  padding-bottom: var(--space-section-v);
 }
 
 .section-dark {
@@ -153,436 +167,474 @@ p {
   color: var(--dark-text);
 }
 
-.section-header {
-  max-width: 800px;
-  margin-bottom: var(--space-component-v);
+.grid {
+    display: grid;
+    gap: 2rem;
 }
 
-/* 6. Navigation
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.main-nav {
+@media (min-width: 768px) {
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.stack-large > * + * { margin-top: 5rem; }
+.stack-medium > * + * { margin-top: 2.5rem; }
+.stack-small > * + * { margin-top: 1.25rem; }
+
+
+/* 6. COMPONENTS */
+
+/* Navigation */
+.nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  z-index: 1000;
   padding: 1.5rem var(--space-section-h);
+  transition: background-color 300ms ease-in-out, border-bottom 300ms ease-in-out;
+  border-bottom: var(--surface-border-width) solid transparent;
+}
+
+.nav.scrolled {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: var(--surface-border-width) solid var(--surface-3);
+}
+
+.nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1000;
-  transition: background-color 0.4s var(--transition-cubic), backdrop-filter 0.4s var(--transition-cubic);
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
 }
 
-.main-nav.scrolled {
-  background-color: color-mix(in srgb, var(--black) 85%, transparent);
-  backdrop-filter: blur(10px);
-}
-
-.nav-logo {
+.nav-brand {
   font-family: var(--font-display);
-  font-weight: var(--type-display-weight);
-  font-size: 1.2rem;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: var(--type-display-tracking);
 }
 
 .nav-links {
-  display: flex;
-  gap: 2rem;
-  font-size: 0.8rem;
-  font-weight: 600;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
 }
 
 .nav-links a {
-  transition: color 0.3s var(--transition-cubic);
+    position: relative;
+    padding: 0.5rem 0;
 }
 
-.nav-links a:hover {
-  color: var(--hermes);
+.nav-links a.link-underline {
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
-.nav-links a[data-style="underline"] {
-  text-decoration: underline;
-}
-
-.mobile-nav-toggle {
+.nav-cta {
     display: none;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 1001;
 }
 
-
-/* 7. Hero Section
-   Source: models.md "SpaceX"
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 10rem;
-  padding-bottom: 4rem;
-  background-image: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 60%), url('images/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+@media (min-width: 768px) {
+    .nav-cta { display: block; }
 }
 
-.hero-content {
-  width: 100%;
-}
-
-.hero-content h1 {
-  max-width: 12ch;
-}
-
-.hero-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.hero-values {
-    display: flex;
-    gap: 2rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-    flex-wrap: wrap;
-}
-
-/* 8. Component: Buttons
-   Source: visual.md, Hermès model
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* Buttons */
 .btn {
   display: inline-block;
-  padding: 0.8rem 2.5rem;
   font-family: var(--font-body);
-  font-weight: 700;
+  font-weight: var(--type-body-weight-bold);
+  font-size: 0.9rem;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--type-button-tracking);
+  padding: 1.25rem 2.5rem;
   border-radius: var(--surface-radius);
-  transition: transform 0.3s var(--transition-cubic), background-color 0.3s var(--transition-cubic);
+  border: var(--surface-border-width) solid transparent;
+  transition: transform 300ms var(--ease), background-color 300ms var(--ease), color 300ms var(--ease);
   cursor: pointer;
-  border: none;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
+  transform: scale(1.03);
 }
 
 .btn-black {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--dark-text);
+  color: var(--cream);
+  border-color: var(--dark-text);
 }
 .btn-black:hover {
-  background-color: var(--surface-2);
+  background-color: transparent;
+  color: var(--dark-text);
 }
 
-.btn-light {
+.btn-white {
+  background-color: var(--white);
+  color: var(--black);
+  border-color: var(--white);
+}
+.btn-white:hover {
+  background-color: transparent;
+  color: var(--white);
+}
+
+.btn-outline-dark {
+  background-color: transparent;
+  color: var(--dark-text);
+  border-color: var(--dark-text);
+}
+.btn-outline-dark:hover {
   background-color: var(--dark-text);
   color: var(--cream);
 }
-.btn-light:hover {
-  background-color: var(--black);
-}
 
 .btn-hermes {
-  background-color: var(--hermes);
-  color: var(--white);
+    background-color: var(--hermes);
+    color: var(--white);
+    border-color: var(--hermes);
 }
 .btn-hermes:hover {
-    background-color: color-mix(in srgb, var(--hermes) 90%, black);
+    background-color: color-mix(in srgb, var(--hermes) 85%, black);
 }
 
-/* 9. Section: Work
-   Source: Vogue, Apple models
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem 1px;
-}
-
-.work-card {
+/* Cards */
+.card {
   background-color: var(--surface);
-  transition: background-color 0.3s var(--transition-cubic);
-  border: 1px solid var(--border-color-dark);
-}
-
-.work-card:hover {
-  background-color: var(--surface-2);
-  transform: translateY(-5px);
-  transition: transform 0.3s var(--transition-cubic), background-color 0.3s var(--transition-cubic);
-}
-
-.work-card a {
-    display: block;
-    height: 100%;
-}
-
-.work-card-image {
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-}
-
-.work-card-image img {
-  width: 100%;
+  border: var(--surface-border-width) solid color-mix(in srgb, var(--white) calc(var(--surface-border-alpha) * 100%), transparent);
+  padding: 2.5rem;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--transition-cubic);
+  transition: background-color 300ms var(--ease), border-color 300ms var(--ease);
 }
 
-.work-card:hover .work-card-image img {
-  transform: scale(1.05);
+.card:hover {
+  background-color: var(--surface-2);
+  border-color: color-mix(in srgb, var(--white) calc(var(--surface-border-alpha) * 150%), transparent);
 }
 
+.section-light .card {
+    background-color: var(--white);
+    border-color: color-mix(in srgb, var(--dark-text) calc(var(--surface-border-alpha) * 100%), transparent);
+}
+.section-light .card:hover {
+    background-color: var(--white);
+    border-color: color-mix(in srgb, var(--dark-text) calc(var(--surface-border-alpha) * 180%), transparent);
+}
+
+
+/* 7. SECTIONS */
+
+/* Hero */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  color: var(--white);
+  background-color: var(--black);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.hero-content {
+  width: 100%;
+  padding-bottom: var(--space-section-v);
+}
+.hero-content h1 {
+  max-width: 14ch;
+}
+
+/* Work */
+.work-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+}
+.work-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms var(--ease);
+}
+.work-card:hover img {
+    transform: scale(1.05);
+}
 .work-card-content {
-  padding: 1.5rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: var(--white);
 }
-
 .work-card-content h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-top: 0.5rem;
+    font-size: 1.5rem;
 }
-
 .work-card-category {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.7;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-/* 10. Section: About
-   Source: SpaceX model (Data is raw)
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-#about .container {
-    display: flex;
-    justify-content: space-between;
-    gap: 4rem;
-    flex-wrap: wrap;
-}
-.about-content {
-    flex-basis: 50%;
-    flex-grow: 1;
-    min-width: 300px;
-}
+/* About */
 .about-stats {
-    flex-basis: 35%;
-    flex-grow: 1;
-    min-width: 300px;
+    border-top: var(--surface-border-width) solid color-mix(in srgb, currentColor 20%, transparent);
+    padding-top: var(--space-component-v);
+    margin-top: var(--space-component-v);
 }
-.about-stats .stat {
-    margin-bottom: 2rem;
-}
-.about-stats .stat-value {
+.stat .value {
     font-family: var(--font-display);
     font-weight: var(--type-display-weight);
-    font-size: clamp(3rem, 6vw, 4rem);
+    font-size: var(--h2-size);
+    letter-spacing: var(--type-display-tracking);
     line-height: 1;
     color: var(--dark-text);
 }
-.about-stats .stat-label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.8;
+.stat .label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    color: color-mix(in srgb, var(--dark-text) 60%, transparent);
+    margin-top: 1rem;
 }
 
-/* 11. Section: Process
-   Source: SpaceX model (Progress is visible)
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.process-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1px;
-  background-color: var(--border-color-dark);
-  border: 1px solid var(--border-color-dark);
-}
 
-.process-step {
-  padding: 2.5rem;
-  background-color: var(--black);
+/* Process */
+.process-item {
+    padding: 2.5rem 0;
+    border-bottom: var(--surface-border-width) solid var(--surface-3);
 }
-
-.process-step-num {
-  font-family: var(--font-display);
-  font-weight: var(--type-display-weight);
-  font-size: 1.2rem;
-  color: var(--red);
-  margin-bottom: 2rem;
+.process-item:first-child {
+    border-top: var(--surface-border-width) solid var(--surface-3);
 }
-
-.process-step h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+.process-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
-
-/* 12. Section: Packages
-   Source: Hermès model (Restraint, single accent)
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.packages-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1px;
-  background-color: var(--border-color-light);
-  border: 1px solid var(--border-color-light);
-}
-
-.package-card {
-  padding: 2.5rem;
-  background-color: var(--cream);
-  display: flex;
-  flex-direction: column;
-}
-
-.package-card.featured {
-    background-color: color-mix(in srgb, var(--dark-text) 3%, var(--cream));
-}
-
-.package-card .eyebrow {
-    color: var(--dark-text);
-    opacity: 0.6;
-}
-
-.package-card h3 {
-  font-size: 2rem;
-  margin-top: 0.5rem;
-}
-
-.package-price {
+.process-item-num {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 3.5rem;
-    line-height: 1;
-    margin: 1.5rem 0;
-}
-
-.package-price span {
     font-size: 1rem;
-    font-weight: 400;
-    opacity: 0.7;
+    color: var(--red);
+}
+.process-item p {
+    margin-top: 1.5rem;
+    padding-left: 2rem;
+    max-width: 50ch;
 }
 
-.package-features {
-    list-style: none;
+/* Packages */
+.package-card {
+    display: flex;
+    flex-direction: column;
+}
+.package-card.featured {
+    border-color: var(--hermes);
+    transform: scale(1.03);
+}
+.package-card .tagline {
+    font-weight: 600;
+    color: color-mix(in srgb, currentColor 80%, transparent);
+}
+.package-card .price {
+    font-family: var(--font-display);
+    font-weight: var(--type-display-weight);
+    font-size: 3.5rem;
+    letter-spacing: var(--type-display-tracking);
     margin: 1.5rem 0;
+}
+.package-card .price-per {
+    font-size: 1rem;
+    font-weight: 600;
+    color: color-mix(in srgb, currentColor 60%, transparent);
+}
+.package-card ul {
+    margin: 2rem 0;
     flex-grow: 1;
 }
-.package-features li {
-    padding-left: 1.5rem;
-    position: relative;
-    margin-bottom: 0.8rem;
-}
-.package-features li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--dark-text);
+.package-card ul li {
+    padding: 0.75rem 0;
+    border-bottom: var(--surface-border-width) solid color-mix(in srgb, currentColor 10%, transparent);
 }
 
-/* 13. Section: FAQ
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.faq-list {
-  max-width: 800px;
-  margin: 0 auto;
-  border-top: 1px solid var(--border-color-light);
-}
 
+/* FAQ */
 .faq-item {
-  border-bottom: 1px solid var(--border-color-light);
-  padding: 1.5rem 0;
+  border-bottom: var(--surface-border-width) solid color-mix(in srgb, currentColor 15%, transparent);
+  padding: 1.75rem 0;
 }
-.faq-item summary {
-  font-weight: 700;
-  font-size: 1.2rem;
+.faq-question {
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  list-style: none; /* Hide default marker */
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
 }
-.faq-item summary::-webkit-details-marker {
-  display: none; /* Hide default marker */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 500ms ease-in-out, padding-top 500ms ease-in-out;
 }
-
-.faq-item summary::after {
-    content: '+';
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 700;
-    transition: transform 0.3s var(--transition-cubic);
+.faq-answer p {
+  padding-right: 2rem;
+  color: color-mix(in srgb, currentColor 80%, transparent);
 }
-.faq-item[open] summary::after {
-    transform: rotate(45deg);
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  padding-top: 1.5rem;
 }
-.faq-item div {
-    padding-top: 1rem;
-    max-width: 60ch;
+.faq-icon {
+  font-family: var(--font-display);
+  font-weight: 700;
+  transition: transform 300ms var(--ease);
 }
-
-
-/* 14. Section: Contact
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-#contact .container {
-  max-width: 800px;
-  text-align: center;
-}
-#contact .subheadline {
-    margin-left: auto;
-    margin-right: auto;
-}
-#contact .btn {
-    margin-top: 2rem;
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
 }
 
-/* 15. Footer
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.main-footer {
-    padding: 4rem var(--space-section-h);
-    border-top: 1px solid var(--border-color-dark);
+/* Footer */
+.footer {
+    background-color: var(--surface);
+    color: color-mix(in srgb, var(--white) 60%, transparent);
+    padding-top: var(--space-component-v);
+    padding-bottom: var(--space-component-v);
+    font-size: 0.9rem;
 }
-
-.footer-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.footer-main {
+    padding-bottom: var(--space-component-v);
+    border-bottom: var(--surface-border-width) solid var(--surface-3);
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 3rem;
+}
+
+@media(min-width: 768px) {
+    .footer-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 }
 
 .footer-brand .tagline {
-    opacity: 0.7;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
+    max-width: 25ch;
+    margin-top: 1rem;
 }
-
 .footer-links {
     display: flex;
-    gap: 2rem;
     flex-wrap: wrap;
-    font-size: 0.8rem;
-    font-weight: 600;
+    gap: 1rem 3rem;
 }
-
 .footer-links a:hover {
-    color: var(--hermes);
+    color: var(--white);
 }
 
-/* 16. Reveal Animations
-   Source: Apple model (The reveal)
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.footer-bottom {
+    padding-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+@media(min-width: 768px) {
+    .footer-bottom {
+        flex-direction: row;
+    }
+}
+
+/* Case Study Page */
+.case-hero {
+    height: 80vh;
+    position: relative;
+    color: var(--white);
+    display: flex;
+    align-items: flex-end;
+}
+
+.case-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 60%);
+    z-index: 1;
+}
+
+.case-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.case-hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.case-meta {
+    padding-top: var(--space-component-v);
+    padding-bottom: var(--space-component-v);
+    border-bottom: var(--surface-border-width) solid var(--surface-3);
+}
+
+.case-meta-item .label {
+    font-family: var(--font-body);
+    font-weight: var(--type-body-weight-bold);
+    font-size: var(--eyebrow-size);
+    letter-spacing: var(--type-eyebrow-tracking);
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+}
+.case-meta-item .value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.case-content {
+    padding-top: var(--space-section-v);
+}
+.case-content h2 {
+    font-size: var(--h3-size);
+    margin-bottom: 2rem;
+}
+.case-content p {
+    font-size: 1.1rem;
+    color: color-mix(in srgb, var(--white) 80%, transparent);
+}
+
+
+/* 8. ANIMATIONS */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s var(--transition-cubic), transform 1s var(--transition-cubic);
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
 }
 
 .reveal.visible {
@@ -590,34 +642,16 @@ p {
   transform: translateY(0);
 }
 
-/* 17. Responsive Design
-   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-@media (max-width: 768px) {
-  .nav-links {
+
+/* 9. RESPONSIVE */
+@media (max-width: 767px) {
+  .hide-mobile {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--black);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    gap: 2.5rem;
   }
-  .nav-links.active {
-      display: flex;
+  .nav-links {
+      display: none; /* Add proper mobile menu later */
   }
-  .mobile-nav-toggle {
-      display: block;
-  }
-  .hero-footer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  #about .container {
-      flex-direction: column;
+  .grid-2, .grid-3, .grid-4 {
+      grid-template-columns: 1fr;
   }
 }
