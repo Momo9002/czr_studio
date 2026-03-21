@@ -119,8 +119,8 @@
       "a": "You start a conversation on WhatsApp. Three questions. Brand identity, audience, and references. Ten minutes. Your brief is structured and we begin."
     },
     {
-      "q": "Is 48 hours really possible?",
-      "a": "Yes. No meetings, no approval chains. We build in focused sprints. The brief gives us everything from day one."
+      "q": "Is lightning-speed delivery actually possible?",
+      "a": "Yes. No meetings, no approval chains. We work in focused sprints. The brief gives us everything we need from day one. That is how we deliver at lightning speed."
     },
     {
       "q": "What if I am not satisfied?",
@@ -263,13 +263,13 @@
         "slug": "fashion-house",
         "category": "Fashion",
         "title": "Maison Identity",
-        "image": "images/fashion.jpg"
+        "image": "images/fashion-house.jpg"
       },
       {
         "slug": "creative-director",
         "category": "Creative",
         "title": "Director Portfolio",
-        "image": "images/creative.jpg"
+        "image": "images/creative-director.jpg"
       },
       {
         "slug": "photographer",
@@ -381,8 +381,8 @@
           "label": "Sprint starts at"
         },
         {
-          "value": "48h",
-          "label": "Average delivery"
+          "value": "Same day",
+          "label": "Brief to kickoff"
         },
         {
           "value": "100%",
