@@ -204,5 +204,132 @@
       "dot_size": "4px",
       "red_alpha_bg": "0"
     }
+  },
+  "site": {
+    "nav": [
+      {
+        "label": "Our Work",
+        "href": "#work"
+      },
+      {
+        "label": "Packages",
+        "href": "#packages"
+      },
+      {
+        "label": "FAQ",
+        "href": "#faq"
+      },
+      {
+        "label": "Customer Area",
+        "href": "/dashboard.html",
+        "style": "underline"
+      }
+    ],
+    "hero": {
+      "label": "Website Studio · Dubai · NYC · Worldwide",
+      "headline": "Premium websites.<br>Lightning speed.",
+      "values": [
+        "Concierge-focused.",
+        "Lightning speed.",
+        "Yours entirely."
+      ],
+      "cta": {
+        "text": "Talk to the Agent →",
+        "style": "black"
+      },
+      "image": "images/hero-bg.jpg"
+    },
+    "cases": [
+      {
+        "slug": "restaurant",
+        "category": "Hospitality",
+        "title": "Restaurant Flagship",
+        "image": "images/restaurant.jpg"
+      },
+      {
+        "slug": "architecture-studio",
+        "category": "Architecture",
+        "title": "Studio Website",
+        "image": "images/architecture.jpg"
+      },
+      {
+        "slug": "fragrance",
+        "category": "Luxury Product",
+        "title": "Fragrance Brand",
+        "image": "images/fragrance.jpg"
+      },
+      {
+        "slug": "fashion-house",
+        "category": "Fashion",
+        "title": "Maison Identity",
+        "image": "images/fashion.jpg"
+      },
+      {
+        "slug": "creative-director",
+        "category": "Creative",
+        "title": "Director Portfolio",
+        "image": "images/creative.jpg"
+      },
+      {
+        "slug": "photographer",
+        "category": "Photography",
+        "title": "Studio Portfolio",
+        "image": "images/photographer.jpg"
+      }
+    ],
+    "process": [
+      {
+        "num": "01",
+        "title": "Brief.",
+        "text": "Ten minutes with the concierge agent on WhatsApp. Three questions. Vision, audience, references."
+      },
+      {
+        "num": "02",
+        "title": "Build.",
+        "text": "We work in a focused sprint. No check-ins. No approval loops. You brief once. We build to match."
+      },
+      {
+        "num": "03",
+        "title": "Ship.",
+        "text": "Delivered at lightning speed. Full IP transfer. Source files, assets — everything is yours."
+      }
+    ],
+    "contact": {
+      "label": "Start today",
+      "headline": "Brief us.",
+      "sub": "Tell us what you need. The agent responds within the hour.",
+      "cta": "Talk to the Agent →"
+    },
+    "footer": [
+      {
+        "label": "Our Work",
+        "href": "#work"
+      },
+      {
+        "label": "Packages",
+        "href": "#packages"
+      },
+      {
+        "label": "Customer Area",
+        "href": "/dashboard.html"
+      },
+      {
+        "label": "Privacy",
+        "href": "/privacy.html"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://instagram.com/czr.studio",
+        "external": true
+      }
+    ],
+    "sections_order": [
+      "hero",
+      "work",
+      "process",
+      "packages",
+      "faq",
+      "contact"
+    ]
   }
 }

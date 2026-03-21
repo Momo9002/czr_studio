@@ -514,11 +514,13 @@ def main():
     dry        = "--dry"       in sys.argv
     audit_only = "--audit"     in sys.argv
     no_synth   = "--no-synth"  in sys.argv
+    do_architect = "--architect" in sys.argv
 
     print("=" * 60)
     title = "CZR DNA SYNC"
     if dry:        title += " — DRY RUN"
     if audit_only: title += " — AUDIT ONLY"
+    if do_architect: title += " — ARCHITECT MODE"
     print(title)
     print("=" * 60)
 
@@ -526,12 +528,22 @@ def main():
     if not no_synth:
         run_synthesize()
 
+    # Step 0b: Architect swarm (optional — AI regeneration)
+    if do_architect:
+        print("\n🏗️  Running Architect Swarm...")
+        from dna.architect import architect
+        architect(dry=dry)
+
     dna = validate_identity()
     verify_loader()
 
     if not audit_only:
         sync_css(dna, dry=dry)
         sync_tokens(dna, dry=dry)
+        # Step 3b: Build index.html from DNA
+        print("\n3b️  Building index.html from DNA...")
+        from dna.build import build_site
+        build_site(dna, dry=dry)
 
     sync_fonts_link(dna)
     run_brand_guard()
