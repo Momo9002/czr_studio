@@ -196,6 +196,70 @@ def check_voice_pillar(dna: dict, vision: str, warnings: list, failures: list):
         warnings.append("identity.json voice: no reference to period endings or exclamation ban — add to voice rules")
 
 
+# ── Generative synthesis — vision.md → identity.json ─────────────────────────
+
+def parse_vision_tokens(vision: str) -> dict:
+    """
+    Parse the ```tokens block from vision.md.
+    Format:
+        type.display_weight = 700
+        space.section_v     = clamp(8rem, 16vw, 16rem)
+    Returns nested dict: {"type": {"display_weight": "700"}, "space": {...}}
+    """
+    token_block = re.search(r"```tokens\n(.*?)```", vision, re.DOTALL)
+    if not token_block:
+        return {}
+
+    result: dict[str, dict] = {}
+    for line in token_block.group(1).splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if "=" not in line:
+            continue
+        key_part, _, val_part = line.partition("=")
+        key = key_part.strip()
+        val = val_part.strip()
+        if "." in key:
+            group, _, subkey = key.partition(".")
+            result.setdefault(group, {})[subkey] = val
+        else:
+            result[key] = val
+    return result
+
+
+def apply_vision_tokens(tokens: dict) -> tuple[int, list[str]]:
+    """
+    Write parsed vision tokens to identity.json → tokens block.
+    Returns (n_changes, changed_keys).
+    """
+    if not tokens:
+        return 0, []
+
+    dna = load_identity()
+    existing = dna.get("tokens", {})
+    changes = []
+
+    for group_key, group_val in tokens.items():
+        if isinstance(group_val, dict):
+            for subkey, val in group_val.items():
+                old = existing.get(group_key, {}).get(subkey)
+                if old != val:
+                    existing.setdefault(group_key, {})[subkey] = val
+                    changes.append(f"{group_key}.{subkey}: {old!r} → {val!r}")
+        else:
+            old = existing.get(group_key)
+            if old != group_val:
+                existing[group_key] = group_val
+                changes.append(f"{group_key}: {old!r} → {group_val!r}")
+
+    if changes:
+        dna["tokens"] = existing
+        IDENTITY.write_text(json.dumps(dna, indent=2, ensure_ascii=False))
+
+    return len(changes), changes
+
+
 # ── Main synthesize ───────────────────────────────────────────────────────────
 
 def synthesize(fix: bool = False) -> tuple[int, int, int]:
@@ -219,6 +283,21 @@ def synthesize(fix: bool = False) -> tuple[int, int, int]:
 
     warnings: list[str] = []
     failures: list[str] = []
+
+    # ── Generative step: read vision.md Tokens block → write to identity.json ──
+    vision_tokens = parse_vision_tokens(vision)
+    if vision_tokens:
+        n_changes, changed = apply_vision_tokens(vision_tokens)
+        if n_changes:
+            _ok(f"Tokens: wrote {n_changes} changes from vision.md → identity.json")
+            for c in changed[:5]:
+                print(f"     · {c}")
+            # Reload identity after writing
+            dna = load_identity()
+        else:
+            _ok(f"Tokens: vision.md → identity.json already in sync ({len(vision_tokens)} keys)")
+    else:
+        _warn("vision.md: No ```tokens block found — add one to drive visual changes from vision")
 
     checks = [
         check_banned_words,

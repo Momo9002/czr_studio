@@ -4,6 +4,9 @@
 > This file is Part 1 of the DNA vault.
 > Equal weight to `models.md`. Neither overrides the other — they synthesise.
 > Edit this when your vision for CZR shifts.
+>
+> **To change the website:** edit `## Tokens` at the bottom of this file.
+> Then run: `python3 -m dna.sync` → commit → push. Done.
 
 ---
 
@@ -117,3 +120,35 @@ These do not change regardless of what models suggest:
 4. No AI mention anywhere client-facing
 5. Syne 800 for display type — no exceptions
 6. Full IP transfer on every project — we keep nothing
+
+---
+
+## Tokens
+
+> These are your visual decisions. Edit values here.
+> Run `python3 -m dna.sync` after editing — synthesize.py will write these to identity.json → style.css → site.
+> Keys map directly to CSS: type.display_weight → font-weight on all headings, etc.
+
+```tokens
+type.display_weight    = 700
+type.display_tracking  = -0.03em
+type.hero_size_max     = 9rem
+type.hero_size_min     = 4rem
+type.h2_size_max       = 5.5rem
+type.h2_size_min       = 2.8rem
+type.body_size         = 0.95rem
+type.body_line_height  = 1.85
+type.eyebrow_tracking  = 0.28em
+type.eyebrow_size      = 0.6rem
+
+space.section_v        = clamp(8rem, 16vw, 16rem)
+space.section_h        = clamp(1.5rem, 4vw, 5rem)
+space.component_v      = clamp(3rem, 6vw, 6rem)
+space.gap              = 1px
+
+surface.radius         = 0
+surface.border_alpha   = 0.04
+
+accent.line_width      = 1px
+accent.red_alpha_bg    = 0
+```
