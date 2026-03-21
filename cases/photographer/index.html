@@ -3,97 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CZR Studio - Photographer Portfolio</title>
+    <title>CZR Studio // Case: Studio Portfolio</title>
+    <meta name="description" content="Photography portfolio where the work is the product. Site must not compete with the images.">
     <link rel="stylesheet" href="../../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --client-bg-dark: #111111;
-            --client-text-light: #F5F5F0;
-            --client-accent-gray: #AAAAAA;
+            --case-bg: #111111;
+            --case-text: #F5F5F0;
+            --case-accent: #AAAAAA;
         }
-        .hero.dark { background-color: var(--client-bg-dark); color: var(--client-text-light); }
-        .section.dark-client { background-color: var(--client-bg-dark); color: var(--client-text-light); }
-        .section.light-czr { background-color: var(--cream); color: var(--dark-text); }
-        .cta-button { background-color: var(--client-accent-gray); color: var(--client-bg-dark); }
-        .hero-title, .section-title { font-family: 'DM Serif Display', serif; }
-        .body-text, .eyebrow, .tagline, .details-grid p, .deliverables li { font-family: 'DM Sans', sans-serif; }
+        .case-hero-h1, .case-h3 {
+            font-family: 'DM Serif Display', serif;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+        .cover-image {
+            background-image: url(../../images/photographer.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            max-height: 700px;
+            width: 100%;
+        }
+        .case-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color-dark);
+        }
+        .detail-item .label {
+            font-family: var(--font-body);
+            font-size: var(--type-eyebrow-size);
+            font-weight: var(--type-eyebrow-weight);
+            letter-spacing: var(--type-eyebrow-tracking);
+            text-transform: uppercase;
+            color: color-mix(in srgb, var(--white) 60%, transparent);
+            margin-bottom: 0.5rem;
+        }
+        .detail-item .value {
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="header-content">
-            <div class="brand-name">CZR Studio</div>
-            <nav class="main-nav">
-                <a href="../../#portfolio" class="back-link">← Back to Case Studies</a>
-            </nav>
-        </div>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="../../">CZR Studio</a>
+            </div>
+            <div class="nav-links">
+                <a href="../../#work" class="nav-link">← Back to Case Studies</a>
+            </div>
+        </nav>
     </header>
 
     <main>
-        <section class="hero dark">
-            <div class="hero-content">
-                <p class="eyebrow">Photography</p>
-                <h1 class="hero-title">Studio Portfolio</h1>
-                <p class="tagline">The image, uninterrupted.</p>
+
+        <section class="section section-dark" id="hero-case">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="eyebrow-label">Photography</p>
+                    <h1 class="case-hero-h1">Studio Portfolio</h1>
+                </div>
             </div>
         </section>
 
-        <section class="cover-image-container">
-            <img src="../../images/photographer.jpg" alt="Studio Kove Photography" class="cover-image">
-        </section>
+        <section class="cover-image" aria-label="A striking, high-contrast photograph that showcases professional photography skill."></section>
 
-        <section class="section light-czr">
-            <div class="section-content">
-                <h2 class="section-title">The Challenge</h2>
-                <p class="body-text">Photography portfolio where the work is the product. Site must not compete with the images. The platform needed to serve as a pristine gallery, ensuring that every photograph was presented with maximum impact, devoid of any digital clutter or distractions that could detract from the artistic vision.</p>
-                <div class="details-grid">
+        <section class="section section-dark">
+            <div class="container">
+                <div class="grid-2-col">
                     <div>
-                        <h3>Client</h3>
-                        <p>Studio Kove</p>
+                        <h2 class="eyebrow-label">The Mandate</h2>
+                        <p style="font-size: 1.5rem; max-width: 25ch;">Photography portfolio where the work is the product. Site must not compete with the images.</p>
                     </div>
                     <div>
-                        <h3>Location</h3>
-                        <p>London</p>
+                        <div class="case-details-grid">
+                            <div class="detail-item">
+                                <p class="label">Client</p>
+                                <p class="value">Studio Kove</p>
+                            </div>
+                            <div class="detail-item">
+                                <p class="label">Location</p>
+                                <p class="value">London</p>
+                            </div>
+                            <div class="detail-item">
+                                <p class="label">Tagline</p>
+                                <p class="value">The image, uninterrupted.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section dark-client">
-            <div class="section-content">
-                <h2 class="section-title">The Approach</h2>
-                <p class="body-text">Full-bleed grid. Lightbox reveals. Booking inquiry form. Minimal type. The design emphasized immersive visuals and intuitive navigation, allowing visitors to experience the photography as a curated exhibition. Every element, from typography to interaction, was subdued to elevate the imagery.</p>
-                <div class="deliverables">
-                    <h3>Deliverables</h3>
-                    <ul>
-                        <li>Portfolio site</li>
-                        <li>Booking system</li>
-                        <li>Image hosting</li>
-                    </ul>
+        <section class="section section-light">
+            <div class="container">
+                 <div class="grid-2-col">
+                    <div>
+                        <h2 class="eyebrow-label">The Method</h2>
+                        <h3 class="case-h3" style="font-size: 2.5rem;">Full-bleed grid. Lightbox reveals. Booking inquiry form. Minimal type.</h3>
+                    </div>
+                    <div>
+                        <p>The design is an exercise in absence. We constructed a simple, full-bleed grid that puts the photography first. There are no unnecessary visual elements. Clicking an image reveals a full-screen lightbox for an uninterrupted viewing experience. The only typographic elements are essential captions and a discreet booking form. The site is a quiet frame for the work.</p>
+                        <ul class="package-features" style="margin-top: 2rem;">
+                            <li>Portfolio site</li>
+                            <li>Booking system</li>
+                            <li>Image hosting</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section light-czr">
-            <div class="section-content">
-                <h2 class="section-title">The Result</h2>
-                <p class="body-text">Now fully booked six months in advance. Client list includes two fashion weeks. The portfolio site transformed Studio Kove's online presence into a powerful client acquisition tool, demonstrating how exceptional digital craft can amplify artistic talent and drive significant business growth. A testament to visual authority.</p>
+        <section class="section section-dark">
+            <div class="container" style="text-align: center;">
+                <h2 class="eyebrow-label" style="text-align:center;">The Result</h2>
+                <p style="font-size: var(--type-h2-size); font-family: var(--font-display); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-tracking); line-height: 1.1; max-width: 25ch; margin: 0 auto;">Now fully booked six months in advance. Client list includes two fashion weeks.</p>
             </div>
         </section>
 
-        <section class="section cta-section dark">
-            <div class="section-content text-center">
-                <h2 class="cta-title">Start a Project.</h2>
-                <p class="body-text">Ready to define your brand's digital presence? We deliver uncompromising craft at an impossible pace.</p>
-                <a href="https://czr.studio" class="cta-button">Brief us.</a>
+        <section class="section section-dark" id="contact">
+            <div class="container">
+                <div class="section-header" style="text-align:center;">
+                     <p class="eyebrow-label">Initiate your vision.</p>
+                     <h2>Brief us.</h2>
+                     <a href="https://wa.me/18107764057?text=CZR%20Studio.%20Haute%20Couture%20Digital.%0A%0AThree%20questions.%20One%20brief.%20Your%20site%20in%2048%20hours.%0A%0AWhat%27s%20the%20name%20of%20your%20brand%3F" class="btn btn-white" style="margin-top: 2rem;">Talk to the Agent →</a>
+                </div>
+                 <div style="text-align:center; margin-top: 4rem;">
+                    <a href="../../#work" class="nav-link">← Back to Case Studies</a>
+                </div>
             </div>
         </section>
 
-        <footer class="main-footer">
-            <div class="footer-content">
-                <a href="../../#portfolio" class="back-link">← Back to Case Studies</a>
-            </div>
-        </footer>
     </main>
+
 </body>
 </html>

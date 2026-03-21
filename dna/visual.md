@@ -175,3 +175,45 @@ Section padding: clamp(6rem, 12vw, 12rem) 0
 Container max-width: 1440px
 Container padding: clamp(1.5rem, 4vw, 4rem)
 ```
+
+---
+
+## CSS Layout Rules — Required (DesignAgent must implement these exactly)
+
+These prevent horizontal overflow and ensure correct layout on all screen sizes.
+
+```css
+/* Global overflow prevention — REQUIRED */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* All elements must respect container width */
+* { box-sizing: border-box; }
+
+/* Nav must not exceed viewport */
+nav, .nav {
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Sections must never create horizontal scroll */
+section {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Container must have explicit padding, not cause bleed */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  box-sizing: border-box;
+}
+```
+
+These rules are non-negotiable. Any element wider than the viewport breaks the design.

@@ -24,6 +24,7 @@ from dna.swarm.builder.tools import (
     write_index_html, write_style_css, write_case_html, append_css,
     read_output_file, audit_html_structure, audit_css_tokens,
     read_page_collections, read_page_item, write_page, list_generated_pages,
+    fetch_reference_sites,
 )
 from dna.swarm.builder.callbacks import dna_inject_callback, make_quality_scorer
 
@@ -135,7 +136,7 @@ STEP 2 — Write the COMPLETE style.css with write_style_css():
 STEP 3 — Verify: audit_css_tokens() → confirm all DNA tokens are present.
 STEP 4 — Respond with a summary of all CSS decisions you made.
 """,
-        tools=[read_dna_section, read_dna_files, write_style_css, append_css, audit_css_tokens],
+        tools=[read_dna_section, read_dna_files, write_style_css, append_css, audit_css_tokens, fetch_reference_sites],
         output_key="design_result",
         before_agent_callback=dna_inject_callback,
         after_agent_callback=make_quality_scorer("design"),
@@ -232,7 +233,7 @@ STEP 2 — Write the COMPLETE index.html with write_index_html():
 STEP 3 — Verify: audit_html_structure() → check completeness
 STEP 4 — Respond with the audit results and your confidence assessment.
 """,
-        tools=[read_full_dna, read_dna_section, read_dna_files, read_case_list,
+        tools=[read_full_dna, read_dna_section, read_dna_files, read_case_list, fetch_reference_sites,
                write_index_html, read_output_file, audit_html_structure],
         output_key="html_result",
         before_agent_callback=dna_inject_callback,
@@ -243,7 +244,7 @@ STEP 4 — Respond with the audit results and your confidence assessment.
 def _make_pages_agent() -> LlmAgent:
     return LlmAgent(
         name="PagesAgent",
-        model="gemini-2.5-flash",
+        model="gemini-2.5-pro",
         instruction="""You are a world-class multipage website developer.
 You know nothing about this brand. You discover everything from the DNA.
 

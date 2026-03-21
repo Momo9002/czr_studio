@@ -434,3 +434,119 @@ def list_generated_pages() -> str:
         return json.dumps(result, indent=2)
     except Exception as e:
         return f"Error: {e}"
+
+
+# ── Reference site tools ──────────────────────────────────────────────────────
+
+def fetch_reference_sites() -> str:
+    """Fetch real websites from the DNA's design model brands for visual reference.
+
+    Reads models from identity.json, fetches their homepages, extracts:
+    - CSS patterns (custom properties, typography scale, spacing)
+    - HTML structure (nav patterns, section hierarchy, class naming)
+    - Design decisions (color usage, whitespace, interaction hints)
+
+    Use this in DesignAgent and HTMLAgent to compare your output against
+    the actual reference websites your DNA says to learn from.
+
+    Returns a JSON object with each brand's extracted patterns.
+    """
+    try:
+        import urllib.request
+        import urllib.error
+        import html as html_lib
+
+        dna = json.loads(_IDENTITY.read_text())
+        models = dna.get("models", [])
+
+        # Map known model names to their URLs
+        model_urls = {
+            "vogue": "https://www.vogue.com",
+            "hermes": "https://www.hermes.com",
+            "hermès": "https://www.hermes.com",
+            "apple": "https://www.apple.com",
+            "spacex": "https://www.spacex.com",
+            "bottega": "https://www.bottegaveneta.com",
+            "bottega veneta": "https://www.bottegaveneta.com",
+            "loewe": "https://www.loewe.com",
+            "balenciaga": "https://www.balenciaga.com",
+            "dior": "https://www.dior.com",
+        }
+
+        results = {}
+        headers = {
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml",
+            "Accept-Language": "en-US,en;q=0.9",
+        }
+
+        brands_to_fetch = []
+        for model in models:
+            name = model if isinstance(model, str) else model.get("name", "")
+            name_lower = name.lower()
+            for key, url in model_urls.items():
+                if key in name_lower:
+                    brands_to_fetch.append({"name": name, "url": url})
+                    break
+
+        if not brands_to_fetch:
+            # Fallback: try Apple and Hermès as defaults
+            brands_to_fetch = [
+                {"name": "Apple", "url": "https://www.apple.com"},
+                {"name": "Hermès", "url": "https://www.hermes.com"},
+            ]
+
+        for brand in brands_to_fetch[:4]:  # Max 4 sites to avoid slow runs
+            name = brand["name"]
+            url = brand["url"]
+            try:
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=8) as resp:
+                    raw = resp.read(64000).decode("utf-8", errors="replace")
+
+                # Extract CSS custom properties
+                css_vars = re.findall(r'--[\w-]+:\s*[^;]+;', raw)[:20]
+
+                # Extract font-family references
+                fonts = re.findall(r"font-family['\"]?\s*:\s*['\"]([^'\"]+)", raw)[:5]
+
+                # Extract class names from HTML (design system hints)
+                classes = re.findall(r'class="([^"]{3,60})"', raw)
+                unique_classes = list(dict.fromkeys(
+                    c.split()[0] for c in classes if not c.startswith('js-')
+                ))[:20]
+
+                # Get <title>
+                title_match = re.search(r'<title[^>]*>([^<]+)</title>', raw, re.I)
+                title = title_match.group(1).strip() if title_match else ""
+
+                # Check for key patterns
+                uses_grid = 'display:grid' in raw or 'display: grid' in raw
+                uses_flex = 'display:flex' in raw or 'display: flex' in raw
+                uses_custom_props = len(css_vars) > 0
+
+                results[name] = {
+                    "url": url,
+                    "title": title,
+                    "css_custom_properties": css_vars[:10],
+                    "fonts_referenced": fonts,
+                    "class_patterns": unique_classes[:15],
+                    "uses_css_grid": uses_grid,
+                    "uses_flexbox": uses_flex,
+                    "uses_css_variables": uses_custom_props,
+                    "html_size_kb": round(len(raw) / 1024, 1),
+                }
+            except Exception as e:
+                results[name] = {"url": url, "error": str(e)[:100]}
+
+        return json.dumps({
+            "reference_sites": results,
+            "instruction": (
+                "Use these patterns as INSPIRATION and COMPARISON only. "
+                "Your output must still come from the DNA. "
+                "These references show what world-class implementation looks like."
+            )
+        }, indent=2, ensure_ascii=False)
+
+    except Exception as e:
+        return json.dumps({"error": str(e)})

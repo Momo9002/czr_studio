@@ -3,98 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CZR Studio - Architecture Studio Website</title>
+    <title>CZR Studio // Case: Studio Website</title>
+    <meta name="description" content="Portfolio site for a boutique architecture studio. Work speaks. Site should not interrupt.">
     <link rel="stylesheet" href="../../style.css">
     <style>
         :root {
-            --client-bg-light: #F5F4F0;
-            --client-text-dark: #1a1a1a;
-            --client-accent-dark: #2B2B2B;
+            --case-bg: #F5F4F0;
+            --case-text: #1a1a1a;
+            --case-accent: #2B2B2B;
         }
-        /* Hero should be dark as per visual.md, overriding client's light palette for this section */
-        .hero.dark { background-color: var(--black); color: var(--white); }
-        .section.light-client { background-color: var(--client-bg-light); color: var(--client-text-dark); }
-        .section.dark-czr { background-color: var(--surface-2); color: var(--white); }
-        .cta-button { background-color: var(--client-accent-dark); color: var(--client-bg-light); }
-        .hero-title, .section-title { font-family: 'Syne', sans-serif; }
-        .body-text, .eyebrow, .tagline, .details-grid p, .deliverables li { font-family: 'Manrope', sans-serif; }
+        .cover-image {
+            background-image: url(../../images/architecture.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            max-height: 700px;
+            width: 100%;
+        }
+        .case-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color-dark);
+        }
+        .detail-item .label {
+            font-family: var(--font-body);
+            font-size: var(--type-eyebrow-size);
+            font-weight: var(--type-eyebrow-weight);
+            letter-spacing: var(--type-eyebrow-tracking);
+            text-transform: uppercase;
+            color: color-mix(in srgb, var(--white) 60%, transparent);
+            margin-bottom: 0.5rem;
+        }
+        .detail-item .value {
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
-    <header class="main-header">
-        <div class="header-content">
-            <div class="brand-name">CZR Studio</div>
-            <nav class="main-nav">
-                <a href="../../#portfolio" class="back-link">← Back to Case Studies</a>
-            </nav>
-        </div>
+
+    <header>
+        <nav class="nav">
+            <div class="nav-logo">
+                <a href="../../">CZR Studio</a>
+            </div>
+            <div class="nav-links">
+                <a href="../../#work" class="nav-link">← Back to Case Studies</a>
+            </div>
+        </nav>
     </header>
 
     <main>
-        <section class="hero dark">
-            <div class="hero-content">
-                <p class="eyebrow">Architecture</p>
-                <h1 class="hero-title">Studio Website</h1>
-                <p class="tagline">Where space becomes intention.</p>
+
+        <section class="section section-dark" id="hero-case">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="eyebrow-label">Architecture</p>
+                    <h1>Studio Website</h1>
+                </div>
             </div>
         </section>
 
-        <section class="cover-image-container">
-            <img src="../../images/architecture.jpg" alt="NA Studio Architecture" class="cover-image">
-        </section>
+        <section class="cover-image" aria-label="A minimalist architectural detail with strong lines and shadows."></section>
 
-        <section class="section light-client">
-            <div class="section-content">
-                <h2 class="section-title">The Challenge</h2>
-                <p class="body-text">Portfolio site for a boutique architecture studio. Work speaks. Site should not interrupt. The design needed to reflect the studio's philosophy of minimalist intervention and profound impact, allowing their projects to narrate the story.</p>
-                <div class="details-grid">
+        <section class="section section-dark">
+            <div class="container">
+                <div class="grid-2-col">
                     <div>
-                        <h3>Client</h3>
-                        <p>NA Studio</p>
+                        <h2 class="eyebrow-label">The Mandate</h2>
+                        <p style="font-size: 1.5rem; max-width: 25ch;">Portfolio site for a boutique architecture studio. Work speaks. Site should not interrupt.</p>
                     </div>
                     <div>
-                        <h3>Location</h3>
-                        <p>Paris</p>
+                        <div class="case-details-grid">
+                            <div class="detail-item">
+                                <p class="label">Client</p>
+                                <p class="value">NA Studio</p>
+                            </div>
+                            <div class="detail-item">
+                                <p class="label">Location</p>
+                                <p class="value">Paris</p>
+                            </div>
+                            <div class="detail-item">
+                                <p class="label">Focus</p>
+                                <p class="value">Editorial Restraint</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section dark-czr">
-            <div class="section-content">
-                <h2 class="section-title">The Approach</h2>
-                <p class="body-text">Grid-based editorial layout. Full-bleed project images. Restraint as design language. The site was built to be a silent curator, guiding visitors through a visual narrative where each project unfolds with intentional pacing, mirroring architectural precision. Negative space was used as a structural element, not mere emptiness.</p>
-                <div class="deliverables">
-                    <h3>Deliverables</h3>
-                    <ul>
-                        <li>Website</li>
-                        <li>Portfolio system</li>
-                        <li>Press kit</li>
-                    </ul>
+        <section class="section section-light">
+            <div class="container">
+                 <div class="grid-2-col">
+                    <div>
+                        <h2 class="eyebrow-label" style="color: var(--case-text);">The Method</h2>
+                        <h3 style="font-size: 2.5rem; color: var(--case-text);">Grid-based editorial layout. Full-bleed project images. Restraint as design language.</h3>
+                    </div>
+                    <div>
+                        <p style="color: var(--case-text);">The design is intentionally recessive. We built a structured, minimalist grid that allows the architectural photography to dominate. The user interface is discreet, with typography and navigation elements designed to support, never compete with, the portfolio pieces. The entire experience is built on the principle of restraint, ensuring nothing distracts from the studio's work.</p>
+                        <ul class="package-features" style="margin-top: 2rem; border-color: var(--border-color-light);">
+                            <li style="border-color: var(--border-color-light);">Website</li>
+                            <li style="border-color: var(--border-color-light);">Portfolio system</li>
+                            <li style="border-color: var(--border-color-light);">Press kit</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section light-client">
-            <div class="section-content">
-                <h2 class="section-title">The Result</h2>
-                <p class="body-text">Featured in Dezeen. Three new studio commissions within two months. The online presence solidified NA Studio's position in the high-end market, attracting clientele who value thoughtful design and a clear, unadulterated presentation of work. The site itself became a testament to their aesthetic.</p>
+        <section class="section section-dark">
+            <div class="container" style="text-align: center;">
+                <h2 class="eyebrow-label" style="text-align:center;">The Result</h2>
+                <p style="font-size: var(--type-h2-size); font-family: var(--font-display); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-tracking); line-height: 1.1; max-width: 25ch; margin: 0 auto;">Featured in Dezeen. Three new studio commissions within two months.</p>
             </div>
         </section>
 
-        <section class="section cta-section dark">
-            <div class="section-content text-center">
-                <h2 class="cta-title">Start a Project.</h2>
-                <p class="body-text">Ready to define your brand's digital presence? We deliver uncompromising craft at an impossible pace.</p>
-                <a href="https://czr.studio" class="cta-button">Brief us.</a>
+        <section class="section section-dark" id="contact">
+            <div class="container">
+                <div class="section-header" style="text-align:center;">
+                     <p class="eyebrow-label">Initiate your vision.</p>
+                     <h2>Brief us.</h2>
+                     <a href="https://wa.me/18107764057?text=CZR%20Studio.%20Haute%20Couture%20Digital.%0A%0AThree%20questions.%20One%20brief.%20Your%20site%20in%2048%20hours.%0A%0AWhat%27s%20the%20name%20of%20your%20brand%3F" class="btn btn-white" style="margin-top: 2rem;">Talk to the Agent →</a>
+                </div>
+                 <div style="text-align:center; margin-top: 4rem;">
+                    <a href="../../#work" class="nav-link">← Back to Case Studies</a>
+                </div>
             </div>
         </section>
 
-        <footer class="main-footer">
-            <div class="footer-content">
-                <a href="../../#portfolio" class="back-link">← Back to Case Studies</a>
-            </div>
-        </footer>
     </main>
+
 </body>
 </html>
