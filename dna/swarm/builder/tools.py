@@ -292,3 +292,99 @@ def audit_css_tokens() -> str:
         }, indent=2)
     except Exception as e:
         return f"Error: {e}"
+
+
+# ── Generic multipage tools ───────────────────────────────────────────────────
+
+def read_page_collections() -> str:
+    """Discover all page collections declared in the DNA.
+
+    Reads identity.json pages_config → returns what page types need generating.
+    Each collection has: type, folder, data_path, label, item_count.
+
+    Use this in PagesAgent BEFORE generating any pages — know what you're building.
+    Returns JSON list of collections with their items ready to build.
+    """
+    try:
+        dna = json.loads(_IDENTITY.read_text())
+        pages_config = dna.get("pages_config", {})
+        collections = pages_config.get("collections", [])
+
+        result = []
+        for col in collections:
+            if not col.get("enabled", True):
+                continue
+
+            # Resolve data_path (e.g. "site.cases" → dna["site"]["cases"])
+            data_path = col.get("data_path", "")
+            items = dna
+            for part in data_path.split("."):
+                items = items.get(part, {}) if isinstance(items, dict) else []
+
+            if not isinstance(items, list):
+                items = []
+
+            result.append({
+                "type": col.get("type", "page"),
+                "folder": col.get("folder", "pages"),
+                "label": col.get("label", "Pages"),
+                "item_count": len(items),
+                "items": items,
+            })
+
+        return json.dumps(result, indent=2, ensure_ascii=False)
+
+    except Exception as e:
+        return json.dumps({"error": str(e)})
+
+
+def write_page(folder: str, slug: str, html_content: str) -> str:
+    """Write a single subpage HTML file for any page collection.
+
+    Generic replacement for write_case_html. Use for ANY page type:
+    cases, products, team members, menu sections, services, etc.
+
+    Args:
+        folder: Collection folder name (e.g. 'cases', 'products', 'team', 'services')
+        slug:   URL slug for this page (e.g. 'restaurant', 'espresso-blend', 'jane-doe')
+        html_content: Complete HTML document for this page.
+
+    Returns:
+        Confirmation with path and size, or error.
+    """
+    try:
+        page_dir = _ROOT_DIR / folder / slug
+        page_dir.mkdir(parents=True, exist_ok=True)
+        out = page_dir / "index.html"
+        out.write_text(html_content, encoding="utf-8")
+        kb = len(html_content.encode()) / 1024
+        return f"Written {folder}/{slug}/index.html ({kb:.1f} KB)"
+    except Exception as e:
+        return f"Error writing {folder}/{slug}: {e}"
+
+
+def list_generated_pages() -> str:
+    """List all subpages that have been generated so far.
+
+    Returns a JSON object mapping folder → list of slugs with file sizes.
+    Use to verify PagesAgent output after writing.
+    """
+    try:
+        result = {}
+        # Find all index.html files in subdirectories (not the root one)
+        for folder in _ROOT_DIR.iterdir():
+            if not folder.is_dir() or folder.name.startswith('.'):
+                continue
+            pages = []
+            for slug_dir in folder.iterdir():
+                idx = slug_dir / "index.html"
+                if slug_dir.is_dir() and idx.exists():
+                    pages.append({
+                        "slug": slug_dir.name,
+                        "size_kb": round(idx.stat().st_size / 1024, 1)
+                    })
+            if pages:
+                result[folder.name] = pages
+        return json.dumps(result, indent=2)
+    except Exception as e:
+        return f"Error: {e}"

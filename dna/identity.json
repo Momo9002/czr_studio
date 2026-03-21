@@ -75,7 +75,7 @@
       "name": "The Flagship",
       "price": 2499,
       "currency": "EUR",
-      "tagline": "A bespoke digital flagship store.",
+      "tagline": "A complete digital flagship.",
       "delivery": "48h",
       "pages": 8,
       "revisions": 2
@@ -154,24 +154,8 @@
     "style": "Editorial — each image is a spread, not a thumbnail"
   },
   "design": {
-    "hero_canvas": false,
-    "hero_video": false,
-    "splash": false,
-    "ticker": true,
-    "hero_scroll_indicator": true,
-    "section_rhythm": [
-      "dark",
-      "cream",
-      "dark",
-      "dark",
-      "cream",
-      "dark",
-      "dark",
-      "cream",
-      "dark"
-    ],
     "animation_intensity": "minimal",
-    "notes": "false = disabled. animation_intensity: none | minimal | full. section_rhythm controls expected bg sequence top→bottom."
+    "notes": "animation_intensity: none | minimal | full. Section modes are controlled via site.sections_order[].mode."
   },
   "tokens": {
     "_note": "Design decisions — sync.py writes these as CSS custom properties. Change here → website changes.",
@@ -359,8 +343,8 @@
           "accent": "#C0392B"
         },
         "fonts": {
-          "display": "Syne",
-          "body": "Manrope"
+          "display": "Bebas Neue",
+          "body": "DM Sans"
         },
         "challenge": "Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.",
         "build": "Grid-based archive. Full-screen case studies. Video-first sections.",
@@ -385,8 +369,8 @@
           "accent": "#AAAAAA"
         },
         "fonts": {
-          "display": "Syne",
-          "body": "Manrope"
+          "display": "DM Serif Display",
+          "body": "DM Sans"
         },
         "challenge": "Photography portfolio where the work is the product. Site must not compete with the images.",
         "build": "Full-bleed grid. Lightbox reveals. Booking inquiry form. Minimal type.",
@@ -445,13 +429,34 @@
       }
     ],
     "sections_order": [
-      "hero",
-      "work",
-      "about",
-      "process",
-      "packages",
-      "faq",
-      "contact"
+      {
+        "id": "hero",
+        "mode": "dark"
+      },
+      {
+        "id": "work",
+        "mode": "dark"
+      },
+      {
+        "id": "about",
+        "mode": "light"
+      },
+      {
+        "id": "process",
+        "mode": "dark"
+      },
+      {
+        "id": "packages",
+        "mode": "light"
+      },
+      {
+        "id": "faq",
+        "mode": "light"
+      },
+      {
+        "id": "contact",
+        "mode": "dark"
+      }
     ],
     "work": {
       "label": "Selected Work",
@@ -516,6 +521,77 @@
       "flagship": "Build the Flagship →",
       "retainer": "Start the Retainer →",
       "nudge": "Talk to the Agent →"
+    }
+  },
+  "sales": {
+    "approach": "consultative",
+    "aggressiveness": 3,
+    "discount_max_percent": 10,
+    "referral_discount_percent": 15,
+    "urgency_window_hours": 24,
+    "intro_template": "CZR Studio.\n\nBrief me — three questions and I'll quote your project.\n\nWhat's the name of your brand?",
+    "objections": {
+      "too_expensive": "Three agencies would quote 5x and take 6 weeks. We deliver at lightning speed with a money-back guarantee.",
+      "need_to_think": "Your spot stays open for 24 hours. The link is here when you're ready.",
+      "more_examples": "Let me pull some relevant work.",
+      "how_it_works": "Three steps: brief, build, ship. All via WhatsApp."
+    },
+    "never_say": [
+      "let me check with the team",
+      "Amaury will follow up",
+      "I'll get back to you",
+      "I'm just an AI",
+      "I don't have that information"
+    ],
+    "always_close_with": "payment_link",
+    "flow": [
+      "HOOK — Greet. Ask what brings them here. Be curious.",
+      "DISCOVER — Understand their business in 2-3 exchanges.",
+      "MATCH — Share 1-2 relevant case studies.",
+      "PRESENT — Explain the right package.",
+      "QUALIFY — Collect name and email naturally.",
+      "BRIEF — Capture the project vision.",
+      "CLOSE — Send payment link.",
+      "ADVANCE — Move to briefing phase."
+    ]
+  },
+  "pages_config": {
+    "_note": "Declares page collections for the Builder Swarm. Each entry = a set of subpages to generate.",
+    "collections": [
+      {
+        "type": "portfolio_case",
+        "folder": "cases",
+        "data_path": "site.cases",
+        "label": "Case Studies",
+        "enabled": true
+      }
+    ],
+    "_example_other_brands": {
+      "_comment": "Other brands can add their own collections:",
+      "product_brand": {
+        "type": "product",
+        "folder": "products",
+        "data_path": "products",
+        "label": "Products"
+      },
+      "law_firm": {
+        "type": "service",
+        "folder": "services",
+        "data_path": "services",
+        "label": "Services"
+      },
+      "restaurant": {
+        "type": "menu_section",
+        "folder": "menu",
+        "data_path": "menu",
+        "label": "Menu"
+      },
+      "studio": {
+        "type": "team_member",
+        "folder": "team",
+        "data_path": "team",
+        "label": "Team"
+      }
     }
   }
 }

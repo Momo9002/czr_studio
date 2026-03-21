@@ -23,6 +23,7 @@ from dna.swarm.builder.tools import (
     read_dna_section, read_full_dna, read_dna_files, read_case_list,
     write_index_html, write_style_css, write_case_html, append_css,
     read_output_file, audit_html_structure, audit_css_tokens,
+    read_page_collections, write_page, list_generated_pages,
 )
 from dna.swarm.builder.callbacks import dna_inject_callback, make_quality_scorer
 
@@ -239,48 +240,75 @@ STEP 4 — Respond with the audit results and your confidence assessment.
     )
 
 
-def _make_cases_agent() -> LlmAgent:
+def _make_pages_agent() -> LlmAgent:
     return LlmAgent(
-        name="CasesAgent",
+        name="PagesAgent",
         model="gemini-2.5-flash",
-        instruction="""You are a world-class portfolio designer.
-You know nothing about this brand. You learn from the DNA.
+        instruction="""You are a world-class multipage website developer.
+You know nothing about this brand. You discover everything from the DNA.
 
-STEP 1 — Read:
-  read_case_list() → all case studies with their DNA data
-  read_dna_section("brand") → brand name, URL for nav
-  read_dna_files() → visual.md for photography rules and layout principles
+STEP 1 — Discover what pages need to be built:
+  read_page_collections() → returns ALL page collections declared in the DNA.
+  Each collection has: type, folder, label, item_count, items[]
 
-STEP 2 — For EACH case from read_case_list(), write a premium page:
-  call write_case_html(slug, html) for each case.
+  This is the ONLY source of truth for what pages to build.
+  If there are no collections, respond that no subpages are declared and stop.
+  If collections exist, proceed to build every page in every collection.
 
-  Each page:
-  - Full HTML document referencing ../../style.css
-  - Nav with brand name + back link
-  - Hero: dark section, large case title, client type as label
-  - Cover image: full-width, full-color (never filtered), generous aspect ratio
-  - Content sections alternating dark/light:
-    * The challenge or brief
-    * The approach or solution
-    * Results/outcomes (with stats if DNA provides them)
-  - CTA at bottom: "Start a similar project" linking to contact URL
-  - Back to portfolio link: ← Back to work → href="../../#work"
+STEP 2 — Read design context:
+  read_dna_section("brand") → brand name, contact URL, tagline
+  read_dna_files() → visual.md (photography rules, layout principles, color tokens)
 
-  Photography rules (from visual.md):
-  - Full color always. No grayscale. No desaturation.
-  - Single dominant subject. Negative space to breathe.
+STEP 3 — For EACH collection, for EACH item in items[], write a page:
+  call write_page(folder, slug, html)
+  where:
+    folder = collection.folder (e.g. "cases", "products", "team", "services")
+    slug   = item.slug
+    html   = complete HTML document for this specific item
+
+  EVERY page you write must be:
+  - A full <!DOCTYPE html> → </html> document
+  - Referencing ../../style.css (two levels up from folder/slug/)
+  - Premium quality — feels like opening a magazine spread
+  - UNIQUE — each page adapted to its specific item's content, industry, personality
+  - Never generic — the item's specific details (client, challenge, result, palette) shape the page
+
+  Each page structure (adapt based on collection type):
+  NAV: brand name left | back link right (← Back to collection_label → href="../../#section_id")
+  HERO: dark section | large title | item category as label
+  COVER: full-width image if item has an image field | full color | aspect-ratio: 16/9
+
+  For each item type, use the appropriate content fields:
+    portfolio_case → challenge, build/approach, result, deliverables, client, location
+    product        → description, features, specs, price
+    service        → overview, process, outcomes, deliverables
+    team_member    → role, bio, specialties, work
+    menu_section   → items, pricing, description, allergens
+    Use whatever fields the DNA provides — read the item carefully.
+
+  CONTENT sections (alternating dark/light based on visual.md duality rules):
+    Section 1: The brief / context / challenge (dark)
+    Section 2: The approach / method / what was built (light)
+    Section 3: The outcome / result / stats if available (dark)
+
+  CTA at bottom: relevant action linking to brand contact URL
+  Back link to main section
+
+  Photography rules (from visual.md — apply to all pages):
+  - Full color always. No desaturation.
+  - Subject has negative space.
   - Images are environments, not thumbnails.
 
-  Each case page must feel like opening a magazine spread.
-  Each one must be DIFFERENT — adapted to its industry and personality.
-
-STEP 3 — Respond listing all pages you wrote.
-  Include your quality assessment in your response.
+STEP 4 — After writing all pages:
+  list_generated_pages() → verify what was written
+  Respond with the complete list of pages generated, organized by collection.
+  Include quality assessment for each collection.
 """,
-        tools=[read_case_list, read_dna_section, read_dna_files, write_case_html],
-        output_key="cases_result",
+        tools=[read_page_collections, read_dna_section, read_dna_files,
+               write_page, list_generated_pages],
+        output_key="pages_result",
         before_agent_callback=dna_inject_callback,
-        after_agent_callback=make_quality_scorer("cases"),
+        after_agent_callback=make_quality_scorer("pages"),
     )
 
 
@@ -354,7 +382,7 @@ def build_root_agent() -> LlmAgent:
             _make_structure_agent(),
             _make_design_agent(),
             _make_html_agent(),
-            _make_cases_agent(),
+            _make_pages_agent(),
             _make_quality_loop(),
         ],
     )
