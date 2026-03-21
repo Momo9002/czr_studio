@@ -106,9 +106,7 @@ h3 { font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 700; letter-spacing: 
 /* ── NAV ─────────────────────────────────────────────────────── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(255,255,255,0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.97);
   border-bottom: 1px solid #E8E8E8;
 }
 .nav-inner {
@@ -212,7 +210,8 @@ h3 { font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 700; letter-spacing: 
   transition: opacity 0.2s, transform 0.2s;
 }
 .btn-agent:hover { opacity: 0.9; transform: translateY(-1px); }
-.btn-orange { background: #E8601C; }
+.btn-orange { background: var(--black); color: var(--white); }
+.btn-orange:hover { background: #222; opacity: 1; }
 .btn-agent-lg { font-size: 0.9rem; padding: 1.3rem 3rem; }
 .btn-agent-sm { 
   display: inline-flex; align-items: center; gap: 0.4rem;
