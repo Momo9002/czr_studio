@@ -226,8 +226,8 @@
       }
     ],
     "hero": {
-      "label": "Website Studio · Dubai · NYC · Worldwide",
-      "headline": "Premium websites.<br>Lightning speed.",
+      "label": "Digital Atelier · Dubai · NYC · Worldwide",
+      "headline": "Digital precision. Rapid deployment.",
       "values": [
         "Concierge-focused.",
         "Lightning speed.",
@@ -295,9 +295,9 @@
       }
     ],
     "contact": {
-      "label": "Start today",
+      "label": "Initiate your vision.",
       "headline": "Brief us.",
-      "sub": "Tell us what you need. The agent responds within the hour.",
+      "sub": "State your mandate. The agent responds within the hour.",
       "cta": "Talk to the Agent →"
     },
     "footer": [
@@ -326,6 +326,7 @@
     "sections_order": [
       "hero",
       "work",
+      "about",
       "process",
       "packages",
       "faq",
