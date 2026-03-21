@@ -1,331 +1,286 @@
+<!-- Built by CZR Studio — czr.studio -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>N.A. — Creative Direction. Paris & Dubai.</title>
-  <meta name="description" content="N.A. Creative director working at the intersection of fashion, architecture, and identity. Select commissions only.">
+  <title>Baron D. — Direction without apology. | CZR Studio</title>
+  <meta name="description" content="Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.">
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','your-pixel-id');fbq('track','PageView');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,700;0,900;1,300;1,700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:     #0f0f0f;
-      --cream:  #ddd8d0;
-      --mid:    rgba(221,216,208,0.5);
-      --dim:    rgba(221,216,208,0.28);
-      --copper: #a0522d;
-      --border: rgba(221,216,208,0.08);
-      --serif:  'Barlow Condensed', sans-serif;
-      --sans:   'Inter', system-ui, sans-serif;
+      --bg: #0D0D0D;
+      --text: #F0EDE8;
+      --accent: #C0392B;
+      --mid: color-mix(in srgb, var(--text) 55%, var(--bg));
+      --dim: color-mix(in srgb, var(--text) 28%, var(--bg));
+      --display: 'Syne', Georgia, serif;
+      --body: 'Manrope', system-ui, sans-serif;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--cream); font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: var(--body); font-weight: 300;
+      font-size: 15px; line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
     a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; object-fit: cover; }
 
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 2.5rem; background: var(--bg); border-bottom: 1px solid var(--border); }
-    .nav-name { font-family: var(--serif); font-size: 1.6rem; font-weight: 900; letter-spacing: 0.05em; text-transform: uppercase; }
-    .nav-name i { color: var(--copper); font-style: normal; }
-    .nav-links { display: flex; gap: 2rem; align-items: center; }
-    .nav-links a { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--cream); }
-    .nav-contact { font-size: 0.58rem !important; letter-spacing: 0.2em !important; border: 1px solid rgba(160,82,45,0.4); color: var(--copper) !important; padding: 0.4rem 1rem; transition: background 0.2s !important; }
-    .nav-contact:hover { background: rgba(160,82,45,0.1) !important; }
-
-    /* INTRO — big type */
-    .intro {
-      margin-top: 52px;
-      padding: 5rem 2.5rem 3rem;
-      display: grid; grid-template-columns: 1fr 380px;
-      gap: 4rem; align-items: end;
-      border-bottom: 1px solid var(--border);
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 clamp(1.5rem, 5vw, 4rem);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
     }
-    .intro-h1 { font-family: var(--serif); font-size: clamp(6rem, 14vw, 14rem); font-weight: 900; text-transform: uppercase; line-height: 0.85; letter-spacing: -0.02em; }
-    .intro-h1 em { font-style: italic; font-weight: 300; display: block; color: rgba(221,216,208,0.45); }
-    .intro-right {}
-    .intro-tag { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--copper); margin-bottom: 1.5rem; display: block; }
-    .intro-desc { font-size: 0.84rem; line-height: 1.8; color: var(--mid); margin-bottom: 2rem; }
-    .intro-ctas { display: flex; gap: 0.8rem; }
-    .ibtn { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.8rem 1.6rem; display: inline-block; transition: all 0.2s; }
-    .ibtn-fill { background: var(--cream); color: var(--bg); border: 1px solid var(--cream); font-family: var(--sans); font-weight: 400; }
-    .ibtn-fill:hover { background: rgba(221,216,208,0.88); }
-    .ibtn-ghost { background: transparent; color: var(--cream); border: 1px solid var(--border); font-family: var(--sans); font-weight: 300; }
-    .ibtn-ghost:hover { border-color: rgba(221,216,208,0.3); }
-
-    /* WORK LIST */
-    #work { border-bottom: 1px solid var(--border); }
-    .work-hd { padding: 2rem 2.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; }
-    .work-hd-h { font-family: var(--serif); font-size: 3rem; font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; }
-    .work-hd-sub { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
-    .work-item {
-      display: grid; grid-template-columns: 64px 1fr 280px 64px;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer; transition: background 0.2s;
+    .nav-back {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dim); transition: color 0.2s;
     }
-    .work-item:hover { background: rgba(221,216,208,0.03); }
-    .work-item:last-child { border-bottom: none; }
-    .wi-num { padding: 2rem; border-right: 1px solid var(--border); font-family: var(--serif); font-size: 0.7rem; font-weight: 300; color: var(--dim); display: flex; align-items: flex-start; }
-    .wi-main { padding: 2rem 2.5rem; border-right: 1px solid var(--border); }
-    .wi-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.9; margin-bottom: 0.8rem; }
-    .wi-desc { font-size: 0.78rem; color: var(--mid); line-height: 1.7; max-width: 480px; }
-    .wi-meta { padding: 2rem 1.5rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: space-between; }
-    .wi-tags { display: flex; flex-direction: column; gap: 0.5rem; }
-    .wi-tag { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; }
-    .wi-tag-discipline { color: var(--copper); }
-    .wi-tag-client { color: var(--dim); }
-    .wi-year { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; color: rgba(221,216,208,0.2); }
-    .wi-arrow { display: flex; align-items: flex-start; padding: 2rem; font-size: 0.9rem; color: var(--dim); }
-
-    /* STATEMENT */
-    .statement { border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; }
-    .stmt-img { overflow: hidden; min-height: 480px; background: #1a1a1a; }
-    .stmt-img img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.08); opacity: 0.85; }
-    .stmt-right { padding: 5rem 3.5rem; border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
-    .stmt-quote { font-family: var(--serif); font-size: clamp(1.6rem, 3.5vw, 3.5rem); font-weight: 300; font-style: italic; text-transform: uppercase; line-height: 0.95; color: rgba(221,216,208,0.8); margin-bottom: 2.5rem; }
-    .stmt-label { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--copper); margin-bottom: 1.5rem; display: block; }
-    .stmt-body { font-size: 0.82rem; color: var(--mid); line-height: 1.85; margin-bottom: 2rem; }
-    .stmt-credentials { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .sc-tag { font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--border); padding: 0.3rem 0.8rem; color: var(--dim); }
-
-    /* FULL-BLEED IMAGE */
-    .full-bleed {
-      height: 80vh; position: relative; overflow: hidden;
-      border-bottom: 1px solid var(--border);
+    .nav-back:hover { color: var(--text); }
+    .nav-brand {
+      font-family: var(--display); font-weight: 700;
+      font-size: 1rem; letter-spacing: 0.05em;
     }
-    .full-bleed img { width: 100%; height: 100%; object-fit: cover; }
-    .full-bleed-overlay {
+    .nav-cta {
+      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--accent); color: var(--bg);
+      padding: 0.55rem 1.4rem; font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.8; }
+
+    /* HERO */
+    .hero {
+      height: 100svh; position: relative;
+      display: flex; align-items: flex-end;
+      padding: 0 clamp(1.5rem, 5vw, 4rem) clamp(3rem, 8vw, 6rem);
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      filter: brightness(0.55);
+    }
+    .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(15,15,15,0.2) 0%, transparent 40%, rgba(15,15,15,0.6) 100%);
+      background: linear-gradient(to top, color-mix(in srgb, var(--bg) 80%, transparent) 0%, transparent 60%);
     }
-    .full-bleed-caption {
-      position: absolute; bottom: 2rem; left: 2.5rem;
-      font-size: 0.55rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(221,216,208,0.45);
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-cat {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem; display: block;
+    }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 700; line-height: 0.9;
+      letter-spacing: -0.03em; margin-bottom: 1.5rem;
+    }
+    .hero-tagline {
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      color: var(--mid); font-style: italic;
+      max-width: 50ch;
     }
 
-    /* CONTACT */
-    #contact { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
-    .ct-left { padding: 4rem 2.5rem; border-right: 1px solid var(--border); }
-    .ct-left h2 { font-family: var(--serif); font-size: clamp(3rem, 6vw, 6rem); font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; line-height: 0.9; margin-bottom: 2rem; }
-    .ct-left p { font-size: 0.82rem; color: var(--mid); line-height: 1.85; max-width: 340px; margin-bottom: 2.5rem; }
-    .ct-data { display: flex; flex-direction: column; }
-    .cd { display: flex; gap: 1.5rem; padding: 0.9rem 0; border-top: 1px solid var(--border); align-items: baseline; }
-    .cd:last-child { border-bottom: 1px solid var(--border); }
-    .cd-l { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); min-width: 72px; }
-    .cd-v { font-size: 0.84rem; }
-    .ct-right { padding: 4rem 2.5rem; }
-    form { display: flex; flex-direction: column; }
-    .fg { display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
-    .fg:first-child { border-top: 1px solid var(--border); }
-    label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); padding: 0.9rem 0 0.3rem; }
-    input, select, textarea { background: transparent; border: none; outline: none; font-family: var(--sans); font-size: 0.88rem; font-weight: 300; color: var(--cream); padding: 0 0 0.9rem; width: 100%; -webkit-appearance: none; appearance: none; }
-    input::placeholder, textarea::placeholder { color: rgba(221,216,208,0.18); }
-    select { cursor: pointer; } select option { background: var(--bg); }
-    textarea { resize: none; min-height: 80px; line-height: 1.6; }
-    .fr { display: grid; grid-template-columns: 1fr 1fr; }
-    .fr .fg:first-child { border-right: 1px solid var(--border); padding-right: 1.5rem; }
-    .fr .fg:last-child { padding-left: 1.5rem; }
-    .ct-actions { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .ct-note { font-size: 0.6rem; color: var(--dim); max-width: 160px; line-height: 1.5; }
-    button[type="submit"] { font-family: var(--sans); font-size: 0.6rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.85rem 2rem; background: var(--cream); color: var(--bg); border: 1px solid var(--cream); cursor: pointer; transition: background 0.2s; }
-    button[type="submit"]:hover { background: rgba(221,216,208,0.85); }
+    /* SECTIONS */
+    .wrap {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+    .section {
+      padding: clamp(5rem, 10vw, 10rem) 0;
+      border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+    }
+    .section-label {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 2rem; display: block;
+    }
+    .section-headline {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.025em; margin-bottom: 2.5rem;
+    }
+    .section-body {
+      font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+      color: var(--mid); max-width: 60ch; line-height: 1.9;
+    }
+
+    /* PROJECT BRIEF GRID */
+    .brief-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px; margin-top: clamp(4rem, 8vw, 7rem);
+      background: color-mix(in srgb, var(--text) 8%, transparent);
+    }
+    .brief-cell {
+      background: var(--bg); padding: clamp(2rem, 4vw, 3rem);
+    }
+    .brief-label {
+      font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 0.8rem; display: block;
+    }
+    .brief-value {
+      font-family: var(--display); font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 600; line-height: 1.3;
+    }
+
+    /* DELIVERABLES */
+    .deliverables {
+      list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .deliverables li {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+      padding: 0.5rem 1rem; color: var(--mid);
+    }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .gallery-img { aspect-ratio: 4/3; overflow: hidden; background: color-mix(in srgb, var(--text) 5%, var(--bg)); }
+    .gallery-img img { height: 100%; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .gallery-img:hover img { transform: scale(1.04); }
+
+    /* CTA */
+    .cta-section {
+      padding: clamp(6rem, 12vw, 12rem) 0;
+      text-align: center;
+    }
+    .cta-label {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 2rem; display: block;
+    }
+    .cta-headline {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.04em; margin-bottom: 3rem;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--text); color: var(--bg);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 1.2rem 3rem; transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
 
     /* FOOTER */
-    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
-    .ft-name { font-family: var(--serif); font-size: 1.5rem; font-weight: 900; text-transform: uppercase; }
-    .ft-name i { color: var(--copper); font-style: normal; }
-    .ft-links { display: flex; gap: 2rem; }
-    .ft-links a { font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); transition: color 0.2s; }
-    .ft-links a:hover { color: var(--cream); }
-    .czr-credit { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); border: 1px solid var(--border); padding: 0.28rem 0.7rem; transition: color 0.2s, border-color 0.2s; }
-    .czr-credit:hover { color: var(--cream); border-color: rgba(221,216,208,0.25); }
-
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .reveal.on { opacity: 1; transform: none; }
-
-    @media (max-width: 900px) {
-      .intro { grid-template-columns: 1fr; gap: 2.5rem; }
-      .intro-h1 { font-size: clamp(5rem, 18vw, 10rem); }
-      .work-item { grid-template-columns: 48px 1fr; }
-      .wi-meta, .wi-arrow { display: none; }
-      .statement { grid-template-columns: 1fr; }
-      .stmt-img { min-height: 280px; }
-      .stmt-right { border-left: none; border-top: 1px solid var(--border); padding: 3rem 2rem; }
-      .full-bleed { height: 55vh; }
-      #contact { grid-template-columns: 1fr; }
-      .ct-left { border-right: none; border-bottom: 1px solid var(--border); }
-      footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    footer {
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--dim);
     }
-    @media (max-width: 560px) {
-      .nav-links { display: none; }
-      .fr { grid-template-columns: 1fr; }
-      .fr .fg:first-child { border-right: none; padding-right: 0; }
-      .fr .fg:last-child { padding-left: 0; }
+
+    @media (max-width: 768px) {
+      .brief-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      nav .nav-cta { display: none; }
     }
   </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,"script","https://connect.facebook.net/en_US/fbevents.js");
-fbq("init", "2928293767375852");
-fbq("track", "PageView");
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
 </head>
 <body>
-<nav>
-  <div class="nav-name">N<i>.</i>A<i>.</i></div>
-  <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#contact" class="nav-contact">Commission</a>
-  </div>
-</nav>
 
-<!-- INTRO -->
-<div class="intro">
-  <div class="intro-h1">
-    <span>Creative</span>
-    <em>Direction.</em>
-  </div>
-  <div class="intro-right reveal">
-    <span class="intro-tag">Paris & Dubai — Select Commissions</span>
-    <p class="intro-desc">I do not take briefs. I take commissions. A commission begins with a conviction — a reason the work must exist, that no other work can fulfill. Tell me yours.</p>
-    <div class="intro-ctas">
-      <a href="#work" class="ibtn ibtn-ghost">View Work</a>
-      <a href="#contact" class="ibtn ibtn-fill">Commission</a>
-    </div>
-  </div>
-</div>
+  <nav>
+    <a href="../../index.html" class="nav-back">← CZR</a>
+    <span class="nav-brand">Baron D.</span>
+    <a href="https://wa.me/18107764057?text=I%20want%20to%20start%20a%20project%20like%20Baron%20D." class="nav-cta" target="_blank" rel="noopener">Start a Project</a>
+  </nav>
 
-<!-- WORK -->
-<section id="work">
-  <div class="work-hd">
-    <div class="work-hd-h">Selected Work.</div>
-    <div class="work-hd-sub">2020 — 2025</div>
-  </div>
-  <div class="work-item reveal">
-    <div class="wi-num">01</div>
-    <div class="wi-main">
-      <div class="wi-title">Sablier<br>AW 2025</div>
-      <p class="wi-desc">Complete creative direction for Maison Sablier — campaign concept, casting, art direction on set, post-production supervision. Shot across three days in an empty abattoir in the 19ème. Polaroid tests only for approval.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="../../images/creative-director.jpg" alt="Director Portfolio" class="hero-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-cat">Creative · NYC</span>
+      <h1 class="hero-title">Baron D.</h1>
+      <p class="hero-tagline">Direction without apology.</p>
     </div>
-    <div class="wi-meta">
-      <div class="wi-tags"><span class="wi-tag wi-tag-discipline">Fashion Campaign</span><span class="wi-tag wi-tag-client">Maison Sablier — Paris</span></div>
-      <div class="wi-year">2025</div>
-    </div>
-    <div class="wi-arrow">↗</div>
-  </div>
-  <div class="work-item reveal">
-    <div class="wi-num">02</div>
-    <div class="wi-main">
-      <div class="wi-title">MATIÈRE<br>Identity</div>
-      <p class="wi-desc">Full identity and visual language for a boutique architecture practice. No wordmark. No logo. Only a typographic system — Helvetica Neue in two weights, and a precise grid. The practice has never looked better.</p>
-    </div>
-    <div class="wi-meta">
-      <div class="wi-tags"><span class="wi-tag wi-tag-discipline">Brand Identity</span><span class="wi-tag wi-tag-client">MATIÈRE — Dubai & Luxembourg</span></div>
-      <div class="wi-year">2024</div>
-    </div>
-    <div class="wi-arrow">↗</div>
-  </div>
-  <div class="work-item reveal">
-    <div class="wi-num">03</div>
-    <div class="wi-main">
-      <div class="wi-title">Galerie Vide<br>Exhibition</div>
-      <p class="wi-desc">Art direction for a group exhibition of eight emerging sculptors. The gallery walls were painted the same white as the sculptures. Visitors moved between three-dimensional work that appeared to emerge from the architecture itself.</p>
-    </div>
-    <div class="wi-meta">
-      <div class="wi-tags"><span class="wi-tag wi-tag-discipline">Art Direction</span><span class="wi-tag wi-tag-client">Galerie Vide — Paris, 6ème</span></div>
-      <div class="wi-year">2023</div>
-    </div>
-    <div class="wi-arrow">↗</div>
-  </div>
-  <div class="work-item reveal">
-    <div class="wi-num">04</div>
-    <div class="wi-main">
-      <div class="wi-title">Private Residence<br>Dubai</div>
-      <p class="wi-desc">Interior concept and material direction for a 680m² private villa in the Palm. No decorative objects. No art not commissioned for the space. Every surface either concrete, larch, or glass. The family lives in a work of art.</p>
-    </div>
-    <div class="wi-meta">
-      <div class="wi-tags"><span class="wi-tag wi-tag-discipline">Interior Direction</span><span class="wi-tag wi-tag-client">Private — Dubai, UAE</span></div>
-      <div class="wi-year">2022</div>
-    </div>
-    <div class="wi-arrow">↗</div>
-  </div>
-</section>
+  </section>
 
-<!-- FULL-BLEED EXHIBITION IMAGE -->
-<div class="full-bleed">
-  <img src="../../images/na_exhibition.png" alt="Galerie Vide — Group exhibition, 8 emerging sculptors" loading="lazy">
-  <div class="full-bleed-overlay"></div>
-  <div class="full-bleed-caption">Galerie Vide — Paris, 6ème — 2023</div>
-</div>
-
-<!-- STATEMENT -->
-<div class="statement reveal">
-  <div class="stmt-img">
-    <img src="../../images/na_workspace.png" alt="Atelier — N.A. Direction" loading="lazy">
-  </div>
-  <div class="stmt-right">
-    <blockquote class="stmt-quote">"I don't take briefs. I take commissions."</blockquote>
-    <span class="stmt-label">On Working Together</span>
-    <p class="stmt-body">A brief is a request to make something. A commission is an invitation to make something that has never existed. If you know what you want to make and why no other version of it will do — that is when you call me.</p>
-    <div class="stmt-credentials">
-      <span class="sc-tag">Fashion</span>
-      <span class="sc-tag">Architecture</span>
-      <span class="sc-tag">Identity</span>
-      <span class="sc-tag">Exhibition</span>
-      <span class="sc-tag">Interior</span>
-    </div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="ct-left reveal">
-    <h2>One<br>Commission<br>at a Time.</h2>
-    <p>I am available for one new commission per quarter. If the project is right, I'll know within the first exchange. If it isn't, I'll tell you that too.</p>
-    <div class="ct-data">
-      <div class="cd"><span class="cd-l">Email</span><span class="cd-v">na@na-direction.com</span></div>
-      <div class="cd"><span class="cd-l">Based</span><span class="cd-v">Paris — Dubai — en route</span></div>
-      <div class="cd"><span class="cd-l">Availability</span><span class="cd-v">Q2 2026 — one commission open</span></div>
-    </div>
-  </div>
-  <div class="ct-right reveal">
-    <form onsubmit="handleForm(event)">
-      <div class="fr">
-        <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
-        <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+  <!-- BRIEF -->
+  <section class="section">
+    <div class="wrap">
+      <div class="brief-grid">
+        <div class="brief-cell">
+          <span class="brief-label">Category</span>
+          <span class="brief-value">Creative</span>
+        </div>
+        <div class="brief-cell">
+          <span class="brief-label">Location</span>
+          <span class="brief-value">NYC</span>
+        </div>
+        <div class="brief-cell">
+          <span class="brief-label">Deliverables</span>
+          <ul class="deliverables">
+            <li>Portfolio site</li>
+            <li>Video showcase</li>
+            <li>Contact system</li>
+          </ul>
+        </div>
       </div>
-      <div class="fg">
-        <label>Type of Work</label>
-        <select><option value="" disabled selected>Select</option><option>Fashion Campaign</option><option>Brand Identity</option><option>Art Direction</option><option>Interior Direction</option><option>Other</option></select>
-      </div>
-      <div class="fg"><label>Your Commission — convince me</label><textarea rows="6" placeholder="What must be made. Why only you can commission it. Why only I can make it." required></textarea></div>
-      <div class="ct-actions">
-        <div class="ct-note">I read every message personally. Response within 48 hours either way.</div>
-        <button type="submit" id="sub-btn">Send →</button>
-      </div>
-    </form>
-  </div>
-</section>
+    </div>
+  </section>
 
-<footer>
-  <div class="ft-name">N<i>.</i>A<i>.</i></div>
-  <div class="ft-links"><a href="#work">Work</a><a href="#contact">Commission</a></div>
-  <a href="../../index.html" class="czr-credit">Built by CZR Studio ↗</a>
-</footer>
-<script>
-  const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } }); }, { threshold: 0.05 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  function handleForm(e) { e.preventDefault(); const btn = document.getElementById('sub-btn'); btn.textContent = 'Sent ✓'; btn.style.background = '#555'; btn.disabled = true; }
-</script>
+  <!-- CHALLENGE -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">The Brief</span>
+      <h2 class="section-headline">The challenge.</h2>
+      <p class="section-body">Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <div class="wrap">
+    <div class="gallery">
+      <div class="gallery-img"><img src="../../images/creative-director.jpg" alt="Director Portfolio"></div>
+    </div>
+  </div>
+
+  <!-- BUILD -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">The Work</span>
+      <h2 class="section-headline">How we built it.</h2>
+      <p class="section-body">Grid-based archive. Full-screen case studies. Video-first sections.</p>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">The Outcome</span>
+      <h2 class="section-headline">The result.</h2>
+      <p class="section-body">Three new brand partnerships closed within the month. Agency inquiries doubled.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="wrap">
+      <span class="cta-label">Start today</span>
+      <h2 class="cta-headline">Brief us.</h2>
+      <a href="https://wa.me/18107764057?text=I%20want%20to%20start%20a%20project%20like%20Baron%20D." class="btn-primary" target="_blank" rel="noopener">Talk to the Agent →</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>CZR Studio</span>
+    <span>Haute Couture Digital.</span>
+    <a href="../../index.html">← All Work</a>
+  </footer>
+
 </body>
 </html>

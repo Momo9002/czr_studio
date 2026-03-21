@@ -245,37 +245,157 @@
         "slug": "restaurant",
         "category": "Hospitality",
         "title": "Restaurant Flagship",
-        "image": "images/restaurant.jpg"
+        "image": "images/restaurant.jpg",
+        "client": "TABLE N°1",
+        "tagline": "An Evening in Monaco.",
+        "location": "Monaco",
+        "palette": {
+          "bg": "#130e08",
+          "text": "#e4d8c4",
+          "accent": "#c8922a"
+        },
+        "fonts": {
+          "display": "Lora",
+          "body": "Inter"
+        },
+        "challenge": "A private dining experience with no online presence. Reservations by referral only. The site had to feel like the evening itself.",
+        "build": "Full-bleed chapter-based scroll. No conventional nav. Each section a scene.",
+        "result": "Reservation requests tripled in the first week. No price listed. No question asked.",
+        "deliverables": [
+          "Website",
+          "Brand identity",
+          "Photography direction"
+        ]
       },
       {
         "slug": "architecture-studio",
         "category": "Architecture",
         "title": "Studio Website",
-        "image": "images/architecture.jpg"
+        "image": "images/architecture.jpg",
+        "client": "NA Studio",
+        "tagline": "Where space becomes intention.",
+        "location": "Paris",
+        "palette": {
+          "bg": "#F5F4F0",
+          "text": "#1a1a1a",
+          "accent": "#2B2B2B"
+        },
+        "fonts": {
+          "display": "Syne",
+          "body": "Manrope"
+        },
+        "challenge": "Portfolio site for a boutique architecture studio. Work speaks. Site should not interrupt.",
+        "build": "Grid-based editorial layout. Full-bleed project images. Restraint as design language.",
+        "result": "Featured in Dezeen. Three new studio commissions within two months.",
+        "deliverables": [
+          "Website",
+          "Portfolio system",
+          "Press kit"
+        ]
       },
       {
         "slug": "fragrance",
         "category": "Luxury Product",
         "title": "Fragrance Brand",
-        "image": "images/fragrance.jpg"
+        "image": "images/fragrance.jpg",
+        "client": "Eau Nulle",
+        "tagline": "The scent of nothing.",
+        "location": "Paris",
+        "palette": {
+          "bg": "#0A0A08",
+          "text": "#E8E2D4",
+          "accent": "#B8963E"
+        },
+        "fonts": {
+          "display": "Playfair Display",
+          "body": "Manrope"
+        },
+        "challenge": "Launch site for a conceptual fragrance brand. Product does not advertise. It implies.",
+        "build": "Full-screen product reveal. Single scroll. No price. No cart. Inquiry only.",
+        "result": "Sold out the first run of 200 units in 72 hours. Stockist in Paris and Dubai.",
+        "deliverables": [
+          "Website",
+          "E-commerce setup",
+          "Email flows"
+        ]
       },
       {
         "slug": "fashion-house",
         "category": "Fashion",
         "title": "Maison Identity",
-        "image": "images/fashion-house.jpg"
+        "image": "images/fashion-house.jpg",
+        "client": "Elara",
+        "tagline": "The collection lives here.",
+        "location": "Milan",
+        "palette": {
+          "bg": "#FAFAF8",
+          "text": "#111111",
+          "accent": "#8B1A1A"
+        },
+        "fonts": {
+          "display": "Cormorant Garamond",
+          "body": "Manrope"
+        },
+        "challenge": "A new maison needing digital presence before its first runway. Identity established here first.",
+        "build": "Editorial lookbook. Collection pages. Press access. No e-commerce — appointment only.",
+        "result": "Picked up by two buyers at Pitti Uomo. Press credentials issued.",
+        "deliverables": [
+          "Website",
+          "Lookbook system",
+          "Press portal"
+        ]
       },
       {
         "slug": "creative-director",
         "category": "Creative",
         "title": "Director Portfolio",
-        "image": "images/creative-director.jpg"
+        "image": "images/creative-director.jpg",
+        "client": "Baron D.",
+        "tagline": "Direction without apology.",
+        "location": "NYC",
+        "palette": {
+          "bg": "#0D0D0D",
+          "text": "#F0EDE8",
+          "accent": "#C0392B"
+        },
+        "fonts": {
+          "display": "Syne",
+          "body": "Manrope"
+        },
+        "challenge": "Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.",
+        "build": "Grid-based archive. Full-screen case studies. Video-first sections.",
+        "result": "Three new brand partnerships closed within the month. Agency inquiries doubled.",
+        "deliverables": [
+          "Portfolio site",
+          "Video showcase",
+          "Contact system"
+        ]
       },
       {
         "slug": "photographer",
         "category": "Photography",
         "title": "Studio Portfolio",
-        "image": "images/photographer.jpg"
+        "image": "images/photographer.jpg",
+        "client": "Studio Kove",
+        "tagline": "The image, uninterrupted.",
+        "location": "London",
+        "palette": {
+          "bg": "#111111",
+          "text": "#F5F5F0",
+          "accent": "#AAAAAA"
+        },
+        "fonts": {
+          "display": "Syne",
+          "body": "Manrope"
+        },
+        "challenge": "Photography portfolio where the work is the product. Site must not compete with the images.",
+        "build": "Full-bleed grid. Lightbox reveals. Booking inquiry form. Minimal type.",
+        "result": "Now fully booked six months in advance. Client list includes two fashion weeks.",
+        "deliverables": [
+          "Portfolio site",
+          "Booking system",
+          "Image hosting"
+        ]
       }
     ],
     "process": [

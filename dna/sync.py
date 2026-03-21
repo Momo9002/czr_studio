@@ -540,10 +540,31 @@ def main():
     if not audit_only:
         sync_css(dna, dry=dry)
         sync_tokens(dna, dry=dry)
+
         # Step 3b: Build index.html from DNA
-        print("\n3b️  Building index.html from DNA...")
+        print("\n3b  Building index.html from DNA...")
         from dna.build import build_site
         build_site(dna, dry=dry)
+
+        # Step 3c: Build case study pages from DNA
+        print("\n3c  Building case study pages from DNA...")
+        from dna.cases_builder import build_cases
+        build_cases(dna, dry=dry)
+
+        # Step 3d: Inject DNA into utility pages
+        print("\n3d  Injecting DNA into utility pages...")
+        from dna.pages_builder import build_pages
+        build_pages(dna, dry=dry)
+
+        # Step 3e: Compile agent prompt from DNA
+        print("\n3e  Compiling agent prompt from DNA...")
+        from dna.agent_builder import build_agent_prompt
+        build_agent_prompt(dna, dry=dry)
+
+        # Step 3f: Generate social drafts from DNA
+        print("\n3f  Generating social drafts from DNA...")
+        from dna.social_builder import build_social
+        build_social(dna, dry=dry)
 
     sync_fonts_link(dna)
     run_brand_guard()

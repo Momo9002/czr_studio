@@ -1,400 +1,286 @@
+<!-- Built by CZR Studio — czr.studio -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A.V. — Fashion Photography. Paris.</title>
-  <meta name="description" content="A.V. Editorial fashion photography. Paris. Available through Q4 2026.">
+  <title>Studio Kove — The image, uninterrupted. | CZR Studio</title>
+  <meta name="description" content="Photography portfolio where the work is the product. Site must not compete with the images.">
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','your-pixel-id');fbq('track','PageView');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --white:  #ffffff;
-      --black:  #111111;
-      --mid:    rgba(17,17,17,0.45);
-      --dim:    rgba(17,17,17,0.25);
-      --border: rgba(17,17,17,0.12);
-      --mono:   'Courier Prime', 'Courier New', monospace;
-      --sans:   'Inter', system-ui, sans-serif;
+      --bg: #111111;
+      --text: #F5F5F0;
+      --accent: #AAAAAA;
+      --mid: color-mix(in srgb, var(--text) 55%, var(--bg));
+      --dim: color-mix(in srgb, var(--text) 28%, var(--bg));
+      --display: 'Syne', Georgia, serif;
+      --body: 'Manrope', system-ui, sans-serif;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--white); color: var(--black); font-family: var(--mono); font-size: 13px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: var(--body); font-weight: 300;
+      font-size: 15px; line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
     a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; object-fit: cover; }
 
-    /* NAV — fixed monospace header */
+    /* NAV */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 48px; background: var(--white); border-bottom: 1px solid var(--border);
-      display: flex; align-items: center;
-      padding: 0 1.5rem; gap: 2rem;
-      font-family: var(--mono); font-size: 0.72rem;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 clamp(1.5rem, 5vw, 4rem);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
     }
-    .nav-logo { font-weight: 700; letter-spacing: 0.05em; }
-    .nav-logo span { opacity: 0.35; }
-    .nav-spacer { flex: 1; }
-    .nav-status { color: var(--mid); }
-    .nav-status b { color: var(--black); font-weight: 400; }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { color: var(--mid); transition: color 0.15s; }
-    .nav-links a:hover { color: var(--black); }
-    .nav-book { border: 1px solid var(--black); padding: 0.3rem 0.9rem; color: var(--black) !important; transition: background 0.15s !important; }
-    .nav-book:hover { background: var(--black); color: var(--white) !important; }
+    .nav-back {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dim); transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+    .nav-brand {
+      font-family: var(--display); font-weight: 700;
+      font-size: 1rem; letter-spacing: 0.05em;
+    }
+    .nav-cta {
+      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+      background: var(--accent); color: var(--bg);
+      padding: 0.55rem 1.4rem; font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.8; }
 
-    /* INTRO — pure text */
-    .intro {
-      margin-top: 48px;
-      padding: 3rem 1.5rem 2rem;
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+    /* HERO */
+    .hero {
+      height: 100svh; position: relative;
+      display: flex; align-items: flex-end;
+      padding: 0 clamp(1.5rem, 5vw, 4rem) clamp(3rem, 8vw, 6rem);
+      overflow: hidden;
     }
-    .intro-left { }
-    .intro-byline { font-size: 0.68rem; color: var(--mid); margin-bottom: 1.5rem; }
-    .intro-h1 { font-size: clamp(2.5rem, 6vw, 5.5rem); font-weight: 700; line-height: 0.92; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-    .intro-h1 em { font-style: italic; font-weight: 400; display: block; }
-    .intro-right { display: flex; flex-direction: column; justify-content: flex-end; }
-    .intro-about { font-size: 0.78rem; line-height: 1.75; color: var(--mid); max-width: 380px; margin-bottom: 1.5rem; }
-    .intro-avail { font-size: 0.68rem; display: flex; align-items: center; gap: 0.8rem; }
-    .avail-dot { width: 8px; height: 8px; background: var(--black); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-    /* HERO IMAGE — full-bleed */
-    .hero-image {
-      height: 90vh; position: relative; overflow: hidden;
-      border-bottom: 1px solid var(--border);
+    .hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      filter: brightness(0.55);
     }
-    .hero-image img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.1); }
-    .hero-image-overlay {
+    .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 60%, rgba(17,17,17,0.5) 100%);
+      background: linear-gradient(to top, color-mix(in srgb, var(--bg) 80%, transparent) 0%, transparent 60%);
     }
-    .hero-image-caption {
-      position: absolute; bottom: 1.5rem; left: 1.5rem;
-      font-family: var(--mono); font-size: 0.6rem; color: rgba(255,255,255,0.4);
+    .hero-content { position: relative; z-index: 1; max-width: 800px; }
+    .hero-cat {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem; display: block;
+    }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 700; line-height: 0.9;
+      letter-spacing: -0.03em; margin-bottom: 1.5rem;
+    }
+    .hero-tagline {
+      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+      color: var(--mid); font-style: italic;
+      max-width: 50ch;
     }
 
-    /* GRID — dense editorial */
-    .grid-section { }
-    .grid-toolbar {
-      padding: 0.8rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.65rem; color: var(--mid);
+    /* SECTIONS */
+    .wrap {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
     }
-    .gt-count b { color: var(--black); }
-    .gt-filter { display: flex; gap: 1.5rem; }
-    .gt-filter span { cursor: pointer; transition: color 0.15s; }
-    .gt-filter span:hover, .gt-filter span.active { color: var(--black); }
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+    .section {
+      padding: clamp(5rem, 10vw, 10rem) 0;
+      border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
     }
-    .photo-tile {
-      position: relative; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      overflow: hidden; cursor: pointer;
+    .section-label {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 2rem; display: block;
     }
-    .photo-tile:nth-child(4n) { border-right: none; }
-    .photo-tile-inner { aspect-ratio: 3/4; overflow: hidden; }
-    .photo-tile-inner img { filter: grayscale(100%) contrast(1.08); transition: filter 0.4s ease, transform 10s ease; }
-    .photo-tile:hover .photo-tile-inner img { filter: grayscale(0%) contrast(1.05); transform: scale(1.03); }
-    .photo-tile-label {
-      padding: 0.6rem 0.8rem;
-      border-top: 1px solid var(--border);
-      background: var(--white);
-      display: flex; justify-content: space-between; align-items: baseline;
+    .section-headline {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.025em; margin-bottom: 2.5rem;
     }
-    .ptl-ref { font-size: 0.58rem; color: var(--mid); }
-    .ptl-loc { font-size: 0.6rem; font-weight: 700; }
+    .section-body {
+      font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+      color: var(--mid); max-width: 60ch; line-height: 1.9;
+    }
 
-    /* PROCESS */
-    .process {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 1fr 1fr;
+    /* PROJECT BRIEF GRID */
+    .brief-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px; margin-top: clamp(4rem, 8vw, 7rem);
+      background: color-mix(in srgb, var(--text) 8%, transparent);
     }
-    .proc-left { padding: 3rem 1.5rem; border-right: 1px solid var(--border); }
-    .proc-left pre {
-      font-family: var(--mono); font-size: 0.7rem; line-height: 1.8;
-      color: var(--mid); white-space: pre-wrap; margin-bottom: 1.5rem;
+    .brief-cell {
+      background: var(--bg); padding: clamp(2rem, 4vw, 3rem);
     }
-    .proc-left b { color: var(--black); }
-    .proc-right { padding: 3rem 1.5rem; }
-    .log-title { font-size: 0.65rem; margin-bottom: 1.5rem; color: var(--mid); text-transform: uppercase; letter-spacing: 0.1em; }
-    .log-item { display: flex; gap: 1.5rem; padding: 0.8rem 0; border-top: 1px solid var(--border); font-size: 0.7rem; }
-    .log-item:last-child { border-bottom: 1px solid var(--border); }
-    .log-date { color: var(--dim); min-width: 80px; }
-    .log-text { color: var(--mid); }
-    .log-text b { color: var(--black); font-weight: 400; }
+    .brief-label {
+      font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 0.8rem; display: block;
+    }
+    .brief-value {
+      font-family: var(--display); font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 600; line-height: 1.3;
+    }
 
-    /* BOOKING */
-    #booking {
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 1fr 1fr;
+    /* DELIVERABLES */
+    .deliverables {
+      list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 2rem;
     }
-    .bk-left { padding: 3rem 1.5rem; border-right: 1px solid var(--border); }
-    .bk-h { font-size: clamp(2rem, 4vw, 4rem); font-weight: 700; line-height: 0.9; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-    .bk-h em { font-style: italic; font-weight: 400; display: block; }
-    .bk-note { font-size: 0.72rem; color: var(--mid); line-height: 1.75; max-width: 360px; margin-bottom: 2rem; }
-    .bk-data { display: flex; flex-direction: column; }
-    .bd { display: flex; gap: 1.5rem; padding: 0.8rem 0; border-top: 1px solid var(--border); font-size: 0.7rem; }
-    .bd:last-child { border-bottom: 1px solid var(--border); }
-    .bd-l { color: var(--dim); min-width: 100px; }
-    .bd-v { color: var(--black); }
-    .bk-right { padding: 3rem 1.5rem; }
-    form { display: flex; flex-direction: column; }
-    .fg { display: flex; flex-direction: column; border-bottom: 1px solid var(--border); }
-    .fg:first-child { border-top: 1px solid var(--border); }
-    label { font-size: 0.58rem; color: var(--dim); padding: 0.8rem 0 0.2rem; letter-spacing: 0.08em; }
-    input, select, textarea { background: transparent; border: none; outline: none; font-family: var(--mono); font-size: 0.8rem; color: var(--black); padding: 0 0 0.8rem; width: 100%; -webkit-appearance: none; appearance: none; }
-    input::placeholder, textarea::placeholder { color: var(--dim); }
-    select { cursor: pointer; } select option { background: var(--white); }
-    textarea { resize: none; min-height: 80px; line-height: 1.6; }
-    .fr { display: grid; grid-template-columns: 1fr 1fr; }
-    .fr .fg:first-child { border-right: 1px solid var(--border); padding-right: 1rem; }
-    .fr .fg:last-child { padding-left: 1rem; }
-    .bk-actions { margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-    .bk-note-s { font-size: 0.62rem; color: var(--dim); max-width: 180px; line-height: 1.5; }
-    button[type="submit"] { font-family: var(--mono); font-size: 0.7rem; padding: 0.75rem 1.8rem; background: var(--black); color: var(--white); border: 1px solid var(--black); cursor: pointer; transition: background 0.15s; font-weight: 700; }
-    button[type="submit"]:hover { background: #333; }
+    .deliverables li {
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+      padding: 0.5rem 1rem; color: var(--mid);
+    }
+
+    /* GALLERY */
+    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .gallery-img { aspect-ratio: 4/3; overflow: hidden; background: color-mix(in srgb, var(--text) 5%, var(--bg)); }
+    .gallery-img img { height: 100%; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .gallery-img:hover img { transform: scale(1.04); }
+
+    /* CTA */
+    .cta-section {
+      padding: clamp(6rem, 12vw, 12rem) 0;
+      text-align: center;
+    }
+    .cta-label {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dim); margin-bottom: 2rem; display: block;
+    }
+    .cta-headline {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700; line-height: 0.95;
+      letter-spacing: -0.04em; margin-bottom: 3rem;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--text); color: var(--bg);
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 1.2rem 3rem; transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
 
     /* FOOTER */
     footer {
-      padding: 1.5rem;
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      border-top: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
       display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.65rem; color: var(--mid);
-      border-top: 1px solid var(--border);
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--dim);
     }
-    .ft-logo { font-weight: 700; color: var(--black); }
-    .ft-links { display: flex; gap: 2rem; }
-    .ft-links a { transition: color 0.15s; }
-    .ft-links a:hover { color: var(--black); }
-    .czr-credit { border: 1px solid var(--border); padding: 0.25rem 0.7rem; color: var(--dim); transition: all 0.15s; }
-    .czr-credit:hover { border-color: var(--black); color: var(--black); }
 
-    .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.on { opacity: 1; transform: none; }
-
-    @media (max-width: 900px) {
-      .intro, .process, #booking { grid-template-columns: 1fr; }
-      .intro-right, .proc-right { border-top: 1px solid var(--border); padding-top: 2rem; }
-      .proc-left, .bk-left { border-right: none; border-bottom: 1px solid var(--border); }
-      .photo-grid { grid-template-columns: repeat(2,1fr); }
-      .photo-tile:nth-child(4n) { border-right: 1px solid var(--border); }
-      .photo-tile:nth-child(2n) { border-right: none; }
-      .hero-image { height: 60vh; }
-      footer { flex-wrap: wrap; gap: 1rem; }
-    }
-    @media (max-width: 560px) {
-      .nav-links { display: none; }
-      .photo-grid { grid-template-columns: repeat(2,1fr); }
-      .gt-filter { display: none; }
-      .fr { grid-template-columns: 1fr; }
-      .fr .fg:first-child { border-right: none; padding-right: 0; }
-      .fr .fg:last-child { padding-left: 0; }
+    @media (max-width: 768px) {
+      .brief-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      nav .nav-cta { display: none; }
     }
   </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,"script","https://connect.facebook.net/en_US/fbevents.js");
-fbq("init", "2928293767375852");
-fbq("track", "PageView");
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
 </head>
 <body>
-<nav>
-  <div class="nav-logo">A.V.<span> — Fashion Photography</span></div>
-  <div class="nav-spacer"></div>
-  <div class="nav-status">status: <b>available / Q4 2026</b></div>
-  <div class="nav-links">
-    <a href="#work">work</a>
-    <a href="#booking" class="nav-book">book</a>
-  </div>
-</nav>
 
-<!-- INTRO -->
-<div class="intro">
-  <div class="intro-left reveal">
-    <div class="intro-byline">// Paris — Editorial Fashion Photography</div>
-    <h1 class="intro-h1">
-      A.V.<br>
-      <em>Fashion<br>Photography.</em>
-    </h1>
-  </div>
-  <div class="intro-right reveal">
-    <p class="intro-about">Editorial commissions for fashion brands, independent designers, and publications. The work is built in silence. No mood boards, no Pinterest references. You tell me what you need to say. I decide how to say it.</p>
-    <div class="intro-avail">
-      <div class="avail-dot"></div>
-      currently_available — Q4 2026 — one slot remaining
-    </div>
-  </div>
-</div>
+  <nav>
+    <a href="../../index.html" class="nav-back">← CZR</a>
+    <span class="nav-brand">Studio Kove</span>
+    <a href="https://wa.me/18107764057?text=I%20want%20to%20start%20a%20project%20like%20Studio%20Kove" class="nav-cta" target="_blank" rel="noopener">Start a Project</a>
+  </nav>
 
-<!-- HERO IMAGE — full-bleed B&W portrait -->
-<div class="hero-image">
-  <img src="../../images/photographer_hero.png" alt="AV — Studio Portrait, Paris 2025">
-  <div class="hero-image-overlay"></div>
-  <div class="hero-image-caption">// AV-25-001 — studio portrait — Paris, 2025</div>
-</div>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="../../images/photographer.jpg" alt="Studio Portfolio" class="hero-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-cat">Photography · London</span>
+      <h1 class="hero-title">Studio Kove</h1>
+      <p class="hero-tagline">The image, uninterrupted.</p>
+    </div>
+  </section>
 
-<!-- GRID -->
-<section id="work">
-  <div class="grid-toolbar">
-    <div class="gt-count"><b>12</b> images — selected work 2022–2025</div>
-    <div class="gt-filter">
-      <span class="active">all</span>
-      <span>fashion</span>
-      <span>portrait</span>
-      <span>objects</span>
-    </div>
-  </div>
-  <div class="photo-grid">
-    <div class="photo-tile reveal">
-      <div class="photo-tile-inner"><img src="../../images/photographer_grid.png" alt="AV — Paris 2025" loading="lazy"></div>
-      <div class="photo-tile-label"><span class="ptl-ref">AV-25-001</span><span class="ptl-loc">Paris</span></div>
-    </div>
-    <div class="photo-tile reveal">
-      <div class="photo-tile-inner"><img src="../../images/elara_hero_v2.png" alt="AV — London 2024" loading="lazy"></div>
-      <div class="photo-tile-label"><span class="ptl-ref">AV-24-019</span><span class="ptl-loc">London</span></div>
-    </div>
-    <div class="photo-tile reveal">
-      <div class="photo-tile-inner"><img src="../../images/director_hero.png" alt="AV — Dubai 2024" loading="lazy"></div>
-      <div class="photo-tile-label"><span class="ptl-ref">AV-24-008</span><span class="ptl-loc">Dubai</span></div>
-    </div>
-    <div class="photo-tile reveal">
-      <div class="photo-tile-inner"><img src="../../images/elara_detail_v2.png" alt="AV — Milan 2024" loading="lazy"></div>
-      <div class="photo-tile-label"><span class="ptl-ref">AV-24-002</span><span class="ptl-loc">Milan</span></div>
-    </div>
-    <div class="photo-tile reveal">
-      <div class="photo-tile-inner"><img src="../../images/photographer_grid.png" alt="AV — Tokyo 2023" loading="lazy" style="object-position:30% center;"></div>
-      <div class="photo-tile-label"><span class="ptl-ref">AV-23-031</span><span class="ptl-loc">Tokyo</span></div>
-    </div>
-    <div class="photo-tile reveal">
-      <div class="photo-tile-inner"><img src="../../images/director_hero.png" alt="AV — Paris 2023" loading="lazy"></div>
-      <div class="photo-tile-label"><span class="ptl-ref">AV-23-011</span><span class="ptl-loc">Paris</span></div>
-    </div>
-    <div class="photo-tile reveal">
-      <div class="photo-tile-inner"><img src="../../images/elara_hero_v2.png" alt="AV — New York 2023" loading="lazy" style="object-position:70% center;"></div>
-      <div class="photo-tile-label"><span class="ptl-ref">AV-23-004</span><span class="ptl-loc">New York</span></div>
-    </div>
-    <div class="photo-tile reveal">
-      <div class="photo-tile-inner"><img src="../../images/photographer_grid.png" alt="AV — Barcelona 2022" loading="lazy"></div>
-      <div class="photo-tile-label"><span class="ptl-ref">AV-22-027</span><span class="ptl-loc">Barcelona</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<div class="process">
-  <div class="proc-left reveal">
-    <pre>
-<b>HOW_I_WORK.txt</b>
-——————————————————————————
-
-STEP 01 / FIRST EXCHANGE
-  You tell me what the work needs to say.
-  Not how it should look.
-  Not the references.
-  What it needs to say.
-
-STEP 02 / RECCE
-  I walk the location alone, first.
-  No crew. No client.
-  I decide whether the site can hold
-  the idea.
-
-STEP 03 / SHOOT DAY
-  Maximum 6 hours on set.
-  Natural light where possible.
-  One assistant. No stylist.
-  The work is already decided.
-
-STEP 04 / EDIT
-  I deliver a maximum of
-  12 selects per day.
-  No raw files. No bulk delivery.
-    </pre>
-  </div>
-  <div class="proc-right reveal">
-    <div class="log-title">// recent_activity.log</div>
-    <div class="log-item"><span class="log-date">Mar 2025</span><span class="log-text"><b>Sablier AW25</b> — Campaign, Paris. 3 days.</span></div>
-    <div class="log-item"><span class="log-date">Jan 2025</span><span class="log-text"><b>N.A. Direction</b> — Art Direction lookbook, Dubai.</span></div>
-    <div class="log-item"><span class="log-date">Nov 2024</span><span class="log-text"><b>Elara AW25</b> — Campaign B-roll and stills, Paris atelier.</span></div>
-    <div class="log-item"><span class="log-date">Oct 2024</span><span class="log-text"><b>Private editorial</span> — Tokyo. 5 days. NDA.</span></div>
-    <div class="log-item"><span class="log-date">Sep 2024</span><span class="log-text"><b>System Magazine</b> — Feature, London.</span></div>
-    <div class="log-item"><span class="log-date">Jun 2024</span><span class="log-text"><b>Personal project</b> — Serbia. Portraits. Unpublished.</span></div>
-  </div>
-</div>
-
-<!-- BOOKING -->
-<section id="booking">
-  <div class="bk-left reveal">
-    <h2 class="bk-h">Available<br><em>Q4 2026.</em></h2>
-    <p class="bk-note">One slot remaining through the end of 2026. Editorial fashion, portrait, and object work. Worldwide, but based in Paris.</p>
-    <div class="bk-data">
-      <div class="bd"><span class="bd-l">email_address</span><span class="bd-v">av@avphoto.fr</span></div>
-      <div class="bd"><span class="bd-l">location</span><span class="bd-v">Paris — available worldwide</span></div>
-      <div class="bd"><span class="bd-l">day_rate</span><span class="bd-v">On request</span></div>
-      <div class="bd"><span class="bd-l">response_time</span><span class="bd-v">Within 48h</span></div>
-    </div>
-  </div>
-  <div class="bk-right reveal">
-    <form onsubmit="handleForm(event)">
-      <div class="fr">
-        <div class="fg"><label>// name</label><input type="text" placeholder="your_name" required></div>
-        <div class="fg"><label>// email</label><input type="email" placeholder="your@email.com" required></div>
+  <!-- BRIEF -->
+  <section class="section">
+    <div class="wrap">
+      <div class="brief-grid">
+        <div class="brief-cell">
+          <span class="brief-label">Category</span>
+          <span class="brief-value">Photography</span>
+        </div>
+        <div class="brief-cell">
+          <span class="brief-label">Location</span>
+          <span class="brief-value">London</span>
+        </div>
+        <div class="brief-cell">
+          <span class="brief-label">Deliverables</span>
+          <ul class="deliverables">
+            <li>Portfolio site</li>
+            <li>Booking system</li>
+            <li>Image hosting</li>
+          </ul>
+        </div>
       </div>
-      <div class="fg">
-        <label>// type_of_work</label>
-        <select><option value="" disabled selected>select_type</option><option>Fashion Campaign</option><option>Editorial / Magazine</option><option>Portrait</option><option>Object / Product</option></select>
-      </div>
-      <div class="fg"><label>// brief — what needs to be said</label><textarea rows="5" placeholder="What does the work need to say? Not how it should look. What it needs to say." required></textarea></div>
-      <div class="bk-actions">
-        <div class="bk-note-s">// response within 48h. No attachment needed at this stage.</div>
-        <button type="submit" id="sub-btn">send_inquiry →</button>
-      </div>
-    </form>
+    </div>
+  </section>
+
+  <!-- CHALLENGE -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">The Brief</span>
+      <h2 class="section-headline">The challenge.</h2>
+      <p class="section-body">Photography portfolio where the work is the product. Site must not compete with the images.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <div class="wrap">
+    <div class="gallery">
+      <div class="gallery-img"><img src="../../images/photographer.jpg" alt="Studio Portfolio"></div>
+    </div>
   </div>
-</section>
 
-<footer>
-  <div class="ft-logo">A.V.</div>
-  <div class="ft-links">
-    <a href="#work">work</a>
-    <a href="#booking">booking</a>
-    <a href="mailto:av@avphoto.fr">email</a>
-  </div>
-  <a href="../../index.html" class="czr-credit">Built by CZR Studio ↗</a>
-</footer>
+  <!-- BUILD -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">The Work</span>
+      <h2 class="section-headline">How we built it.</h2>
+      <p class="section-body">Full-bleed grid. Lightbox reveals. Booking inquiry form. Minimal type.</p>
+    </div>
+  </section>
 
-<script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
-  }, { threshold: 0.04 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  <!-- RESULT -->
+  <section class="section">
+    <div class="wrap">
+      <span class="section-label">The Outcome</span>
+      <h2 class="section-headline">The result.</h2>
+      <p class="section-body">Now fully booked six months in advance. Client list includes two fashion weeks.</p>
+    </div>
+  </section>
 
-  document.querySelectorAll('.gt-filter span').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.gt-filter span').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="wrap">
+      <span class="cta-label">Start today</span>
+      <h2 class="cta-headline">Brief us.</h2>
+      <a href="https://wa.me/18107764057?text=I%20want%20to%20start%20a%20project%20like%20Studio%20Kove" class="btn-primary" target="_blank" rel="noopener">Talk to the Agent →</a>
+    </div>
+  </section>
 
-  function handleForm(e) {
-    e.preventDefault();
-    const btn = document.getElementById('sub-btn');
-    btn.textContent = 'inquiry_sent ✓';
-    btn.style.background = '#444'; btn.disabled = true;
-  }
-</script>
+  <footer>
+    <span>CZR Studio</span>
+    <span>Haute Couture Digital.</span>
+    <a href="../../index.html">← All Work</a>
+  </footer>
+
 </body>
 </html>
