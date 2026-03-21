@@ -188,6 +188,82 @@ def sync_css(dna: dict, dry: bool = False) -> int:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+#  STEP 3b: Sync design tokens → CSS custom properties
+# ══════════════════════════════════════════════════════════════════════════════
+
+def sync_tokens(dna: dict, dry: bool = False) -> int:
+    """
+    Reads identity.json → tokens and writes them as CSS custom properties.
+    Flattens nested token keys: tokens.type.display_weight → --tok-display-weight
+    Injects them into :root in style.css between sentinel comments.
+
+    Sentinel block in style.css (auto-created if missing):
+        /* DNA-TOKENS-START */
+        ...
+        /* DNA-TOKENS-END */
+    """
+    print(f"\n3b{'[DRY] ' if dry else ''}️  Syncing design tokens → style.css...")
+
+    tokens = dna.get("tokens", {})
+    if not tokens:
+        _warn("No tokens block in identity.json — skipping token sync")
+        return 0
+
+    # Flatten nested token dict: {type: {display_weight: "700"}} → {"--tok-display-weight": "700"}
+    flat: dict[str, str] = {}
+    for group_key, group_val in tokens.items():
+        if group_key.startswith("_"):
+            continue  # skip notes/metadata
+        if isinstance(group_val, dict):
+            for k, v in group_val.items():
+                css_var = f"--tok-{group_key.replace('_','-')}-{k.replace('_','-')}"
+                flat[css_var] = str(v)
+        elif isinstance(group_val, str):
+            css_var = f"--tok-{group_key.replace('_','-')}"
+            flat[css_var] = group_val
+
+    # Build the token block
+    token_lines = ["  /* DNA-TOKENS-START — auto-generated, do not edit manually */"]
+    for var, val in flat.items():
+        token_lines.append(f"  {var}: {val};")
+    token_lines.append("  /* DNA-TOKENS-END */")
+    token_block = "\n".join(token_lines)
+
+    css = _STYLE_CSS.read_text()
+
+    # Replace existing block or inject before closing :root brace
+    start_sentinel = "/* DNA-TOKENS-START"
+    end_sentinel   = "/* DNA-TOKENS-END */"
+
+    if start_sentinel in css and end_sentinel in css:
+        # Replace existing block
+        pattern = rf"{re.escape(start_sentinel)}.*?{re.escape(end_sentinel)}"
+        new_css = re.sub(pattern, token_block.strip(), css, count=1, flags=re.DOTALL)
+    else:
+        # Inject before first closing :root brace
+        # Find the :root block end
+        root_end = re.search(r"(:root\s*\{[^}]*)\}", css, re.DOTALL)
+        if root_end:
+            insert_at = root_end.start(0) + len(root_end.group(1))
+            new_css = css[:insert_at] + "\n" + token_block + "\n" + css[insert_at:]
+        else:
+            _warn("Could not find :root block in style.css — token sync skipped")
+            return 0
+
+    if new_css == css:
+        _ok(f"Tokens already in sync ({len(flat)} variables)")
+        return 0
+
+    if not dry:
+        _STYLE_CSS.write_text(new_css)
+        _ok(f"Wrote {len(flat)} token variables to style.css")
+    else:
+        _ok(f"[DRY] {len(flat)} token variables would be written")
+
+    return len(flat)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 #  STEP 4: Check Google Fonts link
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -455,6 +531,7 @@ def main():
 
     if not audit_only:
         sync_css(dna, dry=dry)
+        sync_tokens(dna, dry=dry)
 
     sync_fonts_link(dna)
     run_brand_guard()

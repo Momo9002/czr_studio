@@ -42,6 +42,30 @@
   --s2: 0.5rem;  --s3: 0.75rem; --s4: 1rem;   --s5: 1.25rem;
   --s6: 1.5rem;  --s8: 2rem;    --s10: 2.5rem; --s12: 3rem;
   --s16: 4rem;   --s24: 6rem;
+
+  /* DNA-TOKENS-START — auto-generated, do not edit manually */
+  --tok-mood: luxury;
+  --tok-type-display-weight: 700;
+  --tok-type-display-tracking: -0.03em;
+  --tok-type-hero-size-max: 9rem;
+  --tok-type-hero-size-min: 4rem;
+  --tok-type-h2-size-max: 5.5rem;
+  --tok-type-h2-size-min: 2.8rem;
+  --tok-type-body-size: 0.95rem;
+  --tok-type-body-line-height: 1.85;
+  --tok-type-eyebrow-tracking: 0.28em;
+  --tok-type-eyebrow-size: 0.6rem;
+  --tok-space-section-v: clamp(8rem, 16vw, 16rem);
+  --tok-space-section-h: clamp(1.5rem, 4vw, 5rem);
+  --tok-space-component-v: clamp(3rem, 6vw, 6rem);
+  --tok-space-gap: 1px;
+  --tok-surface-radius: 0;
+  --tok-surface-border-alpha: 0.04;
+  --tok-surface-card-hover: var(--surface);
+  --tok-accent-line-width: 1px;
+  --tok-accent-dot-size: 4px;
+  --tok-accent-red-alpha-bg: 0;
+  /* DNA-TOKENS-END */
 }
 
 /* ── Base ────────────────────────────────────────────────── */
@@ -61,19 +85,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ── Type Scale ──────────────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: var(--display);
-  font-weight: 800;
+  font-weight: var(--tok-type-display-weight, 700);
   line-height: 0.92;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--tok-type-display-tracking, -0.03em);
 }
-h1 { font-size: clamp(4.5rem, 12vw, 11rem); }
-h2 { font-size: clamp(3rem, 6vw, 6.5rem); }
+h1 { font-size: clamp(var(--tok-type-hero-size-min, 4rem), 12vw, var(--tok-type-hero-size-max, 9rem)); }
+h2 { font-size: clamp(var(--tok-type-h2-size-min, 2.8rem), 6vw, var(--tok-type-h2-size-max, 5.5rem)); }
 h3 { font-size: clamp(1rem, 1.8vw, 1.4rem); font-weight: 700; letter-spacing: -0.02em; }
 
 .eyebrow {
   font-family: var(--body);
-  font-size: 0.6rem;
+  font-size: var(--tok-type-eyebrow-size, 0.6rem);
   font-weight: 700;
-  letter-spacing: 0.28em;
+  letter-spacing: var(--tok-type-eyebrow-tracking, 0.28em);
   text-transform: uppercase;
   color: var(--red);
   display: block;
@@ -81,8 +105,8 @@ h3 { font-size: clamp(1rem, 1.8vw, 1.4rem); font-weight: 700; letter-spacing: -0
 }
 
 /* ── Layout ──────────────────────────────────────────────── */
-.wrap    { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
-.section { padding: clamp(7rem, 14vw, 14rem) 0; }
+.wrap    { max-width: var(--max); margin: 0 auto; padding: 0 var(--tok-space-section-h, var(--pad)); }
+.section { padding: var(--tok-space-section-v, clamp(7rem, 14vw, 14rem)) 0; }
 
 /* ── Duality System ──────────────────────────────────────── */
 .dark  { background: var(--black); color: var(--white); }
