@@ -63,7 +63,8 @@
       "cutting-edge",
       "game-changing",
       "bespoke",
-      "seamless"
+      "seamless",
+      "solution"
     ],
     "always": [
       "period endings",
@@ -195,5 +196,25 @@
     "objects": "Maximum 3 objects in frame",
     "humans": "Never — the Knight is the avatar",
     "style": "Editorial — each image is a spread, not a thumbnail"
+  },
+  "design": {
+    "hero_canvas": false,
+    "hero_video": false,
+    "splash": false,
+    "ticker": true,
+    "hero_scroll_indicator": true,
+    "section_rhythm": [
+      "dark",
+      "cream",
+      "dark",
+      "dark",
+      "cream",
+      "dark",
+      "dark",
+      "cream",
+      "dark"
+    ],
+    "animation_intensity": "minimal",
+    "notes": "false = disabled. animation_intensity: none | minimal | full. section_rhythm controls expected bg sequence top→bottom."
   }
 }

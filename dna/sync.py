@@ -2,21 +2,30 @@
 CZR Studio — DNA Sync
 One command to propagate DNA changes across the full pipeline.
 
-Checks:
+Propagation chain:
+  vision.md + models.md           (the two DNA pillars)
+      ↓ synthesize.py             (Step 0 — pillar consistency check)
+  identity.json                   (machine source of truth)
+      ↓ sync steps below
+  style.css · website · agents · Stripe · campaigns
+
+Steps:
+  0. Synthesize — vision.md + models.md → identity.json consistency
   1. Validate identity.json
   2. Load dna.loader constants
   3. Sync CSS variables in style.css
   4. Check Google Fonts in index.html
   5. Run brand guard tests
   6. Verify Python import chain
-  7. Audit campaign content (captions pass brand guard, hashtags match DNA)
-  8. Audit agent tone (banned words, voice rules)
-  9. Audit production sites (Knight watermark, fonts, Meta pixel)
+  7. Audit campaign content
+  8. Audit agent tone
+  9. Audit production sites
 
 Usage:
-    python3 -m dna.sync          # full sync + audit
-    python3 -m dna.sync --dry    # show what would change without writing
-    python3 -m dna.sync --audit  # only run audits, skip CSS sync
+    python3 -m dna.sync              # full sync + audit
+    python3 -m dna.sync --dry        # show what would change without writing
+    python3 -m dna.sync --audit      # only run audits, skip CSS sync
+    python3 -m dna.sync --no-synth   # skip synthesize step (faster)
 """
 
 import json
@@ -45,11 +54,32 @@ def _fail(msg: str):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+#  STEP 0: Synthesize — vision.md + models.md → identity.json consistency
+# ══════════════════════════════════════════════════════════════════════════════
+
+def run_synthesize():
+    print("0️⃣  Synthesize — vision.md + models.md → identity.json...")
+    try:
+        from dna.synthesize import synthesize
+        passed, n_warn, n_fail = synthesize()
+        if n_fail > 0:
+            _fail(f"Synthesize: {n_fail} failures — fix identity.json before continuing")
+        elif n_warn > 0:
+            _warn(f"Synthesize: {n_warn} warnings — review dna/vision.md alignment")
+        else:
+            _ok(f"Synthesize: {passed} checks pass — pillars aligned with identity.json")
+    except ImportError:
+        _warn("synthesize.py not found — skipping pillar check")
+    except Exception as e:
+        _warn(f"Synthesize error: {e}")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 #  STEP 1: Validate identity.json
 # ══════════════════════════════════════════════════════════════════════════════
 
 def validate_identity() -> dict:
-    print("1️⃣  Validating dna/identity.json...")
+    print("\n1️⃣  Validating dna/identity.json...")
     path = _DNA_DIR / "identity.json"
     try:
         data = json.loads(path.read_text())
@@ -101,14 +131,20 @@ def sync_css(dna: dict, dry: bool = False) -> int:
     css = _STYLE_CSS.read_text()
     changes = 0
 
+    # Map CSS custom property names → DNA color keys
+    # Uses the actual var names in style.css :root (short names, no --czr- prefix)
     color_map = {
-        "--czr-black":     dna["colors"].get("black", "#000000"),
-        "--czr-cream":     dna["colors"].get("cream", "#F7F4EF"),
-        "--czr-white":     dna["colors"].get("white", "#FFFFFF"),
-        "--czr-red":       dna["colors"].get("red", "#C8242A"),
-        "--czr-surface":   dna["colors"].get("surface", "#080808"),
-        "--czr-surface-2": dna["colors"].get("surface2", "#0f0f0f"),
-        "--czr-gold":      dna["colors"].get("gold", "#C9A84C"),
+        "--black":     dna["colors"].get("black",      "#000000"),
+        "--cream":     dna["colors"].get("cream",      "#F7F4EF"),
+        "--white":     dna["colors"].get("white",      "#FFFFFF"),
+        "--red":       dna["colors"].get("red",        "#C8242A"),
+        "--hermes":    dna["colors"].get("hermes",     "#E8601C"),
+        "--navy":      dna["colors"].get("navy",       "#0B1A2E"),
+        "--gold":      dna["colors"].get("gold",       "#C9A84C"),
+        "--dark-text": dna["colors"].get("dark_text",  "#0a0a0a"),
+        "--surface":   dna["colors"].get("surface",    "#080808"),
+        "--surface-2": dna["colors"].get("surface_2",  "#111111"),
+        "--surface-3": dna["colors"].get("surface_3",  "#1a1a1a"),
     }
 
     for var_name, dna_value in color_map.items():
@@ -125,9 +161,10 @@ def sync_css(dna: dict, dry: bool = False) -> int:
         else:
             _warn(f"{var_name} not found in CSS")
 
+    # Font vars in style.css use --display / --body (not --font-display / --font-body)
     typo = dna.get("typography", {})
-    for var_name, font in [("--font-display", typo.get("display", "Syne")),
-                           ("--font-body", typo.get("body", "Manrope"))]:
+    for var_name, font in [("--display", typo.get("display", "Syne")),
+                           ("--body",    typo.get("body",    "Manrope"))]:
         pattern = rf"({re.escape(var_name)}:\s*')([^']+?)'"
         match = re.search(pattern, css)
         if match:
@@ -398,17 +435,20 @@ def audit_production():
 
 def main():
     global _PASS, _WARN, _FAIL
-    dry = "--dry" in sys.argv
-    audit_only = "--audit" in sys.argv
+    dry        = "--dry"       in sys.argv
+    audit_only = "--audit"     in sys.argv
+    no_synth   = "--no-synth"  in sys.argv
 
     print("=" * 60)
     title = "CZR DNA SYNC"
-    if dry:
-        title += " — DRY RUN"
-    if audit_only:
-        title += " — AUDIT ONLY"
+    if dry:        title += " — DRY RUN"
+    if audit_only: title += " — AUDIT ONLY"
     print(title)
     print("=" * 60)
+
+    # Step 0: Validate DNA pillars are consistent with identity.json
+    if not no_synth:
+        run_synthesize()
 
     dna = validate_identity()
     verify_loader()

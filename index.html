@@ -30,7 +30,7 @@
   }
   </script>
 
-  <!-- Fonts -->
+  <!-- Fonts — DNA: Syne 800 + Manrope -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -47,19 +47,7 @@
   fbq('track', 'PageView');
   </script>
 </head>
-<body>
-
-<!-- ═══ SPLASH ═══ -->
-<div class="splash" id="splash">
-  <div class="splash-inner">
-    <div class="splash-knight">♞</div>
-    <div class="splash-logo">CZR.</div>
-    <p class="splash-sub">Haute Couture Digital</p>
-    <div class="splash-line"></div>
-  </div>
-  <button class="splash-enter" id="splash-enter">Enter &nbsp;→</button>
-  <div class="splash-bar-wrap"><div class="splash-bar" id="splash-bar"></div></div>
-</div>
+<body class="ready">
 
 <!-- ═══ HEADER ═══ -->
 <header id="header">
@@ -80,15 +68,11 @@
   </div>
 </header>
 
-<!-- ═══ HERO ═══ -->
+<!-- ═══ HERO ═══ dark ─────────────────────────────────────
+     Vogue masthead. Editorial authority. Type is the event.
+     The Knight symbol. One red accent. Nothing else.
+     ─────────────────────────────────────────────────────── -->
 <section class="hero dark" id="hero">
-  <!-- Video background -->
-  <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-    <source src="https://cdn.coverr.co/videos/coverr-dark-marble-3D-abstract/mp4" type="video/mp4">
-    <source src="https://videos.pexels.com/video-files/3130284/3130284-hd_1920_1080_30fps.mp4" type="video/mp4">
-  </video>
-  <div class="hero-video-overlay"></div>
-  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-wrap">
     <div class="hero-left">
       <div class="hero-pre anim-1">
@@ -96,9 +80,9 @@
         <span>Web Studio — Dubai · NYC · Worldwide</span>
       </div>
       <h1 class="hero-title">
-        <span class="hero-word anim-2">Brief.</span><br>
-        <span class="hero-word anim-3">Build.</span><br>
-        <em class="hero-word anim-4">Ship.</em>
+        <span class="hero-word anim-2">Brief.</span>
+        <span class="hero-word anim-3">Build.</span>
+        <em class="hero-word anim-4" data-dna="brand.tagline_short">Ship.</em>
       </h1>
       <p class="hero-sub anim-5">
         Crafted with Savile Row precision.<br>
@@ -109,7 +93,7 @@
         <a href="#contact" class="btn btn-primary">Start a Project</a>
         <a href="#work" class="btn btn-ghost">View Work</a>
       </div>
-      <div class="hero-stats anim-7">
+      <div class="hero-stats anim-6">
         <div class="hero-stat">
           <div class="hero-stat-num">48h</div>
           <div class="hero-stat-label">Delivery</div>
@@ -125,44 +109,18 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-knight-bar"></div>
+      <div class="hero-knight-line anim-knight"></div>
       <div class="hero-knight-sym anim-knight">♞</div>
       <div class="hero-knight-tag">The Knight</div>
     </div>
   </div>
-  <div class="hero-scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="hero-scroll-line"></div>
-  </div>
 </section>
 
-<!-- ═══ TICKER ═══ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <div class="ticker-item"><div class="ticker-dot"></div><strong>48h</strong>&nbsp;Delivery</div>
-    <div class="ticker-item"><div class="ticker-dot"></div>100%&nbsp;<strong>Guaranteed</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div><strong>Haute Couture</strong>&nbsp;Digital</div>
-    <div class="ticker-item"><div class="ticker-dot"></div>Full&nbsp;<strong>IP Transfer</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div>Dubai&nbsp;·&nbsp;NYC&nbsp;·&nbsp;<strong>Worldwide</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div>♞&nbsp;<strong>The Knight</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div><strong>Concierge</strong>&nbsp;Briefing</div>
-    <div class="ticker-item"><div class="ticker-dot"></div>No&nbsp;<strong>Template</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div><strong>48h</strong>&nbsp;Delivery</div>
-    <div class="ticker-item"><div class="ticker-dot"></div>100%&nbsp;<strong>Guaranteed</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div><strong>Haute Couture</strong>&nbsp;Digital</div>
-    <div class="ticker-item"><div class="ticker-dot"></div>Full&nbsp;<strong>IP Transfer</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div>Dubai&nbsp;·&nbsp;NYC&nbsp;·&nbsp;<strong>Worldwide</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div>♞&nbsp;<strong>The Knight</strong></div>
-    <div class="ticker-item"><div class="ticker-dot"></div><strong>Concierge</strong>&nbsp;Briefing</div>
-    <div class="ticker-item"><div class="ticker-dot"></div>No&nbsp;<strong>Template</strong></div>
-  </div>
-</div>
-
-<!-- ═══ WORK ═══ -->
-<section id="work" style="background:var(--black); padding-bottom: clamp(4rem,8vw,8rem);">
+<!-- ═══ WORK ═══ dark ───────────────────────────────────── -->
+<section id="work" class="dark" style="padding-bottom: clamp(4rem,8vw,8rem);">
   <div class="work-intro reveal">
     <div>
-      <p class="eyebrow">Portfolio</p>
+      <span class="eyebrow">Portfolio</span>
       <h2 style="color:var(--white)">Six worlds.<br>One standard.</h2>
     </div>
     <div class="work-count-big">06</div>
@@ -239,47 +197,46 @@
       <span class="case-cta">View case study </span>
     </div>
   </a>
-
 </section>
 
-<!-- ═══ PROCESS ═══ -->
+<!-- ═══ PROCESS ═══ cream ───────────────────────────────── -->
 <section class="section cream" id="process">
   <div class="wrap">
     <div class="process-head reveal">
       <span class="eyebrow">The Process</span>
-      <h2 style="color:var(--dark-text)">Four moves.<br>48 hours.</h2>
+      <h2>Four moves.<br>48 hours.</h2>
       <p>No meetings. No approval chains.<br>The brief gives us everything. Day one.</p>
     </div>
     <div class="process-steps reveal">
       <div class="p-step">
         <div class="p-step-num">01</div>
         <h3>Brief</h3>
-        <p>Your concierge collects everything in a 10-minute conversation. Brand identity, audience, references, assets. Structured into a brief the moment you finish.</p>
+        <p>Your concierge collects everything in a 10-minute conversation. Brand identity, audience, references, assets.</p>
         <span class="p-step-time">→ 10 minutes</span>
       </div>
       <div class="p-step">
         <div class="p-step-num">02</div>
         <h3>Build</h3>
-        <p>We build in focused sprints. Custom code, premium design, mobile-first. No templates. Every hour earns your brief.</p>
+        <p>We build in focused sprints. Custom code, premium design, mobile-first. No templates.</p>
         <span class="p-step-time">→ 0 – 36h</span>
       </div>
       <div class="p-step">
         <div class="p-step-num">03</div>
         <h3>Review</h3>
-        <p>One revision round — detailed, structured, resolved. Your concierge coordinates feedback. No meetings on your calendar.</p>
+        <p>One revision round — detailed, structured, resolved. No meetings on your calendar.</p>
         <span class="p-step-time">→ 36 – 44h</span>
       </div>
       <div class="p-step">
         <div class="p-step-num">04</div>
         <h3>Live</h3>
-        <p>Domain connected. SSL active. Analytics running. Your site is live before 48 hours are up — or you pay nothing.</p>
+        <p>Domain connected. SSL active. Analytics running. Your site is live before 48 hours.</p>
         <span class="p-step-time">→ 44 – 48h</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ RESULTS ═══ -->
+<!-- ═══ RESULTS ═══ dark ─────────────────────────────────── -->
 <section class="section dark" id="results">
   <div class="wrap">
     <div class="results-head reveal">
@@ -290,7 +247,7 @@
       <div class="result-card">
         <div class="result-metric">+340%</div>
         <div class="result-label">Inquiry rate, week one</div>
-        <p class="result-quote">"I had a consultation booked 11 minutes after the site went live. My old page had been running for two years with almost no inquiries. The briefing was a 10-minute conversation."</p>
+        <p class="result-quote">"I had a consultation booked 11 minutes after the site went live. My old page had been running for two years with almost no inquiries."</p>
         <div class="result-source">
           <div class="result-initial">A.B</div>
           <div class="result-who">
@@ -302,7 +259,7 @@
       <div class="result-card">
         <div class="result-metric">44h</div>
         <div class="result-label">Delivery · 5 pages · full CMS</div>
-        <p class="result-quote">"Three agencies before this. Best case: 6 weeks, endless revisions. CZR delivered a full 5-page site in 44 hours. The quality wasn't a compromise."</p>
+        <p class="result-quote">"Three agencies before this. Best case: 6 weeks, endless revisions. CZR delivered a full 5-page site in 44 hours. The quality was not a compromise."</p>
         <div class="result-source">
           <div class="result-initial">K.M</div>
           <div class="result-who">
@@ -314,7 +271,7 @@
       <div class="result-card">
         <div class="result-metric">70%</div>
         <div class="result-label">Close rate (was 30%)</div>
-        <p class="result-quote">"The concierge briefing alone was worth the price. I was spending 3 hours a day on pre-qualification. Now the concierge handles it. I only show up to calls that are already hot."</p>
+        <p class="result-quote">"The concierge briefing alone was worth the price. I was spending 3 hours a day on pre-qualification. Now I only show up to calls that are already hot."</p>
         <div class="result-source">
           <div class="result-initial">C.L</div>
           <div class="result-who">
@@ -327,15 +284,15 @@
   </div>
 </section>
 
-<!-- ═══ GUARANTEE ═══ -->
+<!-- ═══ GUARANTEE ═══ cream ─────────────────────────────── -->
 <section class="section cream" id="guarantee">
   <div class="wrap">
     <div class="guarantee-inner reveal">
       <div class="guarantee-g" aria-hidden="true">G</div>
       <div class="guarantee-text">
-        <p class="eyebrow" style="display:block;margin-bottom:1rem;">The Guarantee</p>
-        <h2 style="color:var(--dark-text)">The CZR Guarantee.</h2>
-        <p>48 hours or free. Not satisfied — you pay nothing. No questions. No conditions. We back our craft completely.</p>
+        <span class="eyebrow">The Guarantee</span>
+        <h2>The CZR Guarantee.</h2>
+        <p data-dna="guarantee">48 hours or free. Not satisfied — you pay nothing. No questions. No conditions. We back our craft completely.</p>
         <div class="guarantee-pills">
           <span class="pill">Stripe Protected</span>
           <span class="pill">Satisfaction Guaranteed</span>
@@ -348,7 +305,7 @@
   </div>
 </section>
 
-<!-- ═══ PRICING ═══ -->
+<!-- ═══ PRICING ═══ dark ─────────────────────────────────── -->
 <section class="section dark" id="pricing">
   <div class="wrap">
     <div class="pricing-head reveal">
@@ -359,8 +316,8 @@
 
       <div class="price-card">
         <div class="price-name">The Sprint</div>
-        <div class="price-amount">€999</div>
-        <p class="price-tagline">Your brand, online in 48 hours.</p>
+        <div class="price-amount" data-dna-price="packages.sprint.price">€999</div>
+        <p class="price-tagline" data-dna="packages.sprint.tagline">Your brand, online in 48 hours.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>Up to 3 pages (Home, About, Contact)</li>
@@ -377,8 +334,8 @@
       <div class="price-card featured">
         <div class="price-badge">Most Popular</div>
         <div class="price-name">The Flagship</div>
-        <div class="price-amount">€2,499</div>
-        <p class="price-tagline">A bespoke digital flagship store.</p>
+        <div class="price-amount" data-dna-price="packages.flagship.price">€2,499</div>
+        <p class="price-tagline" data-dna="packages.flagship.tagline">A bespoke digital flagship store.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>Up to 8 pages with custom layout per page</li>
@@ -397,8 +354,8 @@
 
       <div class="price-card">
         <div class="price-name">The Retainer</div>
-        <div class="price-amount">€99<sub>/mo</sub></div>
-        <p class="price-tagline">Your site, always fresh.</p>
+        <div class="price-amount"><span data-dna-price="packages.retainer.price">€99</span><sub>/mo</sub></div>
+        <p class="price-tagline" data-dna="packages.retainer.tagline">Your site, always fresh.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
           <li>Monthly design updates</li>
@@ -415,7 +372,7 @@
   </div>
 </section>
 
-<!-- ═══ FAQ ═══ -->
+<!-- ═══ FAQ ═══ dark ─────────────────────────────────────── -->
 <section class="section dark" id="faq">
   <div class="wrap">
     <div class="faq-head reveal">
@@ -429,7 +386,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is 48 hours really possible?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Yes. No meetings, no approval chains. The brief gives our team everything they need from day one. We build in focused sprints. The result isn't rushed — it's optimised.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. No meetings, no approval chains. The brief gives our team everything they need from day one. We build in focused sprints. The result is not rushed — it is optimised.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">What if I'm not satisfied?<span class="faq-icon">+</span></button>
@@ -445,29 +402,32 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Do I own everything after delivery?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Full intellectual property transfer on delivery. Source files, assets, everything. It's yours completely.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Full intellectual property transfer on delivery. Source files, assets, everything. It is yours completely.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ CONTACT ═══ -->
+<!-- ═══ CONTACT ═══ dark ─────────────────────────────────── -->
 <section class="section dark" id="contact">
   <div class="wrap">
     <div class="concierge-inner reveal">
       <div class="concierge-left">
-        <p class="eyebrow" style="display:block;margin-bottom:1rem;">Start a Project</p>
+        <span class="eyebrow">Start a Project</span>
         <h2>Brief us.<br>We ship.</h2>
-        <p>Send your brief. Your concierge responds within <strong style="color:var(--white)">2 hours</strong> to start.</p>
+        <p>Send your brief. Your concierge responds within <strong style="color:var(--white)">2 hours</strong>.</p>
         <ul class="concierge-list">
           <li>10-min concierge briefing — no long forms</li>
           <li>Response within 2 hours</li>
           <li>Free strategy consultation</li>
           <li>100% money-back guarantee</li>
         </ul>
-        <div id="wa-cta-link" style="display:flex;align-items:center;gap:0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.3);">
+        <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.18);">
           Or message directly:
-          <a id="wa-direct" href="#" target="_blank" rel="noopener" style="color:var(--white);font-weight:700;text-decoration:underline;text-underline-offset:3px;">WhatsApp →</a>
+          <a id="wa-direct" href="#" data-dna-href="brand.whatsapp" target="_blank" rel="noopener"
+             style="color:var(--red);font-weight:700;text-decoration:underline;text-underline-offset:3px;">
+            WhatsApp →
+          </a>
         </div>
       </div>
       <div class="concierge-right">
@@ -504,7 +464,8 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="f-brief">Your Vision *</label>
-            <textarea class="form-input form-textarea" id="f-brief" placeholder="Tell us about your brand, your audience, and what success looks like for you..." required></textarea>
+            <textarea class="form-input form-textarea" id="f-brief"
+              placeholder="Tell us about your brand, your audience, and what success looks like for you..." required></textarea>
             <span class="field-error" id="err-brief"></span>
           </div>
           <button type="submit" class="btn btn-primary w-full" id="form-submit">
@@ -522,9 +483,9 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="footer-logo"><span>♞</span>CZR.</div>
-        <p class="footer-sub">Haute Couture Digital. Dubai · NYC · Worldwide.</p>
-        <a id="footer-wa" href="#" class="footer-wa" target="_blank" rel="noopener">
+        <div class="footer-logo"><span class="red">♞</span>CZR.</div>
+        <p class="footer-sub"><span data-dna="brand.tagline">Haute Couture Digital.</span> Dubai · NYC · Worldwide.</p>
+        <a id="footer-wa" href="#" data-dna-href="brand.whatsapp" class="footer-wa" target="_blank" rel="noopener">
           Chat directly →
         </a>
       </div>
@@ -532,7 +493,9 @@
         <a href="#work">Work</a>
         <a href="#process">Process</a>
         <a href="#pricing">Pricing</a>
-        <a href="https://instagram.com/czr.studio" target="_blank" rel="noopener">@czr.studio</a>
+        <a href="https://instagram.com/czr.studio" data-dna-href="brand.instagram" target="_blank" rel="noopener">
+          <span data-dna="brand.instagram">@czr.studio</span>
+        </a>
         <a href="/client">Client Portal</a>
         <a href="/privacy">Privacy</a>
       </div>
@@ -546,54 +509,34 @@
 </footer>
 
 <!-- ═══ WA FAB ═══ -->
-<a id="wa-fab" href="#" class="wa-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+<a id="wa-fab" href="#" data-dna-href="brand.whatsapp" class="wa-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.06L2 22l5.06-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.22-.47-4.54-1.29l-.32-.19-3.01.8.82-2.95-.21-.34A7.97 7.97 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
 </a>
 
+<!-- DNA live injection — reads identity.json at runtime -->
+<script type="module" src="/dna/inject.js"></script>
+
 <script>
-// ── DNA ─────────────────────────────────────────────────────
+// Inline constants — overridden by inject.js from DNA
 const WA = '18107764057';
 const WA_URL = `https://wa.me/${WA}`;
-
-// WA links
-['wa-fab','footer-wa','wa-direct'].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) el.href = WA_URL;
-});
 
 // Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ── Splash ─────────────────────────────────────────────────
-const splash = document.getElementById('splash');
-const bar = document.getElementById('splash-bar');
-const DUR = 4000;
-let done = false;
-function hideSplash() {
-  if (done) return; done = true;
-  sessionStorage.setItem('czr_splash','1');
-  splash.style.opacity = '0';
-  document.body.classList.add('ready');
-  setTimeout(() => { splash.style.display = 'none'; }, 750);
-}
-if (sessionStorage.getItem('czr_splash')) {
-  splash.style.display = 'none'; done = true;
-  document.body.classList.add('ready');
-}
-else {
-  bar.style.transition = `width ${DUR}ms linear`;
-  requestAnimationFrame(() => { bar.style.width = '100%'; });
-  setTimeout(hideSplash, DUR);
-  document.getElementById('splash-enter').addEventListener('click', hideSplash);
-}
+// WA fallback (inject.js overrides with DNA value)
+['wa-fab','footer-wa','wa-direct'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el && !el.dataset.dnaHref) el.href = WA_URL;
+});
 
-// ── Header ──────────────────────────────────────────────────
+// Header scroll
 const hdr = document.getElementById('header');
 window.addEventListener('scroll', () => {
   hdr.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// ── Burger ──────────────────────────────────────────────────
+// Burger
 document.getElementById('burger').addEventListener('click', () => {
   hdr.classList.toggle('nav-open');
 });
@@ -601,58 +544,28 @@ document.querySelectorAll('.nav-link').forEach(l => {
   l.addEventListener('click', () => hdr.classList.remove('nav-open'));
 });
 
-// ── Hero Canvas — subtle red rays ───────────────────────────
-(function() {
-  const c = document.getElementById('hero-canvas');
-  const ctx = c.getContext('2d');
-  const RAYS = [
-    { a: -0.3, w: 0.35, s: 0.00012, o: 0.12, col: [200,36,42] },
-    { a: 1.8,  w: 0.25, s: -0.00009, o: 0.07, col: [200,36,42] },
-    { a: 0.6,  w: 0.18, s: 0.00008,  o: 0.04, col: [255,255,255] },
-    { a: -2.1, w: 0.20, s: 0.00007,  o: 0.06, col: [200,36,42] },
-  ];
-  const OX = 0.35, OY = 0.40;
-  function resize() { c.width = c.offsetWidth; c.height = c.offsetHeight; }
-  function draw(t) {
-    const w = c.width, h = c.height;
-    ctx.clearRect(0,0,w,h);
-    const ox = w*OX, oy = h*OY, len = Math.max(w,h)*2.2;
-    RAYS.forEach(r => {
-      const a = r.a + t * r.s * 1000;
-      const hw = r.w * 0.5;
-      const ax = ox+Math.cos(a-hw)*len, ay = oy+Math.sin(a-hw)*len;
-      const bx = ox+Math.cos(a+hw)*len, by = oy+Math.sin(a+hw)*len;
-      const g = ctx.createRadialGradient(ox,oy,0,ox,oy,len*0.7);
-      const [R,G,B] = r.col;
-      g.addColorStop(0, `rgba(${R},${G},${B},${r.o})`);
-      g.addColorStop(0.4, `rgba(${R},${G},${B},${r.o*0.4})`);
-      g.addColorStop(1, `rgba(${R},${G},${B},0)`);
-      ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(ax,ay); ctx.lineTo(bx,by);
-      ctx.closePath(); ctx.fillStyle = g; ctx.fill();
-    });
-  }
-  let st = null;
-  function loop(t) { if (!st) st=t; draw(t-st); requestAnimationFrame(loop); }
-  resize(); window.addEventListener('resize', resize); requestAnimationFrame(loop);
-})();
-
-// ── Reveal on scroll ─────────────────────────────────────────
+// Reveal on scroll
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); } });
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); }
+  });
 }, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── FAQ ──────────────────────────────────────────────────────
+// FAQ
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+    });
     if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
   });
 });
 
-// ── Lead Form ────────────────────────────────────────────────
+// Lead form
 document.getElementById('lead-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const fields = [
@@ -664,7 +577,7 @@ document.getElementById('lead-form').addEventListener('submit', function(e) {
   ];
   let valid = true;
   fields.forEach(f => {
-    const el = document.getElementById(f.id);
+    const el  = document.getElementById(f.id);
     const err = document.getElementById(f.errId);
     const empty = !el.value.trim();
     el.style.borderColor = empty ? 'var(--red)' : '';
@@ -683,7 +596,6 @@ document.getElementById('lead-form').addEventListener('submit', function(e) {
   label.textContent = 'Sending...';
   if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Contact Form' });
 
-  // Create project in pipeline
   fetch('https://api.czr.studio/admin/projects', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
