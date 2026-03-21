@@ -17,12 +17,12 @@
 </head>
 <body>
 
-  <!-- ── NAV ────────────────────────────────────────────────── -->
-  <nav class="nav">
+  <!-- ── NAV ─────────────────────────────────────────────── -->
+  <nav class="nav nav-transparent" id="nav">
     <div class="nav-inner">
       <a href="/" class="nav-logo">CZR</a>
       <div class="nav-links">
-        <a href="#work">Work</a>
+        <a href="#work">Our Work</a>
         <a href="#packages">Packages</a>
         <a href="#faq">FAQ</a>
         <a href="/dashboard.html" class="nav-customer">Customer Area</a>
@@ -40,10 +40,10 @@
     <div class="hero-inner wrap hero-center">
       <div class="hero-left">
         <p class="hero-label">Website Studio · Dubai · NYC · Worldwide</p>
-        <h1>Premium websites.<br>48 hours.</h1>
+        <h1>Premium websites.<br>Lightning speed.</h1>
         <div class="hero-values">
           <span>Concierge-focused.</span>
-          <span>Delivered in 48h.</span>
+          <span>Lightning speed.</span>
           <span>Yours entirely.</span>
         </div>
         <a id="hero-cta" href="https://wa.me/18107764057?text=I%20want%20to%20start%20a%20project%20with%20CZR%20Studio" class="btn-agent btn-orange" target="_blank" rel="noopener">Talk to the Agent →</a>
@@ -249,5 +249,12 @@
   </footer>
 
   <script src="dna/inject.js" type="module"></script>
+  <script>
+    // Nav: transparent over hero, solid white after scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav-solid', window.scrollY > 60);
+    }, { passive: true });
+  </script>
 </body>
 </html>

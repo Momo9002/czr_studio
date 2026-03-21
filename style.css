@@ -106,8 +106,20 @@ h3 { font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 700; letter-spacing: 
 /* ── NAV ─────────────────────────────────────────────────────── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s, border-color 0.3s;
+}
+.nav-transparent {
+  background: transparent;
+}
+.nav-transparent .nav-logo,
+.nav-transparent .nav-links a,
+.nav-transparent .nav-customer { color: rgba(255,255,255,0.85); }
+.nav-transparent .nav-agent-btn { background: var(--white); color: var(--black); }
+.nav-solid,
+.nav:not(.nav-transparent) {
   background: rgba(255,255,255,0.97);
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom-color: #E8E8E8;
 }
 .nav-inner {
   max-width: var(--max); margin: 0 auto;
