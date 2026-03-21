@@ -3,37 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CZR Studio — Haute Couture Digital, Delivered in 48h</title>
-  <meta name="description" content="We craft premium, high-conversion websites for brands that refuse to settle. Briefed in minutes. Shipped in 48 hours. Delivered in 48 hours. Zero compromise.">
+  <title>CZR Studio — Haute Couture Digital. Delivered in 48h.</title>
+  <meta name="description" content="Premium web design for brands that refuse to settle. Briefed in minutes. Delivered in 48 hours. 100% money-back guarantee.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://czr.studio">
-  <!-- DNA: Knight favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♞</text></svg>">
 
-  <!-- Open Graph -->
+  <!-- OG -->
   <meta property="og:title" content="CZR Studio — Haute Couture Digital">
   <meta property="og:description" content="Premium web design. Briefed in minutes. Delivered in 48h.">
   <meta property="og:image" content="images/og_image.png">
   <meta property="og:url" content="https://czr.studio">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="images/og_image.png">
 
-  <!-- Schema.org -->
+  <!-- Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "CZR Studio",
-    "description": "Haute couture web design delivered in 48 hours. Premium websites for luxury brands in Dubai, NYC and worldwide.",
+    "description": "Haute couture web design delivered in 48 hours.",
     "url": "https://czr.studio",
     "areaServed": ["Dubai", "New York", "Worldwide"],
-    "priceRange": "€€€",
-    "serviceType": "Web Design & Development"
+    "priceRange": "€€€"
   }
   </script>
 
-  <!-- DNA Typography -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -49,27 +46,25 @@
   fbq('init', '2928293767375852');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
 
-<!-- ═══════════ SPLASH ═══════════ -->
+<!-- ═══ SPLASH ═══ -->
 <div class="splash" id="splash">
-  <div class="splash-content">
+  <div class="splash-inner">
     <div class="splash-knight">♞</div>
     <div class="splash-logo">CZR.</div>
     <p class="splash-sub">Haute Couture Digital</p>
-    <div class="splash-rule"></div>
+    <div class="splash-line"></div>
   </div>
   <button class="splash-enter" id="splash-enter">Enter &nbsp;→</button>
-  <div class="splash-progress"><div class="splash-bar" id="splash-bar"></div></div>
+  <div class="splash-bar-wrap"><div class="splash-bar" id="splash-bar"></div></div>
 </div>
 
-<!-- ═══════════ HEADER ═══════════ -->
+<!-- ═══ HEADER ═══ -->
 <header id="header">
   <div class="header-inner">
-    <a href="#" class="wordmark">
+    <a href="/" class="wordmark">
       <span class="wordmark-knight">♞</span>CZR.
     </a>
     <nav>
@@ -77,7 +72,7 @@
       <a href="#process" class="nav-link">Process</a>
       <a href="#pricing" class="nav-link">Pricing</a>
       <a href="/client" class="nav-link">Client Portal</a>
-      <a href="/onboarding" class="nav-link nav-cta">Start a Project</a>
+      <a href="#contact" class="nav-link nav-cta">Start a Project</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu">
       <span></span><span></span>
@@ -85,294 +80,281 @@
   </div>
 </header>
 
-<!-- ═══════════ HERO — Dark. Dramatic. The Knight. ═══════════ -->
-<section class="hero mode-dark" id="hero">
-  <canvas id="hero-rays" aria-hidden="true"></canvas>
-  <div class="hero-inner">
-    <div class="hero-content">
-      <span class="hero-eyebrow">Web Studio — Dubai · NYC · Worldwide</span>
-      <h1 class="hero-headline">
+<!-- ═══ HERO ═══ -->
+<section class="hero dark" id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-wrap">
+    <div class="hero-left">
+      <div class="hero-pre">
+        <div class="hero-pre-line"></div>
+        <span>Web Studio — Dubai · NYC · Worldwide</span>
+      </div>
+      <h1 class="hero-title">
         Brief.<br>
         Build.<br>
         <em>Ship.</em>
       </h1>
-      <p class="hero-sub">Crafted with Savile Row precision.<br>Briefed in minutes. Delivered in <strong>48 hours</strong>. Or you pay nothing.</p>
-      <div class="hero-ctas">
-        <a href="/onboarding" class="btn btn-primary">Start a Project</a>
-        <a href="#work" class="btn btn-ghost">View Cases</a>
+      <p class="hero-sub">
+        Crafted with Savile Row precision.<br>
+        Briefed in minutes. Delivered in <strong>48 hours</strong>.<br>
+        Or you pay nothing.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Start a Project</a>
+        <a href="#work" class="btn btn-ghost">View Work</a>
       </div>
-      <div class="hero-trust">
-        <span class="hero-trust-item">48h Delivery</span>
-        <span class="hero-trust-item">Concierge Briefing</span>
-        <span class="hero-trust-item">100% Guaranteed</span>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">48h</div>
+          <div class="hero-stat-label">Delivery</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Guaranteed</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">Industries</div>
+        </div>
       </div>
     </div>
-    <div class="hero-knight" aria-hidden="true">
-      <div class="hero-knight-line"></div>
-      <div class="hero-knight-symbol">♞</div>
-      <div class="hero-knight-label">The Knight</div>
+    <div class="hero-right">
+      <div class="hero-knight-bar"></div>
+      <div class="hero-knight-sym">♞</div>
+      <div class="hero-knight-tag">The Knight</div>
     </div>
   </div>
-  <div class="hero-scroll">
+  <div class="hero-scroll" aria-hidden="true">
     <span>Scroll</span>
-    <div class="scroll-line"></div>
+    <div class="hero-scroll-line"></div>
   </div>
 </section>
 
-<!-- ═══════════ MARQUEE — Dark ═══════════ -->
-<div class="marquee-band">
-  <div class="marquee-track" aria-hidden="true">
-    <div class="marquee-item"><div class="dot-accent"></div><strong>48h</strong>&nbsp;Delivery</div>
-    <div class="marquee-item"><div class="dot-accent"></div>100%&nbsp;<strong>Satisfaction</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div><strong>Premium</strong>&nbsp;Craft</div>
-    <div class="marquee-item"><div class="dot-accent"></div>Concierge&nbsp;<strong>Briefing</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div>Dubai&nbsp;·&nbsp;NYC&nbsp;·&nbsp;<strong>Worldwide</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div>Full&nbsp;<strong>IP Transfer</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div>♞&nbsp;<strong>The Knight</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div><strong>48h</strong>&nbsp;Delivery</div>
-    <div class="marquee-item"><div class="dot-accent"></div>100%&nbsp;<strong>Satisfaction</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div><strong>Premium</strong>&nbsp;Craft</div>
-    <div class="marquee-item"><div class="dot-accent"></div>Concierge&nbsp;<strong>Briefing</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div>Dubai&nbsp;·&nbsp;NYC&nbsp;·&nbsp;<strong>Worldwide</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div>Full&nbsp;<strong>IP Transfer</strong></div>
-    <div class="marquee-item"><div class="dot-accent"></div>♞&nbsp;<strong>The Knight</strong></div>
+<!-- ═══ TICKER ═══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ticker-dot"></div><strong>48h</strong>&nbsp;Delivery</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>100%&nbsp;<strong>Guaranteed</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><strong>Haute Couture</strong>&nbsp;Digital</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Full&nbsp;<strong>IP Transfer</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Dubai&nbsp;·&nbsp;NYC&nbsp;·&nbsp;<strong>Worldwide</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div>♞&nbsp;<strong>The Knight</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><strong>Concierge</strong>&nbsp;Briefing</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>No&nbsp;<strong>Template</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><strong>48h</strong>&nbsp;Delivery</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>100%&nbsp;<strong>Guaranteed</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><strong>Haute Couture</strong>&nbsp;Digital</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Full&nbsp;<strong>IP Transfer</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Dubai&nbsp;·&nbsp;NYC&nbsp;·&nbsp;<strong>Worldwide</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div>♞&nbsp;<strong>The Knight</strong></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><strong>Concierge</strong>&nbsp;Briefing</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>No&nbsp;<strong>Template</strong></div>
   </div>
 </div>
 
-<!-- ═══════════ PORTFOLIO GRID — Dark. The work is serious. ═══════════ -->
-<section id="work" class="section section-ruled mode-dark">
-  <div class="container">
-    <div class="portfolio-section-head reveal">
-      <span class="eyebrow">Portfolio</span>
-      <h2>Six worlds.<br>One standard.</h2>
-      <p>Each project finds its own soul. No template. No formula. The brief defines the architecture.</p>
+<!-- ═══ WORK ═══ -->
+<section class="section dark" id="work">
+  <div class="wrap">
+    <div class="work-head reveal">
+      <div>
+        <p class="eyebrow" style="display:block;margin-bottom:1rem;">Portfolio</p>
+        <h2>Six worlds.<br>One standard.</h2>
+      </div>
+      <div class="work-head-right">
+        <div class="work-count">06</div>
+        <div class="work-count-label">Case Studies</div>
+      </div>
     </div>
-    <div class="mondrian-grid reveal">
-      <!-- Color accents — red tones only per DNA -->
-      <div class="m-tile m-tile-1"></div>
-      <div class="m-tile m-tile-2"></div>
-      <div class="m-tile m-tile-3"></div>
 
-      <!-- Row 1 -->
-      <a class="m-card m-card-1" href="cases/fashion-house/" data-project="fashion">
-        <div class="m-card-img">
-          <img src="images/fashion-house.jpg" alt="Fashion House website" loading="lazy">
+    <div class="editorial-grid reveal">
+      <a class="p-card e-feature" href="cases/fashion-house/">
+        <div class="p-card-img"><img src="images/fashion-house.jpg" alt="Fashion House" loading="lazy"></div>
+        <div class="p-card-overlay"></div>
+        <div class="p-card-body">
+          <span class="p-card-tag">Fashion · Next.js · Framer Motion</span>
+          <h3 class="p-card-title">Fashion House</h3>
+          <p class="p-card-desc">Fourteen silhouettes. Appointment-only. No cart — you request a private viewing. Delivered in 42h.</p>
         </div>
-        <div class="m-card-body">
-          <span class="m-card-tag">Fashion · Next.js · Framer Motion</span>
-          <h3 class="m-card-title">Fashion House</h3>
-          <p class="m-card-desc">Full editorial presence for a luxury fashion house. Lookbook, collection drops, cinematic scroll. Delivered in 42h.</p>
-        </div>
-        <span class="m-card-arrow" aria-hidden="true">↗</span>
+        <div class="p-card-arrow">↗</div>
       </a>
-
-      <a class="m-card m-card-2" href="cases/architecture-studio/" data-project="architecture">
-        <div class="m-card-img">
-          <img src="images/architecture.jpg" alt="Architecture Studio website" loading="lazy">
+      <a class="p-card e-side-1" href="cases/architecture-studio/">
+        <div class="p-card-img"><img src="images/architecture.jpg" alt="Architecture Studio" loading="lazy"></div>
+        <div class="p-card-overlay"></div>
+        <div class="p-card-body">
+          <span class="p-card-tag">Architecture · GSAP</span>
+          <h3 class="p-card-title">Architecture Studio</h3>
+          <p class="p-card-desc">Twelve commissions per year. No decoration. Cinematic case studies, Dubai and Luxembourg.</p>
         </div>
-        <div class="m-card-body">
-          <span class="m-card-tag">Architecture · Custom Code · GSAP</span>
-          <h3 class="m-card-title">Architecture Studio</h3>
-          <p class="m-card-desc">Cinematic portfolio spanning Dubai and Luxembourg. Immersive case studies, parallax, bespoke inquiry funnel.</p>
-        </div>
-        <span class="m-card-arrow" aria-hidden="true">↗</span>
+        <div class="p-card-arrow">↗</div>
       </a>
-
-      <!-- Row 2 -->
-      <a class="m-card m-card-3" href="cases/restaurant/" data-project="restaurant">
-        <div class="m-card-img">
-          <img src="images/restaurant.jpg" alt="TABLE N°1 website" loading="lazy">
+      <a class="p-card e-side-2" href="cases/fragrance/">
+        <div class="p-card-img"><img src="images/fragrance.jpg" alt="EAU NULLE" loading="lazy"></div>
+        <div class="p-card-overlay"></div>
+        <div class="p-card-body">
+          <span class="p-card-tag">Fragrance · Stripe · GSAP</span>
+          <h3 class="p-card-title">EAU NULLE</h3>
+          <p class="p-card-desc">72 bottles. €120K committed before a single bottle was complete.</p>
         </div>
-        <div class="m-card-body">
-          <span class="m-card-tag">Fine Dining · Custom Code · Reservation</span>
-          <h3 class="m-card-title">TABLE N°1</h3>
-          <p class="m-card-desc">One table. Twelve guests. One evening. Private dining, Monaco. Every cover sold within the first week.</p>
-        </div>
-        <span class="m-card-arrow" aria-hidden="true">↗</span>
+        <div class="p-card-arrow">↗</div>
       </a>
+    </div>
 
-      <a class="m-card m-card-4" href="cases/fragrance/" data-project="fragrance">
-        <div class="m-card-img">
-          <img src="images/fragrance.jpg" alt="EAU NULLE website" loading="lazy">
+    <div class="editorial-row2 reveal">
+      <a class="p-card" href="cases/restaurant/">
+        <div class="p-card-img"><img src="images/restaurant.jpg" alt="TABLE N°1" loading="lazy"></div>
+        <div class="p-card-overlay"></div>
+        <div class="p-card-body">
+          <span class="p-card-tag">Fine Dining · Monaco</span>
+          <h3 class="p-card-title">TABLE N°1</h3>
+          <p class="p-card-desc">One table. Twelve guests. Every cover sold in week one.</p>
         </div>
-        <div class="m-card-body">
-          <span class="m-card-tag">Product Launch · GSAP · Stripe</span>
-          <h3 class="m-card-title">EAU NULLE</h3>
-          <p class="m-card-desc">72 bottles. An olfactory event, not a product. €120K committed before a single bottle was complete.</p>
-        </div>
-        <span class="m-card-arrow" aria-hidden="true">↗</span>
+        <div class="p-card-arrow">↗</div>
       </a>
-
-      <!-- Row 3 -->
-      <a class="m-card m-card-5" href="cases/photographer/" data-project="photographer">
-        <div class="m-card-img">
-          <img src="images/photographer.jpg" alt="Photographer portfolio website" loading="lazy">
+      <a class="p-card" href="cases/photographer/">
+        <div class="p-card-img"><img src="images/photographer.jpg" alt="Portrait Studio" loading="lazy"></div>
+        <div class="p-card-overlay"></div>
+        <div class="p-card-body">
+          <span class="p-card-tag">Photography · Portfolio</span>
+          <h3 class="p-card-title">Portrait Studio</h3>
+          <p class="p-card-desc">Full-bleed imagery. Minimal UI. Direct booking. Zero noise.</p>
         </div>
-        <div class="m-card-body">
-          <span class="m-card-tag">Photography · Minimal · Portfolio</span>
-          <h3 class="m-card-title">Portrait Studio</h3>
-          <p class="m-card-desc">Cinematic portfolio for a luxury portrait studio. Full-bleed imagery, minimal UI, direct booking.</p>
-        </div>
-        <span class="m-card-arrow" aria-hidden="true">↗</span>
+        <div class="p-card-arrow">↗</div>
       </a>
-
-      <a class="m-card m-card-6" href="cases/creative-director/" data-project="creative">
-        <div class="m-card-img">
-          <img src="images/creative-director.jpg" alt="Creative Director website" loading="lazy">
+      <a class="p-card" href="cases/creative-director/">
+        <div class="p-card-img"><img src="images/creative-director.jpg" alt="Creative Director" loading="lazy"></div>
+        <div class="p-card-overlay"></div>
+        <div class="p-card-body">
+          <span class="p-card-tag">Personal Brand · CMS</span>
+          <h3 class="p-card-title">Creative Director</h3>
+          <p class="p-card-desc">Brand identity and digital presence. Portfolio, journal, CV.</p>
         </div>
-        <div class="m-card-body">
-          <span class="m-card-tag">Personal Brand · Custom Code · CMS</span>
-          <h3 class="m-card-title">Creative Director</h3>
-          <p class="m-card-desc">Brand identity and digital presence for an independent creative director. Portfolio, journal, CV.</p>
-        </div>
-        <span class="m-card-arrow" aria-hidden="true">↗</span>
+        <div class="p-card-arrow">↗</div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ PROCESS — Cream. Four moves. ═══════════ -->
-<section id="process" class="section mode-cream">
-  <div class="container">
-    <div class="section-head section-ruled reveal">
+<!-- ═══ PROCESS ═══ -->
+<section class="section cream" id="process">
+  <div class="wrap">
+    <div class="process-head reveal">
       <span class="eyebrow">The Process</span>
-      <h2>Four moves.<br>48 hours.</h2>
-      <p class="section-desc">No meetings. No approval chains. The brief gives us everything. Day one.</p>
+      <h2 style="color:var(--dark-text)">Four moves.<br>48 hours.</h2>
+      <p>No meetings. No approval chains.<br>The brief gives us everything. Day one.</p>
     </div>
-    <div class="process-grid reveal">
-
-      <div class="process-step">
-        <span class="step-num">01</span>
-        <div class="step-body">
-          <h3>Brief</h3>
-          <p>Your concierge collects everything in a 10-minute conversation. Brand identity, audience, references, assets. Structured into a creative brief the moment you finish.</p>
-          <span class="step-tag">→ 10-min Concierge Brief</span>
-        </div>
+    <div class="process-steps reveal">
+      <div class="p-step">
+        <div class="p-step-num">01</div>
+        <h3>Brief</h3>
+        <p>Your concierge collects everything in a 10-minute conversation. Brand identity, audience, references, assets. Structured into a brief the moment you finish.</p>
+        <span class="p-step-time">→ 10 minutes</span>
       </div>
-
-      <div class="process-step">
-        <span class="step-num">02</span>
-        <div class="step-body">
-          <h3>Craft</h3>
-          <p>We build in focused sprints. Custom code, premium design, mobile-first. No templates. The work earns your brief every hour it's in production.</p>
-          <span class="step-tag">→ 0–36h window</span>
-        </div>
+      <div class="p-step">
+        <div class="p-step-num">02</div>
+        <h3>Build</h3>
+        <p>We build in focused sprints. Custom code, premium design, mobile-first. No templates. Every hour earns your brief.</p>
+        <span class="p-step-time">→ 0 – 36h</span>
       </div>
-
-      <div class="process-step">
-        <span class="step-num">03</span>
-        <div class="step-body">
-          <h3>Review</h3>
-          <p>One revision round — detailed, structured, resolved. Your concierge coordinates feedback. No meetings on your calendar.</p>
-          <span class="step-tag">→ 36–44h window</span>
-        </div>
+      <div class="p-step">
+        <div class="p-step-num">03</div>
+        <h3>Review</h3>
+        <p>One revision round — detailed, structured, resolved. Your concierge coordinates feedback. No meetings on your calendar.</p>
+        <span class="p-step-time">→ 36 – 44h</span>
       </div>
-
-      <div class="process-step">
-        <span class="step-num">04</span>
-        <div class="step-body">
-          <h3>Live</h3>
-          <p>Domain connected. SSL active. Analytics running. Your site is live before 48 hours are up — or you pay nothing.</p>
-          <span class="step-tag">→ 44–48h window</span>
-        </div>
+      <div class="p-step">
+        <div class="p-step-num">04</div>
+        <h3>Live</h3>
+        <p>Domain connected. SSL active. Analytics running. Your site is live before 48 hours are up — or you pay nothing.</p>
+        <span class="p-step-time">→ 44 – 48h</span>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════ RESULTS — Dark. Metrics hit harder on black. ═══════════ -->
-<section class="section section-ruled mode-dark" id="results">
-  <div class="container">
-    <div class="section-head reveal">
+<!-- ═══ RESULTS ═══ -->
+<section class="section dark" id="results">
+  <div class="wrap">
+    <div class="results-head reveal">
       <span class="eyebrow">Results</span>
       <h2>The work speaks.<br>The numbers confirm.</h2>
     </div>
-    <div class="testi-grid reveal">
-
-      <div class="testi-card">
-        <blockquote>"I had a consultation booked 11 minutes after the site went live. My old page had been running for two years with almost no inquiries. The briefing was a 10-minute WhatsApp conversation."</blockquote>
-        <div class="testi-result">
-          <span class="testi-metric">+340%</span>
-          Inquiry rate in week one
-        </div>
-        <div class="testi-author">
-          <div class="author-init">A.B</div>
-          <div>
+    <div class="results-grid reveal">
+      <div class="result-card">
+        <div class="result-metric">+340%</div>
+        <div class="result-label">Inquiry rate, week one</div>
+        <p class="result-quote">"I had a consultation booked 11 minutes after the site went live. My old page had been running for two years with almost no inquiries. The briefing was a 10-minute conversation."</p>
+        <div class="result-source">
+          <div class="result-initial">A.B</div>
+          <div class="result-who">
             <strong>Studio Founder</strong>
             <span>Interior Architecture — Dubai</span>
           </div>
         </div>
       </div>
-
-      <div class="testi-card">
-        <blockquote>"Three agencies before this. Best case: 6 weeks, endless revisions. CZR delivered a full 5-page site in 44 hours. The quality wasn't a compromise — it was sharper because there was no committee diluting the vision."</blockquote>
-        <div class="testi-result">
-          <span class="testi-metric">44h</span>
-          Delivery · 5 pages · full CMS
-        </div>
-        <div class="testi-author">
-          <div class="author-init">K.M</div>
-          <div>
+      <div class="result-card">
+        <div class="result-metric">44h</div>
+        <div class="result-label">Delivery · 5 pages · full CMS</div>
+        <p class="result-quote">"Three agencies before this. Best case: 6 weeks, endless revisions. CZR delivered a full 5-page site in 44 hours. The quality wasn't a compromise."</p>
+        <div class="result-source">
+          <div class="result-initial">K.M</div>
+          <div class="result-who">
             <strong>Chief Executive</strong>
             <span>Private Investment Group — Monaco</span>
           </div>
         </div>
       </div>
-
-      <div class="testi-card">
-        <blockquote>"The onboarding alone was worth the price. I was spending 3 hours a day answering pre-qualification questions. Now the concierge handles it. I only show up to calls that are already hot."</blockquote>
-        <div class="testi-result">
-          <span class="testi-metric">70%</span>
-          Close rate (was 30%)
-        </div>
-        <div class="testi-author">
-          <div class="author-init">C.L</div>
-          <div>
+      <div class="result-card">
+        <div class="result-metric">70%</div>
+        <div class="result-label">Close rate (was 30%)</div>
+        <p class="result-quote">"The concierge briefing alone was worth the price. I was spending 3 hours a day on pre-qualification. Now the concierge handles it. I only show up to calls that are already hot."</p>
+        <div class="result-source">
+          <div class="result-initial">C.L</div>
+          <div class="result-who">
             <strong>Creative Director</strong>
             <span>Independent Studio — Dubai & NYC</span>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ═══════════ GUARANTEE — Cream. Calm. Trustworthy. ═══════════ -->
-<div class="guarantee-band mode-cream">
-  <div class="container">
+<!-- ═══ GUARANTEE ═══ -->
+<section class="section cream" id="guarantee">
+  <div class="wrap">
     <div class="guarantee-inner reveal">
-      <div class="guarantee-icon">Guarantee</div>
-      <div>
-        <h2>The CZR Guarantee.</h2>
-        <p>48 hours or free. Not satisfied — you pay nothing. <strong>No questions. No conditions.</strong> We back our craft completely.</p>
-        <div class="trust-row">
-          <span class="trust-pill">Stripe Protected</span>
-          <span class="trust-pill">Satisfaction Guaranteed</span>
-          <span class="trust-pill">Full IP Transfer</span>
-          <span class="trust-pill">48h Delivery</span>
+      <div class="guarantee-g" aria-hidden="true">G</div>
+      <div class="guarantee-text">
+        <p class="eyebrow" style="display:block;margin-bottom:1rem;">The Guarantee</p>
+        <h2 style="color:var(--dark-text)">The CZR Guarantee.</h2>
+        <p>48 hours or free. Not satisfied — you pay nothing. No questions. No conditions. We back our craft completely.</p>
+        <div class="guarantee-pills">
+          <span class="pill">Stripe Protected</span>
+          <span class="pill">Satisfaction Guaranteed</span>
+          <span class="pill">Full IP Transfer</span>
+          <span class="pill">48h Delivery</span>
+          <span class="pill">Money-Back</span>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ═══════════ PRICING — Dark. ═══════════ -->
-<section id="pricing" class="section section-ruled mode-dark">
-  <div class="container">
-    <div class="section-head reveal">
+<!-- ═══ PRICING ═══ -->
+<section class="section dark" id="pricing">
+  <div class="wrap">
+    <div class="pricing-head reveal">
       <span class="eyebrow">Pricing</span>
       <h2>Clear pricing.<br>No surprises.</h2>
-      <p class="section-desc">Every package includes concierge briefing, hosting setup, and the 48h guarantee.</p>
     </div>
     <div class="pricing-grid reveal">
 
-      <div class="pricing-card">
-        <div class="pricing-name">The Sprint</div>
-        <div class="pricing-price">€999</div>
-        <p class="pricing-desc">Your brand, online in 48 hours. Up to 3 pages, fully custom, mobile-first.</p>
-        <ul class="pricing-features">
+      <div class="price-card">
+        <div class="price-name">The Sprint</div>
+        <div class="price-amount">€999</div>
+        <p class="price-tagline">Your brand, online in 48 hours.</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
           <li>Up to 3 pages (Home, About, Contact)</li>
           <li>Responsive design (mobile + desktop)</li>
           <li>48-hour delivery guarantee</li>
@@ -381,15 +363,16 @@
           <li>Full IP transfer — you own everything</li>
           <li>100% money-back guarantee</li>
         </ul>
-        <a href="#contact" class="btn btn-outline w-full">Get Started</a>
+        <a href="#contact" class="btn btn-ghost w-full">Get Started</a>
       </div>
 
-      <div class="pricing-card featured">
-        <div class="pricing-badge">Most Popular</div>
-        <div class="pricing-name">The Flagship</div>
-        <div class="pricing-price">€2,499</div>
-        <p class="pricing-desc">A bespoke digital flagship store. Multi-page, CMS, e-commerce ready.</p>
-        <ul class="pricing-features">
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-name">The Flagship</div>
+        <div class="price-amount">€2,499</div>
+        <p class="price-tagline">A bespoke digital flagship store.</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
           <li>Up to 8 pages with custom layout per page</li>
           <li>CMS integration (edit your own content)</li>
           <li>E-commerce ready (catalogue, cart, checkout)</li>
@@ -404,11 +387,12 @@
         <a href="#contact" class="btn btn-primary w-full">Get Started</a>
       </div>
 
-      <div class="pricing-card">
-        <div class="pricing-name">The Retainer</div>
-        <div class="pricing-price">€99<span>/mo</span></div>
-        <p class="pricing-desc">Your site, always fresh. Monthly updates, new pages, priority support.</p>
-        <ul class="pricing-features">
+      <div class="price-card">
+        <div class="price-name">The Retainer</div>
+        <div class="price-amount">€99<sub>/mo</sub></div>
+        <p class="price-tagline">Your site, always fresh.</p>
+        <div class="price-divider"></div>
+        <ul class="price-features">
           <li>Monthly design updates</li>
           <li>New pages on request</li>
           <li>Content refresh</li>
@@ -416,17 +400,17 @@
           <li>Performance monitoring</li>
           <li>Cancel anytime</li>
         </ul>
-        <a href="#contact" class="btn btn-outline w-full">Get Started</a>
+        <a href="#contact" class="btn btn-ghost w-full">Get Started</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════ FAQ — Dark. ═══════════ -->
-<section class="section section-ruled mode-dark">
-  <div class="container">
-    <div class="section-head reveal">
+<!-- ═══ FAQ ═══ -->
+<section class="section dark" id="faq">
+  <div class="wrap">
+    <div class="faq-head reveal">
       <span class="eyebrow">FAQ</span>
       <h2>Common Questions.</h2>
     </div>
@@ -437,63 +421,70 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Is 48 hours really possible?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Yes — because our process is designed for it. No meetings, no approval chains. The brief gives our team everything they need from day one. We build in focused sprints. The result isn't rushed — it's optimised.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. No meetings, no approval chains. The brief gives our team everything they need from day one. We build in focused sprints. The result isn't rushed — it's optimised.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">What if I'm not happy with the result?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">You pay nothing. Our guarantee is unconditional — if you're not 100% satisfied, we refund every cent. No questions, no conditions, no back-and-forth.</div></div>
+        <button class="faq-q" aria-expanded="false">What if I'm not satisfied?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">You pay nothing. Our guarantee is unconditional — 100% refund, no questions, no conditions, no back-and-forth.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">What do I need to provide?<span class="faq-icon">+</span></button>
         <div class="faq-a"><div class="faq-a-inner">Ten minutes with your concierge. If you have brand assets — great. If not, we advise. Everything you need is covered.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Do you build on WordPress, Webflow, Shopify?<span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">We build on whatever is right for your project: Next.js for performance-critical sites, Webflow for CMS flexibility, Shopify for eCommerce, or fully custom code for bespoke requirements. We recommend the stack, you approve it.</div></div>
+        <button class="faq-q" aria-expanded="false">What tech stack do you use?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">We build on what is right for your project: Next.js for performance-critical sites, Webflow for CMS flexibility, Shopify for e-commerce, or fully custom code. We recommend the stack, you approve it.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Do I own everything after delivery?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Full intellectual property transfer on delivery. Source files, assets, everything. It's yours completely.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ CTA / CONTACT — Cream. Warm close. ═══════════ -->
-<section id="contact" class="section mode-cream">
-  <div class="container">
-    <div class="contact-grid reveal">
-      <div class="contact-left">
-        <span class="eyebrow">Start a Project</span>
+<!-- ═══ CONTACT ═══ -->
+<section class="section dark" id="contact">
+  <div class="wrap">
+    <div class="concierge-inner reveal">
+      <div class="concierge-left">
+        <p class="eyebrow" style="display:block;margin-bottom:1rem;">Start a Project</p>
         <h2>Brief us.<br>We ship.</h2>
-        <p>Send your brief. Your concierge responds within <strong>2 hours</strong> to start.</p>
-        <br>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;margin-top:1rem;">
-          <li style="font-size:0.9rem;color:#555;display:flex;gap:0.75rem;align-items:center;"><span style="color:#C8242A;">↗</span> 10-min concierge briefing — no forms</li>
-          <li style="font-size:0.9rem;color:#555;display:flex;gap:0.75rem;align-items:center;"><span style="color:#C8242A;">↗</span> Response in under 2 hours</li>
-          <li style="font-size:0.9rem;color:#555;display:flex;gap:0.75rem;align-items:center;"><span style="color:#C8242A;">↗</span> Free strategy consultation</li>
-          <li style="font-size:0.9rem;color:#555;display:flex;gap:0.75rem;align-items:center;"><span style="color:#C8242A;">↗</span> 100% money-back guarantee</li>
+        <p>Send your brief. Your concierge responds within <strong style="color:var(--white)">2 hours</strong> to start.</p>
+        <ul class="concierge-list">
+          <li>10-min concierge briefing — no long forms</li>
+          <li>Response within 2 hours</li>
+          <li>Free strategy consultation</li>
+          <li>100% money-back guarantee</li>
         </ul>
+        <div id="wa-cta-link" style="display:flex;align-items:center;gap:0.75rem;font-size:0.82rem;color:rgba(255,255,255,0.3);">
+          Or message directly:
+          <a id="wa-direct" href="#" target="_blank" rel="noopener" style="color:var(--white);font-weight:700;text-decoration:underline;text-underline-offset:3px;">WhatsApp →</a>
+        </div>
       </div>
-      <div>
-        <form id="lead-form" novalidate class="contact-form">
-          <div class="form-row">
-            <div class="form-field">
-              <label for="f-name">Full Name *</label>
-              <input type="text" id="f-name" placeholder="Sophie Leclair" required>
+      <div class="concierge-right">
+        <form id="lead-form" novalidate>
+          <div class="form-row2">
+            <div class="form-group">
+              <label class="form-label" for="f-name">Full Name *</label>
+              <input class="form-input" type="text" id="f-name" placeholder="Sophie Leclair" required>
               <span class="field-error" id="err-name"></span>
             </div>
-            <div class="form-field">
-              <label for="f-email">Email *</label>
-              <input type="email" id="f-email" placeholder="hello@yourbrand.com" required>
+            <div class="form-group">
+              <label class="form-label" for="f-email">Email *</label>
+              <input class="form-input" type="email" id="f-email" placeholder="hello@yourbrand.com" required>
               <span class="field-error" id="err-email"></span>
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="f-phone">WhatsApp / Phone *</label>
-              <input type="tel" id="f-phone" placeholder="+33 6 12 34 56 78" required>
+          <div class="form-row2">
+            <div class="form-group">
+              <label class="form-label" for="f-phone">WhatsApp / Phone *</label>
+              <input class="form-input" type="tel" id="f-phone" placeholder="+33 6 12 34 56 78" required>
               <span class="field-error" id="err-phone"></span>
             </div>
-            <div class="form-field">
-              <label for="f-pkg">Package *</label>
-              <select id="f-pkg" required>
+            <div class="form-group">
+              <label class="form-label" for="f-pkg">Package *</label>
+              <select class="form-input form-select" id="f-pkg" required>
                 <option value="" disabled selected>Choose a package</option>
                 <option value="Sprint">The Sprint — €999</option>
                 <option value="Flagship">The Flagship — €2,499</option>
@@ -503,193 +494,160 @@
               <span class="field-error" id="err-pkg"></span>
             </div>
           </div>
-          <div class="form-field">
-            <label for="f-brief">Your Vision *</label>
-            <textarea id="f-brief" placeholder="Tell us about your brand, your audience, and what a successful website looks like for you..." required></textarea>
+          <div class="form-group">
+            <label class="form-label" for="f-brief">Your Vision *</label>
+            <textarea class="form-input form-textarea" id="f-brief" placeholder="Tell us about your brand, your audience, and what success looks like for you..." required></textarea>
             <span class="field-error" id="err-brief"></span>
           </div>
           <button type="submit" class="btn btn-primary w-full" id="form-submit">
             <span id="submit-label">Send My Brief →</span>
           </button>
-          <p style="font-size:0.75rem;color:#999;margin-top:0.75rem;text-align:center;">100% private. Your concierge follows up directly.</p>
+          <p class="form-note">100% private. Your concierge follows up directly.</p>
         </form>
-        <div class="wa-cta">
-          Or message us directly:
-          <a id="wa-direct" href="#" target="_blank" rel="noopener">WhatsApp →</a>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ FOOTER — Dark ═══════════ -->
-<footer class="site-footer mode-dark">
-  <div class="container">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand-name"><span>♞</span> CZR.</div>
-        <p class="footer-tagline">Haute Couture Digital. Dubai · NYC · Worldwide.</p>
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><span>♞</span>CZR.</div>
+        <p class="footer-sub">Haute Couture Digital. Dubai · NYC · Worldwide.</p>
         <a id="footer-wa" href="#" class="footer-wa" target="_blank" rel="noopener">
-          Chat on WhatsApp →
+          Chat directly →
         </a>
       </div>
       <div class="footer-links">
-        <a href="#work">Use Cases</a>
+        <a href="#work">Work</a>
         <a href="#process">Process</a>
-        <a href="#results">Results</a>
         <a href="#pricing">Pricing</a>
         <a href="https://instagram.com/czr.studio" target="_blank" rel="noopener">@czr.studio</a>
+        <a href="/client">Client Portal</a>
         <a href="/privacy">Privacy</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> CZR Studio</span>
-      <span class="footer-knight">♞</span>
-      <span>Dubai · NYC · Worldwide</span>
+      <span>♞</span>
+      <span>Not faster because we cut corners. Faster because we removed them.</span>
     </div>
   </div>
 </footer>
 
-<!-- ═══════════ MODAL ═══════════ -->
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal" id="modal">
-    <div class="modal-header">
-      <div>
-        <span class="modal-tag" id="modal-tag"></span>
-        <h3 class="modal-title" id="modal-title"></h3>
-      </div>
-      <button class="modal-close" id="modal-close">✕</button>
-    </div>
-    <div class="modal-body" id="modal-body"></div>
-  </div>
-</div>
-
-<!-- ═══════════ WHATSAPP FAB ═══════════ -->
+<!-- ═══ WA FAB ═══ -->
 <a id="wa-fab" href="#" class="wa-fab" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.06L2 22l5.06-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.22-.47-4.54-1.29l-.32-.19-3.01.8.82-2.95-.21-.34A7.97 7.97 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
+  <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.37 5.06L2 22l5.06-1.35A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.22-.47-4.54-1.29l-.32-.19-3.01.8.82-2.95-.21-.34A7.97 7.97 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8z"/></svg>
 </a>
 
 <script>
-// ── DNA Constants ─────────────────────────────────────
+// ── DNA ─────────────────────────────────────────────────────
 const WA = '18107764057';
 const WA_URL = `https://wa.me/${WA}`;
-document.getElementById('wa-fab').href = WA_URL;
-document.getElementById('footer-wa').href = WA_URL;
-document.getElementById('wa-direct').href = WA_URL;
 
-// ── Meta Pixel — WhatsApp Lead tracking ───────────────
+// WA links
 ['wa-fab','footer-wa','wa-direct'].forEach(id => {
   const el = document.getElementById(id);
-  if (el) el.addEventListener('click', () => {
-    if (typeof fbq === 'function') fbq('track', 'Lead', {content_name: id});
-  });
+  if (el) el.href = WA_URL;
 });
 
-// ── Copyright year ────────────────────────────────────
+// Year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ── Hero Canvas Rays ──────────────────────────────────
+// ── Splash ─────────────────────────────────────────────────
+const splash = document.getElementById('splash');
+const bar = document.getElementById('splash-bar');
+const DUR = 4000;
+let done = false;
+function hideSplash() {
+  if (done) return; done = true;
+  sessionStorage.setItem('czr_splash','1');
+  splash.style.opacity = '0';
+  setTimeout(() => { splash.style.display = 'none'; }, 750);
+}
+if (sessionStorage.getItem('czr_splash')) { splash.style.display = 'none'; done = true; }
+else {
+  bar.style.transition = `width ${DUR}ms linear`;
+  requestAnimationFrame(() => { bar.style.width = '100%'; });
+  setTimeout(hideSplash, DUR);
+  document.getElementById('splash-enter').addEventListener('click', hideSplash);
+}
+
+// ── Header ──────────────────────────────────────────────────
+const hdr = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ── Burger ──────────────────────────────────────────────────
+document.getElementById('burger').addEventListener('click', () => {
+  hdr.classList.toggle('nav-open');
+});
+document.querySelectorAll('.nav-link').forEach(l => {
+  l.addEventListener('click', () => hdr.classList.remove('nav-open'));
+});
+
+// ── Hero Canvas — subtle red rays ───────────────────────────
 (function() {
-  const canvas = document.getElementById('hero-rays');
-  const ctx = canvas.getContext('2d');
-  // DNA: red only rays — no blue/yellow in body
+  const c = document.getElementById('hero-canvas');
+  const ctx = c.getContext('2d');
   const RAYS = [
-    { color: [200, 36, 42],  angle: -0.3,  width: 0.38, speed: 0.00012,  opacity: 0.14 },
-    { color: [200, 36, 42],  angle: 1.8,   width: 0.28, speed: -0.00008, opacity: 0.08 },
-    { color: [255, 255, 255],angle: 0.6,   width: 0.18, speed: 0.00010,  opacity: 0.05 },
-    { color: [200, 36, 42],  angle: -2.1,  width: 0.22, speed: 0.00007,  opacity: 0.07 },
-    { color: [255, 255, 255],angle: 3.0,   width: 0.15, speed: -0.00014, opacity: 0.04 },
+    { a: -0.3, w: 0.35, s: 0.00012, o: 0.12, col: [200,36,42] },
+    { a: 1.8,  w: 0.25, s: -0.00009, o: 0.07, col: [200,36,42] },
+    { a: 0.6,  w: 0.18, s: 0.00008,  o: 0.04, col: [255,255,255] },
+    { a: -2.1, w: 0.20, s: 0.00007,  o: 0.06, col: [200,36,42] },
   ];
-  const OX = 0.38, OY = 0.42, LEN = 2.2;
-  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+  const OX = 0.35, OY = 0.40;
+  function resize() { c.width = c.offsetWidth; c.height = c.offsetHeight; }
   function draw(t) {
-    const w = canvas.width, h = canvas.height;
+    const w = c.width, h = c.height;
     ctx.clearRect(0,0,w,h);
-    const ox = w*OX, oy = h*OY, len = Math.max(w,h)*LEN;
-    RAYS.forEach(ray => {
-      const a = ray.angle + t * ray.speed * 1000;
-      const hw = ray.width * 0.5;
+    const ox = w*OX, oy = h*OY, len = Math.max(w,h)*2.2;
+    RAYS.forEach(r => {
+      const a = r.a + t * r.s * 1000;
+      const hw = r.w * 0.5;
       const ax = ox+Math.cos(a-hw)*len, ay = oy+Math.sin(a-hw)*len;
       const bx = ox+Math.cos(a+hw)*len, by = oy+Math.sin(a+hw)*len;
-      const grad = ctx.createRadialGradient(ox,oy,0,ox,oy,len*0.8);
-      const [r,g,b] = ray.color;
-      grad.addColorStop(0, `rgba(${r},${g},${b},${ray.opacity})`);
-      grad.addColorStop(0.35, `rgba(${r},${g},${b},${ray.opacity*0.5})`);
-      grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      const g = ctx.createRadialGradient(ox,oy,0,ox,oy,len*0.7);
+      const [R,G,B] = r.col;
+      g.addColorStop(0, `rgba(${R},${G},${B},${r.o})`);
+      g.addColorStop(0.4, `rgba(${R},${G},${B},${r.o*0.4})`);
+      g.addColorStop(1, `rgba(${R},${G},${B},0)`);
       ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(ax,ay); ctx.lineTo(bx,by);
-      ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+      ctx.closePath(); ctx.fillStyle = g; ctx.fill();
     });
   }
-  let start = null;
-  function loop(t) { if (!start) start = t; draw(t-start); requestAnimationFrame(loop); }
+  let st = null;
+  function loop(t) { if (!st) st=t; draw(t-st); requestAnimationFrame(loop); }
   resize(); window.addEventListener('resize', resize); requestAnimationFrame(loop);
 })();
 
-// ── Splash ────────────────────────────────────────────
-const splash = document.getElementById('splash');
-const splashBar = document.getElementById('splash-bar');
-const DUR = 4500; let done = false;
-function dismissSplash() {
-  if (done) return; done = true;
-  sessionStorage.setItem('splashSeen', '1');
-  splash.style.opacity = '0';
-  setTimeout(() => { splash.style.display = 'none'; }, 700);
-}
-if (sessionStorage.getItem('splashSeen')) { splash.style.display = 'none'; done = true; }
-else {
-  splashBar.style.transition = `width ${DUR}ms linear`;
-  requestAnimationFrame(() => { splashBar.style.width = '100%'; });
-  setTimeout(dismissSplash, DUR);
-  document.getElementById('splash-enter').addEventListener('click', dismissSplash);
-}
+// ── Reveal on scroll ─────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// ── Header scroll ─────────────────────────────────────
-window.addEventListener('scroll', () => {
-  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
-});
-
-// ── Burger + mobile nav ───────────────────────────────
-const headerEl = document.getElementById('header');
-document.getElementById('burger').addEventListener('click', () => {
-  headerEl.classList.toggle('nav-open');
-});
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => headerEl.classList.remove('nav-open'));
-});
-
-// ── Reveal on scroll ──────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); } });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ── FAQ ───────────────────────────────────────────────
+// ── FAQ ──────────────────────────────────────────────────────
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    document.querySelectorAll('.faq-q').forEach(b => b.setAttribute('aria-expanded', 'false'));
-    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
+    if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
   });
 });
 
-// ── Modal ──────────────────────────────────────────────
-const backdrop = document.getElementById('modal-backdrop');
-const modalClose = document.getElementById('modal-close');
-function closeModal() { backdrop.classList.remove('open'); document.body.style.overflow = ''; }
-if (modalClose) modalClose.addEventListener('click', closeModal);
-if (backdrop) backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-// ── Lead Form → WhatsApp ──────────────────────────────
+// ── Lead Form ────────────────────────────────────────────────
 document.getElementById('lead-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const fields = [
-    { id: 'f-name', errId: 'err-name', msg: 'Please enter your name.' },
-    { id: 'f-email', errId: 'err-email', msg: 'Please enter a valid email.' },
-    { id: 'f-phone', errId: 'err-phone', msg: 'Please enter your phone number.' },
-    { id: 'f-pkg', errId: 'err-pkg', msg: 'Please select a package.' },
+    { id: 'f-name',  errId: 'err-name',  msg: 'Please enter your name.' },
+    { id: 'f-email', errId: 'err-email', msg: 'Please enter your email.' },
+    { id: 'f-phone', errId: 'err-phone', msg: 'Please enter your phone.' },
+    { id: 'f-pkg',   errId: 'err-pkg',   msg: 'Please select a package.' },
     { id: 'f-brief', errId: 'err-brief', msg: 'Please describe your vision.' },
   ];
   let valid = true;
@@ -697,35 +655,36 @@ document.getElementById('lead-form').addEventListener('submit', function(e) {
     const el = document.getElementById(f.id);
     const err = document.getElementById(f.errId);
     const empty = !el.value.trim();
-    el.style.borderColor = empty ? '#C8242A' : '';
-    err.textContent = empty ? f.msg : ''; err.style.color = '#C8242A'; err.style.fontSize = '0.75rem';
+    el.style.borderColor = empty ? 'var(--red)' : '';
+    err.textContent = empty ? f.msg : '';
     if (empty) valid = false;
   });
   if (!valid) return;
-  const name = document.getElementById('f-name').value.trim();
+
+  const name  = document.getElementById('f-name').value.trim();
   const email = document.getElementById('f-email').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
-  const pkg = document.getElementById('f-pkg').value;
+  const pkg   = document.getElementById('f-pkg').value;
   const brief = document.getElementById('f-brief').value.trim();
   const label = document.getElementById('submit-label');
-  label.textContent = 'Sending...';
-  if (typeof fbq === 'function') fbq('track', 'Lead', {content_name: 'Contact Form'});
 
-  // Create project in CZR pipeline
+  label.textContent = 'Sending...';
+  if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Contact Form' });
+
+  // Create project in pipeline
   fetch('https://api.czr.studio/admin/projects', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({client_name: name, client_email: email, phone: phone, package: pkg, notes: brief})
-  }).catch(() => {}); // fire-and-forget — don't block if API is down
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ client_name: name, client_email: email, phone, package: pkg, notes: brief })
+  }).catch(() => {});
 
-  // Open WhatsApp
   const msg = encodeURIComponent(`Hi CZR Studio.\n\nName: ${name}\nEmail: ${email}\nPackage: ${pkg}\n\nBrief:\n${brief}`);
   setTimeout(() => {
     window.open(`${WA_URL}?text=${msg}`, '_blank');
     label.textContent = 'Brief Sent.';
     this.reset();
-    setTimeout(() => { label.textContent = 'Send My Brief →'; }, 3000);
-  }, 400);
+    setTimeout(() => { label.textContent = 'Send My Brief →'; }, 3500);
+  }, 500);
 });
 </script>
 </body>
