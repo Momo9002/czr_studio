@@ -3,7 +3,11 @@
     "name": "CZR Studio",
     "tagline": "Haute Couture Digital.",
     "sub_tagline": "Briefed today. Live in 48h.",
-    "locations": ["Dubai", "NYC", "Worldwide"],
+    "locations": [
+      "Dubai",
+      "NYC",
+      "Worldwide"
+    ],
     "url": "https://czr.studio",
     "whatsapp": "+18107764057",
     "instagram": "@czr.studio"
@@ -18,10 +22,15 @@
     "black": "#000000",
     "cream": "#F7F4EF",
     "white": "#FFFFFF",
+    "dark_text": "#0a0a0a",
     "red": "#C8242A",
+    "hermes": "#E8601C",
+    "navy": "#0B1A2E",
+    "electric": "#1B6CA8",
+    "gold": "#C9A84C",
     "surface": "#080808",
-    "surface2": "#0f0f0f",
-    "gold": "#C9A84C"
+    "surface_2": "#111111",
+    "surface_3": "#1a1a1a"
   },
   "typography": {
     "display": "Syne",
@@ -29,7 +38,12 @@
     "body": "Manrope",
     "body_weight": 400
   },
-  "models": ["Vogue", "Hermès", "SpaceX", "Apple"],
+  "models": [
+    "Vogue",
+    "Hermès",
+    "SpaceX",
+    "Apple"
+  ],
   "model_principles": {
     "vogue": "Editorial authority. The layout IS the message. Every page is a spread. White space is as intentional as content. Typography commands; photography surrenders to the grid.",
     "hermes": "Quiet confidence. Never explain. Let the craft justify itself. A single stitched detail says more than a manifesto. Luxury is the absence of noise.",
@@ -38,8 +52,25 @@
   },
   "voice": {
     "tone": "Vogue editor × Hermès copywriter × SpaceX mission briefing.",
-    "never": ["!", "we can", "amazing", "excited", "leverage", "synergy", "innovative", "cutting-edge", "game-changing", "bespoke", "seamless"],
-    "always": ["period endings", "short sentences", "implied not explained", "specificity over abstraction"],
+    "never": [
+      "!",
+      "we can",
+      "amazing",
+      "excited",
+      "leverage",
+      "synergy",
+      "innovative",
+      "cutting-edge",
+      "game-changing",
+      "bespoke",
+      "seamless"
+    ],
+    "always": [
+      "period endings",
+      "short sentences",
+      "implied not explained",
+      "specificity over abstraction"
+    ],
     "cta": "→ czr.studio"
   },
   "duality": {
@@ -61,9 +92,7 @@
   ],
   "guarantee": "48 hours or free. No questions.",
   "delivery_time_hours": 48,
-
   "mission": "Deliver premium, high-conversion websites to brands that refuse to settle — briefed in minutes, shipped in 48 hours, with zero compromise on craft.",
-
   "positioning": {
     "category": "Premium web design studio",
     "target": "Luxury-tier SMBs — founders, studios, creative directors, hospitality, fashion, architecture.",
@@ -75,7 +104,6 @@
       "No AI mention — technology is invisible; the craft speaks"
     ]
   },
-
   "key_phrases": [
     "Haute Couture Digital.",
     "Briefed today. Live in 48h.",
@@ -88,7 +116,6 @@
     "The brief gives us everything. Day one.",
     "Not faster because we cut corners. Faster because we removed the corners."
   ],
-
   "industries": [
     "Fashion",
     "Architecture",
@@ -97,7 +124,6 @@
     "Creative Direction",
     "Photography"
   ],
-
   "packages": {
     "sprint": {
       "name": "The Sprint",
@@ -150,7 +176,6 @@
       "best_for": "Clients who want ongoing design support after delivery."
     }
   },
-
   "faq": {
     "timeline": "We deliver in 48 hours from brief confirmation.",
     "revisions": "Sprint includes 1 revision round. Flagship includes 2. Additional revisions are €150 each.",
@@ -162,5 +187,13 @@
     "process": "1. Brief (10 min) → 2. We build (48h) → 3. You review → 4. Live.",
     "languages": "We work in English and French. The site can be in any language.",
     "ongoing": "After delivery, our Retainer (€99/mo) covers updates, new pages, and priority support."
+  },
+  "color_philosophy": "The canvas is black. The world inside is in full color. Photography is unrestricted — full saturation. Brand frame stays black/cream. Accent colors appear like a single Hermès orange box in a grey room.",
+  "photography_rules": {
+    "saturation": "Always full color — never desaturated, never grayscale unless deliberately B&W for purpose",
+    "lighting": "Single dominant light source per shot",
+    "objects": "Maximum 3 objects in frame",
+    "humans": "Never — the Knight is the avatar",
+    "style": "Editorial — each image is a spread, not a thumbnail"
   }
 }
