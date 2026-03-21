@@ -237,7 +237,8 @@
         "text": "Talk to the Agent →",
         "style": "black"
       },
-      "image": "images/hero-bg.jpg"
+      "image": "images/hero-bg.jpg",
+      "subheadline": "We forge premium digital brands. Direct. Decisive. Delivered."
     },
     "cases": [
       {
@@ -331,6 +332,70 @@
       "packages",
       "faq",
       "contact"
-    ]
+    ],
+    "work": {
+      "label": "Selected Work",
+      "headline": "The portfolio.",
+      "nudge": "Consider a similar creation for your marque."
+    },
+    "process_section": {
+      "label": "How it works",
+      "headline": "Three steps."
+    },
+    "packages_section": {
+      "label": "The offer",
+      "headline": "One price.",
+      "subheadline": "No negotiation.",
+      "features": {
+        "sprint": [
+          "3-page website",
+          "Mobile-first",
+          "Lightning fast delivery",
+          "Full IP transfer"
+        ],
+        "flagship": [
+          "Up to 8 pages",
+          "Brand consultation",
+          "CMS or e-commerce ready",
+          "2 revision rounds",
+          "Full IP transfer"
+        ],
+        "retainer": [
+          "2 updates per month",
+          "Priority response within the hour",
+          "Cancel anytime, no conditions"
+        ]
+      }
+    },
+    "faq_section": {
+      "label": "Questions",
+      "headline": "Answered."
+    },
+    "about": {
+      "label": "The studio",
+      "headline": "Craft at speed.",
+      "body": "CZR is not an agency. Not a freelancer. We are a focused atelier — three people who build every project personally, at full intensity.",
+      "stats": [
+        {
+          "value": "€999",
+          "label": "Sprint starts at"
+        },
+        {
+          "value": "48h",
+          "label": "Average delivery"
+        },
+        {
+          "value": "100%",
+          "label": "IP transferred"
+        }
+      ]
+    },
+    "cta_copy": {
+      "primary": "Talk to the Agent →",
+      "sprint": "Start the Sprint →",
+      "flagship": "Build the Flagship →",
+      "retainer": "Start the Retainer →",
+      "nudge": "Talk to the Agent →"
+    }
   }
 }

@@ -400,3 +400,30 @@ h3 { font-size: clamp(1.1rem, 1.8vw, 1.4rem); font-weight: 700; letter-spacing: 
   .process-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .section-cta-nudge { flex-direction: column; align-items: flex-start; }
 }
+
+/* ── ABOUT SECTION ───────────────────────────────────────────── */
+.about-wrap { max-width: 900px; }
+.about-body {
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  color: rgba(0,0,0,0.55); line-height: 1.85;
+  max-width: 60ch; margin-bottom: clamp(4rem, 8vw, 6rem);
+}
+.about-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; background: #E0E0E0;
+}
+.about-stat {
+  background: var(--grey);
+  padding: clamp(2rem, 4vw, 3rem);
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.about-stat-value {
+  font-family: var(--display), sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700; letter-spacing: -0.04em; line-height: 1;
+}
+.about-stat-label {
+  font-size: 0.65rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--mid); font-weight: 500;
+}
+@media (max-width: 600px) { .about-stats { grid-template-columns: 1fr; } }

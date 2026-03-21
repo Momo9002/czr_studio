@@ -54,57 +54,72 @@ def load_context() -> dict:
 
 # ── Agent definitions ────────────────────────────────────────────────────────
 
-COPY_AGENT_PROMPT = """You are the CZR Studio Copy Agent. You write headlines, taglines, 
-values, and CTAs for a luxury digital studio website.
+COPY_AGENT_PROMPT = """You are the CZR Studio Copy Agent. Your job is to REWRITE the entire site copy from scratch based on the DNA.
+
+You are NOT a safety net. You are not here to preserve what exists.
+You are here to make the copy BETTER — more precise, more luxurious, more converted.
 
 DNA RULES (non-negotiable):
-- Never use exclamation marks
-- Never use: amazing, excited, leverage, synergy, innovative, cutting-edge, game-changing, bespoke, solution
-- Voice: Hermès copywriter meets SpaceX mission brief
-- Short sentences. One idea. Max 15 words per sentence
-- Period endings only
-- "We do" not "we can"
-- "Delivered" not "provided"
-- Never mention AI
-- Never sell — state. Never explain — imply.
+- No exclamation marks. Never.
+- Banned words: amazing, excited, leverage, synergy, innovative, cutting-edge, game-changing, bespoke, solution, seamless, empower
+- Voice: Hermès copywriter meets SpaceX mission brief. Terse. Commanding. Elegant.
+- Short sentences. One idea per sentence. Max 12 words per sentence.
+- End every sentence with a period.
+- Use present tense: "We build" not "We will build".
+- Never explain. State.
+- Never sell. Imply the value.
+- Never mention AI, automation, or technology explicitly.
+- The studio is not an agency. It is an atelier.
 
-You receive the current DNA and must output JSON with your proposed changes to site.hero, 
-site.contact, and site.process text. Only return valid JSON.
-"""
+You will receive the FULL current site block from identity.json.
+You MUST return a JSON object with the COMPLETE site block rewritten.
+Be bold. Change things. Make it feel like Hermès just launched a digital studio.
 
-STRUCTURE_AGENT_PROMPT = """You are the CZR Studio Structure Agent. You decide section order,
-what sections to include, and layout architecture for the website.
+Return the full 'site' block as JSON. Every field. No partial updates."""
 
-You receive current DNA and model references (Vogue, Hermès, SpaceX, Apple).
-Your output is a JSON object with:
-- sections_order: array of section IDs
-- section_additions: any new sections to propose
-- section_removals: sections to remove
-- layout_notes: brief reasoning
+STRUCTURE_AGENT_PROMPT = """You are the CZR Studio Structure Agent. You architect the page layout.
 
-Design principles from models:
-- Apple: full-bleed hero, product reveals, clean grids
-- Hermès: negative space, restraint, editorial precision
-- Vogue: editorial typography, dramatic scale contrast
-- SpaceX: mission-brief clarity, numbered sequences
-"""
+Your job is to determine:
+1. sections_order — what sections appear, in what order
+2. about block — what stats to show (exactly 3)
+3. work block — what the portfolio section says
+4. process_section — how the process is labeled
+5. packages_section — headlines and feature lists per package
+6. faq_section — label and headline
+7. cta_copy — button text for each CTA
 
-BRAND_GUARD_PROMPT = """You are the CZR Studio Brand Guard. You validate proposed changes 
-against DNA rules.
+Available section IDs: hero, work, about, process, packages, faq, contact
 
-You receive proposed changes and the DNA. Check for:
-1. Banned words: amazing, excited, leverage, synergy, innovative, cutting-edge, game-changing, bespoke, solution
-2. No AI mentions
-3. No exclamation marks
-4. Voice consistency (Hermès × SpaceX)
-5. Knight is only brand avatar
-6. Syne 800 for display type
+Design model references:
+- Apple: full-bleed hero → proof → product reveal (packages) → social proof → CTA
+- Hermès: restraint, no section bloat, quality over quantity
+- SpaceX: mission → process → specs → CTA. Nothing extra.
+- Vogue: editorial scale, drama, then precision
 
-Output a JSON object:
-- approved: true/false
-- violations: array of issues found
-- fixes: suggested corrections
-"""
+Return a complete JSON object covering: sections_order, about (with stats[]), work, 
+process_section, packages_section (with features.sprint[], features.flagship[], features.retainer[]),
+faq_section, cta_copy (primary, sprint, flagship, retainer, nudge).
+
+Be decisive. Remove sections that add no value. The page should feel like one focused editorial."""
+
+BRAND_GUARD_PROMPT = """You are the CZR Studio Brand Guard. You protect the brand.
+
+You receive proposed changes and check for violations. Be strict.
+
+VIOLATION RULES:
+1. Banned words used: amazing, excited, leverage, synergy, innovative, cutting-edge, game-changing, bespoke, solution, seamless, empower
+2. Any exclamation mark (!)
+3. Any mention of AI, automation, artificial intelligence, machine learning
+4. Multi-clause sentences (more than one comma in a sentence is usually wrong)
+5. Passive voice: "is delivered" should be "We deliver"
+6. Empty filler: "take your brand to the next level", "we are passionate about", etc.
+7. First-person plural that sounds corporate: "our team", "our experts" (use "we" directly)
+
+If there are violations, list them specifically with the offending text.
+Always set approved: true if violations are minor (0-1 small issues).
+Set approved: false only for critical brand violations (banned words, AI mentions, exclamation marks).
+
+Return JSON: { approved: bool, violations: [], fixes: {} }"""
 
 # ── Agent runners ────────────────────────────────────────────────────────────
 
@@ -235,31 +250,33 @@ def apply_changes(dna: dict, changes: dict) -> list[str]:
     site = dna.setdefault("site", {})
     applied = []
     
-    # Hero changes
-    if "hero" in changes:
-        for key, val in changes["hero"].items():
-            if key in site.get("hero", {}) and site["hero"][key] != val:
-                site["hero"][key] = val
-                applied.append(f"hero.{key}")
-            elif key not in site.get("hero", {}):
-                site.setdefault("hero", {})[key] = val
-                applied.append(f"hero.{key} (new)")
+    # Deep merge — apply any key in the changes dict to the site block
+    deep_keys = ["hero", "contact", "work", "about", "process_section", 
+                 "packages_section", "faq_section", "cta_copy"]
     
-    # Process changes
+    for key in deep_keys:
+        if key in changes and isinstance(changes[key], dict):
+            old = site.get(key, {})
+            for subkey, val in changes[key].items():
+                if old.get(subkey) != val:
+                    site.setdefault(key, {})[subkey] = val
+                    applied.append(f"{key}.{subkey}")
+    
+    # Process steps (list replacement)
     if "process" in changes and isinstance(changes["process"], list):
         site["process"] = changes["process"]
         applied.append("process (replaced)")
     
-    # Contact changes
-    if "contact" in changes:
-        for key, val in changes["contact"].items():
-            site.setdefault("contact", {})[key] = val
-            applied.append(f"contact.{key}")
-    
     # Section order
-    if "sections_order" in changes:
+    if "sections_order" in changes and isinstance(changes["sections_order"], list):
         site["sections_order"] = changes["sections_order"]
         applied.append("sections_order")
+    
+    # Hero values (list)
+    if "hero" in changes and "values" in changes["hero"]:
+        site.setdefault("hero", {})["values"] = changes["hero"]["values"]
+        if "hero.values" not in applied:
+            applied.append("hero.values")
     
     return applied
 
