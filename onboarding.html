@@ -235,7 +235,7 @@
   <div class="step" id="step-3">
     <div class="step-eyebrow">Step 03</div>
     <h1 class="step-title">Choose Your<br>Package.</h1>
-    <p class="step-sub">All packages include agent onboarding, hosting setup, and our 48h guarantee.</p>
+    <p class="step-sub">All packages include concierge briefing, hosting setup, and our 48h guarantee.</p>
 
     <div class="pkg-grid">
       <div class="pkg-card" data-pkg="Sprint" data-price="999" onclick="selectPkg(this)">
@@ -339,7 +339,7 @@
     <div class="success">
       <div class="success-icon">◈</div>
       <h2>You're In.</h2>
-      <p>Your project has been created. Our agent will reach out on WhatsApp within 2 hours to start your onboarding conversation.</p>
+      <p>Your project has been created. Your concierge will reach out within 2 hours to start.</p>
       <div style="margin-top:32px;">
         <a href="/" class="btn btn-primary" style="text-decoration:none;display:inline-block;">Back to CZR Studio</a>
       </div>
@@ -437,7 +437,7 @@ async function submitProject() {
 
   try {
     // Create project via API
-    const res = await fetch('/admin/projects', {
+    const res = await fetch('https://api.czr.studio/admin/projects', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -455,7 +455,7 @@ async function submitProject() {
 
       // Try to create Stripe checkout
       try {
-        const checkoutRes = await fetch('/api/checkout', {
+        const checkoutRes = await fetch('https://api.czr.studio/api/checkout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ client_token: token, package: selectedPkg }),

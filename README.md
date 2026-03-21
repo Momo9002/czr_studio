@@ -1,57 +1,65 @@
-# Aura Web Studio
+# CZR Studio
 
-Premium web agency — AI-assisted, delivered in 48h.  
-**Site:** [auraweb.studio](https://auraweb.studio) · **WhatsApp:** +971551343144
+Premium web studio — *Haute Couture Digital.*
+
+**Site:** [czr.studio](https://czr.studio) · **WhatsApp:** +18107764057
 
 ---
 
-## Structure
+## Project Structure
 
 ```
-aura_web/
-├── index.html          ← Main site
-├── style.css           ← Design system v2 (Syne + Manrope, indigo palette)
-├── script.js           ← Empty (JS inline in index.html)
-├── cases/              ← 6 case study pages
-├── images/             ← 33 portfolio images
-└── .agent/
-    ├── context.md      ← Full context for Antigravity sessions
-    └── workflows/
-        ├── dev.md      ← /dev: start local server
-        ├── deploy.md   ← /deploy: push to production
-        └── new-case.md ← /new-case: add portfolio case study
+czr_studio/
+├── index.html              # Main site
+├── onboarding.html         # Client onboarding form
+├── client.html             # Client portal (status, messages, revisions)
+├── concierge.html          # AI concierge chat
+├── dashboard.html          # Internal command center
+├── api/                    # FastAPI server
+│   ├── main.py             # Routes + startup
+│   ├── projects.py         # Project DB layer
+│   ├── leads.py            # Lead pipeline DB
+│   ├── stripe_webhook.py   # Payment handling
+│   ├── whatsapp.py         # Inbound WhatsApp
+│   ├── whatsapp_send.py    # Outbound WhatsApp
+│   ├── email_notify.py     # Email notifications
+│   └── .env.example        # Environment variables template
+├── agents/                 # AI agent system
+│   ├── lifecycle.py        # CZR Concierge — core engine
+│   ├── knowledge.py        # Brand knowledge base
+│   ├── phases/             # Phase-specific agents
+│   └── tools/              # Agent function tools
+├── dna/                    # Brand DNA (identity, voice, visual)
+├── cases/                  # Portfolio case studies
+└── brand/                  # Brand assets + guidelines
 ```
 
 ## Quick Start
 
 ```bash
-python3 -m http.server 8765
-# → open http://localhost:8765
+# 1. Copy and fill in your API keys
+cp api/.env.example api/.env
+
+# 2. Start everything (API + Cloudflare Tunnel)
+./start_czr.sh
 ```
 
-## Business Model
+## Client Pipeline
 
-| Tier | Price | Delivery |
-|---|---|---|
-| Sprint | $999 | 48h · 3 pages |
-| Flagship | $2,499 | 48h · 8 pages + CMS |
-| Retainer | $99/mo | Ongoing |
+1. **Lead arrives** (WhatsApp / onboarding form)
+2. **Concierge qualifies** (AI sales agent, powered by DNA)
+3. **Payment** (Stripe checkout → auto-advances phase)
+4. **Briefing** (concierge confirms scope + collects assets)
+5. **Production** (status updates, revision capture)
+6. **Delivery** (site review, approval, testimonial)
 
-**Founding client offer:** €1,200 for full 5-page site (first 3 clients only)
+## Key URLs
 
-## Status
-
-- [x] Site built (v2 design — indigo, Syne+Manrope)
-- [x] 6 portfolio case studies
-- [x] WhatsApp lead flow
-- [ ] First real client ← **working on this**
-- [ ] Production hosting
-- [ ] Telnyx business number
-
-## Antigravity Sessions
-
-| Topic | Conv. ID |
+| URL | Purpose |
 |---|---|
-| Aura planning | `b0689e47-fa85-45a8-9419-612a83984620` |
-| Marketing plan | `06a4fbc9-85b0-49f1-8fe0-dfe34f51df3b` |
-| Cold outreach + redesign | `95a6d848-97f9-4729-87d6-cda8b2b05eeb` |
+| `czr.studio` | Main website (Vercel) |
+| `api.czr.studio` | API server (Cloudflare Tunnel) |
+| `czr.studio/onboarding` | Client onboarding form |
+| `czr.studio/client?token=xxx` | Client portal |
+| `czr.studio/concierge?token=xxx` | AI concierge chat |
+| `czr.studio/dashboard` | Internal command center |

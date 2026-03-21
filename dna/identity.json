@@ -5,7 +5,7 @@
     "sub_tagline": "Briefed today. Live in 48h.",
     "locations": ["Dubai", "NYC", "Worldwide"],
     "url": "https://czr.studio",
-    "whatsapp": "+971551343144",
+    "whatsapp": "+18107764057",
     "instagram": "@czr.studio"
   },
   "avatar": {
@@ -29,16 +29,23 @@
     "body": "Manrope",
     "body_weight": 400
   },
+  "models": ["Vogue", "Hermès", "SpaceX", "Apple"],
+  "model_principles": {
+    "vogue": "Editorial authority. The layout IS the message. Every page is a spread. White space is as intentional as content. Typography commands; photography surrenders to the grid.",
+    "hermes": "Quiet confidence. Never explain. Let the craft justify itself. A single stitched detail says more than a manifesto. Luxury is the absence of noise.",
+    "spacex": "Mission-critical precision. Zero ornament. If it doesn't serve the mission, it doesn't exist. Data over adjectives. Countdown mentality — there is a deadline and it will be met.",
+    "apple": "Product reveals, not descriptions. Show the thing. Let it breathe. Obsessive polish on every pixel. The interface disappears — the experience remains. Simplicity is the final form of complexity."
+  },
   "voice": {
-    "tone": "Hermès copywriter. Never sell — state.",
-    "never": ["!", "we can", "amazing", "excited", "leverage", "synergy"],
-    "always": ["period endings", "short sentences", "implied not explained"],
+    "tone": "Vogue editor × Hermès copywriter × SpaceX mission briefing.",
+    "never": ["!", "we can", "amazing", "excited", "leverage", "synergy", "innovative", "cutting-edge", "game-changing", "bespoke", "seamless"],
+    "always": ["period endings", "short sentences", "implied not explained", "specificity over abstraction"],
     "cta": "→ czr.studio"
   },
   "duality": {
-    "dark_mode": "Craft, studio, Knight — #000000 background",
-    "light_mode": "Delivered work, results, joy — #F7F4EF background",
-    "rule": "Never more than 2 of the same mode in a row"
+    "dark_mode": "Craft, studio, Knight, tension — #000000 background",
+    "light_mode": "Delivered work, client joy, resolution — #F7F4EF background",
+    "rule": "Never more than 2 of the same mode in a row. Dark is the question. Light is the answer."
   },
   "hashtags": [
     "#CZRStudio",
@@ -52,7 +59,108 @@
     "#NYC",
     "#TheKnight"
   ],
-  "models": ["Hermès", "Apple", "SpaceX"],
   "guarantee": "48 hours or free. No questions.",
-  "delivery_time_hours": 48
+  "delivery_time_hours": 48,
+
+  "mission": "Deliver premium, high-conversion websites to brands that refuse to settle — briefed in minutes, shipped in 48 hours, with zero compromise on craft.",
+
+  "positioning": {
+    "category": "Premium web design studio",
+    "target": "Luxury-tier SMBs — founders, studios, creative directors, hospitality, fashion, architecture.",
+    "markets": "Dubai · NYC · Worldwide",
+    "moat": [
+      "Concierge briefing — 10-minute brief replaces weeks of back-and-forth",
+      "48h delivery — focused sprint model, no approval chains",
+      "100% guarantee — not satisfied → pay nothing, no questions",
+      "No AI mention — technology is invisible; the craft speaks"
+    ]
+  },
+
+  "key_phrases": [
+    "Haute Couture Digital.",
+    "Briefed today. Live in 48h.",
+    "We removed the kickoff call. The discovery phase. The approval chain. What remained was the work.",
+    "Three questions. One brief. Your site in 48 hours.",
+    "No template. No committee. No revision round.",
+    "Six case studies. Six different worlds. One studio.",
+    "We don't build websites. We build destinations.",
+    "If you can't feel it in three seconds, we start over.",
+    "The brief gives us everything. Day one.",
+    "Not faster because we cut corners. Faster because we removed the corners."
+  ],
+
+  "industries": [
+    "Fashion",
+    "Architecture",
+    "Fine Dining",
+    "Fragrance / Product Launch",
+    "Creative Direction",
+    "Photography"
+  ],
+
+  "packages": {
+    "sprint": {
+      "name": "The Sprint",
+      "price": 999,
+      "currency": "EUR",
+      "tagline": "Your brand, online in 48 hours.",
+      "includes": [
+        "Up to 3 pages (Home, About, Contact)",
+        "Responsive design (mobile + desktop)",
+        "48-hour delivery guarantee",
+        "1 round of revisions",
+        "Hosting setup included",
+        "Full IP transfer — you own everything",
+        "100% money-back guarantee"
+      ],
+      "best_for": "Solo creatives, freelancers, personal brands who need a sleek online presence fast."
+    },
+    "flagship": {
+      "name": "The Flagship",
+      "price": 2499,
+      "currency": "EUR",
+      "tagline": "A bespoke digital flagship store.",
+      "includes": [
+        "Up to 8 pages with custom layout per page",
+        "CMS integration (edit your own content)",
+        "E-commerce ready (product catalogue, cart, checkout)",
+        "Brand identity consultation",
+        "48-hour delivery guarantee",
+        "2 rounds of revisions",
+        "Priority support for 30 days",
+        "Hosting setup + CDN optimization",
+        "Full IP transfer — you own everything",
+        "100% money-back guarantee"
+      ],
+      "best_for": "Studios, agencies, luxury brands who need a premium e-commerce or portfolio site."
+    },
+    "retainer": {
+      "name": "The Retainer",
+      "price": 99,
+      "currency": "EUR",
+      "period": "month",
+      "tagline": "Your site, always fresh.",
+      "includes": [
+        "Monthly design updates",
+        "New pages on request",
+        "Content refresh",
+        "Priority support",
+        "Performance monitoring"
+      ],
+      "best_for": "Clients who want ongoing design support after delivery."
+    }
+  },
+
+  "faq": {
+    "timeline": "We deliver in 48 hours from brief confirmation.",
+    "revisions": "Sprint includes 1 revision round. Flagship includes 2. Additional revisions are €150 each.",
+    "tech_stack": "We build with modern HTML/CSS/JS. Flagship sites get a CMS. You don't worry about the tech — we handle everything.",
+    "ip_transfer": "You own everything. Full intellectual property transfer on delivery. Source files, assets, the lot.",
+    "hosting": "Hosting setup is included. We deploy to premium infrastructure — fast, secure, global CDN.",
+    "money_back": "100% money-back guarantee. If you're not satisfied, you don't pay. No questions.",
+    "payment": "Stripe-secured payment. 50% upfront to start, 50% on delivery.",
+    "process": "1. Brief (10 min) → 2. We build (48h) → 3. You review → 4. Live.",
+    "languages": "We work in English and French. The site can be in any language.",
+    "ongoing": "After delivery, our Retainer (€99/mo) covers updates, new pages, and priority support."
+  }
 }

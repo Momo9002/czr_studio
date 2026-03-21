@@ -1,0 +1,57 @@
+# CZR Studio — Company DNA
+
+> Haute Couture Digital. Briefed today. Live in 48h.
+
+## Identity
+- **Name:** CZR Studio
+- **Port:** 8901
+- **URL:** https://czr.studio
+- **WhatsApp:** +18107764057
+- **Instagram:** @czr.studio
+
+## Mission (WHY)
+Deliver premium, high-conversion websites to brands that refuse to settle — briefed in minutes, shipped in 48 hours, with zero compromise on craft.
+
+## Strategy (HOW)
+- Agent onboarding: 10-minute WhatsApp brief replaces weeks of back-and-forth
+- 48h delivery: Focused sprint model, no approval chains
+- 100% guarantee: Not satisfied → pay nothing
+- Technology is invisible — the craft speaks for itself
+
+## Aesthetic
+- **Avatar:** The Knight ♞ — matte black chess Knight with single red accent line
+- **Colors:** Black (#000000), Cream (#F7F4EF), Red (#C8242A), Surface (#080808), Gold (#C9A84C)
+- **Typography:** Syne 800 (display), Manrope 400 (body)
+- **Duality:** Dark mode = craft/studio, Light mode = delivered work/results
+- **Rule:** Max 2 consecutive sections of same mode
+
+## Voice & Tone
+**Hermès copywriter × SpaceX mission brief.**
+- Never sell — state
+- Period endings. No exclamation marks. Ever.
+- Short sentences. One idea per sentence. Max 15 words.
+- Never explain — imply
+- "We do" not "we can"
+- No emojis in copy
+- **Banned:** amazing, excited, leverage, synergy, innovative, cutting-edge, game-changing, bespoke, solution
+
+## Target Market
+Luxury-tier SMBs — founders, studios, creative directors, hospitality, fashion, architecture.
+Markets: Dubai · NYC · Worldwide.
+
+## Packages
+| Package | Price | Includes |
+|---|---|---|
+| The Sprint | €999 | 3 pages, responsive, 48h delivery, 1 revision, hosting, IP transfer, money-back |
+| The Flagship | €2,499 | 8 pages, CMS, e-commerce, brand consultation, 48h, 2 revisions, 30-day priority |
+| The Retainer | €99/mo | Monthly updates, new pages, content refresh, priority support |
+
+## Key Differentiators
+- Agent onboarding (10 min WhatsApp → done)
+- 48h or free
+- Full IP transfer
+- No AI mention — technology is invisible
+
+---
+
+*This DNA is sovereign. It defines who CZR Studio is. All outputs must align with it.*

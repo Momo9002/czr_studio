@@ -2,7 +2,7 @@
 // Extracted from inline script. All functionality preserved.
 
 // ── WhatsApp number ───────────────────────────────────────────
-const WA = '971551343144';
+const WA = '18107764057';
 const WA_URL = `https://wa.me/${WA}`;
 document.getElementById('wa-fab').href = WA_URL;
 document.getElementById('footer-wa').href = WA_URL;

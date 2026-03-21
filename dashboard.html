@@ -176,19 +176,7 @@
     @media(max-width:1100px){.sr{grid-template-columns:repeat(2,1fr)}.g31{grid-template-columns:1fr}}
     @media(max-width:768px){.sb{display:none}.main{margin-left:0}.sr{grid-template-columns:repeat(2,1fr)}.pg{grid-template-columns:repeat(2,1fr)}}
   </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,"script","https://connect.facebook.net/en_US/fbevents.js");
-fbq("init", "2928293767375852");
-fbq("track", "PageView");
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -205,7 +193,7 @@ src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></
     <div class="nl">Studio</div>
     <a class="ni" href="#notes">✏️ Notes</a>
     <a class="ni" href="index.html" target="_blank">🌐 Live Site</a>
-    <a class="ni" href="https://wa.me/971551343144" target="_blank">💬 WhatsApp</a>
+    <a class="ni" href="https://wa.me/18107764057" target="_blank">💬 WhatsApp</a>
     <a class="ni" href="https://instagram.com/czr.studio" target="_blank">📸 Instagram</a>
     <a class="ni" href="https://www.linkedin.com" target="_blank">💼 LinkedIn</a>
   </nav>
@@ -237,7 +225,7 @@ src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></
         <div class="ob-title">Founding Offer — €1,200 · 5 pages · 48h delivery</div>
         <div class="ob-sub">Limited to 3 clients. Goal: sign the first one today.</div>
       </div>
-      <a class="ob-cta" href="https://wa.me/971551343144" target="_blank">Open WhatsApp →</a>
+      <a class="ob-cta" href="https://wa.me/18107764057" target="_blank">Open WhatsApp →</a>
     </div>
 
     <!-- STATS -->
@@ -353,7 +341,7 @@ src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></
           <div class="ch"><div class="ct">⚡ Quick Links</div></div>
           <div class="cb">
             <div class="ql">
-              <a class="ql-a" href="https://wa.me/971551343144" target="_blank">💬 WhatsApp Lead Channel<span class="arr">↗</span></a>
+              <a class="ql-a" href="https://wa.me/18107764057" target="_blank">💬 WhatsApp Lead Channel<span class="arr">↗</span></a>
               <a class="ql-a" href="https://instagram.com/czr.studio" target="_blank">📸 @czr.studio Instagram<span class="arr">↗</span></a>
               <a class="ql-a" href="index.html" target="_blank">🌐 CZR Studio Live Site<span class="arr">↗</span></a>
               <a class="ql-a" href="cases/fashion-house/" target="_blank">👗 ELARA Case Study<span class="arr">↗</span></a>
@@ -430,18 +418,21 @@ src="https://www.facebook.com/tr?id=2928293767375852&ev=PageView&noscript=1"/></
 </div>
 
 <script>
-// DATE
+// ── CONFIG ──────────────────────────────────────────────────────────────
+const API_BASE = 'https://api.czr.studio';
+
+// ── DATE ────────────────────────────────────────────────────────────────
 function upDate(){
   const n=new Date(),D=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   document.getElementById('dt').textContent=`${D[n.getDay()]} ${n.getDate()} ${M[n.getMonth()]} ${n.getFullYear()} — ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
 }
 upDate();setInterval(upDate,30000);
 
-// STORAGE
+// ── LOCAL STORAGE (campaign-local data) ─────────────────────────────────
 const S=(k,v)=>localStorage.setItem('czr_'+k,JSON.stringify(v));
 const L=(k,d)=>{const v=localStorage.getItem('czr_'+k);return v?JSON.parse(v):d};
 
-// SPOTS
+// ── SPOTS (local) ───────────────────────────────────────────────────────
 let spots=L('spots',3);
 const SPOT_NAMES=['Spot 1','Spot 2','Spot 3'];
 function renderSpots(){
@@ -454,7 +445,7 @@ function renderSpots(){
     const open=i<spots;
     const d=document.createElement('div');
     d.className='spot-r';
-    d.innerHTML=`<div class="spot-dot" style="background:${open?'var(--grn)':'var(--red)'}"></div><span class="spot-lbl">${SPOT_NAMES[i]}</span><span class="spot-s" style="color:${open?'var(--grn)':'var(--red)'}">${open?'Open':'Filled ✓'}</span>`;
+    d.innerHTML='<div class="spot-dot" style="background:'+(open?'var(--grn)':'var(--red)')+'"></div><span class="spot-lbl">'+SPOT_NAMES[i]+'</span><span class="spot-s" style="color:'+(open?'var(--grn)':'var(--red)')+'">'+( open?'Open':'Filled ✓')+'</span>';
     el.appendChild(d);
   });
   S('spots',spots);
@@ -462,13 +453,13 @@ function renderSpots(){
 function adjSpot(d){spots=Math.max(0,Math.min(3,spots+d));renderSpots();}
 renderSpots();
 
-// SCHEDULE
+// ── SCHEDULE (local) ────────────────────────────────────────────────────
 let chk=L('chk',{});
 const TOTAL=9;
 function updPr(){
   const done=Object.values(chk).filter(Boolean).length;
   document.getElementById('s-posts').textContent=done;
-  document.getElementById('pr-txt').textContent=`${done} / ${TOTAL} posts`;
+  document.getElementById('pr-txt').textContent=done+' / '+TOTAL+' posts';
   document.getElementById('pr-f').style.width=(done/TOTAL*100)+'%';
   S('chk',chk);
 }
@@ -478,47 +469,118 @@ function tog(row){
   else{ck.classList.add('done');ck.textContent='✓';chk[key]=true;}
   updPr();
 }
-document.querySelectorAll('.si').forEach(r=>{
+document.querySelectorAll('.si').forEach(function(r){
   const k=r.querySelector('.stit').textContent,ck=r.querySelector('.ck');
   if(chk[k]){ck.classList.add('done');ck.textContent='✓';}
 });
 updPr();
 
-// LEADS
-let leads=L('leads',[]);
-const SM={hot:{l:'🔥 Hot',c:'s-hot'},warm:{l:'🌡 Warm',c:'s-warm'},new:{l:'New',c:'s-new'},closed:{l:'✓ Closed',c:'s-closed'}};
+// ── LEADS (API-backed) ─────────────────────────────────────────────────
+let leads=[];
+const STAGE_MAP = {
+  prospect: {l:'New', c:'s-new'},
+  qualified: {l:'🌡 Warm', c:'s-warm'},
+  proposal: {l:'🔥 Hot', c:'s-hot'},
+  paid: {l:'✓ Closed', c:'s-closed'},
+  lost: {l:'Lost', c:'s-new'},
+  'new': {l:'New', c:'s-new'},
+  warm: {l:'🌡 Warm', c:'s-warm'},
+  hot: {l:'🔥 Hot', c:'s-hot'},
+  closed: {l:'✓ Closed', c:'s-closed'},
+};
+const STAGE_CYCLE = ['prospect','qualified','proposal','paid'];
+
+async function fetchLeads(){
+  try {
+    const resp = await fetch(API_BASE+'/admin/leads');
+    if (!resp.ok) throw new Error('API error');
+    const data = await resp.json();
+    leads = data.leads || [];
+    renderLeads();
+  } catch(e) {
+    console.warn('Could not fetch leads from API, using localStorage fallback:', e);
+    leads = L('leads',[]);
+    renderLeads();
+  }
+}
+
 function renderLeads(){
   const ll=document.getElementById('ll'),nl=document.getElementById('no-l');
   document.getElementById('s-leads').textContent=leads.length;
   document.getElementById('lb').textContent=leads.length+' lead'+(leads.length!==1?'s':'');
-  ll.querySelectorAll('.li2').forEach(e=>e.remove());
+  ll.querySelectorAll('.li2').forEach(function(e){e.remove()});
   nl.style.display=leads.length?'none':'block';
   const cols=['#C8242A','#1A4BA8','#F0C029','#22c55e'];
-  leads.forEach((l,i)=>{
-    const s=SM[l.status]||SM.new,ini=l.name.replace('@','').slice(0,2).toUpperCase(),c=cols[i%4];
-    const d=document.createElement('div');d.className='li2';
-    d.innerHTML=`<div class="av" style="background:${c}22;color:${c}">${ini}</div><div style="flex:1"><div class="ln">${l.name}</div><div class="lsrc">${l.src}${l.note?' · '+l.note:''}</div></div><span class="ls ${s.c}" onclick="cycL(${i})">${s.l}</span>`;
+  leads.forEach(function(l,i){
+    const stage = l.stage || l.status || 'prospect';
+    const s = STAGE_MAP[stage] || STAGE_MAP.prospect;
+    const name = l.name || 'Unknown';
+    const ini = name.replace('@','').slice(0,2).toUpperCase();
+    const c = cols[i%4];
+    const src = l.source || l.src || '';
+    const note = l.brief || l.note || '';
+    const d = document.createElement('div');
+    d.className='li2';
+    d.innerHTML='<div class="av" style="background:'+c+'22;color:'+c+'">'+ini+'</div><div style="flex:1"><div class="ln">'+name+'</div><div class="lsrc">'+src+(note?' · '+note.slice(0,60):'')+'</div></div><span class="ls '+s.c+'" onclick="cycL('+i+')">'+s.l+'</span>';
     ll.appendChild(d);
   });
-  S('leads',leads);
 }
-function cycL(i){const o=['new','warm','hot','closed'];leads[i].status=o[(o.indexOf(leads[i].status)+1)%4];renderLeads();}
+
+async function cycL(i){
+  const lead = leads[i];
+  const currentStage = lead.stage || 'prospect';
+  const currentIdx = STAGE_CYCLE.indexOf(currentStage);
+  const nextStage = STAGE_CYCLE[(currentIdx + 1) % STAGE_CYCLE.length];
+  try {
+    await fetch(API_BASE+'/admin/leads/'+lead.id+'/stage', {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({stage: nextStage}),
+    });
+    leads[i].stage = nextStage;
+    renderLeads();
+  } catch(e) {
+    console.error('Failed to update lead stage:', e);
+  }
+}
+
 function openM(){document.getElementById('mo').classList.add('open');document.getElementById('m-name').focus();}
 function closeM(){document.getElementById('mo').classList.remove('open');}
-function saveL(){
-  const n=document.getElementById('m-name').value.trim();if(!n)return;
-  leads.push({name:n,src:document.getElementById('m-src').value,status:document.getElementById('m-st').value,note:document.getElementById('m-note').value.trim()});
-  renderLeads();closeM();
-  document.getElementById('m-name').value='';document.getElementById('m-note').value='';
-}
-document.getElementById('mo').addEventListener('click',e=>{if(e.target===document.getElementById('mo'))closeM();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
-renderLeads();
 
-// NOTES
+async function saveL(){
+  const n=document.getElementById('m-name').value.trim();
+  if(!n) return;
+  const body = {
+    name: n,
+    source: document.getElementById('m-src').value,
+    stage: document.getElementById('m-st').value,
+    note: document.getElementById('m-note').value.trim(),
+  };
+  try {
+    await fetch(API_BASE+'/admin/leads', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body),
+    });
+    closeM();
+    document.getElementById('m-name').value='';
+    document.getElementById('m-note').value='';
+    await fetchLeads();
+  } catch(e) {
+    console.error('Failed to save lead:', e);
+  }
+}
+
+document.getElementById('mo').addEventListener('click',function(e){if(e.target===document.getElementById('mo'))closeM();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM();});
+
+// Load leads on page load
+fetchLeads();
+
+// ── NOTES (local) ───────────────────────────────────────────────────────
 const na=document.getElementById('na');
 na.value=L('notes','');
-na.addEventListener('input',()=>S('notes',na.value));
+na.addEventListener('input',function(){S('notes',na.value)});
 </script>
 </body>
 </html>
