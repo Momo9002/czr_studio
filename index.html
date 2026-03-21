@@ -82,28 +82,34 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="hero dark" id="hero">
+  <!-- Video background -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="https://cdn.coverr.co/videos/coverr-dark-marble-3D-abstract/mp4" type="video/mp4">
+    <source src="https://videos.pexels.com/video-files/3130284/3130284-hd_1920_1080_30fps.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-wrap">
     <div class="hero-left">
-      <div class="hero-pre">
+      <div class="hero-pre anim-1">
         <div class="hero-pre-line"></div>
         <span>Web Studio — Dubai · NYC · Worldwide</span>
       </div>
       <h1 class="hero-title">
-        Brief.<br>
-        Build.<br>
-        <em>Ship.</em>
+        <span class="hero-word anim-2">Brief.</span><br>
+        <span class="hero-word anim-3">Build.</span><br>
+        <em class="hero-word anim-4">Ship.</em>
       </h1>
-      <p class="hero-sub">
+      <p class="hero-sub anim-5">
         Crafted with Savile Row precision.<br>
         Briefed in minutes. Delivered in <strong>48 hours</strong>.<br>
         Or you pay nothing.
       </p>
-      <div class="hero-actions">
+      <div class="hero-actions anim-6">
         <a href="#contact" class="btn btn-primary">Start a Project</a>
         <a href="#work" class="btn btn-ghost">View Work</a>
       </div>
-      <div class="hero-stats">
+      <div class="hero-stats anim-7">
         <div class="hero-stat">
           <div class="hero-stat-num">48h</div>
           <div class="hero-stat-label">Delivery</div>
@@ -120,7 +126,7 @@
     </div>
     <div class="hero-right">
       <div class="hero-knight-bar"></div>
-      <div class="hero-knight-sym">♞</div>
+      <div class="hero-knight-sym anim-knight">♞</div>
       <div class="hero-knight-tag">The Knight</div>
     </div>
   </div>
@@ -565,9 +571,13 @@ function hideSplash() {
   if (done) return; done = true;
   sessionStorage.setItem('czr_splash','1');
   splash.style.opacity = '0';
+  document.body.classList.add('ready');
   setTimeout(() => { splash.style.display = 'none'; }, 750);
 }
-if (sessionStorage.getItem('czr_splash')) { splash.style.display = 'none'; done = true; }
+if (sessionStorage.getItem('czr_splash')) {
+  splash.style.display = 'none'; done = true;
+  document.body.classList.add('ready');
+}
 else {
   bar.style.transition = `width ${DUR}ms linear`;
   requestAnimationFrame(() => { bar.style.width = '100%'; });
