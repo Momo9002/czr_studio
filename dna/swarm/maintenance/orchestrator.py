@@ -14,8 +14,7 @@ Pipeline:
 """
 from google.adk.agents import LlmAgent, LoopAgent, SequentialAgent
 
-from dna.swarm.maintenance.tools import (
-    read_live_html, read_dna_section, read_dna_files,
+    read_live_html, read_dna_section, read_dna_files, read_agency_protocols,
     diff_dna_vs_html, audit_seo,
     trigger_builder_swarm, run_deploy,
 )
@@ -50,19 +49,21 @@ def _make_seo_agent() -> LlmAgent:
     return LlmAgent(
         name="SEOAgent",
         model="gemini-2.5-flash",
-        instruction="""You are a world-class SEO auditor.
+        instruction="""You are the Lead SEO Strategist of a top-tier digital agency.
 Audit the live website for SEO quality. All evaluation is based on the DNA.
 
-STEP 1 — audit_seo("index.html") → full SEO report
-STEP 2 — read_dna_section("brand") → verify brand info consistency
-STEP 3 — Evaluate:
+STEP 1 — Learn the Agency SOPs:
+  read_agency_protocols() → learn the technical SEO and development standards
+STEP 2 — audit_seo("index.html") → full SEO report
+STEP 3 — read_dna_section("brand") → verify brand info consistency
+STEP 4 — Evaluate:
   Score >= 8: pass
   Score 6–7: minor issues, flag for patch
   Score < 6: major issues, trigger rebuild
 
 Write state["seo_result"]. Set state["quality_score"] = seo_score / 10.
 """,
-        tools=[audit_seo, read_dna_section],
+        tools=[read_agency_protocols, audit_seo, read_dna_section],
         output_key="seo_result",
         before_agent_callback=dna_inject_callback,
         after_agent_callback=make_quality_scorer("seo"),

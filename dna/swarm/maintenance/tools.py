@@ -47,6 +47,23 @@ def read_dna_files() -> str:
     return "\n\n---\n\n".join(parts) or "No files."
 
 
+def read_agency_protocols() -> str:
+    """Read digital agency Standard Operating Procedures (SOPs) and UX Laws.
+    
+    Use this to understand HOW to execute your job as a world-class digital agency.
+    """
+    try:
+        parts = []
+        protocols_dir = _DNA_DIR / "swarm" / "protocols"
+        for fname in ("agency_sop.md", "ux_laws.md"):
+            p = protocols_dir / fname
+            if p.exists():
+                parts.append(f"# {fname}\n\n{p.read_text()}")
+        return "\n\n---\n\n".join(parts) or "No agency protocols found."
+    except Exception as e:
+        return f"Error reading protocols: {e}"
+
+
 def diff_dna_vs_html() -> str:
     """Compare DNA content (site copy) against what's actually in index.html.
 

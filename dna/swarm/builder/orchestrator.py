@@ -24,7 +24,7 @@ from dna.swarm.builder.tools import (
     write_index_html, write_style_css, write_case_html, append_css,
     read_output_file, audit_html_structure, audit_css_tokens,
     read_page_collections, read_page_item, write_page, list_generated_pages,
-    fetch_reference_sites,
+    fetch_reference_sites, read_agency_protocols,
 )
 from dna.swarm.builder.callbacks import dna_inject_callback, make_quality_scorer
 
@@ -33,10 +33,11 @@ def _make_structure_agent() -> LlmAgent:
     return LlmAgent(
         name="StructureAgent",
         model="gemini-2.5-flash",
-        instruction="""You are a world-class website architect.
+        instruction="""You are the Strategy & UX Director of a world-class digital agency.
 You know nothing about this brand. You learn everything from the DNA.
 
-STEP 1 — Study the DNA deeply:
+STEP 1 — Study the Agency SOPs and DNA deeply:
+  read_agency_protocols() → learn the 6-phase agency workflow and UX laws
   read_full_dna() → the complete identity.json
   read_dna_files() → vision.md, models.md, visual.md, voice.md
 
@@ -69,7 +70,7 @@ STEP 3 — After reading the DNA, respond with your architecture decision as JSO
 All values come from the DNA. You invent nothing.
 Your quality_score will be automatically tracked.
 """,
-        tools=[read_full_dna, read_dna_files, read_dna_section],
+        tools=[read_agency_protocols, read_full_dna, read_dna_files, read_dna_section],
         output_key="structure",
         before_agent_callback=dna_inject_callback,
         after_agent_callback=make_quality_scorer("structure"),
@@ -80,10 +81,11 @@ def _make_design_agent() -> LlmAgent:
     return LlmAgent(
         name="DesignAgent",
         model="gemini-2.5-pro",
-        instruction="""You are a world-class digital designer — the best CSS architect alive.
+        instruction="""You are the Lead UI/Art Director of a world-class digital agency.
 You know nothing about this brand. You learn everything from the DNA files.
 
-STEP 1 — Study the DNA obsessively:
+STEP 1 — Study the Agency SOPs and DNA obsessively:
+  read_agency_protocols() → learn the 6-phase agency workflow and UI/UX laws
   read_dna_files() → visual.md, models.md (THIS IS YOUR DESIGN BRIEF — read every line)
   read_dna_section("colors") → exact color tokens with hex values
   read_dna_section("typography") → exact font families, weights, roles
@@ -136,7 +138,7 @@ STEP 2 — Write the COMPLETE style.css with write_style_css():
 STEP 3 — Verify: audit_css_tokens() → confirm all DNA tokens are present.
 STEP 4 — Respond with a summary of all CSS decisions you made.
 """,
-        tools=[read_dna_section, read_dna_files, write_style_css, append_css, audit_css_tokens, fetch_reference_sites],
+        tools=[read_agency_protocols, read_dna_section, read_dna_files, write_style_css, append_css, audit_css_tokens, fetch_reference_sites],
         output_key="design_result",
         before_agent_callback=dna_inject_callback,
         after_agent_callback=make_quality_scorer("design"),
@@ -147,10 +149,11 @@ def _make_html_agent() -> LlmAgent:
     return LlmAgent(
         name="HTMLAgent",
         model="gemini-2.5-pro",
-        instruction="""You are a world-class front-end developer. Your HTML is museum-quality.
+        instruction="""You are the Lead Frontend Developer of a world-class digital agency. Your HTML is museum-quality.
 You know nothing about this brand. You learn everything from the DNA.
 
-STEP 1 — Read everything:
+STEP 1 — Read the Agency SOPs and DNA everything:
+  read_agency_protocols() → learn the development standards (semantic HTML, a11y, SEO)
   read_full_dna() → complete identity.json
   read_dna_section("site") → hero copy, section content, stats, process steps
   read_dna_section("packages") → pricing tiers
@@ -233,7 +236,7 @@ STEP 2 — Write the COMPLETE index.html with write_index_html():
 STEP 3 — Verify: audit_html_structure() → check completeness
 STEP 4 — Respond with the audit results and your confidence assessment.
 """,
-        tools=[read_full_dna, read_dna_section, read_dna_files, read_case_list, fetch_reference_sites,
+        tools=[read_agency_protocols, read_full_dna, read_dna_section, read_dna_files, read_case_list, fetch_reference_sites,
                write_index_html, read_output_file, audit_html_structure],
         output_key="html_result",
         before_agent_callback=dna_inject_callback,
@@ -245,10 +248,11 @@ def _make_pages_agent() -> LlmAgent:
     return LlmAgent(
         name="PagesAgent",
         model="gemini-2.5-pro",
-        instruction="""You are a world-class multipage website developer.
+        instruction="""You are the Lead Multi-page Developer of a world-class digital agency.
 You know nothing about this brand. You discover everything from the DNA.
 
-STEP 1 — Discover what pages need to be built:
+STEP 1 — Learn the Agency SOPs and discover what pages need to be built:
+  read_agency_protocols() → learn the development standards (semantic HTML, a11y)
   read_page_collections() → returns ALL page collections declared in the DNA.
   Each collection has: type, folder, label, item_count, items[]
 
@@ -305,7 +309,7 @@ STEP 4 — After writing all pages:
   Respond with the complete list of pages generated, organized by collection.
   Include quality assessment for each collection.
 """,
-        tools=[read_page_collections, read_page_item, read_dna_section, read_dna_files,
+        tools=[read_agency_protocols, read_page_collections, read_page_item, read_dna_section, read_dna_files,
                write_page, list_generated_pages],
         output_key="pages_result",
         before_agent_callback=dna_inject_callback,

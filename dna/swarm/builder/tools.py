@@ -550,3 +550,23 @@ def fetch_reference_sites() -> str:
 
     except Exception as e:
         return json.dumps({"error": str(e)})
+
+
+# ── Agency formation tools ────────────────────────────────────────────────────
+
+def read_agency_protocols() -> str:
+    """Read digital agency Standard Operating Procedures (SOPs) and UX Laws.
+    
+    Use this to understand HOW to execute your job as a world-class digital agency.
+    This provides rules like Fitts's Law, Miller's Law, and structural blueprints.
+    """
+    try:
+        parts = []
+        protocols_dir = _DNA_DIR / "swarm" / "protocols"
+        for fname in ("agency_sop.md", "ux_laws.md"):
+            p = protocols_dir / fname
+            if p.exists():
+                parts.append(f"# {fname}\n\n{p.read_text()}")
+        return "\n\n---\n\n".join(parts) or "No agency protocols found."
+    except Exception as e:
+        return f"Error reading protocols: {e}"
