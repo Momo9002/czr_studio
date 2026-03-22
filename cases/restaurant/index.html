@@ -3,138 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CZR Studio // Case: Restaurant Flagship</title>
-    <meta name="description" content="A private dining experience with no online presence. The site had to feel like the evening itself.">
+    <title>CZR Studio | Case Study: Restaurant Flagship for TABLE N°1</title>
+    <meta name="description" content="A private dining experience in Monaco. See the case study for TABLE N°1.">
     <link rel="stylesheet" href="../../style.css">
     <style>
+        /* Page-specific overrides */
         :root {
-            --case-bg: #130e08;
-            --case-text: #e4d8c4;
-            --case-accent: #c8922a;
+            --client-bg: #130e08;
+            --client-text: #e4d8c4;
+            --client-accent: #c8922a;
         }
         .cover-image {
+            width: 100%;
+            height: 80vh;
             background-image: url(../../images/restaurant.jpg);
             background-size: cover;
             background-position: center;
-            height: 100vh;
-            max-height: 700px;
-            width: 100%;
         }
-        .case-details-grid {
+        .details-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--border-color-dark);
+            margin-top: 4rem;
         }
         .detail-item .label {
             font-family: var(--font-body);
             font-size: var(--type-eyebrow-size);
-            font-weight: var(--type-eyebrow-weight);
+            font-weight: 700;
             letter-spacing: var(--type-eyebrow-tracking);
             text-transform: uppercase;
-            color: color-mix(in srgb, var(--white) 60%, transparent);
+            opacity: 0.7;
             margin-bottom: 0.5rem;
         }
         .detail-item .value {
-            font-weight: 600;
+            font-family: var(--font-display);
+            font-weight: var(--type-display-weight);
+            font-size: 1.5rem;
+        }
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
+        }
+        .deliverables-list li {
+            font-size: 1.25rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-light .deliverables-list li {
+            border-bottom: 1px solid color-mix(in srgb, var(--dark-text) 15%, transparent);
+        }
+        .back-link-footer {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .back-link-footer a {
+            color: var(--white);
+            opacity: 0.8;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+        .back-link-footer a:hover {
+            opacity: 1;
+        }
+        .section-light .back-link-footer a {
+             color: var(--dark-text);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav class="nav">
-            <div class="nav-logo">
-                <a href="../../">CZR Studio</a>
-            </div>
-            <div class="nav-links">
-                <a href="../../#work" class="nav-link">← Back to Case Studies</a>
-            </div>
-        </nav>
+    <header class="nav">
+        <a href="../../" class="nav-logo">CZR Studio</a>
+        <a href="../../#work" class="nav-links">← Back to Case Studies</a>
     </header>
 
     <main>
 
-        <section class="section section-dark" id="hero-case">
-            <div class="container">
-                <div class="hero-content">
-                    <p class="eyebrow-label">Hospitality</p>
-                    <h1>Restaurant Flagship</h1>
-                </div>
+        <section class="section section-dark hero">
+            <div class="container text-center">
+                <p class="eyebrow">Hospitality</p>
+                <h1>Restaurant Flagship</h1>
             </div>
         </section>
 
-        <section class="cover-image" aria-label="An atmospheric photo of a high-end restaurant interior."></section>
+        <section class="cover-image" role="img" aria-label="An elegant and atmospheric restaurant interior."></section>
 
-        <section class="section section-dark">
-            <div class="container">
-                <div class="grid-2-col">
-                    <div>
-                        <h2 class="eyebrow-label">The Mandate</h2>
-                        <p style="font-size: 1.5rem; max-width: 25ch;">A private dining experience with no online presence. Reservations by referral only. The site had to feel like the evening itself.</p>
-                    </div>
-                    <div>
-                        <div class="case-details-grid">
-                            <div class="detail-item">
-                                <p class="label">Client</p>
-                                <p class="value">TABLE N°1</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="label">Location</p>
-                                <p class="value">Monaco</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="label">Focus</p>
-                                <p class="value">Brand Immersion</p>
-                            </div>
+        <article>
+
+            <section class="section section-dark">
+                <div class="container">
+                    <header class="text-center">
+                        <p class="eyebrow">The Brief</p>
+                        <h2>An Evening in Monaco.</h2>
+                    </header>
+                    <p class="text-center" style="max-width: 60ch; margin-top: 2rem;">A private dining experience with no online presence. Reservations by referral only. The site had to feel like the evening itself.</p>
+                    <div class="details-grid">
+                        <div class="detail-item text-center">
+                            <div class="label">Client</div>
+                            <div class="value">TABLE N°1</div>
+                        </div>
+                        <div class="detail-item text-center">
+                            <div class="label">Location</div>
+                            <div class="value">Monaco</div>
+                        </div>
+                        <div class="detail-item text-center">
+                            <div class="label">Focus</div>
+                            <div class="value">Digital Exclusivity</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section section-light">
-            <div class="container">
-                 <div class="grid-2-col">
-                    <div>
-                        <h2 class="eyebrow-label">The Method</h2>
-                        <h3 style="font-size: 2.5rem;">Full-bleed chapter-based scroll. No conventional nav. Each section a scene.</h3>
-                    </div>
-                    <div>
-                        <p>The digital experience was crafted to mirror the intimacy of the physical space. We eliminated traditional navigation in favor of a narrative-driven scroll, where each viewport acts as a chapter in a story. The design language uses deep, warm tones from the client's palette to evoke the feeling of a candlelit dinner, focusing on atmosphere over information.</p>
-                        <ul class="package-features" style="margin-top: 2rem;">
+            <section class="section section-light">
+                <div class="container">
+                    <header class="text-center">
+                        <p class="eyebrow">The Build</p>
+                        <h2>Each Section a Scene.</h2>
+                    </header>
+                    <p class="text-center" style="max-width: 60ch; margin-top: 2rem;">Full-bleed chapter-based scroll. No conventional nav. Each section a scene. The digital space was crafted to mirror the intimacy and narrative of the dining experience itself, guiding the user through an atmospheric journey rather than a conventional website.</p>
+                    
+                    <div style="max-width: 800px; margin: 4rem auto 0;">
+                        <h3 style="text-align: center; font-family: var(--font-display); margin-bottom: 2rem;">Deliverables</h3>
+                        <ul class="deliverables-list">
                             <li>Website</li>
                             <li>Brand identity</li>
                             <li>Photography direction</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section section-dark">
-            <div class="container" style="text-align: center;">
-                <h2 class="eyebrow-label" style="text-align:center;">The Result</h2>
-                <p style="font-size: var(--type-h2-size); font-family: var(--font-display); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-tracking); line-height: 1.1; max-width: 20ch; margin: 0 auto;">Reservation requests tripled in the first week. No price listed. No question asked.</p>
-            </div>
-        </section>
-
-        <section class="section section-dark" id="contact">
-            <div class="container">
-                <div class="section-header" style="text-align:center;">
-                     <p class="eyebrow-label">Initiate your vision.</p>
-                     <h2>Brief us.</h2>
-                     <a href="https://wa.me/18107764057?text=CZR%20Studio.%20Haute%20Couture%20Digital.%0A%0AThree%20questions.%20One%20brief.%20Your%20site%20in%2048%20hours.%0A%0AWhat%27s%20the%20name%20of%20your%20brand%3F" class="btn btn-white" style="margin-top: 2rem;">Talk to the Agent →</a>
+            <section class="section section-dark">
+                <div class="container text-center">
+                    <p class="eyebrow">The Result</p>
+                    <h2>Reservations Tripled.</h2>
+                     <p class="text-center" style="max-width: 60ch; margin: 2rem auto 0;">Reservation requests tripled in the first week. No price listed. No question asked. The digital presence maintained the brand's mystique while dramatically increasing demand from the right clientele.</p>
                 </div>
-                 <div style="text-align:center; margin-top: 4rem;">
-                    <a href="../../#work" class="nav-link">← Back to Case Studies</a>
+            </section>
+
+        </article>
+        
+        <section class="section section-dark contact-section" id="contact">
+            <div class="container">
+                <div>
+                    <p class="eyebrow">Initiate your vision.</p>
+                    <h2>Brief us.</h2>
+                    <p class="subheadline">State your mandate. The agent responds within the hour.</p>
+                    <a href="whatsapp://send?phone=+18107764057" class="btn">Talk to the Agent →</a>
                 </div>
             </div>
         </section>
 
     </main>
+    
+    <footer class="footer section-dark back-link-footer">
+         <a href="../../#work">← Back to Case Studies</a>
+    </footer>
 
 </body>
 </html>

@@ -4,188 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CZR Studio — Haute Couture Digital.</title>
-    <meta name="description" content="We forge premium digital brands. Direct. Decisive. Delivered.">
+    <meta name="description" content="We forge premium digital brands. Direct. Decisive. Delivered. Haute Couture Digital from CZR Studio.">
     
-    <!-- OG Tags -->
-    <meta property="og:title" content="CZR Studio — Haute Couture Digital.">
-    <meta property="og:description" content="We forge premium digital brands. Direct. Decisive. Delivered.">
-    <meta property="og:url" content="https://czr.studio">
-    <meta property="og:image" content="https://czr.studio/images/og-image.jpg">
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://czr.studio">
+    <meta property="og:title" content="CZR Studio — Haute Couture Digital.">
+    <meta property="og:description" content="We forge premium digital brands. Direct. Decisive. Delivered. Haute Couture Digital from CZR Studio.">
+    <meta property="og:image" content="https://czr.studio/images/hero-bg.jpg">
 
-    <!-- Canonical Link -->
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://czr.studio">
+    <meta property="twitter:title" content="CZR Studio — Haute Couture Digital.">
+    <meta property="twitter:description" content="We forge premium digital brands. Direct. Decisive. Delivered. Haute Couture Digital from CZR Studio.">
+    <meta property="twitter:image" content="https://czr.studio/images/hero-bg.jpg">
+
     <link rel="canonical" href="https://czr.studio">
-
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <nav class="nav" id="main-nav">
-            <div class="nav-logo">
-                <a href="#">CZR Studio</a>
-            </div>
-            <div class="nav-action">
-                <a href="https://wa.me/18107764057?text=CZR%20Studio.%20Haute%20Couture%20Digital.%0A%0AThree%20questions.%20One%20brief.%20Your%20site%20in%2048%20hours.%0A%0AWhat%27s%20the%20name%20of%20your%20brand%3F" class="btn btn-white" id="nav-cta">Talk to the Agent →</a>
-            </div>
-        </nav>
-    </header>
+    <nav class="nav" id="main-nav">
+        <a href="#" class="nav-logo" id="nav-logo">CZR Studio</a>
+        <div class="nav-links">
+            <a href="#work">Our Work</a>
+            <a href="#packages">Packages</a>
+            <a href="#faq">FAQ</a>
+            <a href="/dashboard.html" class="underline">Customer Area</a>
+        </div>
+        <a href="https://wa.me/18107764057" class="btn" id="nav-cta">Talk to the Agent →</a>
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Menu">☰</button>
+    </nav>
 
     <main>
 
-        <!-- ======================= -->
-        <!-- HERO -->
-        <!-- ======================= -->
-        <section class="section section-dark" id="hero">
+        <section class="section section-dark hero" id="hero">
             <div class="container">
-                <div class="hero-content reveal">
-                    <p class="eyebrow-label">Digital Atelier · Dubai · NYC · Worldwide</p>
-                    <h1>Digital precision. Rapid deployment.</h1>
-                    <p>We forge premium digital brands. Direct. Decisive. Delivered.</p>
-                    <div class="hero-values">
-                        <span>Concierge-focused.</span>
-                        <span>Lightning speed.</span>
-                        <span>Yours entirely.</span>
-                    </div>
-                </div>
+                <p class="eyebrow reveal">Digital Atelier · Dubai · NYC · Worldwide</p>
+                <h1 class="reveal">Digital precision. Rapid deployment.</h1>
+                <p class="hero-subheadline reveal">We forge premium digital brands. Direct. Decisive. Delivered.</p>
+                <a href="https://wa.me/18107764057" class="btn reveal" id="hero-cta">Talk to the Agent →</a>
             </div>
         </section>
 
-        <!-- ======================= -->
-        <!-- WORK -->
-        <!-- ======================= -->
         <section class="section section-dark" id="work">
             <div class="container">
-                <div class="section-header reveal">
-                    <p class="eyebrow-label">Selected Work</p>
+                <header class="text-center reveal">
+                    <p class="eyebrow">Selected Work</p>
                     <h2>The portfolio.</h2>
-                </div>
-                <div class="work-grid reveal-child">
-                    <a href="cases/restaurant/" class="work-card" id="work-card-restaurant">
-                        <img src="images/restaurant.jpg" alt="Cover image for the Restaurant Flagship case study for TABLE N°1" class="work-card-image">
-                        <div class="work-card-info">
-                            <p class="work-card-category">Hospitality</p>
-                            <h3 class="work-card-title">Restaurant Flagship</h3>
+                </header>
+                <div class="work-grid reveal-group">
+                    <a href="cases/restaurant/" class="work-card reveal" id="work-card-restaurant">
+                        <img src="images/restaurant.jpg" alt="A sophisticated restaurant interior.">
+                        <div class="work-card-content">
+                            <h3>Restaurant Flagship</h3>
+                            <p>Hospitality</p>
                         </div>
                     </a>
-                    <a href="cases/architecture-studio/" class="work-card" id="work-card-architecture-studio">
-                        <img src="images/architecture.jpg" alt="Cover image for the Studio Website case study for NA Studio" class="work-card-image">
-                        <div class="work-card-info">
-                            <p class="work-card-category">Architecture</p>
-                            <h3 class="work-card-title">Studio Website</h3>
+                    <a href="cases/architecture-studio/" class="work-card reveal" id="work-card-architecture-studio">
+                        <img src="images/architecture.jpg" alt="A minimalist architectural structure with clean lines.">
+                        <div class="work-card-content">
+                            <h3>Studio Website</h3>
+                            <p>Architecture</p>
                         </div>
                     </a>
-                    <a href="cases/fragrance/" class="work-card" id="work-card-fragrance">
-                        <img src="images/fragrance.jpg" alt="Cover image for the Fragrance Brand case study for Eau Nulle" class="work-card-image">
-                        <div class="work-card-info">
-                            <p class="work-card-category">Luxury Product</p>
-                            <h3 class="work-card-title">Fragrance Brand</h3>
+                    <a href="cases/fragrance/" class="work-card reveal" id="work-card-fragrance">
+                        <img src="images/fragrance.jpg" alt="A luxury fragrance bottle with dramatic lighting.">
+                        <div class="work-card-content">
+                            <h3>Fragrance Brand</h3>
+                            <p>Luxury Product</p>
                         </div>
                     </a>
-                    <a href="cases/fashion-house/" class="work-card" id="work-card-fashion-house">
-                        <img src="images/fashion-house.jpg" alt="Cover image for the Maison Identity case study for Elara" class="work-card-image">
-                        <div class="work-card-info">
-                            <p class="work-card-category">Fashion</p>
-                            <h3 class="work-card-title">Maison Identity</h3>
+                    <a href="cases/fashion-house/" class="work-card reveal" id="work-card-fashion-house">
+                        <img src="images/fashion-house.jpg" alt="High-fashion clothing on display.">
+                        <div class="work-card-content">
+                            <h3>Maison Identity</h3>
+                            <p>Fashion</p>
                         </div>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- ======================= -->
-        <!-- ABOUT -->
-        <!-- ======================= -->
         <section class="section section-light" id="about">
             <div class="container">
-                <div class="grid-2-col reveal">
-                    <div class="section-header">
-                        <p class="eyebrow-label">The studio</p>
-                        <h2>Craft at speed.</h2>
-                    </div>
+                <div class="about-content reveal">
                     <div>
+                        <p class="eyebrow">The studio</p>
+                        <h2>Craft at speed.</h2>
                         <p>CZR is not an agency. Not a freelancer. We are a focused atelier — three people who build every project personally, at full intensity.</p>
                     </div>
-                </div>
-                <div class="stats-grid reveal-child">
-                    <div class="stat-item" id="stat-price">
-                        <div class="value">€999</div>
-                        <div class="label">Sprint starts at</div>
-                    </div>
-                    <div class="stat-item" id="stat-kickoff">
-                        <div class="value">Same day</div>
-                        <div class="label">Brief to kickoff</div>
-                    </div>
-                    <div class="stat-item" id="stat-ip">
-                        <div class="value">100%</div>
-                        <div class="label">IP transferred</div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-value">€999</div>
+                            <div class="stat-label">Sprint starts at</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">Same day</div>
+                            <div class="stat-label">Brief to kickoff</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">IP transferred</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ======================= -->
-        <!-- PROCESS -->
-        <!-- ======================= -->
         <section class="section section-dark" id="process">
-            <div class="container">
-                <div class="section-header reveal">
-                    <p class="eyebrow-label">How it works</p>
+            <div class="container text-center">
+                <header class="reveal">
+                    <p class="eyebrow">How it works</p>
                     <h2>Three steps.</h2>
-                </div>
-                <div class="process-grid reveal-child">
-                    <div class="process-item" id="process-step-1">
-                        <div class="process-item-num">01</div>
+                </header>
+                <div class="process-grid reveal-group">
+                    <article class="process-step reveal" id="process-step-1">
+                        <div class="process-step-num">01</div>
                         <h3>Brief.</h3>
                         <p>Ten minutes with the concierge agent on WhatsApp. Three questions. Vision, audience, references.</p>
-                    </div>
-                    <div class="process-item" id="process-step-2">
-                        <div class="process-item-num">02</div>
+                    </article>
+                    <article class="process-step reveal" id="process-step-2">
+                        <div class="process-step-num">02</div>
                         <h3>Build.</h3>
                         <p>We work in a focused sprint. No check-ins. No approval loops. You brief once. We build to match.</p>
-                    </div>
-                    <div class="process-item" id="process-step-3">
-                        <div class="process-item-num">03</div>
+                    </article>
+                    <article class="process-step reveal" id="process-step-3">
+                        <div class="process-step-num">03</div>
                         <h3>Ship.</h3>
                         <p>Delivered at lightning speed. Full IP transfer. Source files, assets — everything is yours.</p>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- ======================= -->
-        <!-- PACKAGES -->
-        <!-- ======================= -->
         <section class="section section-light" id="packages">
-            <div class="container">
-                <div class="section-header reveal">
-                    <p class="eyebrow-label">The offer</p>
+            <div class="container text-center">
+                <header class="reveal">
+                    <p class="eyebrow">The offer</p>
                     <h2>One price.</h2>
                     <p>No negotiation.</p>
-                </div>
-                <div class="packages-grid reveal-child">
-                    <div class="package-card" id="package-sprint">
-                        <h3>The Sprint</h3>
-                        <p class="tagline">Your brand, online at lightning speed.</p>
+                </header>
+                <div class="packages-grid reveal-group">
+                    <article class="package-card reveal" id="package-sprint">
+                        <h3 class="package-name">The Sprint</h3>
                         <div class="package-price">€999</div>
+                        <p class="package-tagline">Your brand, online at lightning speed.</p>
                         <ul class="package-features">
                             <li>3-page website</li>
                             <li>Mobile-first</li>
                             <li>Lightning fast delivery</li>
                             <li>Full IP transfer</li>
                         </ul>
-                        <a href="https://wa.me/18107764057?text=I'm%20interested%20in%20The%20Sprint." class="btn btn-black" id="cta-sprint">Start the Sprint →</a>
-                    </div>
-                    <div class="package-card" id="package-flagship">
-                        <h3>The Flagship</h3>
-                        <p class="tagline">A complete digital flagship.</p>
+                        <a href="https://wa.me/18107764057?text=I'm%20interested%20in%20The%20Sprint." class="btn btn-dark" id="cta-sprint">Start the Sprint →</a>
+                    </article>
+                    <article class="package-card featured reveal" id="package-flagship">
+                        <h3 class="package-name">The Flagship</h3>
                         <div class="package-price">€2499</div>
+                        <p class="package-tagline">A complete digital flagship.</p>
                         <ul class="package-features">
                             <li>Up to 8 pages</li>
                             <li>Brand consultation</li>
@@ -193,83 +173,77 @@
                             <li>2 revision rounds</li>
                             <li>Full IP transfer</li>
                         </ul>
-                        <a href="https://wa.me/18107764057?text=I'm%20interested%20in%20The%20Flagship." class="btn btn-black" id="cta-flagship">Build the Flagship →</a>
-                    </div>
-                    <div class="package-card" id="package-retainer">
-                        <h3>The Retainer</h3>
-                        <p class="tagline">Your site, always current.</p>
-                        <div class="package-price">€99 <span class="per">/ month</span></div>
+                        <a href="https://wa.me/18107764057?text=I'm%20interested%20in%20The%20Flagship." class="btn btn-hermes" id="cta-flagship">Build the Flagship →</a>
+                    </article>
+                    <article class="package-card reveal" id="package-retainer">
+                        <h3 class="package-name">The Retainer</h3>
+                        <div class="package-price">€99/mo</div>
+                        <p class="package-tagline">Your site, always current.</p>
                         <ul class="package-features">
                             <li>2 updates per month</li>
                             <li>Priority response within the hour</li>
                             <li>Cancel anytime, no conditions</li>
                         </ul>
-                        <a href="https://wa.me/18107764057?text=I'm%20interested%20in%20The%20Retainer." class="btn btn-black" id="cta-retainer">Start the Retainer →</a>
-                    </div>
+                        <a href="https://wa.me/18107764057?text=I'm%20interested%20in%20The%20Retainer." class="btn btn-dark" id="cta-retainer">Start the Retainer →</a>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- ======================= -->
-        <!-- FAQ -->
-        <!-- ======================= -->
         <section class="section section-light" id="faq">
             <div class="container">
-                <div class="section-header reveal">
-                    <p class="eyebrow-label">Questions</p>
+                <header class="text-center reveal">
+                    <p class="eyebrow">Questions</p>
                     <h2>Answered.</h2>
-                </div>
-                <div class="faq-list reveal-child">
-                    <details id="faq-item-1">
-                        <summary>How does the concierge briefing work?</summary>
-                        <div class="answer">
+                </header>
+                <div class="faq-grid reveal">
+                    <details class="faq-item" id="faq-item-1">
+                        <summary class="faq-question">How does the concierge briefing work?</summary>
+                        <div class="faq-answer">
                             <p>You start a conversation on WhatsApp. Three questions. Brand identity, audience, and references. Ten minutes. Your brief is structured and we begin.</p>
                         </div>
                     </details>
-                    <details id="faq-item-2">
-                        <summary>Is lightning-speed delivery actually possible?</summary>
-                        <div class="answer">
+                    <details class="faq-item" id="faq-item-2">
+                        <summary class="faq-question">Is lightning-speed delivery actually possible?</summary>
+                        <div class="faq-answer">
                             <p>Yes. No meetings, no approval chains. We work in focused sprints. The brief gives us everything we need from day one. That is how we deliver at lightning speed.</p>
                         </div>
                     </details>
-                    <details id="faq-item-3">
-                        <summary>What if I am not satisfied?</summary>
-                        <div class="answer">
+                    <details class="faq-item" id="faq-item-3">
+                        <summary class="faq-question">What if I am not satisfied?</summary>
+                        <div class="faq-answer">
                             <p>You pay nothing. The guarantee is unconditional. 100% refund, no questions.</p>
                         </div>
                     </details>
-                    <details id="faq-item-4">
-                        <summary>What do I need to provide?</summary>
-                        <div class="answer">
+                    <details class="faq-item" id="faq-item-4">
+                        <summary class="faq-question">What do I need to provide?</summary>
+                        <div class="faq-answer">
                             <p>Ten minutes with your concierge. If you have brand assets — ideal. If not, we advise.</p>
                         </div>
                     </details>
-                    <details id="faq-item-5">
-                        <summary>What stack do you use?</summary>
-                        <div class="answer">
+                    <details class="faq-item" id="faq-item-5">
+                        <summary class="faq-question">What stack do you use?</summary>
+                        <div class="faq-answer">
                             <p>We recommend the right stack for your project. Next.js, Webflow, Shopify, or custom code. We choose what serves the brief.</p>
                         </div>
                     </details>
-                    <details id="faq-item-6">
-                        <summary>Do I own everything after delivery?</summary>
-                        <div class="answer">
+                     <details class="faq-item" id="faq-item-6">
+                        <summary class="faq-question">Do I own everything after delivery?</summary>
+                        <div class="faq-answer">
                             <p>Full IP transfer on delivery. Source files, assets, everything — yours completely.</p>
                         </div>
                     </details>
                 </div>
             </div>
         </section>
-        
-        <!-- ======================= -->
-        <!-- CONTACT -->
-        <!-- ======================= -->
-        <section class="section section-dark" id="contact">
-            <div class="container reveal">
-                <div class="section-header">
-                     <p class="eyebrow-label">Initiate your vision.</p>
-                     <h2>Brief us.</h2>
-                     <p>State your mandate. The agent responds within the hour.</p>
-                     <a href="https://wa.me/18107764057?text=CZR%20Studio.%20Haute%20Couture%20Digital.%0A%0AThree%20questions.%20One%20brief.%20Your%20site%20in%2048%20hours.%0A%0AWhat%27s%20the%20name%20of%20your%20brand%3F" class="btn btn-white" id="contact-cta">Talk to the Agent →</a>
+
+        <section class="section section-dark contact-section" id="contact">
+            <div class="container">
+                <div class="reveal">
+                    <p class="eyebrow">Initiate your vision.</p>
+                    <h2>Brief us.</h2>
+                    <p class="subheadline">State your mandate. The agent responds within the hour.</p>
+                    <a href="https://wa.me/18107764057" class="btn" id="contact-cta">Talk to the Agent →</a>
                 </div>
             </div>
         </section>
@@ -277,36 +251,32 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-copy">
-                &copy; 2024 CZR Studio. All rights reserved.
-            </div>
-            <div class="footer-links">
-                <a href="#work" class="footer-link">Our Work</a>
-                <a href="#packages" class="footer-link">Packages</a>
-                <a href="/dashboard.html" class="footer-link">Customer Area</a>
-                <a href="/privacy.html" class="footer-link">Privacy</a>
-                <a href="https://instagram.com/czr.studio" class="footer-link" target="_blank" rel="noopener noreferrer">Instagram</a>
-            </div>
+        <div class="footer-copy">&copy; 2024 CZR Studio. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="#work">Our Work</a>
+            <a href="#packages">Packages</a>
+            <a href="/dashboard.html">Customer Area</a>
+            <a href="/privacy.html">Privacy</a>
+            <a href="https://instagram.com/czr.studio" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
     </footer>
 
     <script>
-        // Scroll-reveal animation
-        const revealObserver = new IntersectionObserver(entries => {
+        // Simple scroll reveal
+        const io = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    revealObserver.unobserve(entry.target);
+                    entry.target.classList.add('visible');
+                    io.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.08 });
 
-        document.querySelectorAll('.reveal, .reveal-child').forEach(el => {
-            revealObserver.observe(el);
+        document.querySelectorAll('.reveal').forEach(el => {
+            io.observe(el);
         });
 
-        // Navigation scroll behavior
+        // Nav scroll handler
         const nav = document.getElementById('main-nav');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -314,6 +284,19 @@
             } else {
                 nav.classList.remove('scrolled');
             }
+        });
+        
+        // FAQ Accordion
+        document.querySelectorAll('.faq-item summary').forEach(summary => {
+            summary.addEventListener('click', e => {
+                const details = summary.parentElement;
+                // Basic accordion: close others when one opens
+                if (!details.open) {
+                    document.querySelectorAll('.faq-item[open]').forEach(openDetails => {
+                        openDetails.open = false;
+                    });
+                }
+            });
         });
     </script>
     <script src="inject.js" defer></script>

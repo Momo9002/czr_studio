@@ -3,144 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CZR Studio // Case: Fragrance Brand</title>
-    <meta name="description" content="Launch site for a conceptual fragrance brand. Product does not advertise. It implies.">
+    <title>CZR Studio | Case Study: Fragrance Brand Website</title>
+    <meta name="description" content="Launch site for a conceptual fragrance brand. The product does not advertise. It implies.">
     <link rel="stylesheet" href="../../style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --case-bg: #0A0A08;
-            --case-text: #E8E2D4;
-            --case-accent: #B8963E;
-        }
-        .case-hero-h1, .case-h3 {
-            font-family: 'Playfair Display', serif;
-        }
         .cover-image {
-            background-image: url(../../images/fragrance.jpg);
+            width: 100%;
+            height: 90vh;
+            background-image: linear-gradient(to top, #0A0A08 5%, transparent 50%), url(../../images/fragrance.jpg);
             background-size: cover;
             background-position: center;
-            height: 100vh;
-            max-height: 700px;
-            width: 100%;
+            position: relative;
         }
-        .case-details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+        .text-overlay {
+            position: absolute;
+            bottom: var(--section-padding-v);
+            left: var(--container-padding-h);
+            right: var(--container-padding-h);
+            color: #E8E2D4;
+            text-align: center;
+        }
+        .text-overlay h2 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-family: "Playfair Display", serif; /* Client-specific font */
+            font-weight: 400;
+            max-width: 25ch;
+            margin: 0 auto;
+        }
+        .single-column {
+            max-width: 65ch;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
             margin-top: 3rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--border-color-dark);
+            display: inline-flex;
+            gap: 1px;
+            background-color: color-mix(in srgb, var(--dark-text) 15%, transparent);
+            border: 1px solid color-mix(in srgb, var(--dark-text) 15%, transparent);
         }
-        .detail-item .label {
-            font-family: var(--font-body);
-            font-size: var(--type-eyebrow-size);
-            font-weight: var(--type-eyebrow-weight);
-            letter-spacing: var(--type-eyebrow-tracking);
-            text-transform: uppercase;
-            color: color-mix(in srgb, var(--white) 60%, transparent);
-            margin-bottom: 0.5rem;
+        .deliverables-list li {
+            padding: 1rem 2rem;
+            background-color: var(--cream);
         }
-        .detail-item .value {
-            font-weight: 600;
+        .result-stat {
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-family: var(--font-display);
+            font-weight: var(--type-display-weight);
+            letter-spacing: var(--type-display-tracking);
+            color: var(--white);
+            margin: 1rem 0;
+        }
+        .back-link-footer {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .back-link-footer a {
+            color: var(--white);
+            opacity: 0.8;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: opacity 0.3s ease;
+        }
+        .back-link-footer a:hover {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav class="nav">
-            <div class="nav-logo">
-                <a href="../../">CZR Studio</a>
-            </div>
-            <div class="nav-links">
-                <a href="../../#work" class="nav-link">← Back to Case Studies</a>
-            </div>
-        </nav>
+    <header class="nav">
+        <a href="../../" class="nav-logo">CZR Studio</a>
+        <a href="../../#work" class="nav-links">← Back to Case Studies</a>
     </header>
 
     <main>
 
-        <section class="section section-dark" id="hero-case">
-            <div class="container">
-                <div class="hero-content">
-                    <p class="eyebrow-label">Luxury Product</p>
-                    <h1 class="case-hero-h1">Fragrance Brand</h1>
-                </div>
+        <section class="section section-dark hero" style="padding-bottom: 0;">
+            <div class="container text-center">
+                <p class="eyebrow">Luxury Product</p>
+                <h1>Fragrance Brand</h1>
             </div>
         </section>
 
-        <section class="cover-image" aria-label="A chic, minimalist photo of a fragrance bottle."></section>
-
-        <section class="section section-dark">
-            <div class="container">
-                <div class="grid-2-col">
-                    <div>
-                        <h2 class="eyebrow-label">The Mandate</h2>
-                        <p style="font-size: 1.5rem; max-width: 25ch;">Launch site for a conceptual fragrance brand. Product does not advertise. It implies.</p>
-                    </div>
-                    <div>
-                        <div class="case-details-grid">
-                            <div class="detail-item">
-                                <p class="label">Client</p>
-                                <p class="value">Eau Nulle</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="label">Location</p>
-                                <p class="value">Paris</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="label">Focus</p>
-                                <p class="value">Conceptual Reveal</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <section class="cover-image" role="img" aria-label="A mysterious and elegant fragrance bottle against a dark background.">
+            <div class="text-overlay">
+                <h2>The scent of nothing.</h2>
             </div>
         </section>
 
-        <section class="section section-light">
-            <div class="container">
-                 <div class="grid-2-col">
-                    <div>
-                        <h2 class="eyebrow-label">The Method</h2>
-                        <h3 class="case-h3" style="font-size: 2.5rem;">Full-screen product reveal. Single scroll. No price. No cart. Inquiry only.</h3>
-                    </div>
-                    <div>
-                        <p>The site is an exercise in restraint. We created a single, continuous scroll experience that reveals the product story without conventional sales architecture. There is no navigation, no visible price, and no "add to cart" button. The entire journey is designed to build mystique, culminating in a simple inquiry form. It is a digital space that suggests value rather than stating it.</p>
-                        <ul class="package-features" style="margin-top: 2rem;">
-                            <li>Website</li>
-                            <li>E-commerce setup</li>
-                            <li>Email flows</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <article>
 
-        <section class="section section-dark">
-            <div class="container" style="text-align: center;">
-                <h2 class="eyebrow-label" style="text-align:center;">The Result</h2>
-                <p style="font-size: var(--type-h2-size); font-family: var(--font-display); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-tracking); line-height: 1.1; max-width: 25ch; margin: 0 auto;">Sold out the first run of 200 units in 72 hours. Stockist in Paris and Dubai.</p>
-            </div>
-        </section>
-
-        <section class="section section-dark" id="contact">
-            <div class="container">
-                <div class="section-header" style="text-align:center;">
-                     <p class="eyebrow-label">Initiate your vision.</p>
-                     <h2>Brief us.</h2>
-                     <a href="https://wa.me/18107764057?text=CZR%20Studio.%20Haute%20Couture%20Digital.%0A%0AThree%20questions.%20One%20brief.%20Your%20site%20in%2048%20hours.%0A%0AWhat%27s%20the%20name%20of%20your%20brand%3F" class="btn btn-white" style="margin-top: 2rem;">Talk to the Agent →</a>
+            <section class="section section-dark">
+                <div class="container single-column">
+                    <p class="eyebrow">The Challenge</p>
+                    <h2>It does not advertise. It implies.</h2>
+                    <p style="margin-top: 2rem;">How do you launch a conceptual fragrance brand online? The product's identity is built on subtlety and mystique. The website had to be an extension of this philosophy—an experience of discovery, not a sales page. The client was clear: no overt marketing, no traditional e-commerce funnels.</p>
                 </div>
-                 <div style="text-align:center; margin-top: 4rem;">
-                    <a href="../../#work" class="nav-link">← Back to Case Studies</a>
+            </section>
+
+            <section class="section section-light">
+                <div class="container single-column">
+                    <p class="eyebrow">The Build</p>
+                    <h2>A Single Scroll. Inquiry Only.</h2>
+                    <p style="margin-top: 1rem;">We crafted a full-screen product reveal that flows into a single, uninterrupted scroll. There is no price. There is no 'Add to Cart' button. The journey ends with a simple inquiry form. This deliberate friction enhances the brand's exclusivity, making acquisition an intentional act by the consumer.</p>
+                    <ul class="deliverables-list">
+                        <li>Website</li>
+                        <li>E-commerce setup</li>
+                        <li>Email flows</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section section-dark">
+                <div class="container text-center">
+                     <p class="eyebrow">The Result</p>
+                    <div class="result-stat">Sold Out.</div>
+                     <p style="max-width: 60ch; margin: 1rem auto 0;">The first run of 200 units sold out in 72 hours through inquiries alone. The brand secured stockists in Paris and Dubai, proving that a digital experience built on restraint and mystique can drive significant commercial velocity.</p>
+                </div>
+            </section>
+
+        </article>
+        
+        <section class="section section-dark contact-section" id="contact">
+            <div class="container">
+                <div>
+                    <p class="eyebrow">Initiate your vision.</p>
+                    <h2>Brief us.</h2>
+                    <p class="subheadline">State your mandate. The agent responds within the hour.</p>
+                    <a href="whatsapp://send?phone=+18107764057" class="btn">Talk to the Agent →</a>
                 </div>
             </div>
         </section>
 
     </main>
+    
+    <footer class="footer section-dark back-link-footer">
+         <a href="../../#work">← Back to Case Studies</a>
+    </footer>
 
 </body>
 </html>

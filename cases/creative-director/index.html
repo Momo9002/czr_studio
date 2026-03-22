@@ -3,148 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CZR Studio // Case: Director Portfolio</title>
-    <meta name="description" content="Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.">
+    <title>CZR Studio | Case Study: Creative Director Portfolio</title>
+    <meta name="description" content="A portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.">
     <link rel="stylesheet" href="../../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz@9..40&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --case-bg: #0D0D0D;
-            --case-text: #F0EDE8;
-            --case-accent: #C0392B;
-        }
-        .case-hero-h1, .case-h3 {
+        .hero h1 {
             font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 0.05em; /* Bebas Neue needs more spacing */
-        }
-        body {
-            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(5rem, 14vw, 12rem);
+            letter-spacing: 0.05em;
+            line-height: 1;
         }
         .cover-image {
+            width: 100%;
+            height: 90vh;
             background-image: url(../../images/creative-director.jpg);
             background-size: cover;
             background-position: center;
-            height: 100vh;
-            max-height: 700px;
-            width: 100%;
         }
-        .case-details-grid {
+        .two-col-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--border-color-dark);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            align-items: start;
         }
-        .detail-item .label {
-            font-family: var(--font-body);
-            font-size: var(--type-eyebrow-size);
-            font-weight: var(--type-eyebrow-weight);
-            letter-spacing: var(--type-eyebrow-tracking);
-            text-transform: uppercase;
-            color: color-mix(in srgb, var(--white) 60%, transparent);
-            margin-bottom: 0.5rem;
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 2rem;
         }
-        .detail-item .value {
-            font-weight: 500;
+        .deliverables-list li {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 0.03em;
+            padding: 1rem 0;
+            border-bottom: 1px solid color-mix(in srgb, var(--dark-text) 15%, transparent);
         }
+        .deliverables-list li:first-child {
+             border-top: 1px solid color-mix(in srgb, var(--dark-text) 15%, transparent);
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1px;
+            background-color: var(--border-color);
+            border: 1px solid var(--border-color);
+            margin-top: 4rem;
+            text-align: center;
+        }
+        .result-item {
+            padding: 3rem 1rem;
+            background-color: var(--black);
+        }
+        .result-item .value {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-family: var(--font-display);
+            font-weight: var(--type-display-weight);
+            letter-spacing: var(--type-display-tracking);
+            color: var(--red);
+        }
+        .result-item .label {
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+        .back-link-footer { padding: 4rem 0; text-align: center; }
+        .back-link-footer a { color: var(--white); opacity: 0.8; text-decoration: none; font-size: 1rem; transition: opacity 0.3s ease; }
+        .back-link-footer a:hover { opacity: 1; }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav class="nav">
-            <div class="nav-logo">
-                <a href="../../">CZR Studio</a>
-            </div>
-            <div class="nav-links">
-                <a href="../../#work" class="nav-link">← Back to Case Studies</a>
-            </div>
-        </nav>
+    <header class="nav">
+        <a href="../../" class="nav-logo">CZR Studio</a>
+        <a href="../../#work" class="nav-links">← Back to Case Studies</a>
     </header>
 
     <main>
 
-        <section class="section section-dark" id="hero-case">
-            <div class="container">
-                <div class="hero-content">
-                    <p class="eyebrow-label">Creative</p>
-                    <h1 class="case-hero-h1">Director Portfolio</h1>
-                </div>
+        <section class="section section-dark hero">
+            <div class="container text-center">
+                <p class="eyebrow">Creative</p>
+                <h1>Director Portfolio</h1>
             </div>
         </section>
 
-        <section class="cover-image" aria-label="A bold, stylish photograph representing creative direction."></section>
+        <section class="cover-image" role="img" aria-label="A creative director's atmospheric workspace."></section>
 
-        <section class="section section-dark">
-            <div class="container">
-                <div class="grid-2-col">
-                    <div>
-                        <h2 class="eyebrow-label">The Mandate</h2>
-                        <p style="font-size: 1.5rem; max-width: 25ch;">Portfolio for a creative director whose work spans fashion, film, and music. Site as gallery.</p>
-                    </div>
-                    <div>
-                        <div class="case-details-grid">
-                            <div class="detail-item">
-                                <p class="label">Client</p>
-                                <p class="value">Baron D.</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="label">Location</p>
-                                <p class="value">NYC</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="label">Tagline</p>
-                                <p class="value">Direction without apology.</p>
+        <article>
+
+            <section class="section section-dark">
+                <div class="container">
+                    <div class="two-col-layout">
+                        <div>
+                            <p class="eyebrow">The Challenge</p>
+                            <h2>Direction without apology.</h2>
+                        </div>
+                        <div>
+                            <p>How do you unify a body of work that spans fashion, film, and music? The portfolio for a director like Baron D. couldn't be a simple gallery. It needed to be an archive, a statement, a digital gallery that presented diverse projects with a single, confident voice. The site itself had to have a strong point of view.</p>
+                             <div style="display: flex; gap: 4rem; margin-top: 2rem; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; font-size: 1.25rem;">
+                                <div>Client: Baron D.</div>
+                                <div>Location: NYC</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section section-light">
-            <div class="container">
-                 <div class="grid-2-col">
-                    <div>
-                        <h2 class="eyebrow-label">The Method</h2>
-                        <h3 class="case-h3" style="font-size: 3rem;">Grid-based archive. Full-screen case studies. Video-first sections.</h3>
-                    </div>
-                    <div>
-                        <p>The architecture is a clean, structural grid that functions as a digital gallery. Each project in the archive opens into an immersive, full-screen case study where video and large-format photography lead. The interface is deliberately understated to ensure the director's work is the sole focus. It's a platform built for showcasing, not distraction.</p>
-                        <ul class="package-features" style="margin-top: 2rem;">
-                            <li>Portfolio site</li>
-                            <li>Video showcase</li>
-                            <li>Contact system</li>
-                        </ul>
+            <section class="section section-light">
+                <div class="container">
+                     <div class="two-col-layout">
+                        <div>
+                            <p class="eyebrow">The Build</p>
+                            <h2>Site as Gallery.</h2>
+                            <p style="margin-top: 1rem; color: var(--dark-text);">We designed a grid-based archive that allows for intuitive exploration of a vast body of work. Case studies are presented full-screen, with video-first sections to immediately immerse the visitor. The user experience is akin to walking through a gallery, moving from one major work to the next, each presented with maximum impact.</p>
+                        </div>
+                        <div>
+                            <ul class="deliverables-list">
+                                <li>Portfolio site</li>
+                                <li>Video showcase</li>
+                                <li>Contact system</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section section-dark">
-            <div class="container" style="text-align: center;">
-                <h2 class="eyebrow-label" style="text-align:center;">The Result</h2>
-                <p style="font-size: var(--type-h2-size); font-family: var(--font-display); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-tracking); line-height: 1.1; max-width: 25ch; margin: 0 auto;">Three new brand partnerships closed within the month. Agency inquiries doubled.</p>
-            </div>
-        </section>
-
-        <section class="section section-dark" id="contact">
-            <div class="container">
-                <div class="section-header" style="text-align:center;">
-                     <p class="eyebrow-label">Initiate your vision.</p>
-                     <h2>Brief us.</h2>
-                     <a href="https://wa.me/18107764057?text=CZR%20Studio.%20Haute%20Couture%20Digital.%0A%0AThree%20questions.%20One%20brief.%20Your%20site%20in%2048%20hours.%0A%0AWhat%27s%20the%20name%20of%20your%20brand%3F" class="btn btn-white" style="margin-top: 2rem;">Talk to the Agent →</a>
+            <section class="section section-dark">
+                <div class="container text-center">
+                     <p class="eyebrow">The Result</p>
+                    <h2>Partnerships Closed. Inquiries Doubled.</h2>
+                     <div class="result-grid">
+                        <div class="result-item">
+                            <div class="value">3</div>
+                            <div class="label">New Brand Partnerships</div>
+                        </div>
+                         <div class="result-item">
+                            <div class="value">2x</div>
+                            <div class="label">Agency Inquiries</div>
+                        </div>
+                     </div>
                 </div>
-                 <div style="text-align:center; margin-top: 4rem;">
-                    <a href="../../#work" class="nav-link">← Back to Case Studies</a>
+            </section>
+
+        </article>
+        
+        <section class="section section-dark contact-section" id="contact">
+            <div class="container">
+                <div>
+                    <p class="eyebrow">Initiate your vision.</p>
+                    <h2>Brief us.</h2>
+                    <p class="subheadline">State your mandate. The agent responds within the hour.</p>
+                    <a href="whatsapp://send?phone=+18107764057" class="btn">Talk to the Agent →</a>
                 </div>
             </div>
         </section>
 
     </main>
+    
+    <footer class="footer section-dark back-link-footer">
+         <a href="../../#work">← Back to Case Studies</a>
+    </footer>
 
 </body>
 </html>

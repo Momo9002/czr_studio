@@ -3,144 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CZR Studio // Case: Maison Identity</title>
-    <meta name="description" content="A new maison needing digital presence before its first runway. Identity established here first.">
+    <title>CZR Studio | Case Study: Fashion House Identity</title>
+    <meta name="description" content="Digital presence for a new maison in Milan before its first runway. See the case study for Elara.">
     <link rel="stylesheet" href="../../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --case-bg: #FAFAF8;
-            --case-text: #111111;
-            --case-accent: #8B1A1A;
+        /* This page uses a light theme as its base */
+        body {
+            background-color: var(--cream);
+            color: var(--dark-text);
         }
-        .case-hero-h1, .case-h3 {
+        .nav {
+            background-color: rgba(247, 244, 239, 0.7); /* cream bg */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid color-mix(in srgb, var(--dark-text) 10%, transparent);
+        }
+        .nav a, .nav .nav-logo { color: var(--dark-text); }
+        .nav-links a:hover { color: var(--red); }
+        .btn-page-cta {
+             background-color: var(--dark-text);
+             color: var(--cream);
+             border-color: var(--dark-text);
+        }
+        .btn-page-cta:hover {
+            background-color: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+        }
+
+        .hero h1 {
             font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: clamp(4rem, 10vw, 9rem);
+            letter-spacing: -0.02em;
         }
         .cover-image {
+            width: 100%;
+            height: 90vh;
             background-image: url(../../images/fashion-house.jpg);
             background-size: cover;
-            background-position: center;
-            height: 100vh;
-            max-height: 700px;
-            width: 100%;
+            background-position: center 30%;
         }
-        .case-details-grid {
+        .editorial-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--border-color-dark);
+            grid-template-columns: 1fr 1.2fr;
+            gap: 5rem;
+            align-items: center;
         }
-        .detail-item .label {
-            font-family: var(--font-body);
-            font-size: var(--type-eyebrow-size);
-            font-weight: var(--type-eyebrow-weight);
-            letter-spacing: var(--type-eyebrow-tracking);
-            text-transform: uppercase;
-            color: color-mix(in srgb, var(--white) 60%, transparent);
-            margin-bottom: 0.5rem;
+        .result-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.3;
+            text-align: center;
+            max-width: 30ch;
+            margin: 2rem auto 0;
         }
-        .detail-item .value {
-            font-weight: 600;
+        .back-link-footer a { color: var(--dark-text); }
+        
+        /* Dark section overrides for this page */
+        .section-dark .back-link-footer a { color: var(--white); }
+        .section-dark .btn { background-color: var(--white); color: var(--black); }
+        .section-dark .btn:hover { background-color: var(--red); color: var(--white); }
+
+        @media (max-width: 768px) {
+            .editorial-layout {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body>
+<body class="section-light">
 
-    <header>
-        <nav class="nav">
-            <div class="nav-logo">
-                <a href="../../">CZR Studio</a>
-            </div>
-            <div class="nav-links">
-                <a href="../../#work" class="nav-link">← Back to Case Studies</a>
-            </div>
-        </nav>
+    <header class="nav">
+        <a href="../../" class="nav-logo">CZR Studio</a>
+        <a href="../../#work" class="nav-links">← Back to Case Studies</a>
     </header>
 
     <main>
 
-        <section class="section section-dark" id="hero-case">
-            <div class="container">
-                <div class="hero-content">
-                    <p class="eyebrow-label">Fashion</p>
-                    <h1 class="case-hero-h1">Maison Identity</h1>
-                </div>
+        <section class="section hero">
+            <div class="container text-center">
+                <p class="eyebrow">Fashion</p>
+                <h1>Maison Identity</h1>
             </div>
         </section>
 
-        <section class="cover-image" aria-label="An editorial fashion photograph with a high-end feel."></section>
+        <section class="cover-image" role="img" aria-label="A high-fashion shot of a model wearing an elegant garment."></section>
 
-        <section class="section section-dark">
-            <div class="container">
-                <div class="grid-2-col">
-                    <div>
-                        <h2 class="eyebrow-label">The Mandate</h2>
-                        <p style="font-size: 1.5rem; max-width: 25ch;">A new maison needing digital presence before its first runway. Identity established here first.</p>
-                    </div>
-                    <div>
-                        <div class="case-details-grid">
-                            <div class="detail-item">
-                                <p class="label">Client</p>
-                                <p class="value">Elara</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="label">Location</p>
-                                <p class="value">Milan</p>
-                            </div>
-                            <div class="detail-item">
-                                <p class="label">Focus</p>
-                                <p class="value">Digital First</p>
+        <article>
+
+            <section class="section">
+                <div class="container">
+                    <div class="editorial-layout">
+                        <div>
+                            <p class="eyebrow">The Challenge</p>
+                            <h2>The identity is established here first.</h2>
+                        </div>
+                        <div>
+                            <p>A new maison needs a digital presence before its first runway. This is not a portfolio of past work; it is the debut collection itself. The website must embody the brand's entire philosophy, serving as a confident statement of intent to press, buyers, and future clients. It must feel established from day one.</p>
+                            <div style="display: flex; gap: 4rem; margin-top: 2rem;">
+                                <div><strong>Client:</strong> Elara</div>
+                                <div><strong>Location:</strong> Milan</div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section section-light">
-            <div class="container">
-                 <div class="grid-2-col">
-                    <div>
-                        <h2 class="eyebrow-label" style="color: var(--case-text);">The Method</h2>
-                        <h3 class="case-h3" style="font-size: 2.5rem; color: var(--case-text);">Editorial lookbook. Collection pages. Press access. No e-commerce — appointment only.</h3>
-                    </div>
-                    <div>
-                        <p style="color: var(--case-text);">The website was designed to serve as the brand's first editorial statement. We created a digital lookbook with full-screen, high-resolution imagery and minimal text, allowing the collection to define the identity. Access is curated; there is no public-facing store. Instead, a discreet portal allows press and buyers to request appointments, establishing the brand's exclusivity from day one.</p>
-                        <ul class="package-features" style="margin-top: 2rem; border-color: var(--border-color-light);">
-                            <li style="border-color: var(--border-color-light);">Website</li>
-                            <li style="border-color: var(--border-color-light);">Lookbook system</li>
-                            <li style="border-color: var(--border-color-light);">Press portal</li>
-                        </ul>
-                    </div>
+            <section class="section section-dark">
+                <div class="container text-center">
+                    <p class="eyebrow">The Build</p>
+                    <h2>The collection lives here.</h2>
+                    <p style="max-width: 55ch; margin: 1.5rem auto 0;">We built an editorial lookbook, not a product grid. Collection pages are designed as chapters in a story. To maintain exclusivity, there is no e-commerce. Viewings are by appointment only. A secure portal grants press access to high-resolution assets and official statements, controlling the narrative from the very beginning.</p>
+                     <ul class="deliverables-list" style="margin-top: 3rem; color: var(--white); border-color: var(--border-color);">
+                        <li style="border-bottom: 1px solid var(--border-color);">Website</li>
+                        <li style="border-bottom: 1px solid var(--border-color);">Lookbook system</li>
+                        <li style="border-bottom: 1px solid var(--border-color);">Press portal</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="section section-dark">
-            <div class="container" style="text-align: center;">
-                <h2 class="eyebrow-label" style="text-align:center;">The Result</h2>
-                <p style="font-size: var(--type-h2-size); font-family: var(--font-display); font-weight: var(--type-display-weight); letter-spacing: var(--type-display-tracking); line-height: 1.1; max-width: 25ch; margin: 0 auto;">Picked up by two buyers at Pitti Uomo. Press credentials issued.</p>
-            </div>
-        </section>
-
-        <section class="section section-dark" id="contact">
-            <div class="container">
-                <div class="section-header" style="text-align:center;">
-                     <p class="eyebrow-label">Initiate your vision.</p>
-                     <h2>Brief us.</h2>
-                     <a href="https://wa.me/18107764057?text=CZR%20Studio.%20Haute%20Couture%20Digital.%0A%0AThree%20questions.%20One%20brief.%20Your%20site%20in%2048%20hours.%0A%0AWhat%27s%20the%20name%20of%20your%20brand%3F" class="btn btn-white" style="margin-top: 2rem;">Talk to the Agent →</a>
+            <section class="section">
+                <div class="container text-center">
+                     <p class="eyebrow">The Result</p>
+                    <blockquote class="result-quote">Picked up by two buyers at Pitti Uomo.</blockquote>
+                     <p style="max-width: 60ch; margin: 2rem auto 0;">The pre-runway digital presence generated significant industry interest. The lookbook was strong enough to secure appointments, resulting in two buyer commitments at the prestigious Pitti Uomo trade show. Press credentials were issued to major publications, cementing the maison's legitimacy before a single piece walked the runway.</p>
                 </div>
-                 <div style="text-align:center; margin-top: 4rem;">
-                    <a href="../../#work" class="nav-link">← Back to Case Studies</a>
+            </section>
+
+        </article>
+        
+        <section class="section section-dark contact-section" id="contact">
+            <div class="container">
+                <div>
+                    <p class="eyebrow">Initiate your vision.</p>
+                    <h2>Brief us.</h2>
+                    <p class="subheadline">State your mandate. The agent responds within the hour.</p>
+                    <a href="whatsapp://send?phone=+18107764057" class="btn">Talk to the Agent →</a>
                 </div>
             </div>
         </section>
 
     </main>
+    
+    <footer class="footer back-link-footer section-dark">
+         <a href="../../#work">← Back to Case Studies</a>
+    </footer>
 
 </body>
 </html>
